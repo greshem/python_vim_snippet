@@ -1,0 +1,3572 @@
+snippet #!
+	#!/usr/bin/env python
+	# -*- coding: utf-8 -*-
+snippet #!3
+	#!/usr/bin/env python3
+	# -*- coding: utf-8 -*-
+snippet imp
+	import ${0:module}
+snippet uni
+	def __unicode__(self):
+		${0:representation}
+snippet from
+	from ${1:package} import ${0:module}
+# Module Docstring
+snippet docs
+	"""
+	File: ${1:`vim_snippets#Filename('$1.py', 'foo.py')`}
+	Author: `g:snips_author`
+	Email: `g:snips_email`
+	Github: `g:snips_github`
+	Description: ${0}
+	"""
+
+snippet wh
+	while ${1:condition}:
+		${0}
+# dowh - does the same as do...while in other languages
+snippet dowh
+	while True:
+		${1}
+		if ${0:condition}:
+			break
+snippet with
+	with ${1:expr} as ${2:var}:
+		${0}
+# New Class
+snippet cl
+	class ${1:ClassName}(${2:object}):
+		"""${3:docstring for $1}"""
+		def __init__(self, ${4:arg}):
+			${5:super($1, self).__init__()}
+			self.$4 = $4
+			${0}
+# New Function
+snippet def
+	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		"""${3:docstring for $1}"""
+		${0}
+snippet deff
+	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
+		${0}
+# New Method
+snippet defm
+	def ${1:mname}(self, ${2:arg}):
+		${0}
+# New Property
+snippet property
+	def ${1:foo}():
+		doc = "${2:The $1 property.}"
+		def fget(self):
+			${3:return self._$1}
+		def fset(self, value):
+			${4:self._$1 = value}
+		def fdel(self):
+			${0:del self._$1}
+		return locals()
+	$1 = property(**$1())
+# Ifs
+snippet if
+	if ${1:condition}:
+		${0}
+snippet el
+	else:
+		${0}
+snippet ei
+	elif ${1:condition}:
+		${0}
+# For
+snippet for
+	for ${1:item} in ${2:items}:
+		${0}
+# Encodes
+snippet cutf8
+	# -*- coding: utf-8 -*-
+# Encodes
+snippet utf8-coding
+	# -*- coding: utf-8 -*-
+
+snippet utf8-setdefaultencoding
+	import sys
+	sys.setdefaultencoding("utf-8")  
+
+snippet clatin1
+	# -*- coding: latin-1 -*-
+snippet cascii
+	# -*- coding: ascii -*-
+# Lambda
+snippet lambda1
+	${1:var} = lambda ${2:vars} : ${0:action}
+
+snippet lambda_add
+	def add(a,b):
+		return a + b
+	print add(2,3)
+	add = lambda a,b : a + b
+	print add(2,3)
+
+snippet .
+	self.
+snippet try_Try_Except
+	try:
+		${1}
+	except ${2:Exception}, ${3:e}:
+		${0:raise $3}
+snippet try_Try_Except_Else
+	try:
+		${1}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	else:
+		${0}
+snippet try_Try_Except_Finally
+	try:
+		${1}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	finally:
+		${0}
+snippet try_Try_Except_Else_Finally
+	try:
+		${1}
+	except ${2:Exception}, ${3:e}:
+		${4:raise $3}
+	else:
+		${5}
+	finally:
+		${0}
+# if __name__ == '__main__':
+snippet ifmain
+	if __name__ == '__main__':
+		${0:main()}
+
+snippet main
+	if __name__ == '__main__':
+		${0:main()}
+
+# __magic__
+snippet _
+	__${1:init}__
+# python debugger (pdb)
+snippet pdb
+	import pdb
+	pdb.set_trace()
+# bpython debugger (bpdb)
+snippet bpdb
+	import bpdb
+	bpdb.set_trace()
+# ipython debugger (ipdb)
+snippet ipdb
+	import ipdb
+	ipdb.set_trace()
+# embed ipython itself
+snippet iem
+	import IPython
+	IPython.embed()
+# ipython debugger (pdbbb)
+snippet pdbbb
+	import pdbpp
+	pdbpp.set_trace()
+# remote python debugger (rpdb)
+snippet rpdb
+	import rpdb
+	rpdb.set_trace()
+# ptpython
+snippet ptpython
+	from ptpython.repl import embed
+	embed(globals(), locals(), vi_mode=${1:False}, history_filename=${2:None})
+# python console debugger (pudb)
+snippet pudb
+	import pudb
+	pudb.set_trace()
+# pdb in nosetests
+snippet nosetrace
+	from nose.tools import set_trace
+	set_trace()
+snippet pprint
+	import pprint
+	pprint.pprint(${1})
+snippet "
+	"""${0:doc}
+	"""
+# assertions
+snippet a=
+	self.assertEqual(${0}, ${1})
+# test function/method
+snippet test
+	def test_${1:description}(${2:`indent('.') ? 'self' : ''`}):
+		${0}
+# test case
+snippet testcase
+	class ${1:ExampleCase}(unittest.TestCase):
+
+		def test_${2:description}(self):
+			${0}
+snippet fut
+	from __future__ import ${0}
+#getopt
+snippet getopt
+	try:
+		# Short option syntax: "hv:"
+		# Long option syntax: "help" or "verbose="
+		opts, args = getopt.getopt(sys.argv[1:], "${1:short_options}", [${2:long_options}])
+
+	except getopt.GetoptError, err:
+		# Print debug info
+		print str(err)
+		${3:error_action}
+
+	for option, argument in opts:
+		if option in ("-h", "--help"):
+			${0}
+		elif option in ("-v", "--verbose"):
+			verbose = argument
+# logging
+# glog = get log
+snippet glog
+	import logging
+	logger = logging.getLogger(${0:__name__})
+snippet le
+	logger.error(${0:msg})
+# conflict with lambda=ld, therefor we change into Logger.debuG
+snippet lg
+	logger.debug(${0:msg})
+snippet lw
+	logger.warning(${0:msg})
+snippet lc
+	logger.critical(${0:msg})
+snippet li
+	logger.info(${0:msg})
+snippet epydoc
+	"""${1:Description}
+
+	@param ${2:param}: ${3: Description}
+	@type  $2: ${4: Type}
+
+	@return: ${5: Description}
+	@rtype : ${6: Type}
+
+	@raise e: ${0: Description}
+	"""
+snippet dol
+	def ${1:__init__}(self, *args, **kwargs):
+	    super(${0:ClassName}, self).$1(*args, **kwargs)
+
+snippet super
+	def ${1:__init__}(self, *args, **kwargs):
+	    super(${0:ClassName}, self).$1(*args, **kwargs)
+
+
+snippet __init__
+	def ${1:__init__}(self, *args, **kwargs):
+	    super(${0:ClassName}, self).$1(*args, **kwargs)
+
+snippet kwg
+	self.${1:var_name} = kwargs.get('$1', ${2:None})
+
+snippet lkwg
+	${1:var_name} = kwargs.get('$1', ${2:None})
+snippet args
+	*args${1:,}${0}
+
+snippet kwargs
+	**kwargs${1:,}${0}
+snippet kwargs_prog
+	def fun_var_args(input1, input2, *args,  **kwargs  ): 
+		print "farg:", input1  
+		print "input2:", input2
+		print args;
+		print kwargs;
+
+		if "para2" in  args:
+			print "para2 in  args, is ok ";
+		para1 = kwargs.get('para1', None)
+		if para1 == None:
+			print "para1  in  kwargs is none ";
+
+
+snippet akw
+	*args, **kwargs${1:,}${0}
+snippet args
+	*args, **kwargs${1:,}${0}
+
+snippet strftime
+	import time;
+	def get_cur_time():
+		return time.strftime("%Y-%m-%d_%H:%M:%S ",time.localtime())
+
+snippet basedir
+	import sys, os
+	print 'sys.argv[0] =', sys.argv[0]
+	pathname = os.path.dirname(sys.argv[0])
+	print 'path =', pathname
+	print 'full path =', os.path.abspath(pathname)
+
+snippet DATA
+	#!/usr/bin/python
+	DATA="""
+	"""
+	print DATA;
+snippet TemplateView
+	from django.views.generic.base import TemplateView, ContextMixin
+	from django.conf.urls import include, url, patterns
+	urlpatterns = patterns('',
+	   url(r'^test$',    redirect_2  , name='test'),
+	   url(r'^baidu$', TemplateView.as_view(template_name="ECloud.html"),name="baidu"),  
+	   url(r'^index$', indexView.as_view(),name="project_index"),
+	);	
+
+snippet redirect
+	from django.core.urlresolvers import reverse 
+	from django.http import HttpResponse,HttpResponseRedirect
+
+	def redirect_2(request):
+		if request.user.is_authenticated():
+			return HttpResponseRedirect(reverse('baidu'))
+		else:
+			return HttpResponseRedirect(reverse('login'))
+
+
+snippet jsonView
+
+	#views.py  append
+	import json
+	def json_view(request):
+		data={'total':result['accountList']['total'],'rows':result['accountList']['accounts']}
+		return HttpResponse(json.dumps(data))
+
+	#urls.py append 	
+	url(r'^index$', indexView.as_view(),name="project_index"),
+
+snippet reverse
+	from django.core.urlresolvers import reverse 
+	from django.http import HttpResponse,HttpResponseRedirect
+
+	def redirect_2(request):
+		if request.user.is_authenticated():
+			return HttpResponseRedirect(reverse('baidu'))
+		else:
+			return HttpResponseRedirect(reverse('login'))
+
+snippet urlpatterns
+	from django.conf.urls import include, url, patterns
+	urlpatterns = patterns('',
+	   url(r'^test$',    redirect_2  , name='test'),
+	   url(r'^baidu$', TemplateView.as_view(template_name="ECloud.html"),name="baidu"),  
+	   url(r'^index$', indexView.as_view(),name="project_index"),
+	);	
+snippet logger
+	def get_cur_time():
+		import time;
+		return time.strftime("%Y-%m-%d_%H:%M:%S ",time.localtime())
+	def logger(string):
+		fh = open("/tmp/all.log", 'a')
+		fh.write("%s: %s"%(get_cur_time(), string) )
+		fh.close();
+	logger("this is log \n");
+
+snippet system_popen
+	def method_1():
+		import os;
+		output=os.popen("ifconfig");
+		ifcfg= output.read();
+		array=[word for word in ifcfg.lower().split()]
+		print array;
+		return array;
+
+snippet system_command
+	def get_output_cmd()
+		import commands
+		mplayer = commands.getoutput ('which mplayer')
+		ifconfig =commands.getoutput(" ifconfig -a ");
+		output=ifconfig.split("\n");
+		for each in output:
+			print each;
+snippet commands
+	def get_output_cmd()
+		import commands
+		mplayer = commands.getoutput ('which mplayer')
+		ifconfig =commands.getoutput(" ifconfig -a ");
+		output=ifconfig.split("\n");
+		for each in output:
+			print each;
+
+
+snippet re_match_search
+	import re;
+	root_pat=re.compile('root');
+	fh=open("/etc/passwd");
+	for line in fh.readlines(): 
+		match=root_pat.search(line)
+		if match: 
+			print line
+
+snippet match_search
+	import re;
+	root_pat=re.compile('root');
+	fh=open("/etc/passwd");
+	for line in fh.readlines(): 
+		match=root_pat.search(line)
+		if match: 
+			print line
+
+snippet split
+	space="aa bb cc ee dd ff";
+	array=space.split();
+
+	a="aa|bb|cc|ee|dd|ff";
+	array=a.split("|");
+
+snippet file_append
+	def file_append(string):
+		fh = open("/tmp/all.log", 'a')
+		fh.write("%s\n"%( string) )
+		fh.close();
+
+snippet readlines
+	fh=open("/etc/passwd");
+	for line in fh.readlines():
+		print line
+		for tmp in line.split(':'):
+			print tmp
+
+snippet utf8
+	#coding=utf-8
+
+
+snippet coding
+	#coding=utf-8
+
+snippet utf8
+	#coding=utf-8
+
+snippet glob
+	import glob
+	import os;
+	for file in glob.glob("*"):
+		#if os.path.isfile(file):
+		if os.path.isdir(file):
+			print(file)
+		elif os.path.isfile(file):
+			print "File:   {0}".format(file);
+snippet pwd
+	import os;
+	print os.getcwd();
+snippet cwd
+	import os;
+	print os.getcwd();
+
+snippet dirname
+	import sys, os
+	pathname = os.path.dirname("/root/linux/bbb")
+	print 'full path =', os.path.abspath(pathname)
+
+
+snippet abspath
+	import sys, os
+	pathname = os.path.dirname("/root/linux/bbb")
+	print 'full path =', os.path.abspath(pathname)
+	BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+snippet basename
+	import os
+	print os.path.basename("/etc/passwd")
+	print os.path.basename(os.getcwd())
+
+snippet find
+	import os
+	def find_get_dir_list(path):
+		filelist=[];
+		for root, dirs, files in os.walk(path):
+			for file in files:
+				abs_path = os.path.join(root,file)
+				filelist.append(abs_path);
+
+		return filelist;
+snippet os.walk
+	import os
+	def find_get_dir_list(path):
+		filelist=[];
+		for root, dirs, files in os.walk(path):
+			for file in files:
+				abs_path = os.path.join(root,file)
+				filelist.append(abs_path);
+
+		return filelist;
+
+
+
+snippet listdir
+	import os;
+	import sys;
+	for pkg in  os.listdir("/etc/"):
+		d="/etc/%s"%pkg;
+		if not os.path.isdir(d):
+			print  "FILE %s"%d;
+
+snippet submod
+	import pkgutil;
+	def print_nova_with_str():
+		for each in pkgutil.walk_packages ('/usr/lib/python2.7/site-packages/nova',  "nova."):
+			print each; 
+
+
+snippet walk_packages
+	import pkgutil;
+	def print_nova_with_str():
+		for each in pkgutil.walk_packages ('/usr/lib/python2.7/site-packages/nova',  "nova."):
+			print each; 
+
+
+
+snippet match_re_findall
+	def re_find_all():
+		import re;
+		size_str=" Size: 33333\n";
+		size=re.findall(r'\s+Size: (.*)\n',size_str)
+		print size;
+
+snippet now
+	import datetime;
+	datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+snippet replace
+	my_dir=my_str_file.replace(".tar.gz", "");
+
+
+snippet format
+	print """mv {dir}   __back_dir; 
+		mv {tar_gz} __back_dir """.format( dir=back_dir,  tar_gz=file );
+
+snippet mkdir
+	import os;
+	if not os.path.isdir("__back_dir"):
+		os.mkdir("__back_dir");
+		
+
+snippet link_extract
+	#!/usr/bin/python
+	import  requests;
+	from BeautifulSoup import BeautifulSoup
+
+	def  get_url(url):
+		r=requests.get(url);
+		soup = BeautifulSoup(r.content)
+
+		for a in soup.findAll('a', href=True):
+				#if  a['href'].endswith("xz"):
+				if  a['href']:
+					print "wget  {web_site}/{href}".format(web_site=url, href=a['href'] );
+
+	if __name__=="__main__":
+		url="http://cloud.centos.org/centos/7/images/";
+		get_url(url);
+
+
+	"""
+	output as follow 
+	wget http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-1701.qcow2
+	"""
+
+snippet quote
+	import urllib, sys ; 
+	print urllib.quote_plus(sys.stdin.read())
+
+snippet safe_string
+	import urllib, sys ; 
+	print urllib.quote_plus(sys.stdin.read())
+
+snippet file_exists
+	import os
+	if os.path.isfile(file):
+		print "file exists";
+		
+
+snippet random
+	#randint
+	import random;
+	print random.randint(12, 20)  # 生成的随机数 n: 12 <= n <= 20
+
+	#----结果:有理数
+	printrandom.uniform(10,20)
+	printrandom.		uniform(20,10)
+	#12.5798298022
+
+	foo = ['a', 'b', 'c', 'd', 'e']
+	from random import choice
+	print choice(foo
+	
+snippet max
+	print "max(80, 100, 1000) : ", max(80, 100, 1000)
+
+
+snippet datetime_tools
+	def datetime_tools():
+		from datetime import datetime
+		cur=datetime.now()
+		print cur.year;
+		print cur.month;
+		print cur.day;
+		print cur.hour;
+		print cur.minute;
+		print cur.weekday();
+
+	def delete_time():
+		from datetime import date, timedelta, datetime                                                 
+		str_to_date = datetime.datetime.strptime("21/11/06 16:30", "%d/%m/%y %H:%M") #将字符串转换成日期格式
+		cur_str=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+		new_date = datetime.datetime.now() + datetime.timedelta(days=10) 	#比现在加10天
+		new_date = datetime.datetime.now() + datetime.timedelta(days=-10) 	#比现在减10天
+		new_date = datetime.datetime.now() + datetime.timedelta(hours=-10) 	#比现在减10小时
+		new_date = datetime.datetime.now() + datetime.timedelta(seconds=120) #比现在+120
+
+snippet curtime
+	import time;
+	def get_cur_time():
+		return time.strftime("%Y-%m-%d_%H:%M:%S ",time.localtime())
+
+	def datatime_tools():
+		from datetime import datetime
+		cur=datetime.now()
+		print cur.year;
+		print cur.month;
+		print cur.day;
+		print cur.hour;
+		print cur.minute;
+		print cur.weekday();
+
+snippet closure1
+	#coding=utf-8
+	#无参数装饰器 C 包装带参数函数
+	def decorator_func_args(func):
+		def handle_args(*args, **kwargs): #处理传入函数的参数
+			print "begin"
+			func(*args, **kwargs)   #函数调用
+			print "end"
+		return handle_args
+
+
+	@decorator_func_args
+	def foo2(a, b=2,c=3):
+		print a, b,c
+	@decorator_func_args
+	def linux():
+		print "linux ";
+	foo2(1,3,4)
+	linux();
+
+snippet mysql_connect
+	import MySQLdb
+	import sys
+
+	try:
+		conn = MySQLdb.connect (host = "localhost", user = "root", passwd = "password", db = "mysql")
+	except MySQLdb.Error, e:
+		print "Error %d: %s" % (e.args[0], e.args[1])
+		sys.exit(1)
+
+	cursor = conn.cursor()
+	cursor.execute("SELECT * FROM user")
+	rows = cursor.fetchall()
+	for row in rows:
+		print row;
+
+snippet __init__.py
+snippet subprocess_demo.py
+	import subproces
+	process = subprocess.Popen(['python.exe','-c','while 1: pass'])
+snippet week_of_year.py
+	import time
+	print time.strftime("%W")
+snippet print.py
+	import os;
+	print ["aaaaa","bbb","ccc"];
+snippet zipls_modules_exec_with_cmd.py
+	#!/bin/sh
+	exec python -m zipls.zipls "$@"
+snippet win_fork_loop.py
+	import subprocess
+	import time;
+	process = subprocess.Popen(['python.exe','-c','while 1: pass'])
+	#time.sleep(60);snippet grep_pipe.py
+	import commands
+	mplayer = commands.getoutput ('grep port= /root/bin/daemon/ssh_nat/ssh_phabricator.pl')
+	print mplayer;
+snippet array_demo.py
+	for pypkg in ("rhpl", "yum", "rpmUtils", "urlgrabber", "pykickstart","rhpxl", "pirut"):
+	    print pypkg
+	
+snippet re_sub_demo.py
+	test="http://www.baidu.com"
+	re.sub('^http','',test)   
+	
+snippet str_format.py
+	b=33;
+	name="%d_%d_%d"%(b);
+	print name;
+snippet mkdirs_tree.py
+	#!/usr/bin/python
+	import os;
+	os.makedirs("/tmp/aa/bb/cc/ee/ff");
+snippet dircmp.py
+	import filecmp
+	a=filecmp.dircmp("/root/bin/", "/bin");
+	a.report();
+snippet stdout.py
+	import sys,os.path
+	sys.stderr.write('linux is good');
+	sys.exit(1);
+snippet os_popen.py
+	import os;
+	output=os.popen("cat /etc/passwd");
+	print output.read();
+snippet rpm_get_arch.py
+	#!/usr/bin/python
+	import rpmUtils.arch; 
+	print rpmUtils.arch.getBaseArch(myarch=rpmUtils.arch.getCanonArch(skipRpmPlatform = True));
+snippet glob_p2_0.py
+	import glob
+	for file in glob.glob("*"):
+	    print(file)
+snippet map_demo.py
+	
+	b= map( lambda x: x%3 , range(6));
+	print b;
+snippet types_demo.py
+	import types
+	a="adfafad"
+	if isinstance(a, types.StringType):
+		print "a  is string "
+snippet getoutput_commands.py
+	import commands
+	mplayer = commands.getoutput ('which mplayer')
+	ifconfg =commands.getoutput(" ifconfig -a ");
+	
+snippet join.py
+	import os;
+	print os.pathsep.join(["aa", "bb", "cc","dd", "ee"]);    
+
+snippet mod_iter_iter_modules.py
+	import pkgutil;
+	
+	for importer, name, ispkg in pkgutil.iter_modules(["./"]):
+	    print "%s :  %s : %s" %(importer,name,ispkg);
+snippet passwd_linecache.py
+	#!/usr/bin/python
+	import linecache;
+	print linecache.getline("/etc/passwd", 1);
+	
+snippet today.py
+	import time;
+	#print time.strftime("%Y-%m-%d_%H:%M:%S ",time.localtime())
+	print time.strftime("%Y-%m-%d",time.localtime())
+	
+snippet file_read_str.py
+	#!/usr/bin/python
+	
+	all_the_text = open('/etc/passwd').read( )     # 
+	print all_the_text;
+snippet logger_my.py
+	def logger(string):
+	    fh = open("/tmp/all.log", 'a')
+	    fh.write(string)
+	    fh.close();
+snippet substring.py
+	#!/usr/bin/python
+	#substring , ���� python �� string û�� subsring �ĺ���. 
+	a="abcedfg";
+	b=a[0:1];
+	
+snippet while_time.py
+	import time
+	while 1:
+		#print time.time();
+		time.sleep(1);
+		#print time.localtime();
+		print time.ctime();snippet getcwd_pwd.py
+	
+	# -*- coding: utf-8 -*-
+	#os.getcwd()ʵ���Ͼ��ǻ�ȡ��ǰ����·��(current working directory)
+	import os;
+	print os.getcwd();
+snippet file_to_array.array.py
+	import os;
+	output=os.popen("ifconfig");
+	ifcfg= output.readlines();
+	array=[ line.lower().split() for line in ifcfg ]
+	print array;
+snippet urllib_demo.py
+	from urllib import urlopen
+	url = 'http://www.tripadvisor.com/Restaurant_Review-g294217-d3639657-Reviews-Trattoria_Caffe_Monteverdi-Hong_Kong.html'
+	html = urlopen(url).read()
+	#html string 
+	print type(html);
+snippet os_system.py
+	#!/usr/bin/python
+	
+	import os
+	
+	os.system("ifconfig ")
+snippet popen_read.py
+	#!/usr/bin/python 
+	import os;
+	#string 
+	a=os.popen("ifconfig -a ").read()
+	print type(a);
+snippet environ_PATH_path.py
+	#!/usr/bin/python
+	import os;
+	pathlist=os.environ['PATH'].split(os.pathsep)
+	for path in pathlist:
+		print path;
+	
+snippet re_findall_test.py
+	
+	def re_find_all():
+	    import re;
+	    size_str=" Size: 33333\n";
+	    size=re.findall(r'\s+Size: (.*)\n',size_str)
+	    print size;
+snippet cat_file.py
+	import fileinput
+	import sys
+	
+	for line in fileinput.input("samples/sample.txt"):
+	    sys.stdout.write("-> ")
+	    sys.stdout.write(line)
+snippet set_2_dict.py
+	#!/usr/bin/python
+	a=set(range(1,100));
+	#print dict(a);
+	
+	b=dict([(each,each) for each in a ]);
+	print b;
+snippet gdbinit_pmap.py
+	python
+	import sys
+	sys.path.insert(0, '/home/transoft/tool/python')
+	from libstdcxx.v6.printers import register_libstdcxx_printers
+	register_libstdcxx_printers (None)
+	end
+snippet print_array.py
+	args = ["/usr/bin/mkisofs",
+	                "-J", "-r",
+	                "-hide-rr-moved", "-hide-joliet-trans-tbl",
+	                "-V", "self.fslabel",
+	                "-o", "iso"];
+	print args
+snippet strptime_demo.py
+	import datetime
+	dtstr = '2014-02-14 21:32:12'
+	tmp=datetime.datetime.strptime(dtstr, "%Y-%m-%d %H:%M:%S").date()
+	print tmp;
+	
+	#tmp=datetime.date(2014, 2, 14)
+snippet basename_dirname.py
+	import sys, os
+	
+	print 'sys.argv[0] =', sys.argv[0]
+	pathname = os.path.dirname(sys.argv[0])
+	print 'path =', pathname
+	print 'full path =', os.path.abspath(pathname)
+snippet popen.py
+	#!/usr/bin/python
+	
+	import os, time, popen2 
+	#raw_out, raw_in, raw_err = popen2.Popen4("cat /etc/passwd" );    
+	
+	raw_out, raw_in, raw_err  = popen2.Popen3("cat /etc/passwd" );    
+snippet reduce.py
+	#!/usr/bin/python
+	print    reduce ( lambda    x , y : x * y ,    range ( 1 ,    1001 ))
+snippet pyc_compile_gen_all.py
+	#!/usr/bin/python
+	#coding:utf-8
+	#批量生成pyc文件
+	#一般来说，我们的工程都是在一个目录下的，一般不会说仅仅编译一个py文件而已，而是需要把整个文件夹下的py文件都编译为pyc文件，python又为了我们提供了另一个模块：compileall 。使用方法如下：
+	import compileall
+	compileall.compile_dir(r'/root/bin/develop_python/')
+snippet sys_argv_argc.py
+	#!/usr/bin/python
+	import sys;
+	print sys.argv;
+	
+	argc=len(sys.argv);
+	print sys.argv[0];
+snippet python_array.py
+	#!/usr/bin/python
+	SUBS_OPTIONS = ('specialcharacters','quotes','specialwords',
+	    'replacements', 'attributes','macros','callouts','normal','verbatim',
+	    'none','replacements2')
+	print  SUBS_OPTIONS 
+	
+snippet try_except.py
+	#!/usr/bin/python
+	import os
+	try:
+		st=os.stat("/no_exists");
+	except os.error:
+		print os.error
+snippet continue_next.py
+	for each in range(1,100):
+	    if each <30:
+	        pass;
+	    else:
+	        #continue;
+	        next;
+	    print each;
+snippet continue.py
+	for each in range(1,100):
+	    if each <30:
+	        pass;
+	    else:
+	        #continue;
+	        next;
+	    print each;
+snippet next.py
+	for each in range(1,100):
+	    if each <30:
+	        pass;
+	    else:
+	        #continue;
+	        next;
+	    print each;
+snippet yield_demo.py
+	
+	def  get_data():
+	    for each in range(1,100):
+	        yield each;
+	
+	for  each in get_data():
+	    print each;
+snippet readline_file.py
+	#!/usr/bin/python
+	fh=open("/etc/passwd");
+	for line in fh.readlines():
+		print line
+		for tmp in line.split(':'):
+			print tmp
+	
+snippet readlines_file.py
+	#!/usr/bin/python
+	fh=open("/etc/passwd");
+	for line in fh.readlines():
+		print line
+		for tmp in line.split(':'):
+			print tmp
+	
+snippet string_assign.py
+	#!/usr/bin/python
+	args="args aa"
+	key="key111";
+	key="key111";
+	
+	args = "%s --%s=%s " %(args, key, key)
+	print args;
+snippet file_write.py
+	#!/usr/bin/python
+	f = open("output.txt", "w")
+	########################################################################
+	f.write("%f\n" % 1111111111)
+	f.write("%s\n" % 2222222222)
+	f.write("%s\n" % 333333333)
+	
+snippet string_a_ab_abc.py
+	def gen_path_with(size):
+	    output_dir="%s"%((size));
+	    ret_dir="%s/%s/%s/%s/%s"%( output_dir[0:1], output_dir[0:2], output_dir[0:3], output_dir[0:4], output_dir);
+	    return ret_dir;
+	
+	print gen_path_with(33333);
+	print gen_path_with("love");
+snippet popen2.py
+	
+	import subprocess
+	
+	vncconfigcommand = ["cat", "/etc/passwd" ]
+	vncconfo = subprocess.Popen(vncconfigcommand)# we dont want output
+	print vncconfo.returncode
+	
+snippet regex_sed_replace.py
+	
+	#1.替换所有匹配的子串用newstring替换subject中所有与正则表达式regex匹配的子串
+	result, number = re.subn(regex, newstring, subject) 
+	
+	#2.替换所有匹配的子串（使 用正则表达式对象）
+	rereobj = re.compile(regex)  
+	result, number = reobj.subn(newstring, subject)字符串拆分 
+snippet yesterday.py
+	import datetime
+	#today = datetime.date.today()
+	today = datetime.datetime.now()
+	oneday = datetime.timedelta(days=1)
+	yesterday = today - oneday
+	print yesterday;
+	
+snippet array_comp.py
+	#!/usr/bin/python
+	import sys
+	if sys.version_info[0:3] < (2,3,0):
+		sys.stderr.write('error: requires at leasst Python 2.3.0');
+		sys.exit(1);
+	else:
+		sys.stdout.write('version check ok');
+snippet pefile_exe_info.py
+	#!/usr/bin/python
+	import os
+	import pefile
+	import time
+	
+	pe=pefile.PE("/tmp/a.exe");
+	print pe.dump_info();
+	
+snippet get_net_if_eth0_card_.py
+	#!/usr/bin/python 
+	import psutil
+	
+	a=psutil.net_if_stats()
+	print a;
+	print type(a);
+	print a.keys();
+	
+snippet uuid_gen.py
+	import uuid
+	#coding=utf-8
+	
+	def getUUID():
+	    return uuid.uuid4().__str__()
+	
+	if __name__ == '__main__':
+	    print getUUID();
+snippet array_for.py
+	#!/usr/bin/python 
+	#import config
+	import sys
+	import os
+	i=100;
+	for each in sys.path:
+		i=i+1;
+		print each,i;
+snippet stderr.py
+	#!/usr/bin/python
+	import sys;
+	print >> sys.stderr, "timestamp not specified; using the current time"
+	
+	while 1:
+		line=sys.stdin.readline()[:-1]
+		print line;
+	
+snippet stdin_getchar.py
+	#!/usr/bin/python
+	import sys;
+	print >> sys.stderr, "timestamp not specified; using the current time"
+	
+	while 1:
+		line=sys.stdin.readline()[:-1]
+		print line;
+	
+snippet yield_demo3.py
+	
+	def  get_data():
+	    for each in range(1,100):
+	        for each2  in range(100,1000):
+	            yield (each,each2);
+	
+	for each,each2 in get_data():
+	    print each,each2;
+snippet zip_demo.py
+	
+	L1 = [1,2,3,4]
+	L2 = [5,6,7,8]
+	L3 = [9,10,11,12]
+	zip(L1,L2,L3)
+	list(zip(L1,L2,L3))
+	for (x,y,z) in zip(L1,L2,L3):
+	       print(x,'+',y,'+',z,'=',x + y + z)
+snippet pickle_demo.py
+	#nltk have so much  file type link pickle 
+	
+	# Dump pickled tokenizer
+	import pickle
+	out = open("slovene.pickle","wb")
+	pickle.dump(tokenizer, out)
+	out.close()
+	
+snippet python_version.py
+	#!/usr/bin/python
+	import sys
+	if sys.version_info[0:3] < (2,3,0):
+		sys.stderr.write('error: requires at leasst Python 2.3.0');
+		sys.exit(1);
+	else:
+		sys.stdout.write('version check ok');
+		print sys.version_info[0:3];
+snippet print_format.py
+	#!/usr/bin/python
+	args="args aa"
+	key="key111";
+	key="key111";
+	
+	args = "%s --%s=%s " %(args, key, key)
+	print args;
+	print "%s --%s=%s"  %(args, key, key)
+snippet smbpasswd_demo.py
+	import smbpasswd
+	
+	passwd = 'mypassword'
+	
+	#print 'LANMAN hash is', smbpasswd.lmhash(passwd)
+	print 'NT hash is', smbpasswd.nthash(passwd)
+	
+	print 'both hashes at once = %s:%s' % smbpasswd.hash(passwd)
+snippet sort_by_basename.py
+	def sortByBasename(files):
+	    def __sort(x1, x2):
+	        f1 = x1.split('\\')[-1]
+	        f2 = x2.split('\\')[-1]
+	        if f1 == f2: return 0
+	        elif f1 < f2: return -1
+	        else: return 1
+	    files.sort(__sort)
+snippet array_array_to_dict.py
+	
+	meta=['id', 'name', 'status', 'time', 'memory', 'cpu','unit','led'];
+	date=[ 1  ,  2,     3      ,  4    , 5       ,  6   , 7    , 8 ];
+	
+	a=dict(zip(meta, date));
+	print a;
+	print a['id'];
+	
+snippet hook_function.py
+	def hook(each):
+	    print "this is hook %s"%each;
+	
+	def  download(each,hook):
+	    hook(each);
+	
+	for each in range(1,1000):
+	    download(each, hook);
+	
+snippet yield_test2.py
+	
+	def h():  
+	    print 'To be brave'  
+	    yield 5  
+	    yield 6
+	    yield 7
+	
+	for each in h(): 
+	    print each;
+snippet glob_p2.py
+	#!/usr/bin/python
+	import glob
+	import os;
+	for file in glob.glob("*"):
+		#if os.path.isfile(file):
+	    if os.path.isdir(file):
+	        print(file)
+	    elif os.path.isfile(file):
+	        print "File:   {0}".format(file);
+snippet string_format.py
+	#!/usr/bin/python
+	import glob
+	import os;
+	for file in glob.glob("*"):
+		#if os.path.isfile(file):
+	    if os.path.isdir(file):
+	        print(file)
+	    elif os.path.isfile(file):
+	        print "File:   {0}".format(file);
+snippet return_tutple.py
+	
+	def  fun_return_tuple():
+	    a=10;
+	    return 100,4 if a>100 else 0,4 if a<100 else 0;
+	
+	a,b,c=fun_return_tuple();
+	print a;
+	print b;
+	print c;
+snippet type_decision.py
+	#!/usr/bin/python 
+	class objA:
+		pass;
+	A = objA()
+	B = 'a','v'
+	C = 'a string'
+	print isinstance(A, objA)
+	print isinstance(B, tuple)
+	print isinstance(C, basestring) 
+snippet time_str.py
+	#!/usr/bin/python
+	#coding:gbk
+	import time,datetime                       #���ȵ�������ʹ�õ���ģ��
+	string = '2009-12-09'
+	string = time.strptime(string,'%Y-%m-%d') #���Ȱ��ַ���ʹ��strptime()����һ��ʱ��Ԫ�ع��ɵ�Ԫ��
+	print string;
+	string[0:3]                      #�ѵõ���ʱ��Ԫ��ǰ����Ԫ�ظ�ֵ����������(Ҳ����������)
+	#string = datetime.datetime(y, m, d)        #���ʹ��datetime�Ѹղŵõ���ʱ�����תΪ��ʽ��ʱ���ʽ����
+													#2009-12-09 00:00:00                            #����,����˵������ַ�����ʱ���ת��(ע���Ǳ�������ת���Ĺ���)  <></></> </>
+snippet thumbnail_glob_30.py
+	from PIL import Image  
+	import glob, os  
+	 
+	size = 650, 650  
+	   
+	for infile in glob.glob("*.jpg"):  
+	  file, ext = os.path.splitext(infile)  
+	im = Image.open(infile)  
+	  im.thumbnail(size, Image.ANTIALIAS)  
+	   im.save("thumbnail/" + file + ".thumbnail.jpg", "JPEG")  snippet lambda_demo.py
+
+snippet reduce_x_mul_y
+	#!/usr/bin/python
+	print    reduce ( lambda    x , y : x * y ,    range ( 1 ,    1001 ))
+snippet listdirs_isdir.py
+	import os;
+	import sys;
+	for pkg in  os.listdir("/etc/"):
+		d="/etc/%s"%pkg;
+		if not os.path.isdir(d):
+			print  "FILE %s"%d;
+	
+	
+		
+	
+snippet py__init__self_class.py
+	class Person:
+	         def __init__(self,name):
+	                  self.name=name
+	         def sayhello(self):
+	                  print 'My name is:',self.name
+	
+	p=Person('tianya')
+	p=Person('wenshuna')
+	p.sayhello();
+	#print p
+snippet isinstance.py
+	#!/usr/bin/python
+	# �ж��Ƿ��Ǽ̳й�ϵ. 
+	import  xmlparser
+	def check(desc):
+	    if isinstance(desc, xmlparser.Element):
+			print "ok"
+	    else:
+			print "not ok"
+	a="333";
+	check(a);
+snippet dict_example.py
+	#!/usr/bin/python
+	data = {"timestamp": "bbbbb",
+	        "releasestr": "bbbbb",
+	        "arch": "bbbbb",
+	        "discNum": "bbbbb",
+	        "baseDir": "bbbbb",
+	        "packagesDir": "bbbbb",
+	        "pixmapsDir": "bbbbb",
+	        "outfile": "bbbbb"}
+	
+snippet list_modules.py
+	#!/usr/bin/env python
+	# -*- coding: utf-8 -*-
+	
+	
+	import pkgutil
+	def nova_sub_modules():
+	    for each in pkgutil.iter_modules ('/usr/lib/python2.7/site-packages/nova/',  ""):
+	        print each; 
+	
+	nova_sub_modules();
+snippet timeit_demo.py
+	
+	def test():
+	    """Stupid test function"""
+	    L = []
+	    for i in range(100):
+	        L.append(i)
+	
+	if __name__ == '__main__':
+	    import timeit
+	    print(timeit.timeit("test()", setup="from __main__ import test"))
+snippet copy_chmod.py
+	import os
+	import sys
+	
+	def copymode(src, dst):
+	    """Copy mode bits from src to dst"""
+	    if hasattr(os, 'chmod'):
+	        st = os.stat(src)
+	        mode = stat.S_IMODE(st.st_mode)
+	        os.chmod(dst, mode)
+	
+snippet list_one_dir.py
+	import commands
+	import os
+	import string
+	import sys
+	from os.path import join, getsize
+	
+	for root, dirs, files in os.walk("/root/bin"):
+	    for file in files:
+	        abs_path = os.path.join(root,file)
+	        print abs_path;
+snippet chain_demo.py
+	
+	def chain(*iterables):
+	    # chain('ABC', 'DEF') --> A B C D E F
+	    for it in iterables:
+	        for element in it:
+	            yield element
+	
+	
+	for each in  chain(range(1,10), range(22,33)):
+	    print each;
+snippet kwargs_demo.py
+	#!/usr/bin/python
+	#coding=utf-8
+	def fun_var_args(farg, *args, **kwargs):  
+	    print "arg:", farg  
+	    for value in args:  
+	        print "another arg:", value  
+	    print kwargs;
+	      
+	fun_var_args(1, "two", 3,  5, "7", "8",  test="33", test2="44", trest33=4444, ) # *args可以当作可容纳多个变量组成的list  
+	
+snippet math_add.py
+	#!C:\Python31\python.exe
+	
+	import os,sys,string
+	import getopt
+	import time
+	
+	opts = []
+	i=0
+	while 1:
+		i=i+1
+	#print('aaaaaaaaaaaaaaaaaaaah');
+snippet while_1_loop_30.py
+	#!C:\Python31\python.exe
+	
+	import os,sys,string
+	import getopt
+	import time
+	
+	opts = []
+	i=0
+	while 1:
+		i=i+1
+	#print('aaaaaaaaaaaaaaaaaaaah');
+snippet while_1_loop_win32.py
+	#!C:\Python31\python.exe
+	
+	import os,sys,string
+	import getopt
+	import time
+	
+	opts = []
+	i=0
+	while 1:
+		i=i+1
+	#print('aaaaaaaaaaaaaaaaaaaah');
+snippet chomp.py
+	#!/usr/bin/python 
+	def chomp(line):
+		if line[-1] == '\n':
+			line = line[:-1]
+		return line;
+	
+	
+	fh=open("/etc/passwd");
+	for line in fh.readlines():
+	    print chomp(line);
+	
+snippet file_read_bin.py
+	#!/usr/bin/python
+	#bs=b"3333";
+	bs="3333";
+	file=open("/etc/passwd", 'r');
+	tmp=file.read(len(bs))
+	print "tmp",tmp
+	if file.read(len(bs)) == "root":
+		print "ok"
+	else:
+		print "not ok"
+	file.close();
+snippet code_comment_annotate.py
+	#coding:gbk 
+	#!/usr/bin/python
+	
+	#һ��Ҫ�ڵڶ��У� ���ߵ�һ��д�� ����Ķ���, Ȼ��ſ���д����ע��. 
+	f = open("output.txt", "w")
+	########################################################################
+	#��������ע��
+	f.write("%f\n" % 1111111111)
+	f.write("%s\n" % 2222222222)
+	f.write("%s\n" % 333333333)
+	
+snippet dict_2_json.py
+	import  json;
+	
+	data1 = {'b':789,'c':456,'a':123}
+	data2 = {'a':123,'b':789,'c':456}
+	d1 = json.dumps(data1,sort_keys=True)
+	d2 = json.dumps(data2)
+	d3 = json.dumps(data2,sort_keys=True)
+	print d1
+	print d2
+	print d3
+	print d1==d2
+snippet startdict_search.py
+	#coding=utf8
+	#中文
+	from pymongo import MongoClient
+	client = MongoClient("localhost", 27017);
+	db = client["english"];
+	col=db['xdict'];
+	
+	for each in col.find({"word":"image"}):
+	    #print "英文:%s: 中文: %s"%(each['word'],each['chinese'].encode("utf-8"));
+	    print "WORD: %s"%(each['word']);
+	    print each['chinese'];
+snippet os_pipe.py
+	#code from  commands.py  getoutput 
+	
+	import os
+	#pipe = os.popen('{  ifconfig ; } 2>&1', 'r')
+	pipe = os.popen('cat /etc/passwd ', 'r')
+	#for each in pipe.readlines():
+	for each in pipe:
+	    print each,
+	#text = pipe.read()
+	#sts = pipe.close()
+	
+snippet newt_msg_box.py
+	#!/usr/bin/python
+	from snack import SnackScreen, ButtonChoiceWindow
+	screen = SnackScreen()
+	ButtonChoiceWindow(screen, ('Fatal Error'),
+						('You do not have enough RAM to install %s '
+						  'on this machine.\n'
+						  '\n'
+						  'Press <return> to reboot your system.\n')
+					   %("wenshuna",),
+					   buttons = (("OK"),))
+	screen.finish()
+snippet newt_snack.py
+	#!/usr/bin/python
+	from snack import SnackScreen, ButtonChoiceWindow
+	screen = SnackScreen()
+	ButtonChoiceWindow(screen, ('Fatal Error'),
+						('You do not have enough RAM to install %s '
+						  'on this machine.\n'
+						  '\n'
+						  'Press <return> to reboot your system.\n')
+					   %("wenshuna",),
+					   buttons = (("OK"),))
+	screen.finish()
+snippet string_fill.py
+	#coding:gbk
+	#!/usr/bin/python
+	def fill_string(size):
+		ret_str=""
+		for i in range(0,long(size)-2):
+			ret_str+='#';
+	
+		ret_str+='\n';
+		return ret_str;
+	
+	a="";
+	print fill_string(1024);
+snippet my_class.py
+	#!/usr/bin/python
+	
+	class Person:
+	    def __init__(self,name):
+	        self.name=name
+	    def sayhello(self):
+	        print 'My name is:',self.name
+	
+	p=Person('tianya')
+	p=Person('wenshuna')
+	p.sayhello();
+	#print p
+snippet randline.py
+	#!/usr/bin/python
+	import random
+	fh=open("/etc/passwd");
+	lines=fh.readlines();
+	#print lines
+	
+	random.shuffle(lines);
+	for line in lines:
+		print line
+	
+snippet gen_with_number.py
+	#!/usr/bin/python
+	#print tmp_str[0:1];
+	def  gen_path_with(size):
+		output_dir="%s"%(long(size%1000));
+		ret_dir="%s/%s/%s/%s"%( output_dir[0:1], output_dir[0:2], output_dir[0:3], output_dir[0:3]);
+		return ret_dir;
+	
+	
+	print gen_path_with(8888)
+	print gen_path_with(9999999)
+	print gen_path_with(12)
+	print gen_path_with(1)
+snippet dict_2_set.py
+	#!/usr/bin/python
+	test = dict([(each,each*2) for each in range(1,100)]);
+	b=set(test);
+	print b;
+	
+	c=filter(lambda x:x>80, b);
+	new_dict=dict([ (each,test[each]) for each in c ]) ;
+	
+	print new_dict;
+	
+snippet mongo_search.py
+	#coding=utf8
+	#中文
+	
+	from pymongo import MongoClient
+	client = MongoClient("localhost", 27017);
+	db = client["english"];
+	col=db['xdict'];
+	
+	for each in col.find({"word":"image"}):
+	    #print "英文:%s: 中文: %s"%(each['word'],each['chinese'].encode("utf-8"));
+	    print "WORD: %s"%(each['word']);
+	    print each['chinese'];
+snippet firefox.py
+	from selenium import webdriver
+	from selenium.webdriver.common.keys import Keys
+	driver = webdriver.Firefox()
+	driver.get("http://www.baidu.com")
+	
+	#assert "Python" in driver.title
+	elem = driver.find_element_by_name("kw")
+	elem.send_keys("selenium")
+	elem.send_keys(Keys.RETURN)
+	#assert "Google" in driver.title
+	driver.close()
+	driver.quit()
+snippet hasdattr.py
+	def _samefile(src, dst):
+	    # Macintosh, Unix.
+	    if hasattr(os.path,'samefile'):
+	        try:
+	            return os.path.samefile(src, dst)
+	        except OSError:
+	            return False
+	
+	    # All other platforms: check for same pathname.
+	    return (os.path.normcase(os.path.abspath(src)) ==
+	            os.path.normcase(os.path.abspath(dst)))
+	
+snippet dict_for_each_items.py
+	#!/usr/bin/python
+	data = {"timestamp": "bbbbb1",
+	        "releasestr": "bbbbb2",
+	        "arch": "bbbbb3",
+	        "discNum": "bbbbb4",
+	        "baseDir": "bbbbb5",
+	        "packagesDir": "bbbbb6",
+	        "pixmapsDir": "bbbbb7",
+	        "outfile": "bbbbb9"}
+	for key, value in data.items():
+	    print  "%s -> %s "%(key, value);
+	
+snippet thumbnail_glob.py
+	from PIL import Image  
+	import glob, os  
+	 
+	size = 250, 250  
+	   
+	for infile in glob.glob("*.jpg"):  
+		print infile
+	  	file, ext = os.path.splitext(infile)  
+		im = Image.open(infile)  
+		im.thumbnail(size, Image.ANTIALIAS)  
+		#im.save("thumbnail/" + file + ".thumbnail.jpg", "JPEG")  
+		im.save("./" + file + "_thumbnail.jpg", "JPEG")  
+snippet match_group_return_array.py
+	#coding=utf-8
+	#!/usr/bin/python
+	import re;
+	#命令组的语法是 Python 专用扩展之一： (?P<name>...)。名字很明显是组的名字。除了该组有个名字之外，命名组也同捕获组是相同的。`MatchObject` 的方法处理捕获组时接受的要么是表示组号的整数，要么是包含组名的字符串。命名组也可以是数字，所以你可以通过两种方式来得到一个组的信息：
+	#!python
+	
+	str="5/results/";
+	reg=re.compile(r'^(?P<question_id>[0-9]+)/results/$');
+	print(reg.match(str).group('question_id'));
+	print(reg.match(str).groups());
+	
+	str="_1010_compute_panel_group.py"
+	
+snippet regex_P_group_urls.py
+	#coding=utf-8
+	#!/usr/bin/python
+	import re;
+	#命令组的语法是 Python 专用扩展之一： (?P<name>...)。名字很明显是组的名字。除了该组有个名字之外，命名组也同捕获组是相同的。`MatchObject` 的方法处理捕获组时接受的要么是表示组号的整数，要么是包含组名的字符串。命名组也可以是数字，所以你可以通过两种方式来得到一个组的信息：
+	#!python
+	
+	str="5/results/";
+	reg=re.compile(r'^(?P<question_id>[0-9]+)/results/$');
+	print(reg.match(str).group('question_id'));
+	print(reg.match(str).groups());
+	
+	str="_1010_compute_panel_group.py"
+	
+snippet split_str.py
+	def split_test():
+	    a="aa bb cc ee dd ff";
+	    array=a.split();
+	    print array;
+	
+	def split_test2():
+	    a="aa|bb|cc|ee|dd|ff";
+	    array=a.split("|");
+	    print array;
+	
+	
+	split_test();
+	split_test2();
+snippet def_in_def.py
+	
+	def test():
+	    a="cccccc";
+	    def test2():
+	        print "in closure %s"%a;
+	        return test2;
+	    b=test2();
+	    print type(b);
+	    return test
+	
+	c=test();
+	#print c;
+	c();
+snippet file_to_mem.py
+	#!/usr/bin/python
+	
+	from BeautifulSoup import BeautifulSoup
+	
+	file=open("android/1.html").read();
+	print file;
+	
+	html = unicode(file,'gb2312','ignore').encode('utf-8','ignore')
+	content = BeautifulSoup(html).findAll('a')
+	for item in content:
+	    print item;
+	
+	
+snippet html_to_mem.py
+	#!/usr/bin/python
+	
+	from BeautifulSoup import BeautifulSoup
+	
+	file=open("android/1.html").read();
+	print file;
+	
+	html = unicode(file,'gb2312','ignore').encode('utf-8','ignore')
+	content = BeautifulSoup(html).findAll('a')
+	for item in content:
+	    print item;
+	
+	
+snippet horizon.utils.memoized_demo.py
+	
+	from horizon.utils.memoized import memoized  # noqa
+	import time;
+	
+	@memoized
+	def long_time():
+	    print "sleep 10";
+	    time.sleep(10);
+	    return 33333;
+	
+	while  1:
+	    print long_time();
+	    
+snippet include_path.py
+	#!/usr/bin/python 
+	#import config
+	import sys
+	import os
+	if sys.version_info>(2,5):
+		sys.path.append(os.path.join("/root", 'py25modules'));
+		print sys.path;
+	else:
+		print("not ok");
+		print sys.path;
+	
+	print("#################################\n");
+	print sys.path[1:3];
+snippet array_for_match.py
+	#!/usr/bin/python 
+	#import config
+	import sys
+	import os
+	import re;
+	pattern=re.compile('.*zip.*');
+	i=100;
+	for each in sys.path:
+		i=i+1;
+		match=pattern.match(each)
+		print each;
+		if match:
+			print "#####",each,i;
+snippet function_def.py
+	#!/usr/bin/python 
+	import string
+	def uppercase_ASCII_string(str):
+		newstr = ""
+		for i in range(0,len(str)):
+			if str[i] in string.lowercase:
+				newstr += chr(ord(str[i])-32)
+			else:
+				newstr += str[i]
+	
+		return newstr
+	
+	print uppercase_ASCII_string("linux");
+snippet upper_case_string_30.py
+	#!/usr/bin/python 
+	import string
+	def uppercase_ASCII_string(str):
+		newstr = ""
+		for i in range(0,len(str)):
+			if str[i] in string.lowercase:
+				newstr += chr(ord(str[i])-32)
+			else:
+				newstr += str[i]
+	
+		return newstr
+	
+	print uppercase_ASCII_string("linux");
+snippet upper_case_string.py
+	#!/usr/bin/python 
+	import string
+	def uppercase_ASCII_string(str):
+		newstr = ""
+		for i in range(0,len(str)):
+			if str[i] in string.lowercase:
+				newstr += chr(ord(str[i])-32)
+			else:
+				newstr += str[i]
+	
+		return newstr
+	
+	print uppercase_ASCII_string("linux");
+snippet socket_simplest.py
+	#!/usr/bin/python
+	import socket
+	 
+	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.connect(("whois.networksolutions.com", 43))
+	#s.connect(("www.baidu.com"), 43)));
+	s.send("sina.com.cn \r\n")
+	while 1:
+		v = s.recv(1024)
+		if v =="" or v == None:
+			break
+		print v
+	s.close()
+snippet whois.py
+	#!/usr/bin/python
+	import socket
+	 
+	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.connect(("whois.networksolutions.com", 43))
+	#s.connect(("www.baidu.com"), 43)));
+	s.send("sina.com.cn \r\n")
+	while 1:
+		v = s.recv(1024)
+		if v =="" or v == None:
+			break
+		print v
+	s.close()
+snippet rpm_comps.py
+	#!/usr/bin/python
+	from rhpl import *
+	import rhpl
+	#import rhpl.comps
+	import sys
+	
+	comps = rhpl.comps.Comps(sys.argv[1])
+	for group in comps.groups.values():
+	    pkgs = []
+	    for (type, pkg) in group.packages.values():
+	        if type == u'mandatory':
+	            pkgs.append(pkg)
+	    print group.name, pkgs
+snippet print_dict.py
+	#!/usr/bin/python
+	codes={}
+	esc_seq="test";
+	codes["reset"]     = esc_seq + "39;49;00m"
+	codes["bold"]      = esc_seq + "01m"
+	codes["blue"]      = esc_seq + "34;01m"
+	codes["green"]     = esc_seq + "32;01m"
+	codes["yellow"]    = esc_seq + "33;01m"
+	codes["red"]       = esc_seq + "31;01m"
+	
+	print  codes;
+	print "########################################";
+	print  codes["red"];
+snippet proc_cmdline.py
+	def cmdline():
+	    with open("/proc/1/cmdline","rt")  as f:
+	        data = f.read()
+	    if not data:
+	        # may happen in case of zombie process
+	        print "data is empty";
+	        return []
+	    if data.endswith('\x00'):
+	        data = data[:-1]
+	    return [x for x in data.split('\x00')]
+	
+	a=cmdline();
+	print a;
+snippet try_except_function_ret.py
+	
+	def get_sector_size():
+	    try:
+	        with open(b"/sys/block/sda/queue/hw_sector_size") as f:
+	            return int(f.read())
+	    except (IOError, ValueError):
+	        # man iostat states that sectors are equivalent with blocks and
+	        # have a size of 512 bytes since 2.4 kernels. This value is
+	        # needed to calculate the amount of disk I/O in bytes.
+	        return 512
+	
+	if __name__=="__main__":
+	    print get_sector_size();
+snippet logging_test.py
+	import logging
+	LOG_FILENAME = './logging_example.txt'
+	logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
+	
+	
+	logging.debug('This message should go to the log file')
+	logging.debug('This message should go to the log file')
+	logging.debug('This message should go to the log file')
+	logging.debug('This message should go to the log file')
+	logging.debug('This message should go to the log file')
+	logging.debug('This message should go to the log file')
+	logging.debug('This message should go to the log file')
+	logging.debug('This message should go to the log file')
+snippet reduce_demo.py
+	#coding: utf-8
+	def myadd(x,y):   
+	    return x+y   
+	
+	sum=reduce(myadd,(1,2,3,4,5,6,7))   
+	print sum  
+	
+	sum=reduce(lambda x,y:x+y, range(1,100));
+	print sum
+snippet json_load_file.py
+	import json
+	import os;
+	
+	json_data="""
+	{"age": 20, "score": 88, "name": "Bob"}
+	"""
+	if not os.path.isfile("a.json"):
+	    file=open("a.json","w");
+	    file.write(json_data);
+	a=open("a.json")
+	b=json.load(a);
+	print b;
+	print b['age'];
+	
+snippet and_or.py
+	import os
+	import re
+	
+	if not os.path.exists("test4.py") and not 0:
+		print "There is no gtest.zip"
+	
+	
+	def check_env():
+		if 1==find_bake and 1==find_vc2003:
+			return 1
+		else:
+			return 0
+	
+	
+snippet json_loads.py
+	#!/usr/bin/python
+	#coding=utf-8
+	import json;
+	
+	def   seg_str():
+	    import commands
+	    output = commands.getoutput ("curl -s   http://192.168.1.11:9100/nlp?text=我好饿 ")
+	    print "|%s|"%(output );
+	    a=json.loads(output);
+	    #a=json.loads('{"seg":"我 好 饿","keyword":"好 饿"}');
+	    print a;
+	    print a['seg'];
+	
+	seg_str();
+snippet a.py
+	import numpy;
+	import types
+	from  types import *;
+	
+	a=eval("numpy");
+	print type(a);
+	b=type(a);
+	print type(b);
+	if isinstance(a, ModuleType):
+	    print "OK";
+	
+	#if  type(a) ==  MethodType:
+	if  type(a) ==  ModuleType:
+	    print "OK";
+snippet subprocess_ping_network.py
+	def test_network():
+	    import os
+	    import subprocess
+	     
+	    fnull = open(os.devnull, 'w')
+	    return1 = subprocess.call('ping 8.8.8.8', shell = True, stdout = fnull, stderr = fnull)
+	    fnull.close()
+	    if return1:
+	      return False
+	    else:
+	      getip()
+	      return True
+	
+	test_network();
+snippet singleton.py
+	#!/usr/bin/python
+	#coding:gbk
+	#import object;
+	class   Singleton(object):   #   ����̳�object
+		number=None;
+		def   __new__(cls,   var   ):
+			if   cls.number   is   None:
+					cls.number   =   object.__new__(cls)
+					cls.number.var   =   var
+			return   cls.number
+	a   =   Singleton(5)
+	b   =   Singleton(6)
+	print   a.var
+	print   b.var 
+snippet grep.py
+	#!/usr/bin/python
+	import re;
+	char = re.compile("port.*=.*#.*")
+	f=open("/root/bin/daemon/ssh_nat/ssh_phabricator.pl", "r");
+	lines=f.readlines();
+	#print lines;
+	
+	#output= [ re.findall(char, item)[0]  for item in lines if re.search(char, item)]
+	#print output;
+	
+	for item in lines:
+	    if re.search(char, item):
+	        #print item;
+	        print re.findall(char,item)[0];
+snippet gen_pass.py
+	
+	import random
+	import string
+	VALIDSET=frozenset(set(string.ascii_letters) | set(string.digits) | set('-_.~'))
+	VALIDSTR=''.join(c for c in VALIDSET)
+	VALIDSET_DESC='alphanumeric and -_.~'
+	
+	def generate_password():
+	    ''' Very dumb 20-character password generation '''
+	    random.seed()
+	    return ''.join(random.choice(VALIDSTR) for _ in xrange(20))
+	
+	
+	print generate_password();
+snippet dict_assign.py
+	#!/usr/bin/python
+	import os,sys,string
+	import getopt
+	import time
+	
+	data = {"timestamp": None,
+	        "releasestr": None};
+	print data;
+	print "###############################################################################"
+	if data["timestamp"] is None:
+	    print >> sys.stderr, "timestamp not specified; using the current time"
+	    data["timestamp"] = time.time()
+	
+	print data;
+snippet if_null_None.py
+	#!/usr/bin/python
+	import os,sys,string
+	import getopt
+	import time
+	
+	data = {"timestamp": None,
+	        "releasestr": None};
+	print data;
+	print "###############################################################################"
+	if data["timestamp"] is None:
+	    print >> sys.stderr, "timestamp not specified; using the current time"
+	    data["timestamp"] = time.time()
+	
+	print data;
+snippet bbb_0.py
+	#!/usr/bin/python 
+	#coding:gbk
+	import sys;
+	
+	print("bbb.py");
+	if( len(sys.argv) <  2):
+	   print "Usage:   %s  size "%sys.argv[0];
+	else:
+		print sys.argv;
+	
+	
+	if sys.platform =='win32':
+		print sys.stdin.readline()[:-1];
+	
+snippet bbb.py
+	#!/usr/bin/python 
+	#coding:gbk
+	import sys;
+	
+	print("bbb.py");
+	if( len(sys.argv) <  2):
+	   print "Usage:   %s  size "%sys.argv[0];
+	else:
+		print sys.argv;
+	
+	
+	if sys.platform =='win32':
+		print sys.stdin.readline()[:-1];
+	
+snippet linux.py
+	#!/usr/bin/python 
+	#coding:gbk
+	import sys;
+	
+	print("linux.py");
+	if( len(sys.argv) <  2):
+	   print "Usage:   %s  size "%sys.argv[0];
+	else:
+		print sys.argv;
+	
+	
+	if sys.platform =='win32':
+		print sys.stdin.readline()[:-1];
+	
+snippet mongo_save_html.py
+	
+	from pymongo import MongoClient
+	
+	client = MongoClient("localhost", 27017);
+	db = client["test"];
+	col= db['html'];
+	
+	item={};
+	item['a']="bbb";
+	item['bbbb']="bbb";
+	item['cbbb']="bbb";
+	item['content']= all_the_text = open('/etc/passwd').read( )     ;
+	col.insert(dict(item));
+	client.close();
+	
+snippet unpack_tuple.py
+	#!/use/bin/python
+	
+	def  return_four_value():
+	    return (1,2,3,4,5);
+	
+	def  return_zeor_value():
+	    return (1,2);
+	
+	#a,b,c,d,e= return_four_value();
+	#a,b,c,d,e,f= return_four_value();
+	
+	#ValueError: need more than 0 values to unpack
+	a,b,c,d,e,f= ()
+	
+	#bb,bbb = return_zeor_value();
+snippet len_scalar_array.py
+	#!/usr/bin/python
+	import sys;
+	def wc(fn):
+		try:
+			f=open(fn,'rt');
+			cnt=len(f.readlines());
+			f.close();
+			return cnt;
+		except IOError:
+			return 0;
+	
+	for arg in sys.argv:
+		print arg,"\t"
+		print wc(arg);
+snippet wc.py
+	#!/usr/bin/python
+	import sys;
+	def wc(fn):
+		try:
+			f=open(fn,'rt');
+			cnt=len(f.readlines());
+			f.close();
+			return cnt;
+		except IOError:
+			return 0;
+	
+	for arg in sys.argv:
+		print arg,"\t"
+		print wc(arg);
+snippet video_capture.py
+	import VideoCapture
+	
+	cam = VideoCapture.Device(devnum=0)
+	#cam.displayPropertyPage() ## deprecated
+	#cam.displayCaptureFilterProperties()
+	#cam.displayCapturePinProperties()
+	#cam.setResolution(960, 720)
+	#cam.setResolution(768, 576) ## PAL
+	#cam.setResolution(352, 288) ## CIF
+	import time;
+	def get_cur_time():
+	    return time.strftime("%Y-%m-%d_%H_%M_%S",time.localtime())
+		
+	cur_time=get_cur_time();
+	cam.saveSnapshot("%s.jpg"%cur_time, quality=75, timestamp=3, boldfont=1)
+snippet tuple.py
+	import commands
+	import os
+	import string
+	import sys
+	from os.path import join, getsize
+	import re;
+	
+	
+	
+	for root, dirs, files in os.walk("/root/bin"):
+	    for file in files:
+	        abs_path = os.path.join(root,file)
+	        py=re.compile('py');
+	        if  py.search(abs_path):
+	            print abs_path;
+snippet lower_case_string.py
+	#!/usr/bin/python 
+	import string
+	def uppercase_ASCII_string(str):
+		newstr = ""
+		for i in range(0,len(str)):
+			#if str[i] in string.lowercase:
+			if str[i] in string.uppercase:
+				newstr += chr(ord(str[i])+32)
+			else:
+				newstr += str[i]
+	
+		return newstr
+	
+	print uppercase_ASCII_string("LINUX");
+	print uppercase_ASCII_string("LINuX");
+snippet logging_python.py
+	
+	#from oslo_log import fixture
+	#from oslo_log import log as logging
+	
+	import logging
+	
+	LOG = logging.getLogger(__name__)
+	
+	# Define a default handler at INFO logging level
+	logging.basicConfig(level=logging.INFO)
+	
+	LOG.info("Python Standard Logging")
+	LOG.warning("Python Standard Logging")
+	LOG.error("Python Standard Logging")
+	
+snippet oslo_logging.py
+	
+	from oslo_config import cfg
+	from oslo_log import log as logging
+	
+	LOG = logging.getLogger(__name__)
+	CONF = cfg.CONF
+	DOMAIN = "demo"
+	
+	logging.register_options(CONF)
+	logging.setup(CONF, DOMAIN)
+	
+	# Oslo Logging uses INFO as default
+	LOG.info("Oslo Logging")
+	LOG.warning("Oslo Logging")
+	LOG.error("Oslo Logging")
+snippet yield_repeat.py
+	
+	def repeat(object, times=None):
+	    global count;
+	    # repeat(10, 3) --> 10 10 10
+	    if times is None:
+	        while True:
+	            yield object
+	    else:
+	        for i in xrange(times):
+	            yield object+count
+	
+	count=0;
+	for each in repeat(10,  100):
+	    count+=1;
+	    print each;
+snippet os_platform_system_version.py
+	import os;
+	import sys;
+	import string;
+	#tell the os version
+	if sys.platform =='win32':
+		print "i am win32";
+	elif sys.platform =='mac':
+		print "i am mac";
+	elif sys.platform.startswith("linux"):
+		print "i am linux";
+	else:
+		print "other os";
+	
+	
+snippet sys_platform_win32_linux.py
+	import os;
+	import sys;
+	import string;
+	#tell the os version
+	if sys.platform =='win32':
+		print "i am win32";
+	elif sys.platform =='mac':
+		print "i am mac";
+	elif sys.platform.startswith("linux"):
+		print "i am linux";
+	else:
+		print "other os";
+	
+	
+snippet sys_platform_win32_linux
+	import os;
+	import sys;
+	import string;
+
+	#tell the os version
+	if sys.platform =='win32':
+		print "i am win32";
+	elif sys.platform =='mac':
+		print "i am mac";
+	elif sys.platform.startswith("linux"):
+		print "i am linux";
+	else:
+		print "other os";
+	
+	
+snippet du.py
+	import os
+	from os.path import join, getsize
+	
+	def getdirsize(dir):
+	   size = 0L
+	   for root, dirs, files in os.walk(dir):
+	      size += sum([getsize(join(root, name)) for name in files])
+	      print join(root,name);
+	      #print size
+	   return size
+	
+	#if '__name__' == '__main__':
+	filesize = getdirsize('/root/bin/')
+	print 'There are %.3f' % (filesize/1024/1024), 'Mbytes in /root/bin/'
+	
+snippet dir_size_0.py
+	import os
+	from os.path import join, getsize
+	
+	def getdirsize(dir):
+	   size = 0L
+	   for root, dirs, files in os.walk(dir):
+	      size += sum([getsize(join(root, name)) for name in files])
+	      print join(root,name);
+	      #print size
+	   return size
+	
+	#if '__name__' == '__main__':
+	filesize = getdirsize('c:\\windows')
+	print 'There are %.3f' % (filesize/1024/1024), 'Mbytes in c:\\windows'
+	
+snippet dir_size.py
+	import os
+	from os.path import join, getsize
+	
+	def getdirsize(dir):
+	   size = 0L
+	   for root, dirs, files in os.walk(dir):
+	      size += sum([getsize(join(root, name)) for name in files])
+	      print join(root,name);
+	      #print size
+	   return size
+	
+	#if '__name__' == '__main__':
+	filesize = getdirsize('c:\\windows')
+	print 'There are %.3f' % (filesize/1024/1024), 'Mbytes in c:\\windows'
+	
+snippet du_0.py
+	import os
+	from os.path import join, getsize
+	
+	def getdirsize(dir):
+	   size = 0L
+	   for root, dirs, files in os.walk(dir):
+	      size += sum([getsize(join(root, name)) for name in files])
+	      print join(root,name);
+	      #print size
+	   return size
+	
+	#if '__name__' == '__main__':
+	filesize = getdirsize('c:\\windows')
+	print 'There are %.3f' % (filesize/1024/1024), 'Mbytes in c:\\windows'
+	
+snippet indent_python_tags.py
+	#!/usr/bin/python 
+	#coding:gbk
+	import sys;
+	bakefile_tag_start="<bakefile>"
+	bakefile_tag_end="</bakefile>"
+	
+	middle_tag_start="<middle>";
+	middle_tag_end="</middle>";
+	
+	
+	i=bakefile_tag_start +"\n"\
+	+     	middle_tag_start+"\n"\
+	+		middle_tag_end+"\n"\
+	+bakefile_tag_end;	
+	print i
+snippet codecs_demo.py
+	import codecs
+	import glob
+	import os
+	import re
+	import subprocess
+	import sys
+	
+	
+	def get_baseline(fn):
+	    name = get_baseline_name(fn)
+	    f = codecs.open(name, mode='r', encoding='utf8')
+	    out = f.read()
+	    f.close()
+	    return out
+	
+	
+snippet array_test.py
+	#!/usr/bin/python 
+	#coding:gbk
+	#array Ҳ�� list python ���� 
+	array=[1, 2,3,4 ,5];
+	#ѭ��.
+	for each in  array:
+		print each;
+	#���� add push_back
+	for each in range(1,100):
+		array.append(each);
+	#���һ��
+	print array[-1];
+	
+	#size count
+	print array.size();
+	
+snippet list.py
+	#!/usr/bin/python 
+	#coding:gbk
+	#array Ҳ�� list python ���� 
+	array=[1, 2,3,4 ,5];
+	#ѭ��.
+	for each in  array:
+		print each;
+	#���� add push_back
+	for each in range(1,100):
+		array.append(each);
+	#���һ��
+	print array[-1];
+	
+	#size count
+	print array.size();
+	
+snippet cat_stdin_stdout.py
+	'''cat.py
+	a version of unix cat, tweaked to show off runproc.py
+	'''
+	
+	import sys
+	data = sys.stdin.read(1)
+	sys.stdout.write(data)
+	sys.stdout.flush()
+	while data:
+	    data = sys.stdin.read(1)
+	    sys.stdout.write(data)
+	    sys.stdout.flush()
+	# Just here to have something to read from stderr.
+	sys.stderr.write("Blah...")
+	
+	# end of cat.py
+snippet group_by.py
+	from itertools import *
+	
+	def height_class(h):
+	    if h > 180:
+	        return "tall"
+	    elif h < 160:
+	        return "short"
+	    else:
+	        return "middle"
+	
+	friends = [191, 158, 159, 165, 170, 177, 181, 182, 190]
+	
+	friends = sorted(friends, key = height_class)
+	for m, n in groupby(friends, key = height_class):
+	    print(m)
+	    print(list(n))
+snippet class_this_self.py
+	#!/usr/bin/python
+	
+	class A:
+		#self.name="aa"
+		name=None;
+		desc=None;
+		def __init(self):
+			self.name="test";
+			self.desc="desc";
+	
+	
+	b=A()
+	print b.name;
+	
+	b=A()
+	print b.name;
+snippet file_read_array.py
+	#!/usr/bin/python
+	
+	all_the_text = open('/etc/passwd').read( )     # 
+	print all_the_text;
+	
+	fh=open("/etc/passwd");
+	for line in fh.readlines(): 
+		print line
+	fh.close();
+	
+	
+	fh=open("/etc/passwd");
+	array=fh.readlines();
+	print array;
+	fh.close();
+	
+	
+snippet xpath_usage.py
+	
+	import codecs
+	from lxml import etree
+	#f=codecs.open("ceshi.html","r","utf-8")
+	f=codecs.open("sohu.html","r","gbk")
+	content=f.read()
+	f.close()
+	tree=etree.HTML(content)
+	
+	print tree;
+	
+	nodes=tree.xpath("//div/");
+	
+	
+	subnodes=nodes[0].xpath("//li/a")
+	for n in subnodes:
+	    print n.text
+snippet string_format_dict.py
+	import urllib;
+	def slackmsg(msg):
+		URL="https://slack.com/api/chat.postMessage"
+		SUFFIX="username=watchbird&icon_emoji=%3Abirdno%3A&pretty=1"
+		CHANNEL="C10GZ75BP"
+		TOKEN="xoxp-34036332497-34021439412-37746432451-c2cd827677"
+	
+		msgstr = "token={t}&channel={c}&text={m}&{s}".format(
+		t=TOKEN,
+		c=CHANNEL,
+		m=urllib.quote(msg),
+		s=SUFFIX
+		)
+		print msgstr
+		print "curl -d'{m}' {u}".format(m=msgstr, u=URL);
+	
+	slackmsg("bbb");
+snippet dict_2_fun_ptr.py
+	
+	def get_a():
+	    return 1000;
+	def get_b():
+	    return 1001;
+	
+	block_device_info = {
+	                'swap': get_a(),
+	    };
+	
+	
+	block_device_info2 = {
+	                'swap': get_a,
+	    };
+	print block_device_info;
+	print "#=================\n";
+	print block_device_info2;
+snippet decorator_2_hook_function.py
+	def de(f):
+	    def __call__():
+	        print '-------------------------------'
+	        return f()
+	    return __call__
+	
+	@de
+	def func1():
+	    print 'I am function func1'
+	
+	@de
+	def func2():
+	    print 'I am function func2'
+	
+	if __name__ =='__main__':
+	    func1()
+	    func2()
+snippet hanzhi_pinyin.py
+	
+	#coding: utf-8
+	import string ;
+	import  commads;
+	
+	from pypinyin import pinyin, lazy_pinyin
+	
+	def test: 
+	    a="网银abc" 
+	    name="_".join( lazy_pinyin(unicode(a,"utf8"))) 
+	    #print type(name);
+	    print "%s -> %s"%(a, name.encode("utf8"));
+	
+	
+	
+	#for each in b:
+	#    print each;
+snippet seq.py
+	#!/usr/bin/python
+	
+	data = {"timestamp": None,
+	        "releasestr": None,
+	        "arch": None,
+	        "discNum": None,
+	        "baseDir": None,
+	        "packagesDir": None,
+	        "pixmapsDir": None,
+	        "outfile": None}
+	
+	for index in range(1000):
+		print index;
+	
+	for index in range(len(data)):
+		print data[index];  
+	
+snippet nova_sub_mod_pkg_print.py
+	#coding=utf-8
+	
+	import  pkgutil  
+	def print_nova():
+	    import nova;
+	    print "walk_packages %s %s "%(nova.__path__,  nova.__name__+".");
+	    for each in pkgutil.walk_packages(nova.__path__,  nova.__name__+"."):
+	        print each;
+	
+	
+	#字符串的方式打印
+	def print_nova_with_str():
+	    for each in pkgutil.walk_packages ('/usr/lib/python2.7/site-packages/nova',  "nova."):
+	        print each; 
+	
+	print_nova_with_str();
+	
+snippet pkgutil_walk_packages.py
+	#coding=utf-8
+	
+	import  pkgutil  
+	def print_nova():
+	    import nova;
+	    print "walk_packages %s %s "%(nova.__path__,  nova.__name__+".");
+	    for each in pkgutil.walk_packages(nova.__path__,  nova.__name__+"."):
+	        print each;
+	
+	
+	#字符串的方式打印
+	def print_nova_with_str():
+	    for each in pkgutil.walk_packages ('/usr/lib/python2.7/site-packages/nova',  "nova."):
+	        print each; 
+	
+	print_nova_with_str();
+	
+snippet curl_py.py
+	from curl import Curl;
+	import os;
+	import sys;
+	if __name__ == "__main__":
+	    if len(sys.argv) < 2:
+	        url = 'http://curl.haxx.se'
+	    else:
+	        url = sys.argv[1]
+	    c = Curl()
+	    c.get(url)
+	    print c.body()
+	    print '='*74 + '\n'
+	    import pprint
+	    pprint.pprint(c.info())
+	    print c.get_info(pycurl.OS_ERRNO)
+	    print c.info()['os-errno']
+	    c.close()
+snippet from_some_import_some.py
+	from curl import Curl;
+	import os;
+	import sys;
+	if __name__ == "__main__":
+	    if len(sys.argv) < 2:
+	        url = 'http://curl.haxx.se'
+	    else:
+	        url = sys.argv[1]
+	    c = Curl()
+	    c.get(url)
+	    print c.body()
+	    print '='*74 + '\n'
+	    import pprint
+	    pprint.pprint(c.info())
+	    print c.get_info(pycurl.OS_ERRNO)
+	    print c.info()['os-errno']
+	    c.close()
+snippet argc_argv_echo.py
+	"""Echo command line arguments
+	
+	This program is part of "Dive Into Python", a free Python book for
+	experienced programmers.  Visit http://diveintopython.org/ for the
+	latest version.
+	"""
+	
+	__author__ = "Mark Pilgrim (mark@diveintopython.org)"
+	__version__ = "$Revision: 1.2 $"
+	__date__ = "$Date: 2004/05/05 21:57:19 $"
+	__copyright__ = "Copyright (c) 2002 Mark Pilgrim"
+	__license__ = "Python"
+	
+	import sys
+	
+	for arg in sys.argv:
+	    print arg
+snippet re_search.py
+	#coding:gbk 
+	#!/usr/bin/python
+	import re;
+	#root_pat=re.compile('root');
+	root_pat=re.compile('root');
+	
+	fh=open("/etc/passwd");
+	#for line in fh.readline():
+	for line in fh.readlines():
+		#match=root_pat.match(line)
+		#match=root_pat.matchall(line)
+		match=root_pat.search(line)
+		if match: 
+			print line
+	
+snippet get_memory_starwith_string.py
+	#!/usr/bin/python
+	
+	import string
+	import os;
+	import sys;
+	def memInstalled():
+	    f = open("/proc/meminfo", "r")
+	    lines = f.readlines()
+	    f.close()
+	    for l in lines:
+	        if l.startswith("MemTotal:"):
+	            fields = string.split(l)
+	            mem = fields[1]
+	            break
+	    return int(mem)
+	
+	print memInstalled()
+snippet list_2_dict.py
+	#!/usr/bin/python
+	a=range(1,100);
+	
+	b=dict([(each,each*each) for each in a ]);
+	c=dict(([each,each*each ] for each in a ) );
+	
+	#数组.
+	d=[(each,each*each) for each in a ];
+	
+	#生成的迭代器
+	e=((each,each*each) for each in a );
+	
+	
+	#print b;
+	print type(e);
+	print e;
+	for each in e:
+	    print each;
+snippet pickle_test.py
+	import pickle
+	
+	data1 = {'a': [1, 2.0, 3, 4+6j],
+	         'b': ('string', u'Unicode string'),
+	         'c': None}
+	
+	selfref_list = [1, 2, 3]
+	selfref_list.append(selfref_list)
+	
+	output = open('data.pkl', 'wb')
+	
+	# Pickle dictionary using protocol 0.
+	pickle.dump(data1, output)
+	
+	# Pickle the list using the highest protocol available.
+	pickle.dump(selfref_list, output, -1)
+	
+	output.close()
+snippet if_else.py
+	import sys,os.path
+	
+	if 0:
+		print("ok");
+	else:
+		print("not ok");
+	
+	if fetch == 'wget':
+		fetch_cmd = 'wget %s -O /dev/null --quiet --tries=1' % (url)
+	if fetch == 'fetch':
+		fetch_cmd = 'fetch -o /dev/null -q %s' % (url)
+	if fetch == 'curl':
+		fetch_cmd = 'curl -o /dev/null -s --retry 1' % (url)
+	
+snippet glade_file_show.py
+	#!/usr/bin/env python
+	import sys
+	import gtk
+	import gtk.glade
+	
+	if len(sys.argv) > 1:
+	    fname = sys.argv[1]
+	else:
+	    fname = 'test.glade'
+	
+	# create widget tree ...
+	xml = gtk.glade.XML(fname)
+	
+	def gtk_main_quit(*args):
+	    gtk.main_quit()
+	
+	xml.signal_autoconnect(locals())
+	
+	gtk.main()
+snippet re_match.py
+	#coding:gbk 
+	#!/usr/bin/python
+	#
+	import re;
+	#root_pat=re.compile('root');
+	root_pat=re.compile('root');
+	
+	fh=open("/etc/passwd");
+	for line in fh.readlines():
+		#print line;
+		match=root_pat.match(line)
+		#match=root_pat.search(line)
+		if match: 
+	        print line
+	
+snippet decorator_function2.py
+	#!/usr/bin/python 
+	#coding:utf-8
+	def makebold(fn):
+	    def wrapped():
+	        return "<b>" + fn() + "</b>"
+	    return wrapped
+	 
+	def makeitalic(fn):
+	    def wrapped():
+	        return "<i>" + fn() + "</i>"
+	    return wrapped
+	 
+	@makebold
+	@makeitalic
+	def hello():
+	    return "hello world"
+	 
+	print hello();
+	#print hello() ## 返回 <b><i>hello world</i></b>
+snippet ascii__classification.py
+	#!/usr/bin/python 
+	
+	whitespace = ' \t\n\r\v\f'    
+	lowercase = 'abcdefghijklmnopqrstuvwxyz' 
+	uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' 
+	letters = lowercase + uppercase
+	ascii_lowercase = lowercase   
+	ascii_uppercase = uppercase   
+	ascii_letters = ascii_lowercase + ascii_uppercase
+	digits = '0123456789'         
+	hexdigits = digits + 'abcdef' + 'ABCDEF' 
+	octdigits = '01234567'        
+	punctuation = """!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""
+	printable = digits + letters + punctuation + whitespace
+	
+	if 'a' in lowercase:
+		print "ok"
+	if '#' in punctuation:
+		print "ok"
+snippet char_is_in_string.py
+	#!/usr/bin/python 
+	
+	whitespace = ' \t\n\r\v\f'    
+	lowercase = 'abcdefghijklmnopqrstuvwxyz' 
+	uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' 
+	letters = lowercase + uppercase
+	ascii_lowercase = lowercase   
+	ascii_uppercase = uppercase   
+	ascii_letters = ascii_lowercase + ascii_uppercase
+	digits = '0123456789'         
+	hexdigits = digits + 'abcdef' + 'ABCDEF' 
+	octdigits = '01234567'        
+	punctuation = """!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""
+	printable = digits + letters + punctuation + whitespace
+	
+	if 'a' in lowercase:
+		print "ok"
+	if '#' in punctuation:
+		print "ok"
+snippet string_add_strcat.py
+	#!/usr/bin/python 
+	
+	whitespace = ' \t\n\r\v\f'    
+	lowercase = 'abcdefghijklmnopqrstuvwxyz' 
+	uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' 
+	letters = lowercase + uppercase
+	ascii_lowercase = lowercase   
+	ascii_uppercase = uppercase   
+	ascii_letters = ascii_lowercase + ascii_uppercase
+	digits = '0123456789'         
+	hexdigits = digits + 'abcdef' + 'ABCDEF' 
+	octdigits = '01234567'        
+	punctuation = """!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"""
+	printable = digits + letters + punctuation + whitespace
+	
+	if 'a' in lowercase:
+		print "ok"
+	if '#' in punctuation:
+		print "ok"
+snippet os.access.py
+	#!/usr/bin/python
+	import os, sys
+	
+	# Assuming /tmp/foo.txt exists and has read/write permissions.
+	
+	ret = os.access("/tmp/foo.txt", os.F_OK)
+	print "F_OK - return value %s"% ret
+	
+	ret = os.access("/tmp/foo.txt", os.R_OK)
+	print "R_OK - return value %s"% ret
+	
+	ret = os.access("/tmp/foo.txt", os.W_OK)
+	print "W_OK - return value %s"% ret
+	
+	ret = os.access("/tmp/foo.txt", os.X_OK)
+	print "X_OK - return value %s"% ret
+	This produces following result:
+	
+	F_OK - return value True R_OK - return value True W_OK - return value True X_OK - return value False
+snippet map_demo2.py
+	#!/usr/bin/python
+	import sys
+	forceload=1;
+	path='a';
+	#if forceload and path in sys.modules:
+	if 1:
+		if path not in sys.builtin_module_names:
+			subs = [m for m in sys.modules if m.startswith(path + '.')]
+			for key in [path] + subs:
+				# Prevent garbage collection.
+				cache[key] = sys.modules[key]
+				del sys.modules[key]
+snippet map_define
+	#map(function, iterable, ...)
+	def abc(a, b, c):
+		return a*10000 + b*100 + c
+	list1 = [11,22,33]
+	list2 = [44,55,66]
+	list3 = [77,88,99]
+	map(abc,list1,list2,list3)
+	
+snippet modules.py
+	#!/usr/bin/python
+	import sys
+	forceload=1;
+	path='a';
+	#if forceload and path in sys.modules:
+	if 1:
+		if path not in sys.builtin_module_names:
+			# module's namespace if they're already in sys.modules.
+			subs = [m for m in sys.modules if m.startswith(path + '.')]
+			for key in [path] + subs:
+				# Prevent garbage collection.
+				cache[key] = sys.modules[key]
+				del sys.modules[key]
+	
+snippet while_1_loop.py
+	#!/usr/bin/python
+	
+	import os,sys,string
+	import getopt
+	import time
+	
+	data = {"timestamp": None,
+	        "releasestr": None,
+	        "arch": None,
+	        "discNum": None,
+	        "baseDir": None,
+	        "packagesDir": None,
+	        "pixmapsDir": None,
+	        "outfile": None}
+	allDiscs = None
+	
+	opts = []
+	while 1:
+		print opts;
+	
+snippet dict_array_hash_init.py
+	#!/us/bin/python
+	data = {"timestamp": None,
+	        "releasestr": None,
+	        "arch": None,
+	        "discNum": None,
+	        "baseDir": None,
+	        "packagesDir": None,
+	        "pixmapsDir": None,
+	        "outfile": None}
+	allDiscs = None
+	
+	opts = []
+	for key in data.keys():
+	    opts.append("%s=" % (key,))
+	opts.append("allDiscs")
+	
+	print data;
+	print "###############################################################################"
+	print opts;
+	
+snippet dict_array_init.py
+	#!/us/bin/python
+	data = {"timestamp": None,
+	        "releasestr": None,
+	        "arch": None,
+	        "discNum": None,
+	        "baseDir": None,
+	        "packagesDir": None,
+	        "pixmapsDir": None,
+	        "outfile": None}
+	allDiscs = None
+	
+	opts = []
+	for key in data.keys():
+	    opts.append("%s=" % (key,))
+	opts.append("allDiscs")
+	
+	print data;
+	print "###############################################################################"
+	print opts;
+	
+snippet dict.array.py
+	#!/us/bin/python
+	dict = {"timestamp": None,
+	        "releasestr": None,
+	        "arch": None,
+	        "discNum": None,
+	        "baseDir": None,
+	        "packagesDir": None,
+	        "pixmapsDir": None,
+	        "outfile": None}
+	allDiscs = None
+	
+	opts_array = []
+	for key in dict.keys():
+	    opts_array.append("%s=" % (key,))
+	opts_array.append("allDiscs")
+	
+	print dict;
+	print "###############################################################################"
+	print opts_array;
+	
+snippet decorator_fun_doc_check.py
+	
+	def deco_functionNeedDoc(func):
+	    if func.__doc__ == None :
+	        print func, "has no __doc__, it's a bad habit."
+	    else:
+	        print func, ':', func.__doc__, '.'
+	    return func
+	
+	@deco_functionNeedDoc
+	def f():
+	    print 'f() Do something'
+	
+	@deco_functionNeedDoc
+	def g():
+	    '''I have a __doc__'''
+	    print 'g() Do something'
+	
+	f()
+	g()
+	
+snippet fft_compare.py
+	#!/usr/bin/python
+	#coding:utf-8
+	import numpy as np
+	def DFT_slow(x):
+	    """Compute the discrete Fourier Transform of the 1D array x"""
+	    x = np.asarray(x, dtype=float)
+	    N = x.shape[0]
+	    n = np.arange(N)
+	    k = n.reshape((N, 1))
+	    M = np.exp(-2j * np.pi * k * n / N)
+	    return np.dot(M, x)
+	
+	#对比numpy的内置FFT函数，我们来对结果进行仔细检查，
+	#Python
+	
+	x = np.random.random(1024)
+	print np.allclose(DFT_slow(x), np.fft.fft(x))
+	
+	#x = np.random.random(1024)
+	#np.allclose(DFT_slow(x), np.fft.fft(x))
+snippet omapi.py
+	import pypureomapi
+	
+	KEYNAME="defomapi"
+	BASE64_ENCODED_KEY="+bFQtBCta6j2vWkjPkNFtgA=="
+	
+	lease_ip = "192.168.1.77" # ip of some host with a dhcp lease on your dhcp server
+	dhcp_server_ip="127.0.0.1"
+	port = 7911 # Port of the omapi service
+	
+	try:
+	    o = pypureomapi.Omapi(dhcp_server_ip,port, KEYNAME, BASE64_ENCODED_KEY)
+	    mac = o.lookup_mac(lease_ip)
+	    print "%s is currently assigned to mac %s" % (lease_ip, mac)
+	except pypureomapi.OmapiErrorNotFound:
+	    print "%s is currently not assigned" % (lease_ip,)
+	except pypureomapi.OmapiError, err:
+	    print "an error occured: %r" % (err,)
+	
+	
+	
+snippet array.array.py
+	#!/usr/bin/python 
+	import commands
+	
+	##Exec(" echo \"perl /root/bin_win7//local_ivm/lpar_info.pl \" |  socat -  TCP:10.4.17.32:8889   ",$result);
+	# 1|        10-597BR|         Running|       14d|      8192M|0.80|8|
+	# 2|         Vm-2517|         Running|       14d|     10240M|0.80|4|
+	# 4|         Vm-2515|         Running|       10d|     10240M|0.80|4|
+	# 5|         Vm-2520|         Running|       14d|      5120M|1.50|4|
+	# 6|         Vm-2521|         Running|       14d|      8192M|0.60|1|
+	#38|          lpar38|         Running|       22h|      1024M|0.80|4|0c31
+	#39|          lpar39|         Running|       14d|      3072M|1.10|4|
+	#40|          lpar40|         Running|       14d|      2048M|0.80|4|
+	lpar_info =commands.getoutput(" echo \"perl /root/bin_win7//local_ivm/lpar_info.pl \" |  socat -  TCP:localhost:8889     ");
+	print lpar_info;
+	
+	ret=  [ [ each2.strip()  for each2 in each.split("|")]    for  each in  lpar_info.split("\n")];
+	print ret;
+	print "\n";
+	
+	print "get lpar 1  status=%s " %(ret[0][2]);
+snippet week_of_year.py
+	#-----snippet week_of_year.py start ----
+	import time
+	print time.strftime("%W")
+snippet grep_pipe.py
+	#-----snippet grep_pipe.py start ----
+	import commands
+	mplayer = commands.getoutput ('grep port= /root/bin/daemon/ssh_nat/ssh_phabricator.pl')
+	print mplayer;
+snippet getcwd_pwd.py
+	#-----snippet getcwd_pwd.py start ----
+	
+	# -*- coding: utf-8 -*-
+	#os.getcwd()ʵ���Ͼ��ǻ�ȡ��ǰ����·��(current working directory)
+	import os;
+	print os.getcwd();
+snippet shuffle_.py
+	#-----snippet shuffle_.py start ----
+	import random
+	fh=open("/etc/passwd");
+	lines=fh.readlines();
+	random.shuffle(lines);
+	for line in lines:
+	    print line
+
+snippet lambda_demo.py
+	#-----snippet lambda_demo.py start ----
+	#!/usr/bin/python
+	#coding: utf-8
+	print    reduce ( lambda    x , y : x * y ,    range ( 1 ,    1001 ))
+snippet fun_in_fun.py
+	#-----snippet fun_in_fun.py start ----
+	
+	#def listDirectory(directory, fileExtList):
+	#    "get list of file info objects for files of particular extensions"
+	#    fileList = [os.path.normcase(f) for f in os.listdir(directory)]
+	#    fileList = [os.path.join(directory, f) for f in fileList \
+	#                if os.path.splitext(f)[1] in fileExtList]
+	#    def getFileInfoClass(filename, module=sys.modules[FileInfo.__module__]):
+	#        "get file info class from filename extension"
+	#        subclass = "%sFileInfo" % os.path.splitext(filename)[1].upper()[1:]
+	#        return hasattr(module, subclass) and getattr(module, subclass) or FileInfo
+	#    return [getFileInfoClass(f)(f) for f in fileList]
+	
+	def  fun_in_fun():
+	    my_str="greshem";
+	    def test():
+	        print "%s test"%my_str;
+	    test();
+	
+	fun_in_fun();
+
+snippet redis_demo
+	import redis 
+	r = redis.client.Redis(host='127.0.0.1', port=6379, db=1)
+	info = r.info() 
+	for key in info: 
+	  print "%s: %s" % (key, info[key])
+
+	print '\ndbsize: %s' % r.dbsize()
+	print "ping %s" % r.ping()
+
+	r['c1'] = 'bar' 
+	r.set('c2','barc2') 
+	print  r['c1'];
+	print  r['c2'];
+
+	print 'delete:',r.delete('cc') 
+	print 'delete:',r.delete('c1','c2')
+
+
+snippet sqlite_demo
+	import random;
+	import sqlite3
+	con=sqlite3.connect("/tmp/test2.db");
+
+	cursor = con.cursor()
+	def create_table_and_data(con):
+		con.execute("create table catalog (id integer primary key,pid integer,name varchar(10) UNIQUE,nickname text NULL)")
+
+		for each in range(1,100):
+				num= random.randint(10000,1000000);
+				t=(num,num, "tset2%s"%each, "test2%s"%each); 
+				con.execute("insert into catalog values (?,?,?,?)", t)
+		con.commit();
+
+	#create_table_and_data(con);
+	cursor.execute("select * from catalog")
+	for each in cursor.fetchall():
+		print each;
+
+snippet sleep
+	import time
+	time.sleep(1);
+
+snippet gb2312_to_utf8
+	gb2312_str="chinese_gb2312_str";
+	utf8_str=unicode(gb2312_str, 'gb2312');
+snippet sql_create_table
+	sql="create table user (id int4 , uuid int4,  username text ,password text ,phone text,address text ) ; ";
+
+snippet codecs_utf8
+	#f = codecs.open(name, mode='r', encoding='utf8')
+	for each in codecs.open(file, mode='r', encoding='utf8').readlines():
+		print each;
+		
+snippet redis_consume
+	#! /usr/bin/env python 
+	#coding: utf-8 
+	import sys;
+	import redis 
+
+	r = redis.client.Redis(host='127.0.0.1', port=6379, db=1)
+	queue,info=r.brpop("chinese_str");
+	info=eval(info);
+	print  info['chinese_str'];
+
+
+snippet redis_product
+	#coding=utf-8
+	import os;
+	import redis 
+
+	#from /root/foreign_trade_management_sys/mod_download_scrapy/redis_add_domain.py
+	def  add_one_chinese_message(r,chinese_str):
+		r.lpush("chinese_str",  {"chinese_str":chinese_str, } );
+		ret=r.llen("chinese_str");
+		print "length %s"%ret;
+
+	r = redis.client.Redis(host='127.0.0.1', port=6379, db=1)
+	add_one_chinese_message(r, "one_chinese_str");
+snippet md5
+	import hashlib
+	def getMD5(str):
+		m2 = hashlib.md5()
+		m2.update(str)
+		return m2.hexdigest()
+snippet hashlib
+	import hashlib
+	def getMD5(str):
+		m2 = hashlib.md5()
+		m2.update(str)
+		return m2.hexdigest()
+
+snippet ini_generator
+	def gen_ini():
+		ini = open('config.ini','w')
+		config_write = ConfigParser.RawConfigParser()
+		config_write.add_section('global')
+		config_write.set('global','rabbit_mq','localhost')
+		config_write.set('global','mysql_server','localhost')
+		config_write.set('global','mysql_user','root')
+		config_write.set('global','mysql_password','password')
+		config_write.write(ini)
+		ini.close()
+
+snippet ini_read_value
+	def ini_get_value(key):
+		config_read = ConfigParser.RawConfigParser()
+		config_read.read('config.ini')
+		return  config_read.get('global',key)
+
+snippet ini_read_value2
+	def read_ini():
+		config_read = ConfigParser.RawConfigParser()
+		config_read.read('config.ini')
+		print "region=%s"%config_read.get('global','region')
+		print "rabbit_mq=%s"%config_read.get('global','rabbit_mq')
+		print "mysql_server=%s"%config_read.get('global','mysql_server')
+		print "mysql_user=%s"%config_read.get('global','mysql_user')
+		print "mysql_passwd=%s"%config_read.get('global','mysql_password')
+
+
+snippet mtime
+	mtime = os.path.getmtime('/')
+
+snippet django
+	import os
+	import sys
+
+	from django.conf import settings
+	DEBUG = os.environ.get('DEBUG', 'on') == 'on'
+	SECRET_KEY = os.environ.get('SECRET_KEY', '{{ secret_key }}')
+	ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost').split(',')
+
+	settings.configure(
+		DEBUG=DEBUG,
+		SECRET_KEY=SECRET_KEY,
+		ALLOWED_HOSTS=ALLOWED_HOSTS,
+		ROOT_URLCONF=__name__,
+		MIDDLEWARE_CLASSES=(
+			'django.middleware.common.CommonMiddleware',
+			'django.middleware.csrf.CsrfViewMiddleware',
+			'django.middleware.clickjacking.XFrameOptionsMiddleware',
+		),
+	)
+
+	from django.conf.urls import url
+	from django.core.wsgi import get_wsgi_application
+	from django.http import HttpResponse
+
+	def index(request):
+		return HttpResponse('Hello World')
+
+	urlpatterns = (
+		url(r'^$', index),
+	)
+
+
+	application = get_wsgi_application()
+
+
+	if __name__ == "__main__":
+		from django.core.management import execute_from_command_line
+
+		execute_from_command_line(sys.argv)
+
+snippet argv
+	import sys, os
+	if len(sys.argv)!=2:
+		print "Usage: %s  input_name ";
+		sys.exit(-1);
+	name=sys.argv[1];
+	print(name);
+
+snippet system_with_no_ret.py
+	#!/usr/bin/python
+
+	import os
+	os.system("ifconfig ")
+
+snippet singleton_v2
+	class Singleton(object):
+
+	    _instance = None
+
+	    def __new__(cls, *args, **kwargs):
+		    if not isinstance(cls._instance, cls):
+				cls._instance = object.__new__(cls, *args, **kwargs)
+					return cls._instance
+
+snippet one_line
+	list_name= [ x  for x in   b.keys()  if  "_List" in x];  #return array
+	tenant_list = [i['account_id'] for i in rows]		#retury  array
+	texts_lower = [[word for word in document.lower().split()] for document in courses		
+
+snippet testunit_man_demo
+	# Example of Basic Test Setup
+	import unittest
+	from datetime import datetime
+
+	class Watch():
+		def get_time(self):
+			return datetime.now()
+
+	class Man():
+		watch = None
+		def __init__(self):
+			self.watch = Watch()
+
+		def tell_time(self):
+			return 'It is now ' + self.watch.get_time().strftime('%I:%M %p')
+
+	class Foo(unittest.TestCase):
+
+		def test_1(self):
+			self.man = Man()
+			print self.man.tell_time()
+			print self.man.tell_time()
+			print self.man.tell_time()
+			print self.man.tell_time()
+
+	# Safely ignore, needed to get test suite to run
+	if __name__ == '__main__':
+		unittest.main()
+	#dict
+	strings = ['import','is','with','if','file','exception']  
+	d = {key: val for val,key in enumerate(strings)}  
+
+	#set
+	{len(s) for s in strings} #����������������������  
+
+
+
+
+snippet comprehension_list
+	texts_lower = [[word for word in document.lower().split()] for document in courses		
+	[(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
+	files = [os.path.join('./my_dir', f) for f in os.listdir('./my_dir') if f.endswith('.txt')]
+
+snippet comprehension_dict
+	strings = ['import','is','with','if','file','exception']  
+	d = {key: val for val,key in enumerate(strings)}  
+
+snippet comprehension_csv
+	import csv
+	data = [ x for x in csv.DictReader(open('file.csv', 'rU'))]
+
+snippet wordcount
+	import re
+	from collections import Counter
+
+	input = """a b c d e f g h i"""
+	ret = Counter(filter(lambda x: x != '',re.subn('\W', ' ',input.lower())[0].split(' '))).items()
+	for i in ret:
+		print i[0], i[1]
+
+
+
+snippet perf
+	import time 
+	def performance(f): 
+		def fn (*args,**kw): 
+			t1=time.time() 
+			r=f(*args,**kw) 
+			t2=time.time() 
+			print "call %s() in %f Second" %(f.name,(t2-t1)) 
+			return r 
+		return fn 
+
+	@performance 
+	def factorial(n): 
+		return reduce(lambda x,y: x*y, range(1, n+1)) 
+
+	print factorial(10) 
+
+snippet timeit
+	import time 
+	def performance(f): 
+		def fn (*args,**kw): 
+			t1=time.time() 
+			r=f(*args,**kw) 
+			t2=time.time() 
+			print "call %s() in %f Second" %(f.name,(t2-t1)) 
+			return r 
+		return fn 
+
+	@performance 
+	def factorial(n): 
+		return reduce(lambda x,y: x*y, range(1, n+1)) 
+
+	print factorial(10) 
+
+snippet print_fun_args
+	def print_args(function):
+		def wrapper(*args, **kwargs):
+			print 'Arguments:', args, kwargs
+			return function(*args, **kwargs)
+		return wrapper
+
+	@print_args
+	def write(text):
+		print text
+
+	write('foo')
+
+snippet dict_2_class
+	class Lpar:
+		def __init__(self, **entries):
+			self.__dict__.update(entries)
+	meta=['id', 'name', 'status', 'time', 'memory', 'cpu','unit','led'];
+	value=["39","FF_lpar39","Running","13d","2048M","0.80","4"];
+	line=Lpar(**dict(zip(meta, value)));
+	print line;
+
+snippet zip_array_2_object
+	class Lpar:
+		def __init__(self, **entries):
+			self.__dict__.update(entries)
+	meta=['id', 'name', 'status', 'time', 'memory', 'cpu','unit','led'];
+	value=["39","FF_lpar39","Running","13d","2048M","0.80","4"];
+	line=Lpar(**dict(zip(meta, value)));
+	print line;
+
+snippet dict_2_object_method1
+	class Lpar:
+		def __init__(self, **entries):
+			self.__dict__.update(entries)
+	lpar1={'status': 'Running', 'name': 'FF_lpar39', 'time': '13d', 'id': '39', 'memory': '2048M', 'cpu': '0.80', 'unit': '4'}
+	line=Lpar(**lpar1);
+
+
+snippet dict_2_object_method2
+	import types;
+	lpar_info={'status': 'Running', 'name': 'FF_lpar39', 'time': '13d', 'id': '39', 'memory': '2048M', 'cpu': '0.80', 'unit': '4'}
+	lpar=types.new_class('Lpar',(), {}, lambda ns: ns.update(lpar_info));
+
+snippet LOG_error
+	LOG = logging.getLogger(__name__)
+	try:
+		1/0
+	except Exception as  e:
+		LOG.error(e)
+
+snippet LOG_demos
+	LOG = logging.getLogger(__name__)
+	LOG.info("Python Standard Logging")
+	LOG.warning("Python Standard Logging")
+	LOG.error("Python Standard Logging")
+
+snippet function_args_pass
+	#def fun_var_args(farg,name=333, last=3333,  **kwargs,  *args  ):   #ERROR 
+	def fun_var_args(farg,name=333, last=3333,  *args,  **kwargs  ):  
+		print "arg:", farg  
+		print "name:%s"%name;
+		print "last:%s"%last;
+		print args;
+		print kwargs;
+	fun_var_args(1, 44444, 55555, 66666,test="33", test2="444");
+
+snippet fun_args_pass
+	#def fun_var_args(farg,name=333, last=3333,  **kwargs,  *args  ):   #ERROR 
+	def fun_var_args(farg,name=333, last=3333,  *args,  **kwargs  ):  
+		print "arg:", farg  
+		print "name:%s"%name;
+		print "last:%s"%last;
+		print args;
+		print kwargs;
+	fun_var_args(1, 44444, 55555, 66666,test="33", test2="444");
+
+snippet try_excecption_common_usage
+	try:
+		api.neutron.port_delete(request,portid)
+	except Exception  as e:
+		return {"result":"error"};	
+
+snippet functioncache_demo 
+	functioncache(10)
+	def ret_info2():
+		time.sleep(5);
+		return   map(lambda x:x*2, range(1,100))
+
+snippet itertools_repeat
+	itertools.count(start=0, step=1)
+	itertools.cycle(iterable)
+	itertools.repeat(object[, times])
+
+snippet itertools_algo0
+	itertools.chain(*iterables)
+	itertools.compress(data, selectors)
+	itertools.dropwhile(predicate, iterable)
+	itertools.groupby(iterable[, key])
+	itertools.ifilter(predicate, iterable)
+	itertools.ifilterfalse(predicate, iterable)
+	itertools.imap(function, *iterables)
+snippet itertools_algo1
+	itertools.islice(iterable, stop)
+	itertools.izip(*iterables)
+	itertools.izip_longest(*iterables[, fillvalue])
+	itertools.starmap(function, iterable)
+	itertools.takewhile(predicate, iterable)
+	itertools.tee(iterable[, n=2])
+
+snippet itertools_stage3_comb
+	itertools.product(*iterables[, repeat])
+	itertools.permutations(iterable[, r])
+	itertools.combinations(iterable, r)
+	itertools.combinations_with_replacement(iterable, r)
+
+snippet flask_demo
+	from flask import Flask, jsonify, render_template, request
+	app = Flask(__name__)
+
+	@app.route('/list')
+	def list2():
+		a=open("/tmp/passwd").readlines();
+		data={"data":a};
+		return jsonify(data)
+
+
+	if __name__ == '__main__':
+		app.run(host="0.0.0.0", port=8839,debug=True)
+snippet filelist
+	def chomp(line):
+		if line[-1] == '\n':
+			line = line[:-1]
+		return line;
+
+	file_list=map( chomp, open(file).readlines()):
+
