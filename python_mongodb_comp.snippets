@@ -1,0 +1,167 @@
+snippet mongodb_domain_tree
+	blacklist
+		domain|url|created_at|updated_at|reason|_id
+	domain
+		google_page_count|baidu_page_count|domain|tags|country|geo_info|updated|mx|alax_range|catalog|download_page_count|_id|created_at
+	email
+		domain|url|created_at|updated_at|_id|email
+	email_sara_working
+		email|update_time|_id|domain|from_src
+	system.indexes
+		ns|name|key|v
+	top1m
+		domain|_id|rank
+
+snippet mongodb_email_tree
+	email
+		domain|_id|email
+	email2
+		url|domain|_id|email
+	email_send_history
+		update_time|_id|email
+	eml
+		eml|_id|time
+	system.indexes
+		ns|name|key|v
+
+snippet mongodb_english_tree
+	caogan
+		word|file|created_at|updated_at|in_blacklist|context|_id
+	history
+		_id|word|updated_at|in_blacklist
+	recite
+		count|word|success|failure|in_blacklist|_id
+
+snippet mongodb_english_stage_tree
+	stage1
+		updated|_id|word|in_blacklist|chinese
+	stage10
+		_id|word|in_blacklist|chinese
+	stage4
+		updated|_id|word|in_blacklist|chinese
+	stage6
+		_id|word|in_blacklist|chinese
+	stage8
+		updated|_id|word|in_blacklist|chinese
+	stage9
+		_id|word|in_blacklist|chinese
+	system.indexes
+		ns|name|key|v
+	xdict
+		_id|word|in_blacklist|chinese
+
+snippet mongodb_teresa_html_tree
+	html3
+		update_time|url|domain|content|error|_id
+	html4
+		update_time|url|domain|content|error|_id
+	html5
+		domain|url|created_at|updated_at|content|_id
+	html6
+		domain|url|created_at|updated_at|content|_id
+	html_2014
+		url|content|domain|_id|meta
+	html_error_info
+		url|content|update_time|_id|error
+
+snippet mongodb_teresa_se_tree
+	se_email
+		url|path|domain|_id|content
+	se_email_intlF
+		domain|url|created_at|updated_at|content|_id
+	se_keyword
+		url|path|domain|_id|content
+	should_delete
+		domain|url|created_at|updated_at|content|_id
+
+
+snippet mongodb_teresa_top1m_tree
+	top1m
+		domain|url|created_at|updated_at|content|_id
+
+snippet mongodb_teresa_university_tree
+	university
+		update_time|url|domain|content|error|_id
+	university_se_bio
+		update_time|url|domain|content|error|_id
+	university_se_bio2
+		url|content|update_time|_id|domain
+	university_se_bio_email
+		domain|url|created_at|updated_at|content|_id
+	university_se_bio_email_selenium
+		url|content|domain|_id
+
+snippet mongodb_teresa_wget_2014_tree
+	wget_2014
+		content|url|domain|_id
+
+
+snippet mongoengine_fields 
+	#MongoEngine提供了如下这些类型的Field:
+	BinaryField
+	BooleanField
+	ComplexDateTimeField
+	DateTimeField
+	DecimalField
+	DictField
+	DynamicField
+	EmailField
+	EmbeddedDocumentField
+	FileField
+	FloatField
+	GenericEmbeddedDocumentField
+	GenericReferenceField
+	GeoPointField
+	ImageField
+	IntField
+	ListField
+	MapField
+	ObjectIdField
+	ReferenceField
+	SequenceField
+	SortedListField
+	StringField
+	URLField
+	UUIDField
+
+snippet mongodb_append_colume
+	from pymongo import MongoClient
+	import  datetime;
+	client = MongoClient("localhost", 27017);
+	db = client["teresa"];
+	col= db['html4'];
+
+	it = col.find()
+	for i in it:
+		if not  "updated_at" in  i.keys():
+			print i['url'];
+			time_stamp= datetime.datetime.now();
+			col.find_and_modify(query={'url':i['url']}, update={"$set":{'updated_at': time_stamp}},upsert=False,  full_response=True);
+
+
+	client.close();
+
+
+snippet mongodb_append_field
+		REF: mongodb_append_colume
+
+
+
+snippet mongodb_ensure_index:
+	REF:  mongodb_create_index
+
+snippet mongodb_create_index
+	from pymongo import MongoClient
+
+	client = MongoClient("localhost", 27017);
+	db = client["domain"];
+
+	all=0;
+	for each in  db.collection_names():
+		print "%s create index "%each;
+		col=db[each];
+		try:
+			col.ensure_index('url', unique=False)
+		except Exception as e:
+			print "get  error info %s"%e;
+

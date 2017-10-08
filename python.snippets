@@ -1,18 +1,24 @@
-snippet #!
+
+snippet #!_
 	#!/usr/bin/env python
 	# -*- coding: utf-8 -*-
-snippet #!3
+
+snippet #!3_
 	#!/usr/bin/env python3
 	# -*- coding: utf-8 -*-
-snippet imp
+
+snippet import_
 	import ${0:module}
-snippet uni
+
+snippet uni_
 	def __unicode__(self):
 		${0:representation}
-snippet from
+
+snippet from_
 	from ${1:package} import ${0:module}
 # Module Docstring
-snippet docs
+
+snippet docs_
 	"""
 	File: ${1:`vim_snippets#Filename('$1.py', 'foo.py')`}
 	Author: `g:snips_author`
@@ -21,20 +27,24 @@ snippet docs
 	Description: ${0}
 	"""
 
-snippet wh
+
+snippet while_
 	while ${1:condition}:
 		${0}
 # dowh - does the same as do...while in other languages
-snippet dowh
+
+snippet do_while
 	while True:
 		${1}
 		if ${0:condition}:
 			break
-snippet with
+
+snippet with_
 	with ${1:expr} as ${2:var}:
 		${0}
 # New Class
-snippet cl
+
+snippet class_
 	class ${1:ClassName}(${2:object}):
 		"""${3:docstring for $1}"""
 		def __init__(self, ${4:arg}):
@@ -42,19 +52,23 @@ snippet cl
 			self.$4 = $4
 			${0}
 # New Function
-snippet def
+
+snippet def_
 	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
 		"""${3:docstring for $1}"""
 		${0}
-snippet deff
+
+snippet def_fun
 	def ${1:fname}(${2:`indent('.') ? 'self' : ''`}):
 		${0}
 # New Method
-snippet defm
+
+snippet def_method
 	def ${1:mname}(self, ${2:arg}):
 		${0}
 # New Property
-snippet property
+
+snippet property_
 	def ${1:foo}():
 		doc = "${2:The $1 property.}"
 		def fget(self):
@@ -66,67 +80,96 @@ snippet property
 		return locals()
 	$1 = property(**$1())
 # Ifs
-snippet if
+
+snippet if_
 	if ${1:condition}:
 		${0}
-snippet el
+
+snippet else
 	else:
 		${0}
-snippet ei
+
+snippet ei_
 	elif ${1:condition}:
 		${0}
+
+snippet elif_
+	elif ${1:condition}:
+		${0}
+
 # For
-snippet for
+
+snippet for_
 	for ${1:item} in ${2:items}:
 		${0}
 # Encodes
-snippet cutf8
+
+snippet cutf8_
 	# -*- coding: utf-8 -*-
 # Encodes
-snippet utf8-coding
+
+snippet utf8-coding_
 	# -*- coding: utf-8 -*-
 
-snippet utf8-setdefaultencoding
+
+
+snippet reload_
 	import sys
+	reload(sys);
 	sys.setdefaultencoding("utf-8")  
 
-snippet clatin1
+
+snippet utf8-setdefaultencoding_
+	import sys
+	reload(sys);
+	sys.setdefaultencoding("utf-8")  
+
+
+snippet clatin1_
 	# -*- coding: latin-1 -*-
-snippet cascii
+
+snippet cascii_
 	# -*- coding: ascii -*-
 # Lambda
-snippet lambda1
+
+snippet lambda1_
 	${1:var} = lambda ${2:vars} : ${0:action}
 
-snippet lambda_add
+
+snippet lambda_add_
 	def add(a,b):
 		return a + b
 	print add(2,3)
 	add = lambda a,b : a + b
 	print add(2,3)
 
-snippet .
+
+snippet self._
 	self.
-snippet try_Try_Except
+
+snippet try_Try_Except_
 	try:
 		${1}
 	except ${2:Exception}, ${3:e}:
 		${0:raise $3}
-snippet try_Try_Except_Else
+
+snippet try_Try_Except_Else_
 	try:
 		${1}
 	except ${2:Exception}, ${3:e}:
 		${4:raise $3}
 	else:
 		${0}
-snippet try_Try_Except_Finally
+
+snippet try_Try_Except_Finally_
 	try:
 		${1}
 	except ${2:Exception}, ${3:e}:
 		${4:raise $3}
 	finally:
 		${0}
-snippet try_Try_Except_Else_Finally
+
+snippet try_Try_Except_Else_Finally_
 	try:
 		${1}
 	except ${2:Exception}, ${3:e}:
@@ -136,76 +179,95 @@ snippet try_Try_Except_Else_Finally
 	finally:
 		${0}
 # if __name__ == '__main__':
-snippet ifmain
+
+snippet ifmain_
 	if __name__ == '__main__':
 		${0:main()}
 
-snippet main
+
+snippet main_
 	if __name__ == '__main__':
 		${0:main()}
 
 # __magic__
-snippet _
+
+snippet __
 	__${1:init}__
 # python debugger (pdb)
-snippet pdb
+
+snippet pdb_set_trace
 	import pdb
 	pdb.set_trace()
 # bpython debugger (bpdb)
-snippet bpdb
+
+snippet bpdb_
 	import bpdb
 	bpdb.set_trace()
 # ipython debugger (ipdb)
-snippet ipdb
+
+snippet ipdb_
 	import ipdb
 	ipdb.set_trace()
 # embed ipython itself
-snippet iem
+
+snippet iem_
 	import IPython
 	IPython.embed()
 # ipython debugger (pdbbb)
-snippet pdbbb
+
+snippet pdbbb_
 	import pdbpp
 	pdbpp.set_trace()
 # remote python debugger (rpdb)
-snippet rpdb
+
+snippet rpdb_
 	import rpdb
 	rpdb.set_trace()
 # ptpython
-snippet ptpython
+
+snippet ptpython_
 	from ptpython.repl import embed
 	embed(globals(), locals(), vi_mode=${1:False}, history_filename=${2:None})
 # python console debugger (pudb)
-snippet pudb
+
+snippet pudb_
 	import pudb
 	pudb.set_trace()
 # pdb in nosetests
-snippet nosetrace
+
+snippet nosetrace_
 	from nose.tools import set_trace
 	set_trace()
-snippet pprint
+
+snippet pprint_
 	import pprint
 	pprint.pprint(${1})
-snippet "
+
+snippet "_
 	"""${0:doc}
 	"""
 # assertions
-snippet a=
+
+snippet a=_
 	self.assertEqual(${0}, ${1})
 # test function/method
-snippet test
+
+snippet test_
 	def test_${1:description}(${2:`indent('.') ? 'self' : ''`}):
 		${0}
 # test case
-snippet testcase
+
+snippet testcase_
 	class ${1:ExampleCase}(unittest.TestCase):
 
 		def test_${2:description}(self):
 			${0}
-snippet fut
+
+snippet fut_
 	from __future__ import ${0}
 #getopt
-snippet getopt
+
+snippet getopt_
 	try:
 		# Short option syntax: "hv:"
 		# Long option syntax: "help" or "verbose="
@@ -223,21 +285,28 @@ snippet getopt
 			verbose = argument
 # logging
 # glog = get log
-snippet glog
+
+snippet glog_
 	import logging
 	logger = logging.getLogger(${0:__name__})
-snippet le
+
+snippet le_
 	logger.error(${0:msg})
 # conflict with lambda=ld, therefor we change into Logger.debuG
-snippet lg
+
+snippet lg_
 	logger.debug(${0:msg})
-snippet lw
+
+snippet lw_
 	logger.warning(${0:msg})
-snippet lc
+
+snippet lc_
 	logger.critical(${0:msg})
-snippet li
+
+snippet li_
 	logger.info(${0:msg})
-snippet epydoc
+
+snippet epydoc_
 	"""${1:Description}
 
 	@param ${2:param}: ${3: Description}
@@ -248,30 +317,38 @@ snippet epydoc
 
 	@raise e: ${0: Description}
 	"""
-snippet dol
+
+snippet dol_
 	def ${1:__init__}(self, *args, **kwargs):
 	    super(${0:ClassName}, self).$1(*args, **kwargs)
 
-snippet super
+
+snippet super_
 	def ${1:__init__}(self, *args, **kwargs):
 	    super(${0:ClassName}, self).$1(*args, **kwargs)
 
 
-snippet __init__
+
+snippet __init___
 	def ${1:__init__}(self, *args, **kwargs):
 	    super(${0:ClassName}, self).$1(*args, **kwargs)
 
-snippet kwg
+
+snippet kwg_
 	self.${1:var_name} = kwargs.get('$1', ${2:None})
 
-snippet lkwg
+
+snippet lkwg_
 	${1:var_name} = kwargs.get('$1', ${2:None})
-snippet args
+
+snippet args_
 	*args${1:,}${0}
 
-snippet kwargs
+
+snippet kwargs_
 	**kwargs${1:,}${0}
-snippet kwargs_prog
+
+snippet kwargs_prog_
 	def fun_var_args(input1, input2, *args,  **kwargs  ): 
 		print "farg:", input1  
 		print "input2:", input2
@@ -285,38 +362,46 @@ snippet kwargs_prog
 			print "para1  in  kwargs is none ";
 
 
-snippet akw
-	*args, **kwargs${1:,}${0}
-snippet args
+
+snippet akw_
 	*args, **kwargs${1:,}${0}
 
-snippet strftime
+snippet args_
+	*args, **kwargs${1:,}${0}
+
+
+snippet strftime_
 	import time;
 	def get_cur_time():
 		return time.strftime("%Y-%m-%d_%H:%M:%S ",time.localtime())
 
-snippet basedir
+
+snippet basedir_
 	import sys, os
 	print 'sys.argv[0] =', sys.argv[0]
 	pathname = os.path.dirname(sys.argv[0])
 	print 'path =', pathname
 	print 'full path =', os.path.abspath(pathname)
 
-snippet DATA
+
+snippet DATA_
 	#!/usr/bin/python
 	DATA="""
 	"""
 	print DATA;
-snippet TemplateView
+
+snippet django_view_TemplateView_2_
+	from django.views.generic import TemplateView 
 	from django.views.generic.base import TemplateView, ContextMixin
 	from django.conf.urls import include, url, patterns
 	urlpatterns = patterns('',
 	   url(r'^test$',    redirect_2  , name='test'),
-	   url(r'^baidu$', TemplateView.as_view(template_name="ECloud.html"),name="baidu"),  
+	   url(r'^baidu$', TemplateView.as_view(template_name="base.html"),name="baidu"),  
 	   url(r'^index$', indexView.as_view(),name="project_index"),
 	);	
 
-snippet redirect
+
+snippet redirect_
 	from django.core.urlresolvers import reverse 
 	from django.http import HttpResponse,HttpResponseRedirect
 
@@ -327,7 +412,8 @@ snippet redirect
 			return HttpResponseRedirect(reverse('login'))
 
 
-snippet jsonView
+
+snippet django_jsonView_
 
 	#views.py  append
 	import json
@@ -337,8 +423,22 @@ snippet jsonView
 
 	#urls.py append 	
 	url(r'^index$', indexView.as_view(),name="project_index"),
+	url(r'^index$', json_view,	name="project_index"),
 
-snippet reverse
+
+snippet django_view_json_
+	#views.py  append
+	import json
+	def json_view(request):
+		data={'total':result['accountList']['total'],'rows':result['accountList']['accounts']}
+		return HttpResponse(json.dumps(data))
+
+	#urls.py append 	
+	url(r'^index$', json_view,	name="project_index"),
+
+
+
+snippet reverse_
 	from django.core.urlresolvers import reverse 
 	from django.http import HttpResponse,HttpResponseRedirect
 
@@ -348,14 +448,55 @@ snippet reverse
 		else:
 			return HttpResponseRedirect(reverse('login'))
 
-snippet urlpatterns
+
+snippet urlpatterns_
 	from django.conf.urls import include, url, patterns
+	from django.views.generic import TemplateView 
 	urlpatterns = patterns('',
 	   url(r'^test$',    redirect_2  , name='test'),
-	   url(r'^baidu$', TemplateView.as_view(template_name="ECloud.html"),name="baidu"),  
+	   url(r'^baidu$', TemplateView.as_view(template_name="base.html"),name="baidu"),  
 	   url(r'^index$', indexView.as_view(),name="project_index"),
 	);	
-snippet logger
+
+
+snippet django_urlpatterns_3_
+	from django.conf.urls import include, url, patterns
+	from django.views.generic import TemplateView 
+	urlpatterns = patterns('',
+	   url(r'^test$',    redirect_2  , name='test'),
+	   url(r'^baidu$', TemplateView.as_view(template_name="base.html"),name="baidu"),  
+	   url(r'^index$', indexView.as_view(),name="project_index"),
+	);	
+
+
+snippet django_view_TemplateView_
+	from django.conf.urls import include, url, patterns
+	from django.views.generic import TemplateView 
+	urlpatterns = patterns('',
+	   url(r'^test$',    redirect_2  , name='test'),
+	   url(r'^baidu$', TemplateView.as_view(template_name="base.html"),name="baidu"),  
+	   url(r'^index$', indexView.as_view(),name="project_index"),
+	);	
+
+
+
+snippet django_view_response_
+	from django.conf.urls import url
+	from django.core.wsgi import get_wsgi_application
+	from django.http import HttpResponse
+
+	def index2222(request):
+		return HttpResponse('Hello World')
+
+	urlpatterns = (
+		url(r'^$', index2222),
+	)
+
+
+
+
+
+snippet logger_
 	def get_cur_time():
 		import time;
 		return time.strftime("%Y-%m-%d_%H:%M:%S ",time.localtime())
@@ -365,7 +506,8 @@ snippet logger
 		fh.close();
 	logger("this is log \n");
 
-snippet system_popen
+
+snippet system_popen_
 	def method_1():
 		import os;
 		output=os.popen("ifconfig");
@@ -374,7 +516,8 @@ snippet system_popen
 		print array;
 		return array;
 
-snippet system_command
+
+snippet system_command_
 	def get_output_cmd()
 		import commands
 		mplayer = commands.getoutput ('which mplayer')
@@ -382,7 +525,8 @@ snippet system_command
 		output=ifconfig.split("\n");
 		for each in output:
 			print each;
-snippet commands
+
+snippet commands_
 	def get_output_cmd()
 		import commands
 		mplayer = commands.getoutput ('which mplayer')
@@ -392,7 +536,8 @@ snippet commands
 			print each;
 
 
-snippet re_match_search
+
+snippet re_match_search_
 	import re;
 	root_pat=re.compile('root');
 	fh=open("/etc/passwd");
@@ -401,7 +546,8 @@ snippet re_match_search
 		if match: 
 			print line
 
-snippet match_search
+
+snippet match_search_
 	import re;
 	root_pat=re.compile('root');
 	fh=open("/etc/passwd");
@@ -410,37 +556,44 @@ snippet match_search
 		if match: 
 			print line
 
-snippet split
+
+snippet split_
 	space="aa bb cc ee dd ff";
 	array=space.split();
 
 	a="aa|bb|cc|ee|dd|ff";
 	array=a.split("|");
 
-snippet file_append
+
+snippet file_append_
 	def file_append(string):
 		fh = open("/tmp/all.log", 'a')
 		fh.write("%s\n"%( string) )
 		fh.close();
 
-snippet readlines
+
+snippet readlines_
 	fh=open("/etc/passwd");
 	for line in fh.readlines():
 		print line
 		for tmp in line.split(':'):
 			print tmp
 
-snippet utf8
+
+snippet utf8_
 	#coding=utf-8
 
 
-snippet coding
+
+snippet coding_
 	#coding=utf-8
 
-snippet utf8
+
+snippet utf8_
 	#coding=utf-8
 
-snippet glob
+
+snippet glob_
 	import glob
 	import os;
 	for file in glob.glob("*"):
@@ -449,31 +602,37 @@ snippet glob
 			print(file)
 		elif os.path.isfile(file):
 			print "File:   {0}".format(file);
-snippet pwd
-	import os;
-	print os.getcwd();
-snippet cwd
+
+snippet pwd_
 	import os;
 	print os.getcwd();
 
-snippet dirname
+snippet cwd_
+	import os;
+	print os.getcwd();
+
+
+snippet dirname_
 	import sys, os
 	pathname = os.path.dirname("/root/linux/bbb")
 	print 'full path =', os.path.abspath(pathname)
 
 
-snippet abspath
+
+snippet abspath_
 	import sys, os
 	pathname = os.path.dirname("/root/linux/bbb")
 	print 'full path =', os.path.abspath(pathname)
 	BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-snippet basename
+
+snippet basename_
 	import os
 	print os.path.basename("/etc/passwd")
 	print os.path.basename(os.getcwd())
 
-snippet find
+
+snippet find_
 	import os
 	def find_get_dir_list(path):
 		filelist=[];
@@ -483,7 +642,19 @@ snippet find
 				filelist.append(abs_path);
 
 		return filelist;
-snippet os.walk
+
+snippet os.walk_
+	import os
+	def find_get_dir_list(path):
+		filelist=[];
+		for root, dirs, files in os.walk(path):
+			for file in files:
+				abs_path = os.path.join(root,file)
+				filelist.append(abs_path);
+
+		return filelist;
+
+snippet os_walk_
 	import os
 	def find_get_dir_list(path):
 		filelist=[];
@@ -496,7 +667,9 @@ snippet os.walk
 
 
 
-snippet listdir
+
+
+snippet listdir_
 	import os;
 	import sys;
 	for pkg in  os.listdir("/etc/"):
@@ -504,14 +677,16 @@ snippet listdir
 		if not os.path.isdir(d):
 			print  "FILE %s"%d;
 
-snippet submod
+
+snippet submod_
 	import pkgutil;
 	def print_nova_with_str():
 		for each in pkgutil.walk_packages ('/usr/lib/python2.7/site-packages/nova',  "nova."):
 			print each; 
 
 
-snippet walk_packages
+
+snippet walk_packages_
 	import pkgutil;
 	def print_nova_with_str():
 		for each in pkgutil.walk_packages ('/usr/lib/python2.7/site-packages/nova',  "nova."):
@@ -519,31 +694,39 @@ snippet walk_packages
 
 
 
-snippet match_re_findall
+
+snippet match_re_findall_
 	def re_find_all():
 		import re;
 		size_str=" Size: 33333\n";
 		size=re.findall(r'\s+Size: (.*)\n',size_str)
 		print size;
 
-snippet now
+
+snippet now_
 	import datetime;
 	datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-snippet replace
+	stamp=datetime.datetime.utcnow().strftime("%Y-%m-%dZ%H:%M:%S"),
+
+
+snippet replace_
 	my_dir=my_str_file.replace(".tar.gz", "");
 
 
-snippet format
+
+snippet format_
 	print """mv {dir}   __back_dir; 
 		mv {tar_gz} __back_dir """.format( dir=back_dir,  tar_gz=file );
 
-snippet mkdir
+
+snippet mkdir_
 	import os;
 	if not os.path.isdir("__back_dir"):
 		os.mkdir("__back_dir");
 		
 
-snippet link_extract
+
+snippet link_extract_
 	#!/usr/bin/python
 	import  requests;
 	from BeautifulSoup import BeautifulSoup
@@ -567,21 +750,25 @@ snippet link_extract
 	wget http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-1701.qcow2
 	"""
 
-snippet quote
+
+snippet quote_
 	import urllib, sys ; 
 	print urllib.quote_plus(sys.stdin.read())
 
-snippet safe_string
+
+snippet safe_string_
 	import urllib, sys ; 
 	print urllib.quote_plus(sys.stdin.read())
 
-snippet file_exists
+
+snippet file_exists_
 	import os
 	if os.path.isfile(file):
 		print "file exists";
 		
 
-snippet random
+
+snippet random_
 	#randint
 	import random;
 	print random.randint(12, 20)  # ÁîüÊàêÁöÑÈöèÊú∫Êï∞ n: 12 <= n <= 20
@@ -595,11 +782,13 @@ snippet random
 	from random import choice
 	print choice(foo
 	
-snippet max
+
+snippet max_
 	print "max(80, 100, 1000) : ", max(80, 100, 1000)
 
 
-snippet datetime_tools
+
+snippet datetime_tools_
 	def datetime_tools():
 		from datetime import datetime
 		cur=datetime.now()
@@ -619,7 +808,8 @@ snippet datetime_tools
 		new_date = datetime.datetime.now() + datetime.timedelta(hours=-10) 	#ÊØîÁé∞Âú®Âáè10Â∞èÊó∂
 		new_date = datetime.datetime.now() + datetime.timedelta(seconds=120) #ÊØîÁé∞Âú®+120
 
-snippet curtime
+
+snippet curtime_
 	import time;
 	def get_cur_time():
 		return time.strftime("%Y-%m-%d_%H:%M:%S ",time.localtime())
@@ -634,7 +824,8 @@ snippet curtime
 		print cur.minute;
 		print cur.weekday();
 
-snippet closure1
+
+snippet closure1_
 	#coding=utf-8
 	#Êó†ÂèÇÊï∞Ë£ÖÈ•∞Âô® C ÂåÖË£ÖÂ∏¶ÂèÇÊï∞ÂáΩÊï∞
 	def decorator_func_args(func):
@@ -654,7 +845,8 @@ snippet closure1
 	foo2(1,3,4)
 	linux();
 
-snippet mysql_connect
+
+snippet mysql_connect_
 	import MySQLdb
 	import sys
 
@@ -670,20 +862,26 @@ snippet mysql_connect
 	for row in rows:
 		print row;
 
-snippet __init__.py
-snippet subprocess_demo.py
+
+snippet __init__.py_
+
+snippet subprocess_demo.py_
 	import subproces
 	process = subprocess.Popen(['python.exe','-c','while 1: pass'])
-snippet week_of_year.py
+
+snippet week_of_year.py_
 	import time
 	print time.strftime("%W")
-snippet print.py
+
+snippet print.py_
 	import os;
 	print ["aaaaa","bbb","ccc"];
-snippet zipls_modules_exec_with_cmd.py
+
+snippet zipls_modules_exec_with_cmd.py_
 	#!/bin/sh
 	exec python -m zipls.zipls "$@"
-snippet win_fork_loop.py
+
+snippet win_fork_loop.py_
 	import subprocess
 	import time;
 	process = subprocess.Popen(['python.exe','-c','while 1: pass'])
@@ -691,92 +889,112 @@ snippet win_fork_loop.py
 	import commands
 	mplayer = commands.getoutput ('grep port= /root/bin/daemon/ssh_nat/ssh_phabricator.pl')
 	print mplayer;
-snippet array_demo.py
+
+snippet array_demo.py_
 	for pypkg in ("rhpl", "yum", "rpmUtils", "urlgrabber", "pykickstart","rhpxl", "pirut"):
 	    print pypkg
 	
-snippet re_sub_demo.py
+
+snippet re_sub_demo.py_
 	test="http://www.baidu.com"
 	re.sub('^http','',test)   
 	
-snippet str_format.py
+
+snippet str_format.py_
 	b=33;
 	name="%d_%d_%d"%(b);
 	print name;
-snippet mkdirs_tree.py
+
+snippet mkdirs_tree.py_
 	#!/usr/bin/python
 	import os;
 	os.makedirs("/tmp/aa/bb/cc/ee/ff");
-snippet dircmp.py
+
+snippet dircmp.py_
 	import filecmp
 	a=filecmp.dircmp("/root/bin/", "/bin");
 	a.report();
-snippet stdout.py
+
+snippet stdout.py_
 	import sys,os.path
 	sys.stderr.write('linux is good');
 	sys.exit(1);
-snippet os_popen.py
+
+snippet os_popen.py_
 	import os;
 	output=os.popen("cat /etc/passwd");
 	print output.read();
-snippet rpm_get_arch.py
+
+snippet rpm_get_arch.py_
 	#!/usr/bin/python
 	import rpmUtils.arch; 
 	print rpmUtils.arch.getBaseArch(myarch=rpmUtils.arch.getCanonArch(skipRpmPlatform = True));
-snippet glob_p2_0.py
+
+snippet glob_p2_0.py_
 	import glob
 	for file in glob.glob("*"):
 	    print(file)
-snippet map_demo.py
+
+snippet map_demo.py_
 	
 	b= map( lambda x: x%3 , range(6));
 	print b;
-snippet types_demo.py
+
+snippet types_demo.py_
 	import types
 	a="adfafad"
 	if isinstance(a, types.StringType):
 		print "a  is string "
-snippet getoutput_commands.py
+
+snippet getoutput_commands.py_
 	import commands
 	mplayer = commands.getoutput ('which mplayer')
 	ifconfg =commands.getoutput(" ifconfig -a ");
 	
-snippet join.py
+
+snippet join.py_
 	import os;
 	print os.pathsep.join(["aa", "bb", "cc","dd", "ee"]);    
 
-snippet mod_iter_iter_modules.py
+
+snippet mod_iter_iter_modules.py_
 	import pkgutil;
 	
 	for importer, name, ispkg in pkgutil.iter_modules(["./"]):
 	    print "%s :  %s : %s" %(importer,name,ispkg);
-snippet passwd_linecache.py
+
+snippet passwd_linecache.py_
 	#!/usr/bin/python
 	import linecache;
 	print linecache.getline("/etc/passwd", 1);
 	
-snippet today.py
+
+snippet today.py_
 	import time;
 	#print time.strftime("%Y-%m-%d_%H:%M:%S ",time.localtime())
 	print time.strftime("%Y-%m-%d",time.localtime())
 	
-snippet file_read_str.py
+
+snippet file_read_str.py_
 	#!/usr/bin/python
 	
 	all_the_text = open('/etc/passwd').read( )     # 
 	print all_the_text;
-snippet logger_my.py
+
+snippet logger_my.py_
 	def logger(string):
 	    fh = open("/tmp/all.log", 'a')
 	    fh.write(string)
 	    fh.close();
-snippet substring.py
+
+snippet substring.py_
 	#!/usr/bin/python
 	#substring , À˘“‘ python µƒ string √ª”– subsring µƒ∫Ø ˝. 
 	a="abcedfg";
 	b=a[0:1];
 	
-snippet while_time.py
+
+snippet while_time.py_
 	import time
 	while 1:
 		#print time.time();
@@ -788,125 +1006,144 @@ snippet while_time.py
 	#os.getcwd() µº …œæÕ «ªÒ»°µ±«∞π§◊˜¬∑æ∂(current working directory)
 	import os;
 	print os.getcwd();
-snippet file_to_array.array.py
+
+snippet file_to_array.array.py_
 	import os;
 	output=os.popen("ifconfig");
 	ifcfg= output.readlines();
 	array=[ line.lower().split() for line in ifcfg ]
 	print array;
-snippet urllib_demo.py
+
+snippet urllib_demo.py_
 	from urllib import urlopen
 	url = 'http://www.tripadvisor.com/Restaurant_Review-g294217-d3639657-Reviews-Trattoria_Caffe_Monteverdi-Hong_Kong.html'
 	html = urlopen(url).read()
 	#html string 
 	print type(html);
-snippet os_system.py
+
+snippet os_system.py_
 	#!/usr/bin/python
 	
 	import os
 	
 	os.system("ifconfig ")
-snippet popen_read.py
+
+snippet popen_read.py_
 	#!/usr/bin/python 
 	import os;
 	#string 
 	a=os.popen("ifconfig -a ").read()
 	print type(a);
-snippet environ_PATH_path.py
+
+snippet environ_PATH_path.py_
 	#!/usr/bin/python
 	import os;
 	pathlist=os.environ['PATH'].split(os.pathsep)
 	for path in pathlist:
 		print path;
 	
-snippet re_findall_test.py
+
+snippet re_findall_test.py_
 	
 	def re_find_all():
 	    import re;
 	    size_str=" Size: 33333\n";
 	    size=re.findall(r'\s+Size: (.*)\n',size_str)
 	    print size;
-snippet cat_file.py
+
+snippet cat_file.py_
 	import fileinput
 	import sys
 	
 	for line in fileinput.input("samples/sample.txt"):
 	    sys.stdout.write("-> ")
 	    sys.stdout.write(line)
-snippet set_2_dict.py
+
+snippet set_2_dict.py_
 	#!/usr/bin/python
 	a=set(range(1,100));
 	#print dict(a);
 	
 	b=dict([(each,each) for each in a ]);
 	print b;
-snippet gdbinit_pmap.py
+
+snippet gdbinit_pmap.py_
 	python
 	import sys
 	sys.path.insert(0, '/home/transoft/tool/python')
 	from libstdcxx.v6.printers import register_libstdcxx_printers
 	register_libstdcxx_printers (None)
 	end
-snippet print_array.py
+
+snippet print_array.py_
 	args = ["/usr/bin/mkisofs",
 	                "-J", "-r",
 	                "-hide-rr-moved", "-hide-joliet-trans-tbl",
 	                "-V", "self.fslabel",
 	                "-o", "iso"];
 	print args
-snippet strptime_demo.py
+
+snippet strptime_demo.py_
 	import datetime
 	dtstr = '2014-02-14 21:32:12'
 	tmp=datetime.datetime.strptime(dtstr, "%Y-%m-%d %H:%M:%S").date()
 	print tmp;
 	
 	#tmp=datetime.date(2014, 2, 14)
-snippet basename_dirname.py
+
+snippet basename_dirname.py_
 	import sys, os
 	
 	print 'sys.argv[0] =', sys.argv[0]
 	pathname = os.path.dirname(sys.argv[0])
 	print 'path =', pathname
 	print 'full path =', os.path.abspath(pathname)
-snippet popen.py
+
+snippet popen.py_
 	#!/usr/bin/python
 	
 	import os, time, popen2 
 	#raw_out, raw_in, raw_err = popen2.Popen4("cat /etc/passwd" );    
 	
 	raw_out, raw_in, raw_err  = popen2.Popen3("cat /etc/passwd" );    
-snippet reduce.py
+
+snippet reduce.py_
 	#!/usr/bin/python
 	print    reduce ( lambda    x , y : x * y ,    range ( 1 ,    1001 ))
-snippet pyc_compile_gen_all.py
+
+snippet pyc_compile_gen_all.py_
 	#!/usr/bin/python
 	#coding:utf-8
 	#ÊâπÈáèÁîüÊàêpycÊñá‰ª∂
 	#‰∏ÄËà¨Êù•ËØ¥ÔºåÊàë‰ª¨ÁöÑÂ∑•Á®ãÈÉΩÊòØÂú®‰∏Ä‰∏™ÁõÆÂΩï‰∏ãÁöÑÔºå‰∏ÄËà¨‰∏ç‰ºöËØ¥‰ªÖ‰ªÖÁºñËØë‰∏Ä‰∏™pyÊñá‰ª∂ËÄåÂ∑≤ÔºåËÄåÊòØÈúÄË¶ÅÊääÊï¥‰∏™Êñá‰ª∂Â§π‰∏ãÁöÑpyÊñá‰ª∂ÈÉΩÁºñËØë‰∏∫pycÊñá‰ª∂ÔºåpythonÂèà‰∏∫‰∫ÜÊàë‰ª¨Êèê‰æõ‰∫ÜÂè¶‰∏Ä‰∏™Ê®°ÂùóÔºöcompileall „ÄÇ‰ΩøÁî®ÊñπÊ≥ïÂ¶Ç‰∏ãÔºö
 	import compileall
 	compileall.compile_dir(r'/root/bin/develop_python/')
-snippet sys_argv_argc.py
+
+snippet sys_argv_argc.py_
 	#!/usr/bin/python
 	import sys;
 	print sys.argv;
 	
 	argc=len(sys.argv);
 	print sys.argv[0];
-snippet python_array.py
+
+snippet python_array.py_
 	#!/usr/bin/python
 	SUBS_OPTIONS = ('specialcharacters','quotes','specialwords',
 	    'replacements', 'attributes','macros','callouts','normal','verbatim',
 	    'none','replacements2')
 	print  SUBS_OPTIONS 
 	
-snippet try_except.py
+
+snippet try_except.py_
 	#!/usr/bin/python
 	import os
 	try:
 		st=os.stat("/no_exists");
 	except os.error:
 		print os.error
-snippet continue_next.py
+
+snippet continue_next.py_
 	for each in range(1,100):
 	    if each <30:
 	        pass;
@@ -914,7 +1151,8 @@ snippet continue_next.py
 	        #continue;
 	        next;
 	    print each;
-snippet continue.py
+
+snippet continue.py_
 	for each in range(1,100):
 	    if each <30:
 	        pass;
@@ -922,7 +1160,8 @@ snippet continue.py
 	        #continue;
 	        next;
 	    print each;
-snippet next.py
+
+snippet next.py_
 	for each in range(1,100):
 	    if each <30:
 	        pass;
@@ -930,7 +1169,8 @@ snippet next.py
 	        #continue;
 	        next;
 	    print each;
-snippet yield_demo.py
+
+snippet yield_demo.py_
 	
 	def  get_data():
 	    for each in range(1,100):
@@ -938,7 +1178,8 @@ snippet yield_demo.py
 	
 	for  each in get_data():
 	    print each;
-snippet readline_file.py
+
+snippet readline_file.py_
 	#!/usr/bin/python
 	fh=open("/etc/passwd");
 	for line in fh.readlines():
@@ -946,7 +1187,8 @@ snippet readline_file.py
 		for tmp in line.split(':'):
 			print tmp
 	
-snippet readlines_file.py
+
+snippet readlines_file.py_
 	#!/usr/bin/python
 	fh=open("/etc/passwd");
 	for line in fh.readlines():
@@ -954,7 +1196,8 @@ snippet readlines_file.py
 		for tmp in line.split(':'):
 			print tmp
 	
-snippet string_assign.py
+
+snippet string_assign.py_
 	#!/usr/bin/python
 	args="args aa"
 	key="key111";
@@ -962,7 +1205,8 @@ snippet string_assign.py
 	
 	args = "%s --%s=%s " %(args, key, key)
 	print args;
-snippet file_write.py
+
+snippet file_write.py_
 	#!/usr/bin/python
 	f = open("output.txt", "w")
 	########################################################################
@@ -970,7 +1214,8 @@ snippet file_write.py
 	f.write("%s\n" % 2222222222)
 	f.write("%s\n" % 333333333)
 	
-snippet string_a_ab_abc.py
+
+snippet string_a_ab_abc.py_
 	def gen_path_with(size):
 	    output_dir="%s"%((size));
 	    ret_dir="%s/%s/%s/%s/%s"%( output_dir[0:1], output_dir[0:2], output_dir[0:3], output_dir[0:4], output_dir);
@@ -978,7 +1223,8 @@ snippet string_a_ab_abc.py
 	
 	print gen_path_with(33333);
 	print gen_path_with("love");
-snippet popen2.py
+
+snippet popen2.py_
 	
 	import subprocess
 	
@@ -986,7 +1232,8 @@ snippet popen2.py
 	vncconfo = subprocess.Popen(vncconfigcommand)# we dont want output
 	print vncconfo.returncode
 	
-snippet regex_sed_replace.py
+
+snippet regex_sed_replace.py_
 	
 	#1.ÊõøÊç¢ÊâÄÊúâÂåπÈÖçÁöÑÂ≠ê‰∏≤Áî®newstringÊõøÊç¢subject‰∏≠ÊâÄÊúâ‰∏éÊ≠£ÂàôË°®ËææÂºèregexÂåπÈÖçÁöÑÂ≠ê‰∏≤
 	result, number = re.subn(regex, newstring, subject) 
@@ -994,7 +1241,8 @@ snippet regex_sed_replace.py
 	#2.ÊõøÊç¢ÊâÄÊúâÂåπÈÖçÁöÑÂ≠ê‰∏≤Ôºà‰Ωø Áî®Ê≠£ÂàôË°®ËææÂºèÂØπË±°Ôºâ
 	rereobj = re.compile(regex)  
 	result, number = reobj.subn(newstring, subject)Â≠óÁ¨¶‰∏≤ÊãÜÂàÜ 
-snippet yesterday.py
+
+snippet yesterday.py_
 	import datetime
 	#today = datetime.date.today()
 	today = datetime.datetime.now()
@@ -1002,7 +1250,8 @@ snippet yesterday.py
 	yesterday = today - oneday
 	print yesterday;
 	
-snippet array_comp.py
+
+snippet array_comp.py_
 	#!/usr/bin/python
 	import sys
 	if sys.version_info[0:3] < (2,3,0):
@@ -1010,7 +1259,8 @@ snippet array_comp.py
 		sys.exit(1);
 	else:
 		sys.stdout.write('version check ok');
-snippet pefile_exe_info.py
+
+snippet pefile_exe_info.py_
 	#!/usr/bin/python
 	import os
 	import pefile
@@ -1019,7 +1269,8 @@ snippet pefile_exe_info.py
 	pe=pefile.PE("/tmp/a.exe");
 	print pe.dump_info();
 	
-snippet get_net_if_eth0_card_.py
+
+snippet get_net_if_eth0_card_.py_
 	#!/usr/bin/python 
 	import psutil
 	
@@ -1028,7 +1279,8 @@ snippet get_net_if_eth0_card_.py
 	print type(a);
 	print a.keys();
 	
-snippet uuid_gen.py
+
+snippet uuid_gen.py_
 	import uuid
 	#coding=utf-8
 	
@@ -1037,7 +1289,8 @@ snippet uuid_gen.py
 	
 	if __name__ == '__main__':
 	    print getUUID();
-snippet array_for.py
+
+snippet array_for.py_
 	#!/usr/bin/python 
 	#import config
 	import sys
@@ -1046,7 +1299,8 @@ snippet array_for.py
 	for each in sys.path:
 		i=i+1;
 		print each,i;
-snippet stderr.py
+
+snippet stderr.py_
 	#!/usr/bin/python
 	import sys;
 	print >> sys.stderr, "timestamp not specified; using the current time"
@@ -1055,7 +1309,8 @@ snippet stderr.py
 		line=sys.stdin.readline()[:-1]
 		print line;
 	
-snippet stdin_getchar.py
+
+snippet stdin_getchar.py_
 	#!/usr/bin/python
 	import sys;
 	print >> sys.stderr, "timestamp not specified; using the current time"
@@ -1064,7 +1319,8 @@ snippet stdin_getchar.py
 		line=sys.stdin.readline()[:-1]
 		print line;
 	
-snippet yield_demo3.py
+
+snippet yield_demo3.py_
 	
 	def  get_data():
 	    for each in range(1,100):
@@ -1073,7 +1329,8 @@ snippet yield_demo3.py
 	
 	for each,each2 in get_data():
 	    print each,each2;
-snippet zip_demo.py
+
+snippet zip_demo.py_
 	
 	L1 = [1,2,3,4]
 	L2 = [5,6,7,8]
@@ -1082,7 +1339,8 @@ snippet zip_demo.py
 	list(zip(L1,L2,L3))
 	for (x,y,z) in zip(L1,L2,L3):
 	       print(x,'+',y,'+',z,'=',x + y + z)
-snippet pickle_demo.py
+
+snippet pickle_demo.py_
 	#nltk have so much  file type link pickle 
 	
 	# Dump pickled tokenizer
@@ -1091,7 +1349,8 @@ snippet pickle_demo.py
 	pickle.dump(tokenizer, out)
 	out.close()
 	
-snippet python_version.py
+
+snippet python_version.py_
 	#!/usr/bin/python
 	import sys
 	if sys.version_info[0:3] < (2,3,0):
@@ -1100,7 +1359,8 @@ snippet python_version.py
 	else:
 		sys.stdout.write('version check ok');
 		print sys.version_info[0:3];
-snippet print_format.py
+
+snippet print_format.py_
 	#!/usr/bin/python
 	args="args aa"
 	key="key111";
@@ -1109,7 +1369,8 @@ snippet print_format.py
 	args = "%s --%s=%s " %(args, key, key)
 	print args;
 	print "%s --%s=%s"  %(args, key, key)
-snippet smbpasswd_demo.py
+
+snippet smbpasswd_demo.py_
 	import smbpasswd
 	
 	passwd = 'mypassword'
@@ -1118,7 +1379,8 @@ snippet smbpasswd_demo.py
 	print 'NT hash is', smbpasswd.nthash(passwd)
 	
 	print 'both hashes at once = %s:%s' % smbpasswd.hash(passwd)
-snippet sort_by_basename.py
+
+snippet sort_by_basename.py_
 	def sortByBasename(files):
 	    def __sort(x1, x2):
 	        f1 = x1.split('\\')[-1]
@@ -1127,7 +1389,8 @@ snippet sort_by_basename.py
 	        elif f1 < f2: return -1
 	        else: return 1
 	    files.sort(__sort)
-snippet array_array_to_dict.py
+
+snippet array_array_to_dict.py_
 	
 	meta=['id', 'name', 'status', 'time', 'memory', 'cpu','unit','led'];
 	date=[ 1  ,  2,     3      ,  4    , 5       ,  6   , 7    , 8 ];
@@ -1136,7 +1399,8 @@ snippet array_array_to_dict.py
 	print a;
 	print a['id'];
 	
-snippet hook_function.py
+
+snippet hook_function.py_
 	def hook(each):
 	    print "this is hook %s"%each;
 	
@@ -1146,7 +1410,8 @@ snippet hook_function.py
 	for each in range(1,1000):
 	    download(each, hook);
 	
-snippet yield_test2.py
+
+snippet yield_test2.py_
 	
 	def h():  
 	    print 'To be brave'  
@@ -1156,7 +1421,8 @@ snippet yield_test2.py
 	
 	for each in h(): 
 	    print each;
-snippet glob_p2.py
+
+snippet glob_p2.py_
 	#!/usr/bin/python
 	import glob
 	import os;
@@ -1166,7 +1432,8 @@ snippet glob_p2.py
 	        print(file)
 	    elif os.path.isfile(file):
 	        print "File:   {0}".format(file);
-snippet string_format.py
+
+snippet string_format.py_
 	#!/usr/bin/python
 	import glob
 	import os;
@@ -1176,7 +1443,8 @@ snippet string_format.py
 	        print(file)
 	    elif os.path.isfile(file):
 	        print "File:   {0}".format(file);
-snippet return_tutple.py
+
+snippet return_tutple.py_
 	
 	def  fun_return_tuple():
 	    a=10;
@@ -1186,7 +1454,8 @@ snippet return_tutple.py
 	print a;
 	print b;
 	print c;
-snippet type_decision.py
+
+snippet type_decision.py_
 	#!/usr/bin/python 
 	class objA:
 		pass;
@@ -1196,7 +1465,8 @@ snippet type_decision.py
 	print isinstance(A, objA)
 	print isinstance(B, tuple)
 	print isinstance(C, basestring) 
-snippet time_str.py
+
+snippet time_str.py_
 	#!/usr/bin/python
 	#coding:gbk
 	import time,datetime                       # ◊œ»µº»Î¡Ω∏ˆ π”√µΩµƒƒ£øÈ
@@ -1206,7 +1476,8 @@ snippet time_str.py
 	string[0:3]                      #∞—µ√µΩµƒ ±º‰‘™◊È«∞»˝∏ˆ‘™Àÿ∏≥÷µ∏¯»˝∏ˆ±‰¡ø(“≤æÕ «ƒÍ‘¬»’)
 	#string = datetime.datetime(y, m, d)        #◊Ó∫Û π”√datetime∞—∏’≤≈µ√µΩµƒ ±º‰±‰¡ø◊™Œ™’˝ Ωµƒ ±º‰∏Ò Ω±‰¡ø
 													#2009-12-09 00:00:00                            #÷¡¥À,ø…“‘ÀµÕÍ≥…¡À◊÷∑˚¥ÆµΩ ±º‰µƒ◊™ªª(◊¢“‚ «±‰¡ø¿‡–Õ◊™ªªµƒπ˝≥Ã)  <></></> </>
-snippet thumbnail_glob_30.py
+
+snippet thumbnail_glob_30.py_
 	from PIL import Image  
 	import glob, os  
 	 
@@ -1218,10 +1489,12 @@ snippet thumbnail_glob_30.py
 	  im.thumbnail(size, Image.ANTIALIAS)  
 	   im.save("thumbnail/" + file + ".thumbnail.jpg", "JPEG")  snippet lambda_demo.py
 
-snippet reduce_x_mul_y
+
+snippet reduce_x_mul_y_
 	#!/usr/bin/python
 	print    reduce ( lambda    x , y : x * y ,    range ( 1 ,    1001 ))
-snippet listdirs_isdir.py
+
+snippet listdirs_isdir.py_
 	import os;
 	import sys;
 	for pkg in  os.listdir("/etc/"):
@@ -1232,7 +1505,8 @@ snippet listdirs_isdir.py
 	
 		
 	
-snippet py__init__self_class.py
+
+snippet py__init__self_class.py_
 	class Person:
 	         def __init__(self,name):
 	                  self.name=name
@@ -1243,7 +1517,8 @@ snippet py__init__self_class.py
 	p=Person('wenshuna')
 	p.sayhello();
 	#print p
-snippet isinstance.py
+
+snippet isinstance.py_
 	#!/usr/bin/python
 	# ≈–∂œ «∑Ò «ºÃ≥–πÿœµ. 
 	import  xmlparser
@@ -1254,7 +1529,8 @@ snippet isinstance.py
 			print "not ok"
 	a="333";
 	check(a);
-snippet dict_example.py
+
+snippet dict_example.py_
 	#!/usr/bin/python
 	data = {"timestamp": "bbbbb",
 	        "releasestr": "bbbbb",
@@ -1265,7 +1541,8 @@ snippet dict_example.py
 	        "pixmapsDir": "bbbbb",
 	        "outfile": "bbbbb"}
 	
-snippet list_modules.py
+
+snippet list_modules.py_
 	#!/usr/bin/env python
 	# -*- coding: utf-8 -*-
 	
@@ -1276,7 +1553,8 @@ snippet list_modules.py
 	        print each; 
 	
 	nova_sub_modules();
-snippet timeit_demo.py
+
+snippet timeit_demo.py_
 	
 	def test():
 	    """Stupid test function"""
@@ -1287,7 +1565,8 @@ snippet timeit_demo.py
 	if __name__ == '__main__':
 	    import timeit
 	    print(timeit.timeit("test()", setup="from __main__ import test"))
-snippet copy_chmod.py
+
+snippet copy_chmod.py_
 	import os
 	import sys
 	
@@ -1297,8 +1576,15 @@ snippet copy_chmod.py
 	        st = os.stat(src)
 	        mode = stat.S_IMODE(st.st_mode)
 	        os.chmod(dst, mode)
+
+snippet hasattr_demo2_
+	import os
+	if hasattr(os, "uname"):
+		print os.uname();    
+
 	
-snippet list_one_dir.py
+
+snippet list_one_dir.py_
 	import commands
 	import os
 	import string
@@ -1309,7 +1595,8 @@ snippet list_one_dir.py
 	    for file in files:
 	        abs_path = os.path.join(root,file)
 	        print abs_path;
-snippet chain_demo.py
+
+snippet chain_demo.py_
 	
 	def chain(*iterables):
 	    # chain('ABC', 'DEF') --> A B C D E F
@@ -1320,7 +1607,8 @@ snippet chain_demo.py
 	
 	for each in  chain(range(1,10), range(22,33)):
 	    print each;
-snippet kwargs_demo.py
+
+snippet kwargs_demo.py_
 	#!/usr/bin/python
 	#coding=utf-8
 	def fun_var_args(farg, *args, **kwargs):  
@@ -1331,7 +1619,8 @@ snippet kwargs_demo.py
 	      
 	fun_var_args(1, "two", 3,  5, "7", "8",  test="33", test2="44", trest33=4444, ) # *argsÂèØ‰ª•ÂΩì‰ΩúÂèØÂÆπÁ∫≥Â§ö‰∏™ÂèòÈáèÁªÑÊàêÁöÑlist  
 	
-snippet math_add.py
+
+snippet math_add.py_
 	#!C:\Python31\python.exe
 	
 	import os,sys,string
@@ -1343,7 +1632,8 @@ snippet math_add.py
 	while 1:
 		i=i+1
 	#print('aaaaaaaaaaaaaaaaaaaah');
-snippet while_1_loop_30.py
+
+snippet while_1_loop_30.py_
 	#!C:\Python31\python.exe
 	
 	import os,sys,string
@@ -1355,7 +1645,8 @@ snippet while_1_loop_30.py
 	while 1:
 		i=i+1
 	#print('aaaaaaaaaaaaaaaaaaaah');
-snippet while_1_loop_win32.py
+
+snippet while_1_loop_win32.py_
 	#!C:\Python31\python.exe
 	
 	import os,sys,string
@@ -1367,7 +1658,8 @@ snippet while_1_loop_win32.py
 	while 1:
 		i=i+1
 	#print('aaaaaaaaaaaaaaaaaaaah');
-snippet chomp.py
+
+snippet chomp.py_
 	#!/usr/bin/python 
 	def chomp(line):
 		if line[-1] == '\n':
@@ -1379,7 +1671,8 @@ snippet chomp.py
 	for line in fh.readlines():
 	    print chomp(line);
 	
-snippet file_read_bin.py
+
+snippet file_read_bin.py_
 	#!/usr/bin/python
 	#bs=b"3333";
 	bs="3333";
@@ -1391,7 +1684,8 @@ snippet file_read_bin.py
 	else:
 		print "not ok"
 	file.close();
-snippet code_comment_annotate.py
+
+snippet code_comment_annotate.py_
 	#coding:gbk 
 	#!/usr/bin/python
 	
@@ -1403,7 +1697,14 @@ snippet code_comment_annotate.py
 	f.write("%s\n" % 2222222222)
 	f.write("%s\n" % 333333333)
 	
-snippet dict_2_json.py
+
+snippet json_dumps_indent_sort_keys:_
+	import json
+	d4 = json.dumps(data2, indent=1, sort_keys=True)
+	print d4
+
+
+snippet dict_2_json.py_
 	import  json;
 	
 	data1 = {'b':789,'c':456,'a':123}
@@ -1411,11 +1712,14 @@ snippet dict_2_json.py
 	d1 = json.dumps(data1,sort_keys=True)
 	d2 = json.dumps(data2)
 	d3 = json.dumps(data2,sort_keys=True)
+	d4 = json.dumps(data2, indent=1, sort_keys=True);
+
 	print d1
 	print d2
 	print d3
 	print d1==d2
-snippet startdict_search.py
+
+snippet startdict_search.py_
 	#coding=utf8
 	#‰∏≠Êñá
 	from pymongo import MongoClient
@@ -1427,7 +1731,8 @@ snippet startdict_search.py
 	    #print "Ëã±Êñá:%s: ‰∏≠Êñá: %s"%(each['word'],each['chinese'].encode("utf-8"));
 	    print "WORD: %s"%(each['word']);
 	    print each['chinese'];
-snippet os_pipe.py
+
+snippet os_pipe.py_
 	#code from  commands.py  getoutput 
 	
 	import os
@@ -1439,7 +1744,8 @@ snippet os_pipe.py
 	#text = pipe.read()
 	#sts = pipe.close()
 	
-snippet newt_msg_box.py
+
+snippet newt_msg_box.py_
 	#!/usr/bin/python
 	from snack import SnackScreen, ButtonChoiceWindow
 	screen = SnackScreen()
@@ -1451,7 +1757,8 @@ snippet newt_msg_box.py
 					   %("wenshuna",),
 					   buttons = (("OK"),))
 	screen.finish()
-snippet newt_snack.py
+
+snippet newt_snack.py_
 	#!/usr/bin/python
 	from snack import SnackScreen, ButtonChoiceWindow
 	screen = SnackScreen()
@@ -1463,7 +1770,8 @@ snippet newt_snack.py
 					   %("wenshuna",),
 					   buttons = (("OK"),))
 	screen.finish()
-snippet string_fill.py
+
+snippet string_fill.py_
 	#coding:gbk
 	#!/usr/bin/python
 	def fill_string(size):
@@ -1476,7 +1784,8 @@ snippet string_fill.py
 	
 	a="";
 	print fill_string(1024);
-snippet my_class.py
+
+snippet my_class.py_
 	#!/usr/bin/python
 	
 	class Person:
@@ -1489,7 +1798,8 @@ snippet my_class.py
 	p=Person('wenshuna')
 	p.sayhello();
 	#print p
-snippet randline.py
+
+snippet randline.py_
 	#!/usr/bin/python
 	import random
 	fh=open("/etc/passwd");
@@ -1500,7 +1810,8 @@ snippet randline.py
 	for line in lines:
 		print line
 	
-snippet gen_with_number.py
+
+snippet gen_with_number.py_
 	#!/usr/bin/python
 	#print tmp_str[0:1];
 	def  gen_path_with(size):
@@ -1513,7 +1824,8 @@ snippet gen_with_number.py
 	print gen_path_with(9999999)
 	print gen_path_with(12)
 	print gen_path_with(1)
-snippet dict_2_set.py
+
+snippet dict_2_set.py_
 	#!/usr/bin/python
 	test = dict([(each,each*2) for each in range(1,100)]);
 	b=set(test);
@@ -1524,7 +1836,8 @@ snippet dict_2_set.py
 	
 	print new_dict;
 	
-snippet mongo_search.py
+
+snippet mongo_search.py_
 	#coding=utf8
 	#‰∏≠Êñá
 	
@@ -1537,7 +1850,8 @@ snippet mongo_search.py
 	    #print "Ëã±Êñá:%s: ‰∏≠Êñá: %s"%(each['word'],each['chinese'].encode("utf-8"));
 	    print "WORD: %s"%(each['word']);
 	    print each['chinese'];
-snippet firefox.py
+
+snippet firefox.py_
 	from selenium import webdriver
 	from selenium.webdriver.common.keys import Keys
 	driver = webdriver.Firefox()
@@ -1550,7 +1864,8 @@ snippet firefox.py
 	#assert "Google" in driver.title
 	driver.close()
 	driver.quit()
-snippet hasdattr.py
+
+snippet hasattr.py_
 	def _samefile(src, dst):
 	    # Macintosh, Unix.
 	    if hasattr(os.path,'samefile'):
@@ -1563,7 +1878,8 @@ snippet hasdattr.py
 	    return (os.path.normcase(os.path.abspath(src)) ==
 	            os.path.normcase(os.path.abspath(dst)))
 	
-snippet dict_for_each_items.py
+
+snippet dict_for_each_items.py_
 	#!/usr/bin/python
 	data = {"timestamp": "bbbbb1",
 	        "releasestr": "bbbbb2",
@@ -1576,7 +1892,8 @@ snippet dict_for_each_items.py
 	for key, value in data.items():
 	    print  "%s -> %s "%(key, value);
 	
-snippet thumbnail_glob.py
+
+snippet thumbnail_glob.py_
 	from PIL import Image  
 	import glob, os  
 	 
@@ -1589,7 +1906,8 @@ snippet thumbnail_glob.py
 		im.thumbnail(size, Image.ANTIALIAS)  
 		#im.save("thumbnail/" + file + ".thumbnail.jpg", "JPEG")  
 		im.save("./" + file + "_thumbnail.jpg", "JPEG")  
-snippet match_group_return_array.py
+
+snippet match_group_return_array.py_
 	#coding=utf-8
 	#!/usr/bin/python
 	import re;
@@ -1603,7 +1921,8 @@ snippet match_group_return_array.py
 	
 	str="_1010_compute_panel_group.py"
 	
-snippet regex_P_group_urls.py
+
+snippet regex_P_group_urls.py_
 	#coding=utf-8
 	#!/usr/bin/python
 	import re;
@@ -1617,7 +1936,8 @@ snippet regex_P_group_urls.py
 	
 	str="_1010_compute_panel_group.py"
 	
-snippet split_str.py
+
+snippet split_str.py_
 	def split_test():
 	    a="aa bb cc ee dd ff";
 	    array=a.split();
@@ -1631,7 +1951,8 @@ snippet split_str.py
 	
 	split_test();
 	split_test2();
-snippet def_in_def.py
+
+snippet def_in_def.py_
 	
 	def test():
 	    a="cccccc";
@@ -1645,7 +1966,8 @@ snippet def_in_def.py
 	c=test();
 	#print c;
 	c();
-snippet file_to_mem.py
+
+snippet file_to_mem.py_
 	#!/usr/bin/python
 	
 	from BeautifulSoup import BeautifulSoup
@@ -1659,7 +1981,8 @@ snippet file_to_mem.py
 	    print item;
 	
 	
-snippet html_to_mem.py
+
+snippet html_to_mem.py_
 	#!/usr/bin/python
 	
 	from BeautifulSoup import BeautifulSoup
@@ -1673,7 +1996,8 @@ snippet html_to_mem.py
 	    print item;
 	
 	
-snippet horizon.utils.memoized_demo.py
+
+snippet horizon.utils.memoized_demo.py_
 	
 	from horizon.utils.memoized import memoized  # noqa
 	import time;
@@ -1687,7 +2011,8 @@ snippet horizon.utils.memoized_demo.py
 	while  1:
 	    print long_time();
 	    
-snippet include_path.py
+
+snippet include_path.py_
 	#!/usr/bin/python 
 	#import config
 	import sys
@@ -1701,7 +2026,8 @@ snippet include_path.py
 	
 	print("#################################\n");
 	print sys.path[1:3];
-snippet array_for_match.py
+
+snippet array_for_match.py_
 	#!/usr/bin/python 
 	#import config
 	import sys
@@ -1715,7 +2041,8 @@ snippet array_for_match.py
 		print each;
 		if match:
 			print "#####",each,i;
-snippet function_def.py
+
+snippet function_def.py_
 	#!/usr/bin/python 
 	import string
 	def uppercase_ASCII_string(str):
@@ -1729,7 +2056,8 @@ snippet function_def.py
 		return newstr
 	
 	print uppercase_ASCII_string("linux");
-snippet upper_case_string_30.py
+
+snippet upper_case_string_30.py_
 	#!/usr/bin/python 
 	import string
 	def uppercase_ASCII_string(str):
@@ -1743,7 +2071,8 @@ snippet upper_case_string_30.py
 		return newstr
 	
 	print uppercase_ASCII_string("linux");
-snippet upper_case_string.py
+
+snippet upper_case_string.py_
 	#!/usr/bin/python 
 	import string
 	def uppercase_ASCII_string(str):
@@ -1757,7 +2086,8 @@ snippet upper_case_string.py
 		return newstr
 	
 	print uppercase_ASCII_string("linux");
-snippet socket_simplest.py
+
+snippet socket_simplest.py_
 	#!/usr/bin/python
 	import socket
 	 
@@ -1771,7 +2101,8 @@ snippet socket_simplest.py
 			break
 		print v
 	s.close()
-snippet whois.py
+
+snippet whois.py_
 	#!/usr/bin/python
 	import socket
 	 
@@ -1785,7 +2116,8 @@ snippet whois.py
 			break
 		print v
 	s.close()
-snippet rpm_comps.py
+
+snippet rpm_comps.py_
 	#!/usr/bin/python
 	from rhpl import *
 	import rhpl
@@ -1799,7 +2131,8 @@ snippet rpm_comps.py
 	        if type == u'mandatory':
 	            pkgs.append(pkg)
 	    print group.name, pkgs
-snippet print_dict.py
+
+snippet print_dict.py_
 	#!/usr/bin/python
 	codes={}
 	esc_seq="test";
@@ -1813,7 +2146,8 @@ snippet print_dict.py
 	print  codes;
 	print "########################################";
 	print  codes["red"];
-snippet proc_cmdline.py
+
+snippet proc_cmdline.py_
 	def cmdline():
 	    with open("/proc/1/cmdline","rt")  as f:
 	        data = f.read()
@@ -1827,7 +2161,8 @@ snippet proc_cmdline.py
 	
 	a=cmdline();
 	print a;
-snippet try_except_function_ret.py
+
+snippet try_except_function_ret.py_
 	
 	def get_sector_size():
 	    try:
@@ -1841,7 +2176,8 @@ snippet try_except_function_ret.py
 	
 	if __name__=="__main__":
 	    print get_sector_size();
-snippet logging_test.py
+
+snippet logging_test.py_
 	import logging
 	LOG_FILENAME = './logging_example.txt'
 	logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
@@ -1855,7 +2191,8 @@ snippet logging_test.py
 	logging.debug('This message should go to the log file')
 	logging.debug('This message should go to the log file')
 	logging.debug('This message should go to the log file')
-snippet reduce_demo.py
+
+snippet reduce_demo.py_
 	#coding: utf-8
 	def myadd(x,y):   
 	    return x+y   
@@ -1865,7 +2202,8 @@ snippet reduce_demo.py
 	
 	sum=reduce(lambda x,y:x+y, range(1,100));
 	print sum
-snippet json_load_file.py
+
+snippet json_load_file.py_
 	import json
 	import os;
 	
@@ -1880,7 +2218,8 @@ snippet json_load_file.py
 	print b;
 	print b['age'];
 	
-snippet and_or.py
+
+snippet and_or.py_
 	import os
 	import re
 	
@@ -1895,7 +2234,8 @@ snippet and_or.py
 			return 0
 	
 	
-snippet json_loads.py
+
+snippet json_loads.py_
 	#!/usr/bin/python
 	#coding=utf-8
 	import json;
@@ -1910,7 +2250,8 @@ snippet json_loads.py
 	    print a['seg'];
 	
 	seg_str();
-snippet a.py
+
+snippet a.py_
 	import numpy;
 	import types
 	from  types import *;
@@ -1925,7 +2266,8 @@ snippet a.py
 	#if  type(a) ==  MethodType:
 	if  type(a) ==  ModuleType:
 	    print "OK";
-snippet subprocess_ping_network.py
+
+snippet subprocess_ping_network.py_
 	def test_network():
 	    import os
 	    import subprocess
@@ -1940,7 +2282,8 @@ snippet subprocess_ping_network.py
 	      return True
 	
 	test_network();
-snippet singleton.py
+
+snippet singleton.py_
 	#!/usr/bin/python
 	#coding:gbk
 	#import object;
@@ -1955,7 +2298,8 @@ snippet singleton.py
 	b   =   Singleton(6)
 	print   a.var
 	print   b.var 
-snippet grep.py
+
+snippet grep.py_
 	#!/usr/bin/python
 	import re;
 	char = re.compile("port.*=.*#.*")
@@ -1970,7 +2314,8 @@ snippet grep.py
 	    if re.search(char, item):
 	        #print item;
 	        print re.findall(char,item)[0];
-snippet gen_pass.py
+
+snippet gen_pass.py_
 	
 	import random
 	import string
@@ -1985,7 +2330,8 @@ snippet gen_pass.py
 	
 	
 	print generate_password();
-snippet dict_assign.py
+
+snippet dict_assign.py_
 	#!/usr/bin/python
 	import os,sys,string
 	import getopt
@@ -2000,7 +2346,8 @@ snippet dict_assign.py
 	    data["timestamp"] = time.time()
 	
 	print data;
-snippet if_null_None.py
+
+snippet if_null_None.py_
 	#!/usr/bin/python
 	import os,sys,string
 	import getopt
@@ -2015,7 +2362,8 @@ snippet if_null_None.py
 	    data["timestamp"] = time.time()
 	
 	print data;
-snippet bbb_0.py
+
+snippet bbb_0.py_
 	#!/usr/bin/python 
 	#coding:gbk
 	import sys;
@@ -2030,7 +2378,8 @@ snippet bbb_0.py
 	if sys.platform =='win32':
 		print sys.stdin.readline()[:-1];
 	
-snippet bbb.py
+
+snippet bbb.py_
 	#!/usr/bin/python 
 	#coding:gbk
 	import sys;
@@ -2045,7 +2394,8 @@ snippet bbb.py
 	if sys.platform =='win32':
 		print sys.stdin.readline()[:-1];
 	
-snippet linux.py
+
+snippet linux.py_
 	#!/usr/bin/python 
 	#coding:gbk
 	import sys;
@@ -2060,7 +2410,8 @@ snippet linux.py
 	if sys.platform =='win32':
 		print sys.stdin.readline()[:-1];
 	
-snippet mongo_save_html.py
+
+snippet mongo_save_html.py_
 	
 	from pymongo import MongoClient
 	
@@ -2076,7 +2427,8 @@ snippet mongo_save_html.py
 	col.insert(dict(item));
 	client.close();
 	
-snippet unpack_tuple.py
+
+snippet unpack_tuple.py_
 	#!/use/bin/python
 	
 	def  return_four_value():
@@ -2092,7 +2444,8 @@ snippet unpack_tuple.py
 	a,b,c,d,e,f= ()
 	
 	#bb,bbb = return_zeor_value();
-snippet len_scalar_array.py
+
+snippet len_scalar_array.py_
 	#!/usr/bin/python
 	import sys;
 	def wc(fn):
@@ -2107,7 +2460,8 @@ snippet len_scalar_array.py
 	for arg in sys.argv:
 		print arg,"\t"
 		print wc(arg);
-snippet wc.py
+
+snippet wc.py_
 	#!/usr/bin/python
 	import sys;
 	def wc(fn):
@@ -2122,7 +2476,8 @@ snippet wc.py
 	for arg in sys.argv:
 		print arg,"\t"
 		print wc(arg);
-snippet video_capture.py
+
+snippet video_capture.py_
 	import VideoCapture
 	
 	cam = VideoCapture.Device(devnum=0)
@@ -2138,7 +2493,8 @@ snippet video_capture.py
 		
 	cur_time=get_cur_time();
 	cam.saveSnapshot("%s.jpg"%cur_time, quality=75, timestamp=3, boldfont=1)
-snippet tuple.py
+
+snippet tuple.py_
 	import commands
 	import os
 	import string
@@ -2154,7 +2510,8 @@ snippet tuple.py
 	        py=re.compile('py');
 	        if  py.search(abs_path):
 	            print abs_path;
-snippet lower_case_string.py
+
+snippet lower_case_string.py_
 	#!/usr/bin/python 
 	import string
 	def uppercase_ASCII_string(str):
@@ -2170,7 +2527,8 @@ snippet lower_case_string.py
 	
 	print uppercase_ASCII_string("LINUX");
 	print uppercase_ASCII_string("LINuX");
-snippet logging_python.py
+
+snippet logging_python.py_
 	
 	#from oslo_log import fixture
 	#from oslo_log import log as logging
@@ -2186,7 +2544,8 @@ snippet logging_python.py
 	LOG.warning("Python Standard Logging")
 	LOG.error("Python Standard Logging")
 	
-snippet oslo_logging.py
+
+snippet oslo_logging.py_
 	
 	from oslo_config import cfg
 	from oslo_log import log as logging
@@ -2202,7 +2561,8 @@ snippet oslo_logging.py
 	LOG.info("Oslo Logging")
 	LOG.warning("Oslo Logging")
 	LOG.error("Oslo Logging")
-snippet yield_repeat.py
+
+snippet yield_repeat.py_
 	
 	def repeat(object, times=None):
 	    global count;
@@ -2218,7 +2578,8 @@ snippet yield_repeat.py
 	for each in repeat(10,  100):
 	    count+=1;
 	    print each;
-snippet os_platform_system_version.py
+
+snippet os_platform_system_version.py_
 	import os;
 	import sys;
 	import string;
@@ -2233,7 +2594,8 @@ snippet os_platform_system_version.py
 		print "other os";
 	
 	
-snippet sys_platform_win32_linux.py
+
+snippet sys_platform_win32_linux.py_
 	import os;
 	import sys;
 	import string;
@@ -2248,7 +2610,8 @@ snippet sys_platform_win32_linux.py
 		print "other os";
 	
 	
-snippet sys_platform_win32_linux
+
+snippet sys_platform_win32_linux_
 	import os;
 	import sys;
 	import string;
@@ -2264,7 +2627,8 @@ snippet sys_platform_win32_linux
 		print "other os";
 	
 	
-snippet du.py
+
+snippet du.py_
 	import os
 	from os.path import join, getsize
 	
@@ -2280,7 +2644,8 @@ snippet du.py
 	filesize = getdirsize('/root/bin/')
 	print 'There are %.3f' % (filesize/1024/1024), 'Mbytes in /root/bin/'
 	
-snippet dir_size_0.py
+
+snippet dir_size_0.py_
 	import os
 	from os.path import join, getsize
 	
@@ -2296,7 +2661,8 @@ snippet dir_size_0.py
 	filesize = getdirsize('c:\\windows')
 	print 'There are %.3f' % (filesize/1024/1024), 'Mbytes in c:\\windows'
 	
-snippet dir_size.py
+
+snippet dir_size.py_
 	import os
 	from os.path import join, getsize
 	
@@ -2312,7 +2678,8 @@ snippet dir_size.py
 	filesize = getdirsize('c:\\windows')
 	print 'There are %.3f' % (filesize/1024/1024), 'Mbytes in c:\\windows'
 	
-snippet du_0.py
+
+snippet du_0.py_
 	import os
 	from os.path import join, getsize
 	
@@ -2328,7 +2695,8 @@ snippet du_0.py
 	filesize = getdirsize('c:\\windows')
 	print 'There are %.3f' % (filesize/1024/1024), 'Mbytes in c:\\windows'
 	
-snippet indent_python_tags.py
+
+snippet indent_python_tags.py_
 	#!/usr/bin/python 
 	#coding:gbk
 	import sys;
@@ -2344,7 +2712,8 @@ snippet indent_python_tags.py
 	+		middle_tag_end+"\n"\
 	+bakefile_tag_end;	
 	print i
-snippet codecs_demo.py
+
+snippet codecs_demo.py_
 	import codecs
 	import glob
 	import os
@@ -2361,7 +2730,8 @@ snippet codecs_demo.py
 	    return out
 	
 	
-snippet array_test.py
+
+snippet array_test.py_
 	#!/usr/bin/python 
 	#coding:gbk
 	#array “≤Ω– list python ¿Ô√Ê 
@@ -2378,7 +2748,8 @@ snippet array_test.py
 	#size count
 	print array.size();
 	
-snippet list.py
+
+snippet list.py_
 	#!/usr/bin/python 
 	#coding:gbk
 	#array “≤Ω– list python ¿Ô√Ê 
@@ -2395,7 +2766,8 @@ snippet list.py
 	#size count
 	print array.size();
 	
-snippet cat_stdin_stdout.py
+
+snippet cat_stdin_stdout.py_
 	'''cat.py
 	a version of unix cat, tweaked to show off runproc.py
 	'''
@@ -2412,7 +2784,8 @@ snippet cat_stdin_stdout.py
 	sys.stderr.write("Blah...")
 	
 	# end of cat.py
-snippet group_by.py
+
+snippet group_by.py_
 	from itertools import *
 	
 	def height_class(h):
@@ -2429,7 +2802,8 @@ snippet group_by.py
 	for m, n in groupby(friends, key = height_class):
 	    print(m)
 	    print(list(n))
-snippet class_this_self.py
+
+snippet class_this_self.py_
 	#!/usr/bin/python
 	
 	class A:
@@ -2446,7 +2820,8 @@ snippet class_this_self.py
 	
 	b=A()
 	print b.name;
-snippet file_read_array.py
+
+snippet file_read_array.py_
 	#!/usr/bin/python
 	
 	all_the_text = open('/etc/passwd').read( )     # 
@@ -2464,7 +2839,8 @@ snippet file_read_array.py
 	fh.close();
 	
 	
-snippet xpath_usage.py
+
+snippet xpath_usage.py_
 	
 	import codecs
 	from lxml import etree
@@ -2482,7 +2858,8 @@ snippet xpath_usage.py
 	subnodes=nodes[0].xpath("//li/a")
 	for n in subnodes:
 	    print n.text
-snippet string_format_dict.py
+
+snippet string_format_dict.py_
 	import urllib;
 	def slackmsg(msg):
 		URL="https://slack.com/api/chat.postMessage"
@@ -2500,7 +2877,8 @@ snippet string_format_dict.py
 		print "curl -d'{m}' {u}".format(m=msgstr, u=URL);
 	
 	slackmsg("bbb");
-snippet dict_2_fun_ptr.py
+
+snippet dict_2_fun_ptr.py_
 	
 	def get_a():
 	    return 1000;
@@ -2518,7 +2896,8 @@ snippet dict_2_fun_ptr.py
 	print block_device_info;
 	print "#=================\n";
 	print block_device_info2;
-snippet decorator_2_hook_function.py
+
+snippet decorator_2_hook_function.py_
 	def de(f):
 	    def __call__():
 	        print '-------------------------------'
@@ -2536,7 +2915,8 @@ snippet decorator_2_hook_function.py
 	if __name__ =='__main__':
 	    func1()
 	    func2()
-snippet hanzhi_pinyin.py
+
+snippet hanzhi_pinyin.py_
 	
 	#coding: utf-8
 	import string ;
@@ -2554,7 +2934,8 @@ snippet hanzhi_pinyin.py
 	
 	#for each in b:
 	#    print each;
-snippet seq.py
+
+snippet seq.py_
 	#!/usr/bin/python
 	
 	data = {"timestamp": None,
@@ -2572,7 +2953,8 @@ snippet seq.py
 	for index in range(len(data)):
 		print data[index];  
 	
-snippet nova_sub_mod_pkg_print.py
+
+snippet nova_sub_mod_pkg_print.py_
 	#coding=utf-8
 	
 	import  pkgutil  
@@ -2590,7 +2972,8 @@ snippet nova_sub_mod_pkg_print.py
 	
 	print_nova_with_str();
 	
-snippet pkgutil_walk_packages.py
+
+snippet pkgutil_walk_packages.py_
 	#coding=utf-8
 	
 	import  pkgutil  
@@ -2608,7 +2991,8 @@ snippet pkgutil_walk_packages.py
 	
 	print_nova_with_str();
 	
-snippet curl_py.py
+
+snippet curl_py.py_
 	from curl import Curl;
 	import os;
 	import sys;
@@ -2626,7 +3010,8 @@ snippet curl_py.py
 	    print c.get_info(pycurl.OS_ERRNO)
 	    print c.info()['os-errno']
 	    c.close()
-snippet from_some_import_some.py
+
+snippet from_some_import_some.py_
 	from curl import Curl;
 	import os;
 	import sys;
@@ -2644,7 +3029,9 @@ snippet from_some_import_some.py
 	    print c.get_info(pycurl.OS_ERRNO)
 	    print c.info()['os-errno']
 	    c.close()
-snippet argc_argv_echo.py
+
+
+snippet template_header
 	"""Echo command line arguments
 	
 	This program is part of "Dive Into Python", a free Python book for
@@ -2652,17 +3039,29 @@ snippet argc_argv_echo.py
 	latest version.
 	"""
 	
-	__author__ = "Mark Pilgrim (mark@diveintopython.org)"
+	__author__ = "greshem (qianzhongjie@gmail.org)"
 	__version__ = "$Revision: 1.2 $"
 	__date__ = "$Date: 2004/05/05 21:57:19 $"
-	__copyright__ = "Copyright (c) 2002 Mark Pilgrim"
+	__copyright__ = "Copyright (c) 2017 greshem"
 	__license__ = "Python"
-	
+
+snippet __license__
+	ref: template_header
+
+snippet start_of_python
+	ref: template_header
+
+snippet header_of_python
+	ref: template_header
+
+snippet argc_argv_echo.py_
+		
 	import sys
 	
 	for arg in sys.argv:
 	    print arg
-snippet re_search.py
+
+snippet re_search.py_
 	#coding:gbk 
 	#!/usr/bin/python
 	import re;
@@ -2678,7 +3077,8 @@ snippet re_search.py
 		if match: 
 			print line
 	
-snippet get_memory_starwith_string.py
+
+snippet get_memory_starwith_string.py_
 	#!/usr/bin/python
 	
 	import string
@@ -2696,7 +3096,8 @@ snippet get_memory_starwith_string.py
 	    return int(mem)
 	
 	print memInstalled()
-snippet list_2_dict.py
+
+snippet list_2_dict.py_
 	#!/usr/bin/python
 	a=range(1,100);
 	
@@ -2715,7 +3116,8 @@ snippet list_2_dict.py
 	print e;
 	for each in e:
 	    print each;
-snippet pickle_test.py
+
+snippet pickle_test.py_
 	import pickle
 	
 	data1 = {'a': [1, 2.0, 3, 4+6j],
@@ -2734,7 +3136,8 @@ snippet pickle_test.py
 	pickle.dump(selfref_list, output, -1)
 	
 	output.close()
-snippet if_else.py
+
+snippet if_else.py_
 	import sys,os.path
 	
 	if 0:
@@ -2749,7 +3152,8 @@ snippet if_else.py
 	if fetch == 'curl':
 		fetch_cmd = 'curl -o /dev/null -s --retry 1' % (url)
 	
-snippet glade_file_show.py
+
+snippet glade_file_show.py_
 	#!/usr/bin/env python
 	import sys
 	import gtk
@@ -2769,7 +3173,8 @@ snippet glade_file_show.py
 	xml.signal_autoconnect(locals())
 	
 	gtk.main()
-snippet re_match.py
+
+snippet re_match.py_
 	#coding:gbk 
 	#!/usr/bin/python
 	#
@@ -2785,7 +3190,8 @@ snippet re_match.py
 		if match: 
 	        print line
 	
-snippet decorator_function2.py
+
+snippet decorator_function2.py_
 	#!/usr/bin/python 
 	#coding:utf-8
 	def makebold(fn):
@@ -2805,7 +3211,8 @@ snippet decorator_function2.py
 	 
 	print hello();
 	#print hello() ## ËøîÂõû <b><i>hello world</i></b>
-snippet ascii__classification.py
+
+snippet ascii__classification.py_
 	#!/usr/bin/python 
 	
 	whitespace = ' \t\n\r\v\f'    
@@ -2825,7 +3232,8 @@ snippet ascii__classification.py
 		print "ok"
 	if '#' in punctuation:
 		print "ok"
-snippet char_is_in_string.py
+
+snippet char_is_in_string.py_
 	#!/usr/bin/python 
 	
 	whitespace = ' \t\n\r\v\f'    
@@ -2845,7 +3253,8 @@ snippet char_is_in_string.py
 		print "ok"
 	if '#' in punctuation:
 		print "ok"
-snippet string_add_strcat.py
+
+snippet string_add_strcat.py_
 	#!/usr/bin/python 
 	
 	whitespace = ' \t\n\r\v\f'    
@@ -2865,7 +3274,8 @@ snippet string_add_strcat.py
 		print "ok"
 	if '#' in punctuation:
 		print "ok"
-snippet os.access.py
+
+snippet os.access.py_
 	#!/usr/bin/python
 	import os, sys
 	
@@ -2885,7 +3295,8 @@ snippet os.access.py
 	This produces following result:
 	
 	F_OK - return value True R_OK - return value True W_OK - return value True X_OK - return value False
-snippet map_demo2.py
+
+snippet map_demo2.py_
 	#!/usr/bin/python
 	import sys
 	forceload=1;
@@ -2898,7 +3309,8 @@ snippet map_demo2.py
 				# Prevent garbage collection.
 				cache[key] = sys.modules[key]
 				del sys.modules[key]
-snippet map_define
+
+snippet map_define_
 	#map(function, iterable, ...)
 	def abc(a, b, c):
 		return a*10000 + b*100 + c
@@ -2907,7 +3319,8 @@ snippet map_define
 	list3 = [77,88,99]
 	map(abc,list1,list2,list3)
 	
-snippet modules.py
+
+snippet modules.py_
 	#!/usr/bin/python
 	import sys
 	forceload=1;
@@ -2922,7 +3335,8 @@ snippet modules.py
 				cache[key] = sys.modules[key]
 				del sys.modules[key]
 	
-snippet while_1_loop.py
+
+snippet while_1_loop.py_
 	#!/usr/bin/python
 	
 	import os,sys,string
@@ -2943,7 +3357,8 @@ snippet while_1_loop.py
 	while 1:
 		print opts;
 	
-snippet dict_array_hash_init.py
+
+snippet dict_array_hash_init.py_
 	#!/us/bin/python
 	data = {"timestamp": None,
 	        "releasestr": None,
@@ -2964,7 +3379,8 @@ snippet dict_array_hash_init.py
 	print "###############################################################################"
 	print opts;
 	
-snippet dict_array_init.py
+
+snippet dict_array_init.py_
 	#!/us/bin/python
 	data = {"timestamp": None,
 	        "releasestr": None,
@@ -2985,7 +3401,8 @@ snippet dict_array_init.py
 	print "###############################################################################"
 	print opts;
 	
-snippet dict.array.py
+
+snippet dict.array.py_
 	#!/us/bin/python
 	dict = {"timestamp": None,
 	        "releasestr": None,
@@ -3006,7 +3423,8 @@ snippet dict.array.py
 	print "###############################################################################"
 	print opts_array;
 	
-snippet decorator_fun_doc_check.py
+
+snippet decorator_fun_doc_check.py_
 	
 	def deco_functionNeedDoc(func):
 	    if func.__doc__ == None :
@@ -3027,7 +3445,8 @@ snippet decorator_fun_doc_check.py
 	f()
 	g()
 	
-snippet fft_compare.py
+
+snippet fft_compare.py_
 	#!/usr/bin/python
 	#coding:utf-8
 	import numpy as np
@@ -3048,7 +3467,8 @@ snippet fft_compare.py
 	
 	#x = np.random.random(1024)
 	#np.allclose(DFT_slow(x), np.fft.fft(x))
-snippet omapi.py
+
+snippet omapi.py_
 	import pypureomapi
 	
 	KEYNAME="defomapi"
@@ -3069,7 +3489,8 @@ snippet omapi.py
 	
 	
 	
-snippet array.array.py
+
+snippet array.array.py_
 	#!/usr/bin/python 
 	import commands
 	
@@ -3090,23 +3511,27 @@ snippet array.array.py
 	print "\n";
 	
 	print "get lpar 1  status=%s " %(ret[0][2]);
-snippet week_of_year.py
+
+snippet week_of_year.py_
 	#-----snippet week_of_year.py start ----
 	import time
 	print time.strftime("%W")
-snippet grep_pipe.py
+
+snippet grep_pipe.py_
 	#-----snippet grep_pipe.py start ----
 	import commands
 	mplayer = commands.getoutput ('grep port= /root/bin/daemon/ssh_nat/ssh_phabricator.pl')
 	print mplayer;
-snippet getcwd_pwd.py
+
+snippet getcwd_pwd.py_
 	#-----snippet getcwd_pwd.py start ----
 	
 	# -*- coding: utf-8 -*-
 	#os.getcwd() µº …œæÕ «ªÒ»°µ±«∞π§◊˜¬∑æ∂(current working directory)
 	import os;
 	print os.getcwd();
-snippet shuffle_.py
+
+snippet shuffle_.py_
 	#-----snippet shuffle_.py start ----
 	import random
 	fh=open("/etc/passwd");
@@ -3115,12 +3540,14 @@ snippet shuffle_.py
 	for line in lines:
 	    print line
 
-snippet lambda_demo.py
+
+snippet lambda_demo.py_
 	#-----snippet lambda_demo.py start ----
 	#!/usr/bin/python
 	#coding: utf-8
 	print    reduce ( lambda    x , y : x * y ,    range ( 1 ,    1001 ))
-snippet fun_in_fun.py
+
+snippet fun_in_fun.py_
 	#-----snippet fun_in_fun.py start ----
 	
 	#def listDirectory(directory, fileExtList):
@@ -3142,7 +3569,8 @@ snippet fun_in_fun.py
 	
 	fun_in_fun();
 
-snippet redis_demo
+
+snippet redis_demo_
 	import redis 
 	r = redis.client.Redis(host='127.0.0.1', port=6379, db=1)
 	info = r.info() 
@@ -3161,7 +3589,8 @@ snippet redis_demo
 	print 'delete:',r.delete('c1','c2')
 
 
-snippet sqlite_demo
+
+snippet sqlite_demo_
 	import random;
 	import sqlite3
 	con=sqlite3.connect("/tmp/test2.db");
@@ -3181,22 +3610,27 @@ snippet sqlite_demo
 	for each in cursor.fetchall():
 		print each;
 
-snippet sleep
+
+snippet sleep_
 	import time
 	time.sleep(1);
 
-snippet gb2312_to_utf8
+
+snippet gb2312_to_utf8_
 	gb2312_str="chinese_gb2312_str";
 	utf8_str=unicode(gb2312_str, 'gb2312');
-snippet sql_create_table
+
+snippet sql_create_table_
 	sql="create table user (id int4 , uuid int4,  username text ,password text ,phone text,address text ) ; ";
 
-snippet codecs_utf8
+
+snippet codecs_utf8_
 	#f = codecs.open(name, mode='r', encoding='utf8')
 	for each in codecs.open(file, mode='r', encoding='utf8').readlines():
 		print each;
 		
-snippet redis_consume
+
+snippet redis_consume_
 	#! /usr/bin/env python 
 	#coding: utf-8 
 	import sys;
@@ -3208,7 +3642,8 @@ snippet redis_consume
 	print  info['chinese_str'];
 
 
-snippet redis_product
+
+snippet redis_product_
 	#coding=utf-8
 	import os;
 	import redis 
@@ -3221,20 +3656,23 @@ snippet redis_product
 
 	r = redis.client.Redis(host='127.0.0.1', port=6379, db=1)
 	add_one_chinese_message(r, "one_chinese_str");
-snippet md5
-	import hashlib
-	def getMD5(str):
-		m2 = hashlib.md5()
-		m2.update(str)
-		return m2.hexdigest()
-snippet hashlib
+
+snippet md5_
 	import hashlib
 	def getMD5(str):
 		m2 = hashlib.md5()
 		m2.update(str)
 		return m2.hexdigest()
 
-snippet ini_generator
+snippet hashlib_
+	import hashlib
+	def getMD5(str):
+		m2 = hashlib.md5()
+		m2.update(str)
+		return m2.hexdigest()
+
+
+snippet ini_generator_
 	def gen_ini():
 		ini = open('config.ini','w')
 		config_write = ConfigParser.RawConfigParser()
@@ -3246,13 +3684,15 @@ snippet ini_generator
 		config_write.write(ini)
 		ini.close()
 
-snippet ini_read_value
+
+snippet ini_read_value_
 	def ini_get_value(key):
 		config_read = ConfigParser.RawConfigParser()
 		config_read.read('config.ini')
 		return  config_read.get('global',key)
 
-snippet ini_read_value2
+
+snippet ini_read_value2_
 	def read_ini():
 		config_read = ConfigParser.RawConfigParser()
 		config_read.read('config.ini')
@@ -3263,10 +3703,12 @@ snippet ini_read_value2
 		print "mysql_passwd=%s"%config_read.get('global','mysql_password')
 
 
-snippet mtime
+
+snippet mtime_
 	mtime = os.path.getmtime('/')
 
-snippet django
+
+snippet django_
 	import os
 	import sys
 
@@ -3307,7 +3749,8 @@ snippet django
 
 		execute_from_command_line(sys.argv)
 
-snippet argv
+
+snippet argv_
 	import sys, os
 	if len(sys.argv)!=2:
 		print "Usage: %s  input_name ";
@@ -3315,13 +3758,24 @@ snippet argv
 	name=sys.argv[1];
 	print(name);
 
-snippet system_with_no_ret.py
+snippet argv_len_name
+	import sys, os
+	if len(sys.argv)!=2:
+		print "Usage: %s  input_name ";
+		sys.exit(-1);
+	name=sys.argv[1];
+	print(name);
+
+
+
+snippet system_with_no_ret.py_
 	#!/usr/bin/python
 
 	import os
 	os.system("ifconfig ")
 
-snippet singleton_v2
+
+snippet singleton_v2_
 	class Singleton(object):
 
 	    _instance = None
@@ -3331,12 +3785,14 @@ snippet singleton_v2
 				cls._instance = object.__new__(cls, *args, **kwargs)
 					return cls._instance
 
-snippet one_line
+
+snippet one_line_
 	list_name= [ x  for x in   b.keys()  if  "_List" in x];  #return array
 	tenant_list = [i['account_id'] for i in rows]		#retury  array
 	texts_lower = [[word for word in document.lower().split()] for document in courses		
 
-snippet testunit_man_demo
+
+snippet testunit_man_demo_
 	# Example of Basic Test Setup
 	import unittest
 	from datetime import datetime
@@ -3375,20 +3831,24 @@ snippet testunit_man_demo
 
 
 
-snippet comprehension_list
+
+snippet comprehension_list_
 	texts_lower = [[word for word in document.lower().split()] for document in courses		
 	[(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
 	files = [os.path.join('./my_dir', f) for f in os.listdir('./my_dir') if f.endswith('.txt')]
 
-snippet comprehension_dict
+
+snippet comprehension_dict_
 	strings = ['import','is','with','if','file','exception']  
 	d = {key: val for val,key in enumerate(strings)}  
 
-snippet comprehension_csv
+
+snippet comprehension_csv_
 	import csv
 	data = [ x for x in csv.DictReader(open('file.csv', 'rU'))]
 
-snippet wordcount
+
+snippet wordcount_
 	import re
 	from collections import Counter
 
@@ -3399,7 +3859,8 @@ snippet wordcount
 
 
 
-snippet perf
+
+snippet perf_
 	import time 
 	def performance(f): 
 		def fn (*args,**kw): 
@@ -3416,7 +3877,8 @@ snippet perf
 
 	print factorial(10) 
 
-snippet timeit
+
+snippet timeit_
 	import time 
 	def performance(f): 
 		def fn (*args,**kw): 
@@ -3433,7 +3895,8 @@ snippet timeit
 
 	print factorial(10) 
 
-snippet print_fun_args
+
+snippet print_fun_args_
 	def print_args(function):
 		def wrapper(*args, **kwargs):
 			print 'Arguments:', args, kwargs
@@ -3446,7 +3909,8 @@ snippet print_fun_args
 
 	write('foo')
 
-snippet dict_2_class
+
+snippet dict_2_class_
 	class Lpar:
 		def __init__(self, **entries):
 			self.__dict__.update(entries)
@@ -3455,7 +3919,8 @@ snippet dict_2_class
 	line=Lpar(**dict(zip(meta, value)));
 	print line;
 
-snippet zip_array_2_object
+
+snippet zip_array_2_object_
 	class Lpar:
 		def __init__(self, **entries):
 			self.__dict__.update(entries)
@@ -3464,7 +3929,8 @@ snippet zip_array_2_object
 	line=Lpar(**dict(zip(meta, value)));
 	print line;
 
-snippet dict_2_object_method1
+
+snippet dict_2_object_method1_
 	class Lpar:
 		def __init__(self, **entries):
 			self.__dict__.update(entries)
@@ -3472,25 +3938,29 @@ snippet dict_2_object_method1
 	line=Lpar(**lpar1);
 
 
-snippet dict_2_object_method2
+
+snippet dict_2_object_method2_
 	import types;
 	lpar_info={'status': 'Running', 'name': 'FF_lpar39', 'time': '13d', 'id': '39', 'memory': '2048M', 'cpu': '0.80', 'unit': '4'}
 	lpar=types.new_class('Lpar',(), {}, lambda ns: ns.update(lpar_info));
 
-snippet LOG_error
+
+snippet LOG_error_
 	LOG = logging.getLogger(__name__)
 	try:
 		1/0
 	except Exception as  e:
 		LOG.error(e)
 
-snippet LOG_demos
+
+snippet LOG_demos_
 	LOG = logging.getLogger(__name__)
 	LOG.info("Python Standard Logging")
 	LOG.warning("Python Standard Logging")
 	LOG.error("Python Standard Logging")
 
-snippet function_args_pass
+
+snippet function_args_pass_
 	#def fun_var_args(farg,name=333, last=3333,  **kwargs,  *args  ):   #ERROR 
 	def fun_var_args(farg,name=333, last=3333,  *args,  **kwargs  ):  
 		print "arg:", farg  
@@ -3500,7 +3970,8 @@ snippet function_args_pass
 		print kwargs;
 	fun_var_args(1, 44444, 55555, 66666,test="33", test2="444");
 
-snippet fun_args_pass
+
+snippet fun_args_pass_
 	#def fun_var_args(farg,name=333, last=3333,  **kwargs,  *args  ):   #ERROR 
 	def fun_var_args(farg,name=333, last=3333,  *args,  **kwargs  ):  
 		print "arg:", farg  
@@ -3510,24 +3981,28 @@ snippet fun_args_pass
 		print kwargs;
 	fun_var_args(1, 44444, 55555, 66666,test="33", test2="444");
 
-snippet try_excecption_common_usage
+
+snippet try_excecption_common_usage_
 	try:
 		api.neutron.port_delete(request,portid)
 	except Exception  as e:
 		return {"result":"error"};	
 
-snippet functioncache_demo 
+
+snippet functioncache_demo_
 	functioncache(10)
 	def ret_info2():
 		time.sleep(5);
 		return   map(lambda x:x*2, range(1,100))
 
-snippet itertools_repeat
+
+snippet itertools_repeat_
 	itertools.count(start=0, step=1)
 	itertools.cycle(iterable)
 	itertools.repeat(object[, times])
 
-snippet itertools_algo0
+
+snippet itertools_algo0_
 	itertools.chain(*iterables)
 	itertools.compress(data, selectors)
 	itertools.dropwhile(predicate, iterable)
@@ -3535,7 +4010,8 @@ snippet itertools_algo0
 	itertools.ifilter(predicate, iterable)
 	itertools.ifilterfalse(predicate, iterable)
 	itertools.imap(function, *iterables)
-snippet itertools_algo1
+
+snippet itertools_algo1_
 	itertools.islice(iterable, stop)
 	itertools.izip(*iterables)
 	itertools.izip_longest(*iterables[, fillvalue])
@@ -3543,13 +4019,15 @@ snippet itertools_algo1
 	itertools.takewhile(predicate, iterable)
 	itertools.tee(iterable[, n=2])
 
-snippet itertools_stage3_comb
+
+snippet itertools_stage3_comb_
 	itertools.product(*iterables[, repeat])
 	itertools.permutations(iterable[, r])
 	itertools.combinations(iterable, r)
 	itertools.combinations_with_replacement(iterable, r)
 
-snippet flask_demo
+
+snippet flask_demo_
 	from flask import Flask, jsonify, render_template, request
 	app = Flask(__name__)
 
@@ -3562,7 +4040,8 @@ snippet flask_demo
 
 	if __name__ == '__main__':
 		app.run(host="0.0.0.0", port=8839,debug=True)
-snippet filelist
+
+snippet filelist_
 	def chomp(line):
 		if line[-1] == '\n':
 			line = line[:-1]
@@ -3570,3 +4049,1658 @@ snippet filelist
 
 	file_list=map( chomp, open(file).readlines()):
 
+
+snippet json_dump_
+	a={};
+	simplejson.dumps(a)
+
+
+
+snippet argsparse_array_
+
+	import argparse
+	parser = argparse.ArgumentParser()
+
+	parser.add_argument('-s', action='store', dest='simple_value', help='Store a simple value')
+	parser.add_argument('-c', action='store_const', dest='constant_value', const='value-to-store', help='Store a constant value')
+	parser.add_argument('-t', action='store_true', default=False, dest='boolean_switch', help='Set a switch to true')
+	parser.add_argument('-f', action='store_false', default=False, dest='boolean_switch', help='Set a switch to false')
+	parser.add_argument('-a', action='append', dest='collection', default=[], help='Add repeated values to a list')
+	parser.add_argument('-A', action='append_const', dest='const_collection', const='value-1-to-append', default=[], help='Add different values to list')
+	parser.add_argument('-B', action='append_const', dest='const_collection', const='value-2-to-append', help='Add different values to list')
+	parser.add_argument('--version', action='version', version='%(prog)s 1.0')
+
+	results = parser.parse_args()
+	print '-s simple_value     =', results.simple_value
+	print '-c constant_value   =', results.constant_value
+	print '-t boolean_switch   =', results.boolean_switch
+	print '-a collection       =', results.collection
+	print '-A const_collection =', results.const_collection
+
+
+snippet traceback_simplest_0
+	import traceback
+	print (traceback.format_exc())
+
+snippet traceback_demo_
+	import  traceback;
+	def  fun1():
+		try:
+			open("file_not_exists.txt");
+		except  Exception as e:
+			print ("Error %s "%e);
+			traceback.print_stack();
+			traceback.print_exc();
+
+
+	def fun2():
+		fun1();
+
+	fun2();
+	print "success";
+
+
+snippet else_if_
+	def sort(x1, x2):
+		f1 = x1.split('\\')[-1]
+		f2 = x2.split('\\')[-1]
+		if f1 == f2: return 0
+		elif f1 < f2: return -1
+		else: return 1
+
+
+
+
+snippet elif_
+	def sort(x1, x2):
+		f1 = x1.split('\\')[-1]
+		f2 = x2.split('\\')[-1]
+		if f1 == f2: return 0
+		elif f1 < f2: return -1
+		else: return 1
+
+
+snippet flatmap_
+	import os;
+	from  itertools  import * ;
+	def file_to_array_array(file):
+		array=[]
+		for line in open(file).readlines() :
+			array.extend(line.split() );
+		return array;
+	for each in  file_to_array_array("/etc/passwd"):
+		print each;
+
+
+
+snippet list_add_append_extend_
+	import os;
+	from  itertools  import * ;
+	def file_to_array_array(file):
+		array=[]
+		for line in open(file).readlines() :
+			array.extend(line.split() );
+		return array;
+	for each in  file_to_array_array("/etc/passwd"):
+		print each;
+
+
+
+snippet splitext_
+	import glob
+	import os;
+
+	pics=[ "gif", "png", "jpeg", "jpg", "bmp", "gdib", "emf", "icb", "ico", "pbm", "pcd", "pcx", "pgm", "ppm", "psd", "psp", "rle", "sgi", "tga", "tif", ];
+	for file in glob.glob("*"):
+		suffix=os.path.splitext(file)[1] 
+		if os.path.isfile(file) and  suffix in pics:
+			print "File:   {0}".format(file);
+
+
+snippet suffix_file_type_
+	import glob
+	import os;
+
+	pics=[ "gif", "png", "jpeg", "jpg", "bmp", "gdib", "emf", "icb", "ico", "pbm", "pcd", "pcx", "pgm", "ppm", "psd", "psp", "rle", "sgi", "tga", "tif", ];
+	for file in glob.glob("*"):
+		suffix=os.path.splitext(file)[1] 
+		if os.path.isfile(file) and  suffix in pics:
+			print "File:   {0}".format(file);
+
+
+snippet get_cur_dir_by_suffix_
+	import glob
+	import os;
+
+	pics=[ "gif", "png", "jpeg", "jpg", "bmp", "gdib", "emf", "icb", "ico", "pbm", "pcd", "pcx", "pgm", "ppm", "psd", "psp", "rle", "sgi", "tga", "tif", ];
+	for file in glob.glob("*"):
+		suffix=os.path.splitext(file)[1] 
+		if os.path.isfile(file) and  suffix in pics:
+			print "File:   {0}".format(file);
+
+
+snippet classmethod_
+	class my_class:
+		@classmethod
+		def dump(self):
+			print "dump all";
+	#tmp=b();
+	my_class.dump();
+
+
+
+snippet property_
+	class my_class:
+		@property
+		def attr1(self):
+			return "attr1";
+	tmp=my_class();
+	print tmp.attr1
+
+
+snippet staticmethod_
+	class my_class:
+		@staticmethod
+		def dump2():
+			print "aaaaaaaaaaa";
+	my_class.dump2();
+
+
+# Model Fields
+
+# Note: Optional arguments are using defaults that match what Django will use
+# as a default, e.g. with max_length fields.  Doing this as a form of self
+# documentation and to make it easy to know whether you should override the
+# default or not.
+
+# Note: Optional arguments that are booleans will use the opposite since you
+# can either not specify them, or override them, e.g. auto_now_add=False.
+
+
+snippet django_field_auto_
+	${1:FIELDNAME} = models.AutoField(${0})
+
+snippet django_field_bigint_
+	${1:FIELDNAME} = models.BigIntegerField(${0})
+
+snippet django_field_binary_
+	${1:FIELDNAME} = models.BinaryField(${0})
+
+snippet django_field_bool_
+	${1:FIELDNAME} = models.BooleanField(${0:default=True})
+
+snippet django_field_char_
+	${1:FIELDNAME} = models.CharField(max_length=${2}${0:, blank=True})
+
+snippet django_field_comma_
+	${1:FIELDNAME} = models.CommaSeparatedIntegerField(max_length=${2}${0:, blank=True})
+
+snippet django_field_date_
+	${1:FIELDNAME} = models.DateField(${2:auto_now_add=True, auto_now=True}${0:, blank=True, null=True})
+
+snippet django_field_datetime_
+	${1:FIELDNAME} = models.DateTimeField(${2:auto_now_add=True, auto_now=True}${0:, blank=True, null=True})
+
+snippet django_field_decimal_
+	${1:FIELDNAME} = models.DecimalField(max_digits=${2}, decimal_places=${0})
+
+snippet django_field_email_
+	${1:FIELDNAME} = models.EmailField(max_length=${2:75}${0:, blank=True})
+
+snippet django_field_file_
+	${1:FIELDNAME} = models.FileField(upload_to=${2:path/for/upload}${0:, max_length=100})
+
+snippet django_field_filepath_
+	${1:FIELDNAME} = models.FilePathField(path=${2:"/abs/path/to/dir"}${3:, max_length=100}${4:, match="*.ext"}${5:, recursive=True}${0:, blank=True, })
+
+snippet django_field_float_
+	${1:FIELDNAME} = models.FloatField(${0})
+
+snippet django_field_image_
+	${1:FIELDNAME} = models.ImageField(upload_to=${2:path/for/upload}${3:, height_field=height, width_field=width}${0:, max_length=100})
+
+snippet django_field_int_
+	${1:FIELDNAME} = models.IntegerField(${0})
+
+snippet django_field_ip_
+	${1:FIELDNAME} = models.IPAddressField(${0})
+
+snippet django_field_nullbool_
+	${1:FIELDNAME} = models.NullBooleanField(${0})
+
+snippet django_field_posint_
+	${1:FIELDNAME} = models.PositiveIntegerField(${0})
+
+snippet django_field_possmallint_
+	${1:FIELDNAME} = models.PositiveSmallIntegerField(${0})
+
+snippet django_field_slug_
+	${1:FIELDNAME} = models.SlugField(max_length=${2:50}${0:, blank=True})
+
+snippet django_field_smallint_
+	${1:FIELDNAME} = models.SmallIntegerField(${0})
+
+snippet django_field_text_
+	${1:FIELDNAME} = models.TextField(${0:blank=True})
+
+snippet django_field_time_
+	${1:FIELDNAME} = models.TimeField(${2:auto_now_add=True, auto_now=True}${0:, blank=True, null=True})
+
+snippet django_field_url_
+	${1:FIELDNAME} = models.URLField(${2:verify_exists=False}${3:, max_length=200}${0:, blank=True})
+
+snippet django_field_xml_
+	${1:FIELDNAME} = models.XMLField(schema_path=${2:None}${0:, blank=True})
+# Relational Fields
+
+snippet django_field_fk_
+	${1:FIELDNAME} = models.ForeignKey(${2:OtherModel}${3:, related_name=''}${4:, limit_choices_to=}${0:, to_field=''})
+
+snippet django_field_m2m_
+	${1:FIELDNAME} = models.ManyToManyField(${2:OtherModel}${3:, related_name=''}${4:, limit_choices_to=}${5:, symmetrical=False}${6:, through=''}${0:, db_table=''})
+
+snippet django_field_o2o_
+	${1:FIELDNAME} = models.OneToOneField(${2:OtherModel}${3:, parent_link=True}${4:, related_name=''}${5:, limit_choices_to=}${0:, to_field=''})
+
+# Code Skeletons
+
+
+snippet django_form_
+	class ${1:FormName}(forms.Form):
+		"""${2:docstring}"""
+		${0}
+
+
+snippet django_model_
+	class ${1:ModelName}(models.Model):
+		"""${2:docstring}"""
+		${3}
+
+		class Meta:
+			${4}
+
+		def __unicode__(self):
+			${5}
+
+		def save(self, *args, **kwargs):
+			${6}
+
+		@models.permalink
+		def get_absolute_url(self):
+			return ('${7:view_or_url_name}' ${0})
+
+
+snippet django_modeladmin_
+	class ${1:ModelName}Admin(admin.ModelAdmin):
+		${0}
+
+	admin.site.register($1, $1Admin)
+
+
+snippet django_tabularinline_
+	class ${0:ModelName}Inline(admin.TabularInline):
+		model = $1
+
+
+snippet django_stackedinline_
+	class ${0:ModelName}Inline(admin.StackedInline):
+		model = $1
+
+
+snippet django_r2r_
+	return render_to_response('${1:template.html}', {
+			${2}
+		}${0:, context_instance=RequestContext(request)}
+	)
+
+
+
+snippet django_render_to_response_1_
+	return render_to_response('${1:template.html}', {
+			${2}
+		}${0:, context_instance=RequestContext(request)}
+	)
+
+snippet django_render_to_response2_
+
+	from django.shortcuts import render_to_response
+	import datetime
+	def current_datetime(request):
+		now = datetime.datetime.now()
+		return render_to_response('current_datetime.html', {'current_date': now})
+
+
+snippet django_model_denmo_
+	# /root/bin/django_orm_model.py
+	from django.db import models
+	class Person(models.Model):
+		name = models.CharField(max_length=30)
+		age = models.IntegerField()
+
+snippet django_render_my_
+	from django.shortcuts import render_to_response as django_render_to_response
+	def my_render(template, request, data, **kwargs):
+		return django_render_to_response(template,RequestContext(request=request, dict_=data), **kwargs)
+
+
+
+snippet django_render2_
+	from django.shortcuts import render
+	def serve_404_error(request, *args, **kwargs):
+		return render(request,"404.html", dict(uri=request.build_absolute_uri()))
+
+
+snippet django_logout_
+	def dt_logout(request, next_page=None):
+	  return django.contrib.auth.views.logout(request, next_page)
+
+
+snippet django_500_error_
+	def serve_500_error(request, *args, **kwargs):
+		exc_info = sys.exc_info()
+		return render(request,"500.html", {'traceback': traceback.extract_tb(exc_info[2])})
+
+
+snippet django_404_error_
+	def serve_404_error(request, *args, **kwargs):
+		return render(request,"404.html", dict(uri=request.build_absolute_uri()))
+
+snippet django_http_reponse_
+	from django.http import HttpResponse
+	def index(request):
+		return HttpResponse('Hello World')
+
+
+
+snippet paged_list_
+	#coding=utf-8
+	from boltons.iterutils import  chunked;
+
+	def get_page( result,  page_num,  page_size):
+		total = len(result);
+		if len(result) == 0:
+			return []
+		if page_size == 0:
+			return [];
+		all_data = chunked(result, page_size)
+
+		#get last segment
+		if page_num + 1 > len(all_data) :
+			page_num = len(all_data) - 1;  
+		ret=all_data[page_num]
+		return ret;
+
+	#test
+	array =  range(0,15)
+	ret=get_page(array, 0, 10);
+	assert( ret ==  range(0,10) )
+
+
+
+snippet dict_demo_
+	body = {'vip': {'name': 'name',
+	'description': 'description',
+	'subnet_id': 'subnet_id',
+	'protocol_port': 'protocol_port',
+	'protocol': 'protocol',
+	'pool_id': 'pool_id',
+	'session_persistence': 'session_persistence',
+	'admin_state_up': 'admin_state_up'
+	}}
+
+
+snippet django_url_
+	from django.conf.urls.defaults import *
+	urlpatterns = patterns('',
+		url(r'^', include('sentry.web.urls')),
+	)
+
+
+snippet django_include_
+	from django.conf.urls.defaults import *
+	urlpatterns = patterns('',
+		url(r'^', include('sentry.web.urls')),
+	)
+
+snippet django_url_view_
+	#1. Add an import:  
+	from my_app import views
+
+	#2. Add a URL to 
+	urlpatterns += url(r'^$', views.home, name='home')
+
+	#3.
+	from other_app.views import Home
+	urlpatterns += url(r'^$', Home.as_view(), name='home')
+
+	#4.
+	url(r'^blog/', include('blog.urls'))
+
+
+snippet django_urlpatterns_
+	from django.conf.urls import include, url
+	from django.conf import settings
+	urlpatterns = [
+		url(r'^project/', include('dashboard.project.urls')),
+		url(r'^admin/',include('dashboard.admin.urls')),
+		url(r'^network/',include('dashboard.network.urls')),
+		url(r'^(?P<path>.*)$','django.views.static.serve',{'document_root':settings.STATIC_ROOT}),
+		url(r'^(?P<path>.*)$', serve),
+		url(r'^payment/', include('billing_payment.payment.urls')),
+	]
+
+
+snippet django_url_include_
+	from django.conf.urls import include, url
+	from django.conf import settings
+	urlpatterns = [
+		url(r'^project/', include('dashboard.project.urls')),
+		url(r'^admin/',include('dashboard.admin.urls')),
+		url(r'^network/',include('dashboard.network.urls')),
+		url(r'^(?P<path>.*)$','django.views.static.serve',{'document_root':settings.STATIC_ROOT}),
+		url(r'^(?P<path>.*)$', serve),
+		url(r'^payment/', include('billing_payment.payment.urls')),
+	]
+
+
+snippet django_url_auth:_
+	from django.conf.urls import include, url
+	from django.conf import settings
+	for u in getattr(settings, 'AUTHENTICATION_URLS', ['openstack_auth.urls']):
+		urlpatterns.append(url(r'^auth/', include(u)))
+
+
+snippet getattr_demo_
+	import os
+	tmp=getattr(os, "uname");
+	setattr(os, "uname22", tmp)
+	print os.uname22();
+
+
+snippet setattr_demo_
+	import os
+	tmp=getattr(os, "uname");
+	setattr(os, "uname22", tmp)
+	print os.uname22();
+
+
+
+snippet django_redirect_
+
+	from django.http import HttpResponse,HttpResponseRedirect
+	from django.core.urlresolvers import reverse
+	import json
+	import os;
+
+	def redirect_2(request):
+		return HttpResponseRedirect(reverse('baidu'))
+
+	def baidu_redirect(request):
+		return HttpResponseRedirect("http://www.baidu.com")
+
+
+
+
+
+snippet django_view_basic_
+	# views.py
+	from django.http import HttpResponse
+	from django.views.generic import View
+	class MyView(View):
+		def get(self, request, *args, **kwargs):
+			return HttpResponse('Hello, World!')
+	 
+	# urls.py
+	from django.conf.urls import patterns, url
+	from myapp.views import MyView
+	urlpatterns = patterns('',
+		url(r'^mine/$', MyView.as_view(), name='my-view'),
+	)
+
+
+snippet django_view_HttpResponse_
+	# views.py
+	from django.http import HttpResponse
+	from django.views.generic import View
+	class MyView(View):
+		def get(self, request, *args, **kwargs):
+			return HttpResponse('Hello, World!')
+	 
+	# urls.py
+	from django.conf.urls import patterns, url
+	from myapp.views import MyView
+	urlpatterns = patterns('',
+		url(r'^mine/$', MyView.as_view(), name='my-view'),
+	)
+
+
+snippet django_view_template_context_
+	# views.py
+	from django.views.generic.base import TemplateView
+	from articles.models import Article
+	class HomePageView(TemplateView):
+		template_name = "home.html"
+		def get_context_data(self, **kwargs):
+			context = super(HomePageView, self).get_context_data(**kwargs)
+			context['latest_articles'] = Article.objects.all()[:5]
+			return context
+
+	# urls.py
+	from django.conf.urls import patterns, url
+	from myapp.views import HomePageView
+	urlpatterns = patterns('',
+		url(r'^home$', HomePageView.as_view(), name='home'),
+	)
+
+
+snippet django_view_RedirectView_
+	from django.conf.urls import patterns, url
+	from django.views.generic.base import RedirectView
+
+	urlpatterns = patterns('',
+		url(r'^go-to-django/$', RedirectView.as_view(url='http://djangoproject.com'), name='go-to-django'),
+		url(r'^go-to-ziqiangxuetang/$', RedirectView.as_view(url='http://www.ziqiangxuetang.com',permant=False), name='go-to-zqxt'),
+	)
+
+
+
+snippet django_models_define_
+	from django.db import models
+	class Author(models.Model):
+		name = models.CharField(max_length=30)
+		created_at = models.DateTimeField(auto_now_add=True)
+		updated_at = models.DateTimeField(auto_now=True)
+		def __unicode__(self):
+			return u'%s' %(self.name)
+		class Meta:
+			db_table = "authors"
+
+	class Article(models.Model):
+		author = models.ForeignKey(Author)
+		title = models.CharField(max_length=30)
+		content = models.TextField()
+		created_at = models.DateTimeField(auto_now_add=True)
+		updated_at = models.DateTimeField(auto_now=True)
+		def __unicode__(self):
+			return u'%s' %(self.title)
+		class Meta:
+			db_table = "articles"
+
+	class Comment(models.Model):
+		author = models.ForeignKey(Author)
+		article = models.ForeignKey(Article)
+		content = models.CharField(max_length=255)
+		created_at = models.DateTimeField(auto_now_add=True)
+		updated_at = models.DateTimeField(auto_now=True)
+		def __unicode__(self):
+			return u'%s' %(self.content)
+		class Meta:
+			db_table = "comments"
+
+
+snippet django_view_TemplateView_
+	class ErrorsHandleView(PaySessionMixin,generic.TemplateView):
+	template_name = 'billing_errors.html'
+	def get_context_data(self, **kwargs):
+		context=super(ErrorsHandleView,self).get_context_data(**kwargs)
+		context["errors"] = self.pop("error_message")
+		return context
+
+
+snippet json_data_
+	body = {'vip': {'name': 'name',
+		'description': 'description',
+		'subnet_id': 'subnet_id',
+		'protocol_port': 'protocol_port',
+		'protocol': 'protocol',
+		'pool_id': 'pool_id',
+		'session_persistence': 'session_persistence',
+		'admin_state_up': 'admin_state_up'
+		}}
+
+
+snippet django_static_settings_
+	ROOT_PATH = os.path.dirname(os.path.abspath(__file__))
+	STATIC_ROOT = '/tmp/static/'    				#collectstatic 
+	STATIC_URL = '/static/'                 		# starit prefix 
+	STATICFILES_DIRS = ( ROOT_PATH + '/static',) 	# local dir 
+
+
+snippet django_urlpatterns_patterns_url_
+	from django.conf.urls import include, url,pattern
+
+	urlpatterns=[];
+	if settings.DEBUG:
+		urlpatterns += patterns('', url(r'^500/$', 'django.views.defaults.server_error'))
+
+
+
+snippet hasattr_random_demo_
+	import random
+	import string
+
+	def generate_key(key_length=64):
+		if hasattr(random, 'SystemRandom'):
+			choice = random.SystemRandom().choice
+		else:
+			choice = random.choice
+		return ''.join(map(lambda x: choice(string.digits + string.letters), range(key_length)))
+
+	print generate_key();
+
+
+snippet delattr_demo_
+	import os;
+	delattr(os, "uname");
+	os.uname(); #error
+
+
+snippet lambda_filter_
+	filter_fn = lambda disk:  disk.get('properties',None).get('instance_uuid',None) == each
+	im_versions = filter( filter_fn,  image_dict);
+
+
+snippet filter_lambda_
+	import os;
+	print  filter( lambda each:  each.startswith("a"),  dir(os));
+	print  filter( lambda each:  "dup" in  each ,  dir(os));
+
+
+snippet lambda_filter2_
+	import os;
+	print  filter( lambda each:  each.startswith("a"),  dir(os));
+	print  filter( lambda each:  "dup" in  each ,  dir(os));
+
+
+snippet lambda_sort_
+	result = sorted(result, key=lambda d: d.created_at,  reverse = True );
+
+
+
+snippet sort_lambda_
+	result = sorted(result, key=lambda d: d.created_at,  reverse = True );
+
+snippet object_demo_
+	class Myclass(object):
+		def func(self,a):
+		   print 'func : ',a
+	p=Myclass()
+	p.func(4)
+
+
+
+snippet dict_demo_dict_
+	{'name': 'name',
+	'description': 'description',
+	'subnet_id': 'subnet_id',
+	'protocol_port': 'protocol_port',
+	'protocol': 'protocol',
+	'pool_id': 'pool_id',
+	'session_persistence': 'session_persistence',
+	'admin_state_up': 'admin_state_up'
+	}
+
+
+snippet django_settings_
+	from django.conf import settings
+	settings_required = getattr(settings, 'REST_API_REQUIRED_SETTINGS', [])
+	settings_additional = getattr(settings, 'REST_API_ADDITIONAL_SETTINGS', [])
+	settings_allowed = settings_required + settings_additiona
+
+
+snippet LOG_error_
+	import logging
+	LOG = logging.getLogger(__name__)
+	LOG.error(traceback.format_exc())
+
+snippet join_string_
+	a=["aa", "bb", "cc", "dd"];
+	print "|".join(a);
+
+
+snippet tuidao_oneline_
+	[expr for value in collection ifcondition] 			#array
+	{ key_expr: value_expr for value in collection if condition } #dict
+	{ expr for value in collection if condition } 		#set
+
+
+snippet oneline_tuidao_
+	[expr for value in collection ifcondition] 			#array
+	{ key_expr: value_expr for value in collection if condition } #dict
+	{ expr for value in collection if condition } 		#set
+
+
+snippet oneline_dict_tuidao_
+	def dictitem(s):
+		t = s.split('=', 1)
+		if len(t) > 1:
+			return (t[0].lower(), t[1])
+		else:
+			return (t[0].lower(), True)
+
+	cc=["aa=aa_value", "bb=bb_value", "cc=cc_value", "dd=dd_value"];
+	cc = dict(dictitem(el) for el in cc)
+	print cc;
+
+
+snippet daemon_demo_
+	# -*- coding: utf-8 -*-
+	import os
+	import sys
+	import errno
+	import time;
+
+	def basic_daemonize():
+		# See http://www.erlenstar.demon.co.uk/unix/faq_toc.html#TOC16
+		if os.fork():   # launch child and...
+			os._exit(0) # kill off parent
+		os.setsid()
+		if os.fork():   # launch child and...
+			os._exit(0) # kill off parent again.
+		os.umask(022)   # Don't allow others to write
+		null=os.open('/dev/null', os.O_RDWR)
+		for i in range(3):
+			try:
+				os.dup2(null, i)
+			except OSError, e:
+				if e.errno != errno.EBADF:
+					raise
+		os.close(null)
+
+
+	def writePID(pidfile):
+		open(pidfile,'wb').write(str(os.getpid()))
+		if not os.path.exists(pidfile):
+			raise Exception( "pidfile %s does not exist" % pidfile )
+
+
+	def checkPID(pidfile):
+		if not pidfile:
+			return
+		if os.path.exists(pidfile):
+			try:
+				pid = int(open(pidfile).read())
+			except ValueError:
+				sys.exit('Pidfile %s contains non-numeric value' % pidfile)
+			try:
+				os.kill(pid, 0)
+			except OSError, why:
+				if why[0] == errno.ESRCH:
+					# The pid doesnt exists.
+					print('Removing stale pidfile %s' % pidfile)
+					os.remove(pidfile)
+				else:
+					sys.exit("Can't check status of PID %s from pidfile %s: %s" %
+							 (pid, pidfile, why[1]))
+			else:
+				sys.exit("Another server is running, PID %s\n" %  pid)
+
+	def daemonize(pidfile):
+		checkPID(pidfile)
+		basic_daemonize()
+		writePID(pidfile)
+
+
+	def file_append(string):
+		fh = open("/tmp/daemon.log", 'a')
+		fh.write("%s\n"%( string) )
+		fh.close();
+
+	def get_cur_time():
+			return time.strftime("%Y-%m-%d_%H:%M:%S ",time.localtime())
+
+	if __name__ == '__main__':
+		daemonize("/tmp/aaaa.pid")
+		while 1:
+			time.sleep(1);
+			file_append(get_cur_time());
+
+
+
+
+snippet dict_modify_filter_
+	def _replace_v2_parameters(data):
+		data['display_name'] = data['name']
+		data['display_description'] = data['description']
+		del data['name']
+		del data['description']
+		return data
+
+	data = {'name': 'name',
+			'description': 'description',
+			'volume_type': 'volume_type',
+			'snapshot_id': 'snapshot_id',
+			'metadata': 'metadata',
+			'imageRef': 'image_id',
+			'availability_zone': 'availability_zone',
+			'source_volid': 'source_volid'}
+	data = _replace_v2_parameters(data)
+
+
+snippet dict_delete_
+	data = {'name': 'name',
+			'description': 'description',
+			'volume_type': 'volume_type' }
+	del data['name']
+	del data['description']
+	print data
+
+
+
+snippet django_TemplateView_urlpattern_
+	from django.views.generic import TemplateView
+	tmp=open("/etc/passwd").readlines();
+	urlpatterns += patterns('', (r'^about/', TemplateView.as_view(template_name="cinder_base.html"), {"info":tmp} ))
+
+
+snippet django_TemplateView_class_context_data_
+	from django.views.generic import TemplateView
+
+	class SnapshotListView(TemplateView):
+		template_name = "snapshot_list.html"
+
+		def get_context_data(self, **kwargs):
+			context = super(SnapshotListView, self).get_context_data(**kwargs)
+			info = volume_list(self.request)
+			context['info'] = info
+			return context
+
+
+snippet sys_path_append__file__
+	import sys;
+	sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+	sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+
+
+snippet random_str_
+	import random;
+	import string;
+	random_name = lambda length: ''.join(random.sample(string.letters, length))
+	print random_name(32);
+
+
+snippet random_name_
+	import random;
+	import string;
+	random_name = lambda length: ''.join(random.sample(string.letters, length))
+	print random_name(32);
+
+
+snippet django_fields_
+	blog = models.ForeignKey(Blog)
+	headline = models.CharField(max_length=255)
+	body_text = models.TextField(null=True)
+	pub_date = models.DateField(null=True)
+	mod_date = models.DateField(null=True)
+	authors = models.ManyToManyField(Author, related_name='entries')
+	n_comments = models.IntegerField(default=0)
+	n_pingbacks = models.IntegerField(default=0)
+	rating = models.IntegerField(default=0)
+
+	BooleanField
+	CharField
+	ChoiceField
+	ComboField
+	DateField
+	DateTimeField
+	DecimalField
+	DurationField
+	EmailField
+	Field
+	FileField
+	FilePathField
+	FloatField
+	GenericIPAddressField
+	IPAddressField
+	ImageField
+	IntegerField
+	MultiValueField
+	MultipleChoiceField
+	NullBooleanField
+	RegexField
+	SlugField
+	SplitDateTimeField
+	TimeField
+	TypedChoiceField
+	TypedMultipleChoiceField
+	URLField
+	UUIDField
+
+
+snippet django_DB_sqlite_settings_
+
+	DATABASES = {
+	'default': 
+		{
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+		}
+	}
+snippet django_DATABASES_sqlite
+	DATABASES = {
+	'default': 
+		{
+		'ENGINE': 'django.db.backends.sqlite3',
+		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+		}
+	}
+
+
+
+snippet django_DATABASES_mysql
+	DATABASES = {
+		'default': 
+		{
+		'ENGINE': 'django.db.backends.mysql',
+		'NAME': 'testdb',
+		'USER': 'root',
+		'PASSWORD': '123456',
+		'HOST': 'localhost',
+		'PORT': '3306',
+		}
+	}
+
+snippet django_DB_mysql_settings_
+	DATABASES = {
+		'default': 
+		{
+		'ENGINE': 'mysql',
+		'NAME': 'testdb',
+		'USER': 'root',
+		'PASSWORD': '123456',
+		'HOST': 'localhost',
+		'PORT': '3306',
+		}
+	}
+
+
+
+
+snippet django_render_to_response_locals_
+	def current_datetime(request):
+		current_date = datetime.datetime.now()
+		return render_to_response('current_datetime.html', locals())
+
+
+snippet django_locals_render_to_response_
+	def current_datetime(request):
+		current_date = datetime.datetime.now()
+		return render_to_response('current_datetime.html', locals())
+
+
+snippet uuid_generator_
+	import  random
+	def generate_uid(topic, size=8):
+		characters = '01234567890abcdefghijklmnopqrstuvwxyz'
+		choices = [random.choice(characters) for _x in range(size)]
+		return '%s-%s' % (topic, ''.join(choices))
+
+
+snippet random_choice_
+	import  random
+	def generate_uid(size=32):
+		characters = '01234567890abcdefghijklmnopqrstuvwxyz'
+		choices = [random.choice(characters) for _x in range(size)]
+		return ''.join(choices)
+
+
+snippet random_string_v3_
+	import  random
+	def generate_uid(size=32):
+		characters = '01234567890abcdefghijklmnopqrstuvwxyz'
+		choices = [random.choice(characters) for _x in range(size)]
+		return ''.join(choices)
+
+
+snippet shuffle_array_
+	import random
+	r = random.SystemRandom()
+	password='01234567890abcdefghijklmnopqrstuvwxyz'
+	array =  [  password[each]   for each in range(len(password)) ]
+	r.shuffle(array)
+	print ''.join(array);
+
+
+
+snippet jinja2_simplest_demo_
+	def render_file(template_file,ret):
+		import jinja2
+		templateLoader = jinja2.FileSystemLoader( searchpath="./" )
+		templateEnv = jinja2.Environment( loader=templateLoader )
+
+		#TEMPLATE_FILE = "templates/start.sh.tpl";
+		TEMPLATE_FILE = template_file;
+		template = templateEnv.get_template( TEMPLATE_FILE )
+
+		bb=template.render( info=ret)
+		print bb;
+
+
+snippet glob_simplest_
+	import glob
+	import os;
+	print glob.glob("/etc/*"):
+
+
+snippet with_file_open_
+	try:
+		with file('/etc/passwd', 'rb') as f:
+			monitor_keyring = f.read()
+	except IOError:
+		raise RuntimeError('mon keyring not found; run \'new\' to create a new cluster')
+
+
+
+snippet beautifulsoup3_demo_
+	import requests;
+	from  BeautifulSoup  import BeautifulSoup
+	import re;
+
+	def get_links():
+		base="http://mirrors.aliyun.com/ceph/tarballs/"
+		r=requests.get(base)
+
+		s = BeautifulSoup(r.content)
+		r = re.compile(r'.*tar.bz2$')
+		for a in s.findAll('a', href=r):
+			print a['href']
+	get_links();
+
+
+snippet beautifulsoup4_demo_
+	import requests;
+	from bs4 import BeautifulSoup
+	import re;
+
+	def get_links():
+		base="http://mirrors.aliyun.com/ceph/tarballs/"
+		r=requests.get(base)
+		s = BeautifulSoup(r.content)
+		r = re.compile(r'.*tar.bz2$')
+		for a in s.findAll('a', href=r):
+			print a['href']
+	get_links();
+
+
+snippet extract_a_url_link_
+	import requests;
+	from bs4 import BeautifulSoup
+	import re;
+
+	def get_links():
+		base="http://mirrors.aliyun.com/ceph/tarballs/"
+		r=requests.get(base)
+		s = BeautifulSoup(r.content)
+		r = re.compile(r'.*tar.bz2$')
+		for a in s.findAll('a', href=r):
+			print a['href']
+	get_links();
+
+
+snippet urlview_bs_
+	import requests;
+	from bs4 import BeautifulSoup
+	import re;
+
+	def get_links():
+		base="http://mirrors.aliyun.com/ceph/tarballs/"
+		r=requests.get(base)
+
+		s = BeautifulSoup(r.content)
+		r = re.compile(r'.*tar.bz2$')
+		for a in s.findAll('a', href=r):
+			print a['href']
+	get_links();
+
+
+snippet request_get_and_save_
+	import requests
+	r=requests.get("http://www.baidu.com");
+	f = open("1.html", 'w')
+	f.write(r.content)
+	f.close()
+
+
+snippet request_demo_list_
+	#demo 
+	#/root/bin/requests/extract.py
+	#/root/bin/requests/get.py
+	#/root/bin/requests/header_agent.py
+	#/root/bin/requests/save_to_mongod.py
+	#/root/bin/requests/post_file.py
+	#/root/bin/requests/html_save_file.py
+	#/root/bin/requests/capture_screen.py
+
+
+snippet django_upload_file_
+	from django.shortcuts import render
+	from django.http import HttpResponse
+	import os
+
+
+	def upload(request):
+		if request.method == 'POST':
+			handle_uploaded_file(request.FILES['file'], str(request.FILES['file']))
+			return HttpResponse("Successful")
+		return HttpResponse("Failed")
+
+	def handle_uploaded_file(file, filename):
+		if not os.path.exists('upload/'):
+			os.mkdir('upload/')
+		with open('upload/' + filename, 'wb+') as destination:
+			for chunk in file.chunks():
+				destination.write(chunk)
+	#html template  referrence  django_upload_file_html_front
+	#urls.py  append 
+	# 	url(r'^upload/', views.upload, name="upload"),
+
+
+
+snippet django_upload_file_html_front_
+	<html>
+	<head>
+	  <title>Django File Upload</title>
+	  <style>
+		h1 {
+		  font-size: 2em;
+		  font-weight: bold;
+		  color: #777777;
+		  text-align: center
+		}
+		table {
+		  margin: auto;
+		}
+	  </style>
+	</head>
+
+	<body>
+	  <h1>
+		  {{what}}
+	  </h1>
+	  <table>
+		<tr>
+		  <td>
+			<form action="{{ request.build_absolute_uri }}upload/" method="POST" enctype="multipart/form-data">
+			  {% csrf_token %}
+			  <input type="file" name="file"/>
+			  <br />
+			  <input type="submit" value="Upload File" />
+			</form>
+		  </td>
+		</tr>
+	  </table>
+	</body>
+	</html>
+
+snippet ansible_
+
+snippet decorator_nop_delete_it
+	if _os.path.exists(_os.path.expanduser("~/.disable_functioncache")):
+		def functioncache(*_, **__):
+			def nop_decorator(function):
+				return function
+			return nop_decorator
+
+
+
+snippet decorator_profile
+
+	import cProfile, pstats, StringIO
+	def profiler(func):
+		def wrapper(*args, **kwargs):
+			datafn = func.__name__ + ".profile" # Name the data file
+			prof = cProfile.Profile()
+			retval = prof.runcall(func, *args, **kwargs)
+			#prof.dump_stats(datafn)
+			s = StringIO.StringIO()
+			sortby = 'cumulative'
+			ps = pstats.Stats(prof, stream=s).sort_stats(sortby)
+			ps.print_stats()
+			print s.getvalue()
+			return retval
+		return wrapper
+
+snippet decorator_cache_fib
+	from functools import wraps
+	def memo(fn):
+		cache = {}
+		miss = object()
+		@wraps(fn)
+		def wrapper(*args):
+			result = cache.get(args, miss)
+			if result is miss:
+				result = fn(*args)
+				cache[args] = result
+			return result
+		return wrapper
+	@memo
+	def fib(n):
+		if n < 2:
+			return n
+		return fib(n - 1) + fib(n - 2)
+
+
+snippet decorator_url_register
+	class MyApp():
+		def __init__(self):
+			self.func_map = {}
+		def register(self, name):
+			def func_wrapper(func):
+				self.func_map[name] = func
+				return func
+			return func_wrapper
+		def call_method(self, name=None):
+			func = self.func_map.get(name, None)
+			if func is None:
+				raise Exception("No function registered against - " + str(name))
+			return func()
+	app = MyApp()
+	@app.register('/')
+	def main_page_func():
+		return "This is the main page."
+	@app.register('/next_page')
+	def next_page_func():
+		return "This is the next page."
+
+	@app.register('/page3')
+	def next_page_func():
+		return "This is page3."
+
+	print app.call_method('/')
+	print app.call_method('/next_page')
+	print app.call_method('/page3')
+
+
+
+
+snippet decorator_django_urls_register
+
+	from django.conf import urls
+	urlpatterns = []
+
+	def register(view):
+		p = urls.url(view.url_regex, view.as_view())
+		p.add_prefix('vzhucloud.rest_api')
+		urlpatterns.append(p)
+		return view
+
+	@urls.register
+	class SecurityPasswd(generic.View):
+		url_regex = r'wzcloud/account/security/modify_passwd$'
+
+
+
+snippet decorator_more_demo 
+	/usr/share/openstack-dashboard/openstack_dashboard/
+	def ajax(authenticated=True, data_required=False,json_encoder=json.JSONEncoder):
+
+	# /usr/lib/python2.7/site-packages/django_crontab/:wq
+	
+snippet record
+	REF: decorator_func_return_value_save_to_file
+snippet decorator_func_return_value_save_to_file
+	from functools import wraps
+	def record(func):
+		@wraps(func)
+		def wrapper(*args, **kwargs):
+			datafn = "/tmp/record_"+func.__name__ + ".profile" # Name the data file
+			retval = func( *args, **kwargs)
+
+			fh = open(datafn, 'a')
+			fh.write("%s\n"%( retval) )
+			fh.close();
+			return retval
+		return wrapper
+
+	@record
+	def test_name(input):
+		return "%s: linux "%input;
+
+	@record
+	def get_data():
+		body = {'vip': {'name': 'name',
+			'description': 'description',
+			'subnet_id': 'subnet_id',
+			'protocol_port': 'protocol_port',
+			'protocol': 'protocol',
+			'pool_id': 'pool_id',
+			'session_persistence': 'session_persistence',
+			'admin_state_up': 'admin_state_up'
+			}}
+		return body;
+
+	#test_name("  maozhezhong ")
+	#get_data();
+
+snippet raise_demo
+	import traceback
+	def test1():
+		#print 1/0
+		raise SyntaxError, "traceback test"  
+
+	def test():
+		test1()
+
+	try:  
+		test()
+	except:  
+		#traceback.print_exc()  
+		print traceback.format_exc()
+
+snippet  substring_get_all
+	def get_all_substring(input_str):
+	ret=[]
+		for length in range(1,len(input_str)+1):
+			for start in range( 0, len(input_str)-length +1 ):
+				ret.append(input_str[start: start+length])
+		return set(ret);
+
+snippet yaml_load
+	#coding=utf-8
+	import yaml  
+	f = open('/root/bin/ansible/0_simplest/webserver.yaml')  
+	x = yaml.load(f)  
+	print x  
+
+
+snippet stringio_demo
+	def getErrorMsg():
+		fp = StringIO.StringIO()
+		traceback.print_exc(file=fp)
+		message = fp.getvalue()
+		return message
+
+snippet raise_demo2
+	import traceback
+	def test():
+		try:
+			raise Exception("linux is old ")
+		except Exception, e:
+			print "======================="
+			print (traceback.format_exc())
+			print "======================="
+			raise e
+
+	def test2():
+		test();
+
+	test2()
+	
+snippet html_modal_dialog
+	/root/bin_ext/webvirtcloud/computes/templates/ create_comp_block.html
+
+snippet modal_dialog
+	/root/bin_ext/webvirtcloud/computes/templates/ create_comp_block.html
+
+snippet dialog_dialog
+	/root/bin_ext/webvirtcloud/computes/templates/ create_comp_block.html
+
+snippet sed_replace 
+	import re
+	test="http://www.baidu.com"
+	print  re.sub('com$','',test)   
+	print  re.sub('^http','',test)   
+
+
+snippet pymsql_demo
+	from __future__ import print_function
+	import pymysql
+	conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='', db='mysql')
+	cur = conn.cursor()
+	cur.execute("SELECT Host,User FROM user")
+	print(cur.description)
+	print()
+	for row in cur:
+		print(row)
+	cur.close()
+	conn.close()
+
+
+
+snippet decorator_function_name
+	ref: print_function_name
+
+snippet print_function_name
+	from functools import wraps
+	def print_fun_name(func):
+		wraps(func)
+		def wrapper(*args, **kwargs):
+			print "ACTION: "+func.__name__ 
+			retval = func( *args, **kwargs)
+			return retval
+		return wrapper
+	@print_fun_name
+	def test_name(input):
+		return "%s: linux "%input;
+
+	test_name("bbb")
+
+snippet vm_status
+	vm.status 1  == Active
+	vm.status 3  == Suspend 
+	vm.status 5  == Off
+
+snippet status_vm
+	vm.status 1  == Active
+	vm.status 3  == Suspend 
+	vm.status 5  == Off
+
+snippet django_orm_metadata
+	from django.db import models
+	class Person(models.Model):
+		name = models.CharField(max_length=30)
+		age = models.IntegerField()
+
+snippet django_Person
+	from django.db import models
+	class Person(models.Model):
+		name = models.CharField(max_length=30)
+		age = models.IntegerField()
+
+snippet django_orm_get
+	REF: django_orm_filter
+
+snippet django_orm_filter
+	LogContent.objects.filter(user=request.user).order_by("-logging_date")
+	LogContent.objects.filter(content__icontains=content).order_by("-logging_date")
+	LogContent.objects.filter(user=request.user).filter(logging_date=date)
+	LogContent.objects.filter(user=request.user).order_by("-logging_date")
+	LogContent.objects.get(id=log_id).delete()
+
+	Person.objects.filter(name="abc")           
+	Person.objects.filter(name__exact="abc")
+	Person.objects.filter(name__iexact="abc")   
+	Person.objects.filter(name__contains="abc") 
+	Person.objects.filter(name__icontains="abc")
+	Person.objects.filter(name__regex="^abc")   
+	Person.objects.filter(name__iregex="^abc")  
+
+
+
+snippet django_orm_create
+	1. Person.objects.create(name="WeizhongTu", age=24)
+	2. Person.objects.create(name=name,age=age)
+
+	3. 	p = Person(name="WZ", age=23)
+		p.save()
+	4.  p = Person(name="TWZ")
+		p.age = 23
+		p.save()
+	5:	Person.objects.get_or_create(name="WZT", age=23)
+
+
+snippet django_orm_exclude
+	Person.objects.exclude(name__contains="WZ")  # 
+	Person.objects.filter(name__contains="abc").exclude(age=23)  #
+
+snippet django_cmdline_orm
+	ref: django_orm_list_dump
+
+snippet django_orm_list_dump
+	# -*- coding: utf-8 -*-
+	from __future__ import unicode_literals
+
+	import sys
+	import os
+	reload(sys)
+	sys.setdefaultencoding('utf8') 
+	sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+	sys.path.append(os.path.dirname(os.path.realpath(__file__)))
+	os.environ['DJANGO_SETTINGS_MODULE'] = 'vzhucloud.settings'
+	import django
+	django.setup()
+
+	from datetime import datetime
+	from django.conf import settings
+	from django.utils.encoding import smart_str, smart_unicode
+
+	from vzhucloud.module.account.models import AccountInfo
+
+	if __name__ == '__main__':
+		#print settings;
+		for u in AccountInfo.objects.all():
+			print "%s"%u;
+
+
+snippet mongo_search 
+	mongoengine
+	ref: mongo_orm_contains
+
+snippet mongo_orm_contains
+	ar = TestData.objects(content__contains='abc123')	
+	ar = TestData.objects(content__icontains='abc123')
+	ar = TestData.objects(Q(name__icontains=u'abc') | Q(name__icontains=u'cde'))
+	2. 
+		search = {
+			'__raw__':{
+				'content':{'$regex':'A\S+\d+'},
+			},
+		}
+		ar = TestData.objects(**search)
+		
+
+snippet random_randint
+	import random
+	random.randint(1,100)
+	
+snippet sqlalchemy_simplest
+	from sqlalchemy.ext.declarative import declarative_base
+	from sqlalchemy import Column, Integer, String
+	from sqlalchemy.orm import Session
+	from sqlalchemy import create_engine
+	import random
+
+	Base = declarative_base()
+	class Network(Base):
+		__tablename__ = 'network'
+		network_id = Column(Integer,primary_key=True)
+		name = Column(String(100), nullable=False)
+		def __str__(self):
+			return "name=%s"%self.name
+
+	engine = create_engine('mysql+mysqldb://%s:%s@%s:3306/%s?charset=utf8'%( "root", "qianqian", "localhost","test"));
+	Base.metadata.create_all(engine)
+
+
+	session = Session(bind=engine)
+	session.add_all([Network(name='net10'), Network(name='net11')])
+	session.commit()
+
+	for each in  session.query(Network).all():
+		print each;
+
+snippet mongo_insert_demo
+	from pymongo import MongoClient
+	client = MongoClient("localhost", 27017);
+	db = client["teresa"];
+	col= db['html4'];
+
+	item={};
+	item['url']=url;
+	item['content']=None;
+	item['error']="timeout and so on";
+	item['update_time'] = datetime.datetime.now()
+	col.insert(dict(item));
+	client.close();
+
+
+
+
+snippet mongo_find_one
+	from pymongo import MongoClient
+
+	client = MongoClient("localhost", 27017);
+	db = client["teresa"];
+	col= db['html3'];
+	url="www.baidu.com";
+	db_dict=col.find_one({'domain':url});
+
+snippet mongo_find
+	REF: mongo_dump_findAll
+
+snippet mongo_dump_findAll
+	from pymongo import MongoClient
+	import  datetime;
+	client = MongoClient("localhost", 27017);
+	db = client["english"];
+	col= db['stage8'];
+
+	it = col.find()
+	for i in it:
+		print i
+
+snippet mongo_demo_1
+	/root/foreign_trade_management_sys/mongodb/add_updated_at_field.py
+	/root/foreign_trade_management_sys/mongodb/append_a_colume.py
+	/root/foreign_trade_management_sys/mongodb/append_domain_url.py
+	/root/foreign_trade_management_sys/mongodb/codes_demo.py
+	/root/foreign_trade_management_sys/mongodb/etl_get_all_url.py
+	/root/foreign_trade_management_sys/mongodb/exists_in_mongo.py
+	/root/foreign_trade_management_sys/mongodb/field_exists.py
+	/root/foreign_trade_management_sys/mongodb/find_one_demo.py
+	/root/foreign_trade_management_sys/mongodb/get_all_domains.py
+	/root/foreign_trade_management_sys/mongodb/get_new_domain.py
+	/root/foreign_trade_management_sys/mongodb/get_new_url.py
+
+snippet mongo_demo_2
+	/root/foreign_trade_management_sys/mongodb/index_create.py
+	/root/foreign_trade_management_sys/mongodb/mongo_search_with_dict.py
+	/root/foreign_trade_management_sys/mongodb/mongod_put_list.py
+	/root/foreign_trade_management_sys/mongodb/mongoexport_dump.py
+	/root/foreign_trade_management_sys/mongodb/rename_mogndo.py
+	/root/foreign_trade_management_sys/mongodb/update_upsert.py
+	/root/foreign_trade_management_sys/mongodb/update_url.py
+	/root/foreign_trade_management_sys/mongodb/upsert_full_record.py
+	/root/foreign_trade_management_sys/mongodb/desc_table_collections.py
+	/root/foreign_trade_management_sys/mongodb/dump_all.py
+
+snippet html2text_demo
+	import html2text
+	html=open("0.html").read()
+
+	print html2text.html2text(html, baseurl='', bodywidth=None)
+
+snippet filter_None
+	b=range(1,100)
+	b.append(None)
+	c = [ each  for each  in b if each];
+	print c;
+
+snippet mongo_bucket_batchsize
+	for each in col.find().batch_size(1024):
+
+snippet mongo_collection_name
+	from pymongo import MongoClient
+	client = MongoClient("localhost", 27017);
+	db = client["teresa"];
+	col= db['html3'];
+	print db._Database__name
+	print col._Collection__name
+
+snippet mongo_db_name
+	from pymongo import MongoClient
+	client = MongoClient("localhost", 27017);
+	db = client["teresa"];
+	col= db['html3'];
+	print db._Database__name
+	print col._Collection__name
