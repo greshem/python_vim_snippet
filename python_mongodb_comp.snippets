@@ -165,3 +165,112 @@ snippet mongodb_create_index
 		except Exception as e:
 			print "get  error info %s"%e;
 
+snippet mongodb_search_datetime
+	from pymongo import MongoClient
+	import  datetime;
+	client = MongoClient("localhost", 27017);
+	db = client["teresa"];
+	col= db['html_2017_10'];
+
+
+	it = col.find({"updated_at":
+		{
+			"$gte":  datetime.datetime(2017, 10, 5),
+			"$lte":  datetime.datetime(2017, 10, 8)
+		}} )
+	for i in it:
+		i.pop("content")
+		print i
+	print it.count()
+
+
+snippet mongodb_find_usage
+	db.raffle.find({"$or":[{"ticket_no":{"$in":[10,20,30]}},{"name":"tim"}]});  
+	db.raffle.find({"ticket_no":{"$in":[10,20,30]}}, {"name":1})  
+	it = col.find({"updated_at":
+		{
+			"$gte":  datetime.datetime(2017, 10, 5),
+			"$lte":  datetime.datetime(2017, 10, 8)
+		}} )
+
+	#mod math
+	db.people.find({"age":{"$mod":[12,0]}});  
+	db.people.find({"age":{"$not":{"$mod":[12,0]}}});  
+
+	#没有这个键的文档同样匹配值为null这种条件，如果我们需要过滤掉这种文档，需要另外一个条件操作符$exists，指明这个键必须存在：
+	db.cc.find({"y":{"$in":[null],$exists:true}});  
+
+	#regex
+	db.people.find({"name":/joe.*/i});  	
+
+	#regex not 
+	db.people.find({"name":{"$not":/joe.*/i}});  
+
+	指定返回那些列（键）：
+	select name, skills from users;
+	db.users.find({}, {'name' : 1, 'skills' : 1});
+
+snippet mongodb_find_where
+	where条件：
+	1.简单的等于:
+		select name, age, skills from users where name = 'hurry';
+		db.users.find({'name' : 'hurry'},{'name' : 1, 'age' : 1, 'skills' : 1});
+	2.使用and
+		select name, age, skills from users where name = 'hurry' and age = 18;
+		db.users.find({'name' : 'hurry', 'age' : 18},{'name' : 1, 'age' : 1, 'skills' : 1});
+	3.使用or
+		select name, age, skills from users where name = 'hurry' or age = 18;
+		db.users.find({ '$or' : [{'name' : 'hurry'}, {'age' : 18}] },{'name' : 1, 'age' : 1, 'skills' : 1});
+	4.<, <=, >, >= ($lt, $lte, $gt, $gte )
+		select * from users where age >= 20 and age <= 30;
+		db.users.find({'age' : {'$gte' : 20, '$lte' : 30}});
+	5.使用in, not in ($in, $nin)
+		select * from users where age in (10, 22, 26);
+		db.users.find({'age' : {'$in' : [10, 22, 26]}});
+	6.匹配null
+		select * from users where age is null;
+		db.users.find({'age' : null);
+	7.like (mongoDB 支持正则表达式)
+		select * from users where name like "%hurry%";
+		db.users.find({name:/hurry/}); 
+		select * from users where name like "hurry%";
+		db.users.find({name:/^hurry/}); 
+	8.使用distinct
+		select distinct (name) from users;
+		db.users.distinct('name');
+	9.使用count
+		select count(*) from users;
+		db.user.count();
+
+
+snippet mongodb_tree_collection
+	from pymongo import MongoClient
+	client = MongoClient("localhost", 27017);
+	db=client["teresa"];
+	for each in  sorted(db.collection_names()):
+		print "\t%s"%each
+		col=db[each];
+		db_dict=col.find_one();
+		print "\t\t%s"%"|".join(db_dict.keys())
+
+snippet mongodb_simplest_2
+	from pymongo import MongoClient
+	client = MongoClient("localhost", 27017);
+	for each in  client.teresa.top1m.find():
+		print each;
+snippet monodb_copy_and_move_collections
+	from pymongo import MongoClient
+	import  datetime;
+	client = MongoClient("localhost", 27017);
+
+	db = client["teresa"];
+	col= db['html3'];
+	black_col =  db['black'];
+
+	it = col.find({"domain":"baidu.com"})
+	for i in it:
+		print "in html3 domain=%s"%i['domain']
+		i.pop("_id")
+		black_col.insert(i)
+	col.remove({"domain":"baidu.com"})
+

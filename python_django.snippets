@@ -1,0 +1,98 @@
+snippet django_filtet_list
+	(1)add   
+		使用形式为：{{ value | add: "2"}}
+	(2)addslashes
+		使用形式为：{{ value | addslashes }}
+	(3)capfirst
+		使用形式为：{{ value | capfirst }}
+	(4)cut
+		 使用形式为：{{ value | cut:arg}}， 例如，如果value是“String with spaces” arg是" "那么输出是"Stringwithspaces"
+	(5)date
+		 使用形式为：：(b) {{ value | date }}，这种形式没有格式化字符串，这时候，格式化字符串会自动采用DATE_FORMAT所设置的形式。
+	(6)default
+		 使用形式：{{ value | default: "nothing" }}，例如，如果value是“”，那么输出将是nothing
+	(7)default_if_none
+		 使用形式：{{ value | default_if_none:"nothing" }}，例如，如果value是None，那么输出将是nothing
+		 意义：如果value是None，那么输出将使用缺省值
+	(8)dictsort
+		 使用形式：{{ value | dictsort:"name"}}，例如，
+	(9)dictsortreversed
+	   使用形式：与上述(8)完全相同。
+	(10)divisibleby
+	   使用形式：{{ value | divisibleby:arg}}，如果value是21，arg是3，那么输出将是True
+	(11)escape
+	   使用形式：{{ value | escape}}
+	(12)escapejs
+	   使用形式：{{ value | escapejs }}
+	(13)filesizeformat
+	   使用形式：{{ value | filesizeformat }}
+	(14)first
+	   使用形式：{{ value | first }}
+	(15)floatformat
+	   使用形式：{{ value | floatformat}}或者{{value|floatformat:arg}}，
+	(16)get_digit
+	   使用形式：{{ value | get_digit:"arg"}}，例如，如果value是123456789，arg是2，那么输出是8
+	(17)iriencode
+	   使用形式：{{value | iriencode}}
+	(18)join
+	   使用形式：{{ value | join:"arg"}}，如果value是['a','b','c']，arg是'//'那么输出是a//b//c
+	   意义：使用指定的字符串连接一个list，作用如同python的str.join(list)
+	(19)last
+	   使用形式：{{ value | last }}
+	(20)length
+	   使用形式：{{ value | length }}
+	(21)length_is
+	   使用形式：{{ value | length_is:"arg"}}
+	(22)linebreaks
+	   使用形式：{{value|linebreaks}}
+	   意义：value中的"\n"将被<br/>替代，并且整个value使用</p>包围起来，从而适和HTML的格式
+	(23)linebreaksbr
+	   使用形式：{{value |linebreaksbr}}
+	(24)linenumbers
+	   使用形式：{{value | linenumbers}}
+	(25)ljust
+	   使用形式：{{value | ljust}}
+	(25)center
+	   使用形式：{{value | center}}
+	(25)rjust
+	   使用形式：{{value | rjust}}
+	(26)lower
+	   使用形式：{{value | lower}}
+	(27)make_list
+	   使用形式：{{value | make_list}}
+	(28)pluralize
+	   使用形式：{{value | pluralize}}，或者{{value | pluralize:"es"}}，或者{{value | pluralize:"y,ies"}}
+	(29)random
+	   使用形式：{{value | random}}
+	(30)removetags
+	   使用形式：{{value | removetags:"tag1 tag2 tag3..."}}
+	(31)safe
+	   使用形式：{{value | safe}}
+	(32)safeseq
+	(33)slice
+	   使用形式：{{some_list | slice:":2"}}
+	(34)slugify
+		使用形式：{{value | slugify}}
+	(35)stringformat
+	(36)striptags
+		使用形式：{{value | striptags}}
+	(37)time
+		使用形式：{{value | time:"H:i"}}或者{{value | time}}
+	(38)title
+	(39)truncatewords
+		使用形式：{{value | truncatewords:2}}
+	(40)truncatewords_html
+		使用形式同(39)
+	(41)upper
+	(42)urlencode
+	(43)urlize
+		使用形式：{{ value | urlize }}
+	(44)urlizetrunc
+		使用形式：{{ value | urlizetrunc:15}}
+	(45)wordcount
+	(46)wordwrap
+		使用形式：{{value | wordwrap:5}}
+	(47)timesince
+		使用形式：{{value | timesince:arg}}
+	(48)timeuntil
+		使用形式：{{value | timeuntil}}

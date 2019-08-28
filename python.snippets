@@ -120,6 +120,7 @@ snippet reload_
 
 
 snippet utf8-setdefaultencoding_
+	# export PYTHONIOENCODING=UTF-8 
 	import sys
 	reload(sys);
 	sys.setdefaultencoding("utf-8")  
@@ -387,8 +388,9 @@ snippet basedir_
 snippet DATA_
 	#!/usr/bin/python
 	DATA="""
+	DATA
 	"""
-	print DATA;
+	print (DATA);
 
 snippet django_view_TemplateView_2_
 	from django.views.generic import TemplateView 
@@ -1148,8 +1150,8 @@ snippet continue_next.py_
 	    if each <30:
 	        pass;
 	    else:
-	        #continue;
-	        next;
+	        #continue;  #¿¿30¿¿¿¿¿¿¿
+	        next;		# 30 ¿¿¿¿¿¿, ¿¿¿¿¿¿ ¿¿¿¿¿¿
 	    print each;
 
 snippet continue.py_
@@ -1157,8 +1159,8 @@ snippet continue.py_
 	    if each <30:
 	        pass;
 	    else:
-	        #continue;
-	        next;
+			#continue;  #¿¿30¿¿¿¿¿¿¿
+	        next;		# 30 ¿¿¿¿¿¿, ¿¿¿¿¿¿ ¿¿¿¿¿¿
 	    print each;
 
 snippet next.py_
@@ -1166,8 +1168,8 @@ snippet next.py_
 	    if each <30:
 	        pass;
 	    else:
-	        #continue;
-	        next;
+			#continue;  #¿¿30¿¿¿¿¿¿¿
+	        next;		# 30 ¿¿¿¿¿¿, ¿¿¿¿¿¿ ¿¿¿¿¿¿
 	    print each;
 
 snippet yield_demo.py_
@@ -1837,7 +1839,7 @@ snippet dict_2_set.py_
 	print new_dict;
 	
 
-snippet mongo_search.py_
+snippet mongodb_search.py_
 	#coding=utf8
 	#ä¸­æ–‡
 	
@@ -2411,7 +2413,7 @@ snippet linux.py_
 		print sys.stdin.readline()[:-1];
 	
 
-snippet mongo_save_html.py_
+snippet mongodb_save_html.py_
 	
 	from pymongo import MongoClient
 	
@@ -4080,7 +4082,9 @@ snippet argsparse_array_
 
 snippet traceback_simplest_0
 	import traceback
-	print (traceback.format_exc())
+	import sys
+	traceback.print_exc(file=sys.stdout)
+	#print (traceback.format_exc())
 
 snippet traceback_demo_
 	import  traceback;
@@ -5562,11 +5566,11 @@ snippet django_orm_list_dump
 			print "%s"%u;
 
 
-snippet mongo_search 
+snippet mongodb_search 
 	mongoengine
 	ref: mongo_orm_contains
 
-snippet mongo_orm_contains
+snippet mongodb_orm_contains
 	ar = TestData.objects(content__contains='abc123')	
 	ar = TestData.objects(content__icontains='abc123')
 	ar = TestData.objects(Q(name__icontains=u'abc') | Q(name__icontains=u'cde'))
@@ -5609,7 +5613,7 @@ snippet sqlalchemy_simplest
 	for each in  session.query(Network).all():
 		print each;
 
-snippet mongo_insert_demo
+snippet mongodb_insert_demo
 	from pymongo import MongoClient
 	client = MongoClient("localhost", 27017);
 	db = client["teresa"];
@@ -5626,7 +5630,7 @@ snippet mongo_insert_demo
 
 
 
-snippet mongo_find_one
+snippet mongodb_find_one
 	from pymongo import MongoClient
 
 	client = MongoClient("localhost", 27017);
@@ -5635,10 +5639,10 @@ snippet mongo_find_one
 	url="www.baidu.com";
 	db_dict=col.find_one({'domain':url});
 
-snippet mongo_find
+snippet mongodb_find
 	REF: mongo_dump_findAll
 
-snippet mongo_dump_findAll
+snippet mongodb_dump_findAll
 	from pymongo import MongoClient
 	import  datetime;
 	client = MongoClient("localhost", 27017);
@@ -5649,7 +5653,7 @@ snippet mongo_dump_findAll
 	for i in it:
 		print i
 
-snippet mongo_demo_1
+snippet mongodb_demo_1
 	/root/foreign_trade_management_sys/mongodb/add_updated_at_field.py
 	/root/foreign_trade_management_sys/mongodb/append_a_colume.py
 	/root/foreign_trade_management_sys/mongodb/append_domain_url.py
@@ -5662,7 +5666,7 @@ snippet mongo_demo_1
 	/root/foreign_trade_management_sys/mongodb/get_new_domain.py
 	/root/foreign_trade_management_sys/mongodb/get_new_url.py
 
-snippet mongo_demo_2
+snippet mongodb_demo_2
 	/root/foreign_trade_management_sys/mongodb/index_create.py
 	/root/foreign_trade_management_sys/mongodb/mongo_search_with_dict.py
 	/root/foreign_trade_management_sys/mongodb/mongod_put_list.py
@@ -5686,10 +5690,10 @@ snippet filter_None
 	c = [ each  for each  in b if each];
 	print c;
 
-snippet mongo_bucket_batchsize
+snippet mongodb_bucket_batchsize
 	for each in col.find().batch_size(1024):
 
-snippet mongo_collection_name
+snippet mongodb_collection_name
 	from pymongo import MongoClient
 	client = MongoClient("localhost", 27017);
 	db = client["teresa"];
@@ -5697,10 +5701,307 @@ snippet mongo_collection_name
 	print db._Database__name
 	print col._Collection__name
 
-snippet mongo_db_name
+snippet mongodb_db_name
 	from pymongo import MongoClient
 	client = MongoClient("localhost", 27017);
 	db = client["teresa"];
 	col= db['html3'];
 	print db._Database__name
 	print col._Collection__name
+
+snippet assertpy_demo
+	from assertpy import assert_that
+	def test_something():
+		assert_that(1 + 2).is_equal_to(3)
+		assert_that('foobar')\
+			.is_length(6)\
+			.starts_with('foo')\
+			.ends_with('bar')
+		assert_that(['a', 'b', 'c'])\
+			.contains('a')\
+			.does_not_contain('x')
+snippet mongodb_copy_record
+	from pymongo import MongoClient
+	import  datetime;
+	client = MongoClient("localhost", 27017);
+
+	db = client["teresa"];
+	col= db['html3'];
+	black_col =  db['black'];
+
+	it = col.find({"domain":"baidu.com"})
+	for i in it:
+		i.pop("_id")
+		black_col.insert(i)
+	col.remove({"domain":"baidu.com"})
+
+snippet mongodb_remove_record
+	from pymongo import MongoClient
+	import  datetime;
+	client = MongoClient("localhost", 27017);
+
+	db = client["teresa"];
+	col= db['html3'];
+	black_col =  db['black'];
+
+	it = col.find({"domain":"baidu.com"})
+	for i in it:
+		i.pop("_id")
+		black_col.insert(i)
+	col.remove({"domain":"baidu.com"})
+
+snippet glob_lambda
+	import glob
+	import os;
+	ret = map( lambda x: os.path.basename(x),  glob.glob("/root/_pre_cache_greshem/chinese*.log"));
+snippet glob_lambda_test
+	pics = map( lambda x:os.path.basename(x),   glob.glob("/usr/include/*h"%chinese))
+
+snippet get_filesize
+	from os.path import join, getsize
+	# ref  du.py_
+
+
+snippet file_size
+	from os.path import join, getsize
+	# ref  du.py_
+
+
+
+snippet getsize
+	from os.path import join, getsize
+	# ref  du.py_
+
+
+
+snippet get_ip_address
+	def get_ip_addres():
+		import commands
+		output = commands.getoutput ("hostname -I |awk '{print $1}' ")
+		if output[-1]=="\n":
+			output[-1]=""
+		return output
+
+	print get_ip_addres()
+
+
+snippet cur_dir_name_to_array
+	REF  get_cur_dir_name_to_array
+
+snippet get_cur_dir_name_to_array
+	def get_cur_dir_name_to_array():
+		import os
+		import glob
+		names = []
+		for file in glob.glob("*"):
+			if os.path.isdir(file)  :
+				name =  os.path.basename(file)
+				names.append(name)
+
+		return names
+	print   get_cur_dir_name_to_array()
+
+snippet unicode_2_utf8
+	# gb2312¿ unicode ¿¿ utf8 
+	for each in open('/root/_pre_cache_greshem/_pre_cache_2018_07/¿¿_¿¿_¿¿_top_1000¿_.txt').readlines():
+		utf8_str = unicode(each, 'gb2312').encode("utf8");
+
+
+snippet random_choice_v2
+	import random
+	b = range(1,100)
+	print  random.choice(b)
+
+
+snippet choice_random_v2
+	import random
+	b = range(1,100)
+	print  random.choice(b)
+
+
+snippet format_1_2
+	import os,socket
+	'{0}.{1}'.format(socket.gethostname().partition('.')[0], os.getppid())
+
+
+
+snippet deepcopy_error
+	# erro 
+	def  error_demo():
+		info  = {"a":1,
+			 "b": 2};
+		ret = []
+		for each in range(1,10):
+			tmp = info
+			tmp['b']  = each
+			ret.append(tmp)
+		print ret;
+
+	# 
+	import copy 
+	def  correct_demo():
+		info  = {"a":1,
+			 "b": 2};
+		ret = []
+		for each in range(1,10):
+			tmp = copy.deepcopy(info)
+			tmp['b']  = each
+			ret.append(tmp)
+		print ret;
+
+	error_demo()
+	#correct_demo();
+
+snippet deepcopy_correct
+	# erro 
+	def  error_demo():
+		info  = {"a":1,
+			 "b": 2};
+		ret = []
+		for each in range(1,10):
+			tmp = info
+			tmp['b']  = each
+			ret.append(tmp)
+		print ret;
+
+	# 
+	import copy 
+	def  correct_demo():
+		info  = {"a":1,
+			 "b": 2};
+		ret = []
+		for each in range(1,10):
+			tmp = copy.deepcopy(info)
+			tmp['b']  = each
+			ret.append(tmp)
+		print ret;
+
+	#error_demo()
+	correct_demo();
+
+
+
+snippet pretty_table_v4
+	x = PrettyTable(['row1', 'row2', 'row3', 'row4'])
+
+	info=json.loads(r.content)
+	for each in info['data']['list']:
+		x.add_row([ each['row1'], each['row2'], each['row3'],  each['row4'] ])
+	print x
+
+
+
+snippet get_ip_hostname_I
+	import commands
+	def chomp(line):
+		if line[-1] == '\n':
+			line = line[:-1]
+		return line;
+	def get_mysql_ip():
+		line  =commands.getoutput( "hostname -I |awk '{print $1}'    ");
+		ip =  chomp(line)
+		assert ( ip != '')
+		assert ( ip != None)
+		return ip;
+	ip=get_mysql_ip()
+
+snippet zip_2_sequence
+	meta=['id', 'name', 'status', 'time', 'memory', 'cpu','unit','led'];
+	value=["39","FF_lpar39","Running","13d","2048M","0.80","4"];
+	print zip(meta, value) ;
+
+snippet zip_2_tuple
+	meta=['id', 'name', 'status', 'time', 'memory', 'cpu','unit','led'];
+	value=["39","FF_lpar39","Running","13d","2048M","0.80","4"];
+	print zip(meta, value) ;
+
+snippet stderr_demo1
+	import sys;
+	print >> sys.stderr, "ERRINFO "
+
+snippet STDERR_DEMO1
+	import sys;
+	print >> sys.stderr, "ERRINFO "
+	print sys.stderr.write('sf')
+
+snippet time_long_loop
+	import time
+	t = time.time()
+	print "sleep 10 second"
+	time.sleep(10)
+	print time.time() - t
+
+snippet jieba_simplest
+	import jieba
+	import sys;
+	reload(sys);
+	sys.setdefaultencoding("utf-8");
+
+	words = jieba.cut("chinese string ") #chinsse string
+	line= " ".join(words);
+	print line
+
+snippet sine_wave
+	#!/usr/bin/python
+	import random
+	import math  
+
+
+	for each in range(1,50):
+		#repeat=random.randint(1, 50) * math.sin(each)
+		repeat=int(50 * math.sin(each*0.2))
+		s="|"*repeat
+		print "%4.4s |%s"%(each,s)
+
+snippet match_number
+	import sys
+	import os
+	import re;
+	pattern=re.compile('\d+$');
+	match=pattern.match("33334")
+	if match:
+		print ("is number ")
+	else:
+		print ("not number ")
+		sys.exit(-1)
+
+snippet number_check_match 
+	REF: match_number
+
+snippet file_handler
+	import sys;
+	fh = open("/tmp/all.log", 'a')
+	print >> fh, "timestamp not specified; using the current time"
+	fh.close();
+
+snippet random_mac_addres
+	def random_mac():
+		import random
+		array= [ "%02x"%random.randint(1,256)    for each in range(1,5) ]
+		return "bd:ce:"+":".join(array)
+	   
+	print random_mac()
+
+
+snippet readline_map_lambda
+	def chomp(line):
+		if line[-1] == '\n':
+			line = line[:-1]
+		return line;
+	array=map ( lambda  line:chomp(line),   open("/etc/passwd").readlines())
+
+
+snippet lambda_chomp_readlines
+	def chomp(line):
+		if line[-1] == '\n':
+			line = line[:-1]
+		return line;
+	array=map ( lambda  line:chomp(line),   open("/etc/passwd").readlines())
+
+
+snippet chomp_readlines_lambda
+	def chomp(line):
+		if line[-1] == '\n':
+			line = line[:-1]
+		return line;
+	array=map ( lambda  line:chomp(line),   open("/etc/passwd").readlines())

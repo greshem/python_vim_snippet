@@ -1,0 +1,203 @@
+snippet numpy_ndarray_demo
+	ndarray.astype(dtype)转换类型		，若转换失败则会出现TypeError
+	ndarray.copy()复制一份ndar	ray(新的内存空间)
+	ndarray.reshape((N,M,...))将ndarray转化为N	*M*...的多维ndarray（非copy）
+	ndarray.transpose((xIndex,yIndex,...))根据维索引xIndex,yIndex...进行矩阵转置，依赖于shape，不è½用于一维矩阵（非copy）
+	ndarray.swapaxes(xIndex,yIndex)交æ¢维度（非copy）
+
+	#计算函数说明
+	ndarray.mean( axis=0 )求		平均值 
+	ndarray.sum( axis= 0)求和 
+	ndarray.cumsum( axis=0)
+
+	ndarr	ay.cumprod( axis=0) 累加 累乘
+	ndarray.std() ndarray.var() 方差 标准差
+	ndarray.max() ndarray.min() 最大值 最小值
+	ndarray.argmax() ndarray.argmin() 最大值索引 最小值索引
+	ndarray.any() ndarray.all() 是否至少有一个True 是否全部为True
+	ndarray.dot( ndarray) 计算矩阵内积
+	#排序函数 ndarray.sort(axis=0) 排序，返回源数据 
+
+snippet numpy_random
+	#C NumPy.random函数和属性： 函数说明 seed() seed(in	t) seed(ndarray)
+
+	#确定随机数生成种子
+	permutation(int)
+
+	permutation(ndarray)
+	返回一个一维从0~9的序列的随机排列
+
+	返回一个序列的随机排列
+	shuffle(ndarray)å¹一个序列就地随机排列
+
+	rand(int)
+	randint(begin,end,num=1)
+	产生int个均匀分布的样本值
+
+	#从给定的begin和end随机选取num个整数
+	randn(N, M, ...)生成一个N*M*...的正态分布（å³均值为0，标准差为1）的ndarray
+	normal(size=(N,M,...))生成	一个N*M*...的正态（高斯）分布的ndarray 
+	beta(ndarray1,ndarray2)产生beta分布的样本值，参数必须大于0 
+	chisquare()äº§生卡方分布的样本值 
+	gamma()产生gamma分布的样本值 
+	uniform()产生在[0,1)中均匀分布的样本值 	
+
+
+snippet numpy_linalg
+	numpy.linalg.LinAlgError
+	numpy.linalg.cholesky
+	numpy.linalg.cond
+	numpy.linalg.det
+	numpy.linalg.eig
+	numpy.linalg.eigh
+	numpy.linalg.eigvals
+	numpy.linalg.eigvalsh
+	numpy.linalg.inv
+	numpy.linalg.lstsq
+	numpy.linalg.matrix_power
+	numpy.linalg.matrix_rank
+	numpy.linalg.multi_dot
+	numpy.linalg.norm
+	numpy.linalg.pinv
+	numpy.linalg.qr
+	numpy.linalg.slogdet
+	numpy.linalg.solve
+	numpy.linalg.svd
+	numpy.linalg.tensorinv
+	numpy.linalg.tensorsolve
+
+snippet numpy_core_a
+
+	'abs', 'absolute', 'absolute_import', 'add', 'alen', 'all', 'allclose', 'alltrue', 'amax', 'amin', 'any', 'arange', 'arccos', 'arccosh', 'arcsin', 'arcsinh', 'arctan', 'arctan2', 'arctanh', 'argmax', 'argmin', 'argpartition', 'argsort', 'argwhere', 'around', 'array', 'array2string', 'array_equal', 'array_equiv', 'array_repr', 'array_str', 'arrayprint', 'asanyarray', 'asarray', 'ascontiguousarray', 'asfortranarray', 'atleast_1d', 'atleast_2d', 'atleast_3d',
+
+snippet numpy_core_b
+
+	'bench', 'base_repr', 'binary_repr', 'bitwise_and', 'bitwise_not', 'bitwise_or', 'bitwise_xor', 'block', 'bool8', 'bool_', 'broadcast', 'busday_count', 'busday_offset', 'busdaycalendar', 'byte', 'bytes_',
+
+snippet numpy_core_c
+
+	'can_cast', 'cast', 'cbrt', 'cdouble', 'ceil', 'cfloat', 'char', 'character', 'chararray', 'choose', 'clip', 'clongdouble', 'clongfloat', 'compare_chararrays', 'complex128', 'complex256', 'complex64', 'complex_', 'complexfloating', 'compress', 'concatenate', 'conj', 'conjugate', 'convolve', 'copysign', 'copyto', 'correlate', 'cos', 'cosh', 'count_nonzero', 'cross', 'csingle', 'cumprod', 'cumproduct', 'cumsum',
+
+snippet numpy_core_d
+	'datetime64',
+	'datetime_as_string',
+	'datetime_data',
+	'defchararray',
+	'deg2rad',
+	'degrees',
+	'diagonal',
+	'divide',
+	'division',
+	'divmod',
+	'dot',
+	'double',
+	'dtype',
+
+snippet numpy_core_e
+	'e',
+	'einsum',
+	'einsum_path',
+	'einsumfunc',
+	'empty',
+	'empty_like',
+	'equal',
+	'errstate',
+	'euler_gamma',
+	'exp',
+	'exp2',
+	'expm1',
+
+snippet numpy_core_f
+
+	'fabs', 'fastCopyAndTranspose', 'find_common_type', 'finfo', 'flatiter', 'flatnonzero', 'flexible', 'float128', 'float16', 'float32', 'float64', 'float_', 'float_power', 'floating', 'floor', 'floor_divide', 'fmax', 'fmin', 'fmod', 'format_parser', 'frexp', 'frombuffer', 'fromfile', 'fromfunction', 'fromiter', 'fromnumeric', 'frompyfunc', 'fromstring', 'full', 'full_like', 'function_base',
+
+snippet numpy_core_g_h
+	'generic',
+	'geomspace',
+	'get_printoptions',
+	'getbuffer',
+	'getbufsize',
+	'geterr',
+	'geterrcall',
+	'geterrobj',
+	'getlimits',
+	'greater',
+	'greater_equal',
+	'half',
+	'heaviside',
+	'hstack',
+	'hypot',
+
+snippet numpy_core_i
+	'identity',
+	'iinfo',
+	'indices',
+	'inexact',
+	'inf',
+	'info',
+	'infty',
+	'inner',
+	'int0',
+	'int16',
+	'int32',
+	'int64',
+	'int8',
+	'int_',
+	'int_asbuffer',
+	'intc',
+	'integer',
+	'intp',
+	'invert',
+	'is_busday',
+	'isclose',
+	'isfinite',
+	'isfortran',
+	'isinf',
+	'isnan',
+	'isnat',
+	'isscalar',
+	'issctype',
+	'issubdtype',
+
+snippet numpy_core_i
+	'ldexp', 'left_shift', 'less', 'less_equal', 'lexsort', 'linspace', 'little_endian', 'load', 'loads', 'log', 'log10', 'log1p', 'log2', 'logaddexp', 'logaddexp2', 'logical_and', 'logical_not', 'logical_or', 'logical_xor', 'logspace', 'longcomplex', 'longdouble', 'longfloat', 'longlong',
+
+snippet numpy_core_m
+	'machar', 'matmul', 'max', 'maximum', 'maximum_sctype', 'may_share_memory', 'mean', 'memmap', 'min', 'min_scalar_type', 'minimum', 'mod', 'modf', 'moveaxis', 'multiarray', 'multiply',
+
+snippet numpy_core_n
+	'nan', 'nbytes', 'ndarray', 'ndim', 'nditer', 'negative', 'nested_iters', 'newaxis', 'newbuffer', 'nextafter', 'nonzero', 'not_equal', 'number', 'numeric', 'numerictypes', 'obj2sctype', 'object0', 'object_', 'ones', 'ones_like', 'outer', 'partition', 'pi', 'positive', 'power', 'print_function', 'prod', 'product', 'promote_types', 'ptp', 'put', 'putmask',
+
+snippet numpy_core_r 
+	'rad2deg', 'radians', 'rank', 'ravel', 'rec', 'recarray', 'reciprocal', 'record', 'records', 'remainder', 'repeat', 'require', 'reshape', 'resize', 'result_type', 'right_shift', 'rint', 'roll', 'rollaxis', 'round', 'round_',
+
+snippet numpy_core_s
+	'sctype2char', 'sctypeDict', 'sctypeNA', 'sctypes', 'searchsorted', 'set_numeric_ops', 'set_printoptions', 'set_string_function', 'setbufsize', 'seterr', 'seterrcall', 'seterrobj', 'shape', 'shape_base', 'shares_memory', 'short', 'sign', 'signbit', 'signedinteger', 'sin', 'single', 'singlecomplex', 'sinh', 'size', 'sometrue', 'sort', 'spacing', 'sqrt', 'square', 'squeeze', 'stack', 'std', 'str_', 'string0', 'string_', 'subtract', 'sum', 'swapaxes',
+
+snippet numpy_core_t
+	'take', 'tan', 'tanh', 'tensordot', 'test', 'timedelta64', 'trace', 'transpose', 'true_divide', 'trunc', 'typeDict', 'typeNA', 'typecodes',
+
+snippet numpy_core_u
+	'ubyte', 'ufunc', 'uint', 'uint0', 'uint16', 'uint32', 'uint64', 'uint8', 'uintc', 'uintp', 'ulonglong', 'umath', 'unicode0', 'unicode_', 'unsignedinteger', 'ushort', 'var', 'vdot', 'void', 'void0', 'vstack', 'where', 'zeros', 'zeros_like']
+
+snippet utf8_2_unicode
+	# -*- coding: utf-8 -*-
+	gb2312_str="中国";
+	utf8_str=unicode(gb2312_str, 'utf8');
+	print "type=%s"%type(utf8_str)
+	print utf8_str
+	assert type(utf8_str) == unicode
+
+snippet gb2312_2_unicode
+	# -*- coding: gb2312 -*-
+	gb2312_str='ÖÐ¹ú';
+	utf8_str=unicode(gb2312_str, 'gb2312');
+	print "type=%s"%type(utf8_str)
+	print utf8_str
+	assert type(utf8_str) == unicode
+
+snippet unicode_2_gb2312
+	# -*- coding: utf-8 -*-
+	unicode_str=u"中国";
+	gb2312_str = unicode_str.encode("gb2312")
+	print type(gb2312_str)

@@ -1,0 +1,9 @@
+snippet PIL_load
+	from PIL import Image 
+	import numpy as np
+	im = np.array(Image.open("input.jpg"))
+
+	im = Image.fromarray(b.astype(‘uint8’)) # 生成 
+	im.save(“路径.jpg”) # 保存
+
+	im = np.array(Image.open(“.jpg”).convert(‘L’)) # convert(‘L’)表示转为灰度图
