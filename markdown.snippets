@@ -1,0 +1,459 @@
+# Markdown
+
+# Includes octopress (http://octopress.org/) snippets
+
+# The suffix `c` stands for "Clipboard".
+
+snippet [
+	[${1:text}](http://${2:address})
+snippet [*
+	[${1:link}](${2:`@*`})
+snippet [c
+	[${1:link}](${2:`@+`})
+snippet ["
+	[${1:text}](http://${2:address} "${3:title}")
+snippet ["*
+	[${1:link}](${2:`@*`} "${3:title}")
+snippet ["c
+	[${1:link}](${2:`@+`} "${3:title}")
+snippet [:
+	[${1:id}]: http://${2:url}
+
+snippet [:*
+	[${1:id}]: ${2:`@*`}
+
+snippet [:c
+	[${1:id}]: ${2:`@+`}
+
+snippet [:"
+	[${1:id}]: http://${2:url} "${3:title}"
+
+snippet [:"*
+	[${1:id}]: ${2:`@*`} "${3:title}"
+
+snippet [:"c
+	[${1:id}]: ${2:`@+`} "${3:title}"
+
+snippet ![
+	![${1:alttext}](${2:/images/image.jpg})
+snippet ![*
+	![${1:alt}](${2:`@*`})
+snippet ![c
+	![${1:alt}](${2:`@+`})
+snippet !["
+	![${1:alttext}](${2:/images/image.jpg} "${3:title}")
+snippet !["*
+	![${1:alt}](${2:`@*`} "${3:title}")
+snippet !["c
+	![${1:alt}](${2:`@+`} "${3:title}")
+snippet ![:
+	![${1:id}]: ${2:url}
+
+snippet ![:*
+	![${1:id}]: ${2:`@*`}
+
+snippet ![:"
+	![${1:id}]: ${2:url} "${3:title}"
+
+snippet ![:"*
+	![${1:id}]: ${2:`@*`} "${3:title}"
+
+snippet ![:"c
+	![${1:id}]: ${2:`@+`} "${3:title}"
+
+snippet <
+	<http://${1:url}>
+snippet <*
+	<`@*`>
+snippet <c
+	<`@+`>
+snippet **
+	**${1:bold}**
+
+snippet bold
+	**${1:bold}**
+
+snippet __
+	__${1:bold}__
+snippet ===
+	`repeat('=', strlen(getline(line(".") - 1)) - strlen(getline('.')))`
+
+	${0}
+snippet h1
+	# 这是 H1 #
+	## 这是 H2 ##
+	### 这是 H3 ######
+	#### 这是 H4 ######
+
+snippet -
+	-   ${0}
+snippet ---
+	`repeat('-', strlen(getline(line(".") - 1)) - strlen(getline('.')))`
+
+	${0}
+
+snippet blockquote
+	{% blockquote %}
+	${0:quote}
+	{% endblockquote %}
+
+snippet blockquote-author
+	{% blockquote ${1:author}, ${2:title} %}
+	${0:quote}
+	{% endblockquote %}
+
+snippet blockquote-link
+	{% blockquote ${1:author} ${2:URL} ${3:link_text} %}
+	${0:quote}
+	{% endblockquote %}
+
+snippet ```
+	\`\`\`
+	${1:code}
+	\`\`\`
+
+snippet url
+	[MIT](http://opensource.org/licenses/MIT)
+	This is a project template for [vue-cli](https://github.com/vuejs/vue-cli)
+
+
+snippet tree
+	# tree
+	* node1 - webpack config files
+	* node2 - webpack config files
+	* node3 - build
+	* node4 -your app
+		* subnode1
+		* subnode2
+		* subnode3
+		* subnode4
+	* node5 - static assets
+
+
+snippet star
+	# tree
+	* node1 - webpack config files
+	* node2 - webpack config files
+	* node3 - build
+	* node4 -your app
+		* subnode1
+		* subnode2
+		* subnode3
+		* subnode4
+	* node5 - static assets
+
+
+snippet *
+	# tree
+	* node1 - webpack config files
+	* node2 - webpack config files
+	* node3 - build
+	* node4 -your app
+		* subnode1
+	    * subnode2
+		* subnode3
+		* subnode4
+			* depth31
+			* depth32
+	* node5 - static assets
+
+
+snippet code
+	\`\`\` bash
+		for each in $(seq  1 100)
+		do
+			echo $each
+		done
+	\`\`\`
+snippet ulli
+	# step
+	1. step1
+	2. step2
+	3. step3
+
+snippet list
+	## Editors
+	- [Sublime Text](https://github.com/dreikanter/sublime-bookmarks)
+	- [Vim](https://github.com/mhinz/vim-galore)
+	- [Emacs](https://github.com/emacs-tw/awesome-emacs)
+	- [Atom](https://github.com/mehcode/awesome-atom) - Open-source and hackable text editor.
+	- [Visual Studio Code](https://github.com/viatsko/awesome-vscode)
+
+
+snippet tree2
+	## Platforms
+	- [Linux](https://github.com/aleksandar-todorovic/awesome-linux)
+		- [Containers](https://github.com/Friz-zy/awesome-linux-containers)
+	- [macOS](https://github.com/iCHAIT/awesome-macOS)
+		- [Command-Line](https://github.com/herrbischoff/awesome-osx-command-line)
+		- [Screensavers](https://github.com/aharris88/awesome-macos-screensavers)
+	- [watchOS](https://github.com/yenchenlin/awesome-watchos)
+
+snippet -
+	## Platforms
+	- [Linux](https://github.com/aleksandar-todorovic/awesome-linux)
+		- [Containers](https://github.com/Friz-zy/awesome-linux-containers)
+	- [macOS](https://github.com/iCHAIT/awesome-macOS)
+		- [Command-Line](https://github.com/herrbischoff/awesome-osx-command-line)
+		- [Screensavers](https://github.com/aharris88/awesome-macos-screensavers)
+	- [watchOS](https://github.com/yenchenlin/awesome-watchos)
+
+
+
+
+
+
+
+snippet ```language
+	\`\`\`${1:language}
+	${2:code}
+	\`\`\`
+
+
+snippet js
+	```javascript
+	\`\`\`${1:language}
+	${2:code}
+	\`\`\`
+
+snippet javascript
+	```javascript
+	\`\`\`${1:language}
+	${2:code}
+	\`\`\`
+
+
+snippet codeblock-short
+	{% codeblock %}
+	${0:code_snippet}
+	{% endcodeblock %}
+
+snippet codeblock-full
+	{% codeblock ${1:title} lang:${2:language} ${3:URL} ${4:link_text} %}
+	${0:code_snippet}
+	{% endcodeblock %}
+
+snippet gist-full
+	{% gist ${1:gist_id} ${0:filename} %}
+
+snippet gist-short
+	{% gist ${0:gist_id} %}
+
+snippet img0
+	{% img ${1:class} ${2:URL} ${3:width} ${4:height} ${5:title_text} ${0:alt_text} %}
+
+snippet youtube
+	{% youtube ${0:video_id} %}
+
+# The quote should appear only once in the text. It is inherently part of it.
+# See http://octopress.org/docs/plugins/pullquote/ for more info.
+
+snippet pullquote
+	{% pullquote %}
+	${1:text} {" ${2:quote} "} ${0:text}
+	{% endpullquote %}
+
+
+snippet strong_bold
+	*single asterisks*
+	**double asterisks**
+
+snippet bold_strong
+	*single asterisks*
+	**double asterisks**
+snippet pic
+	![Aaron Swartz](https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg) 
+snippet img2
+	![Aaron Swartz](https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg) 
+	![name](name.jpg) 
+	![name2](static/name.jpg) 
+
+snippet png
+	![Aaron Swartz](https://github.com/younghz/Markdown/raw/master/resource/Aaron_Swartz.jpg) 
+
+snippet hr
+	在一行中用三个以上的星号(*)、减号(-)、下划线(_)
+	***
+
+snippet longline
+	在一行中用三个以上的星号(*)、减号(-)、下划线(_)
+	***
+	****
+	---
+	___	
+
+
+snippet hr
+	在一行中用三个以上的星号(*)、减号(-)、下划线(_)
+	***
+	****
+	---
+	___	
+
+
+snippet awesome_python 
+	# Other Awesome Lists
+	* Monty
+		* [awesome](https://github.com/sindresorhus/awesome)
+		* [lists](https://github.com/jnv/lists)
+	* Python
+		* [pycrumbs](https://github.com/kirang89/pycrumbs)
+		* [python-github-projects](https://github.com/checkcheckzz/python-github-projects)
+		* [python_reference](https://github.com/rasbt/python_reference)
+		* [pythonidae](https://github.com/svaksha/pythonidae)
+
+snippet README.md
+	# name - software name  usage 
+
+	This is a dashboard that  help to babalabala 
+
+	Ant notice soemthign .
+
+	# Installation
+
+	```sh
+	bundle install
+	cp config/zabbix.yml.sample config/zabbix.yml
+	vi config/zabbix.yml
+	```
+
+	## config.yml
+
+	```yaml
+	endpoint: http://localhost/zabbix/api_jsonrpc.php
+	user: Admin
+	password: zabbix
+	url: http://localhost/zabbix
+	```
+
+	# Start app
+
+	```sh
+	bundle exec rails s
+	```
+
+	Then go to `http://localhost:3000`.
+
+	# Screenshot
+
+	## Host by hostgroup/template
+
+	![](https://i.gyazo.com/b64bf2f741f22304b52f9593d894def1.png)
+
+	## Host graphs
+
+	![](https://i.gyazo.com/84be6a93ff92440145b9fe4cef85b609.png)
+
+snippet README.md.2
+	TEMPLATE
+	======
+
+	想用XXXXXXXXXXXXXX，可以试试TEMPLATE。
+
+	### 安装
+
+	>	npm install tianshu -g
+
+	### 使用
+
+		- 第一步
+		- 第二步
+		- 第三步
+		- 第四步
+	>	tianshu index.tpl
+
+	NOTICE:  怎么怎么
+
+	### 开源协议
+
+	本程序基于MIT协议开源。
+
+		TAB TAB TAB TAB
+
+snippet template_1
+	参考  README.md.1   README.md.2
+
+
+snippet demo1
+	参考  README.md.1   README.md.2
+
+snippet turtle
+	REF:  TEMPLATE_markdown 
+
+snippet TEMPLATE_markdown
+	Python小海龟
+	=============
+
+
+	一个开发环境
+	参考LOGO.
+
+	主页: [http://pythonturtle.org](http://pythonturtle.org)
+
+	学习Python的快速环境
+	----------------------------------------
+
+	PythonTurtle 快速学习python
+	Python shell (类似[IDLE开发环境](https://docs.python.org/3/library/idle.html)) 
+	用python进行绘制
+
+
+	帮助学生快速学习
+
+	![截图](http://pythonturtle.org/images/screenshot.gif)
+
+	安装
+	------------
+
+	安装程序
+	[pythonturtle.org](http://pythonturtle.org) 或者 [GitHub](https://github.com/cool-RR/PythonTurtle/releases).
+
+	Ubuntu Linux:
+
+	\`\`\`bash
+	sudo apt-get install -y python3-wxgtk4.0
+	\`\`\`
+
+	Fedora:
+
+	\`\`\`bash
+	python3 -m pip install wxpython
+	\`\`\`
+
+	Centos下
+
+	\`\`\`bash
+	python3 -m pip install --user PythonTurtle
+	PythonTurtle
+	\`\`\`
+
+
+	兼容性
+	-------------
+
+	Python 3.6 and wxPython  4.0.1. 系统通过测试
+	Windows, macOS, Ubuntu Linux, and Fedora.有问题请联系
+
+	开发
+	-----------
+
+	\`\`\`bash
+	git clone https://github.com/cool-RR/PythonTurtle.git
+	cd PythonTurtle
+	python3 -m pythonturtle
+	\`\`\`
+
+	编译:
+
+	\`\`\`bash
+	python3 setup.py clean bundle
+	\`\`\`
+
+	欢迎提bug [open a pull request](https://github.com/cool-RR/PythonTurtle/pulls) 
+
+	其他
+	-----
+
+	MIT 授权.
+
+	PythonTurtle 2009创建.  帮助小朋友进行学习

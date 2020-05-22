@@ -1,0 +1,2322 @@
+extends html
+
+
+snippet bootstrap3_cdn_Bootstrap
+	<!-- Latest compiled and minified CSS -->
+	<script src="http://cdn.bootcss.com/jquery/2.2.3/jquery.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+snippet bootstrap3_include_Bootstrap
+	<script src="http://cdn.bootcss.com/jquery/2.2.3/jquery.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+snippet bootstrapcdn2_Bootstrap
+	<link href="http://cdn.bootcss.com/bootstrap/2.2.1/css/bootstrap.css" rel="stylesheet" type="text/css" rel="stylesheet"/>
+	<link href="http://cdn.bootcss.com/bootstrap/2.2.1/css/what.css" rel="stylesheet" type="text/css" rel="stylesheet"/>
+	<script src="http://cdn.bootcss.com/jquery/1.8.1/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/2.2.1/bootstrap.js"></script
+
+
+snippet bt4_basictemplate_Bootstrap_header_include
+	<!DOCTYPE html>
+	<html lang="en">
+	  <head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>Bootstrap 101 Template</title>
+	
+	    <!--_Bootstrap -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	
+	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+
+	      <script src="http://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	      <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+	  </head>
+	  <body>
+	    <h1>Hello, world!</h1>
+	
+	    <!-- jQuery (necessary for_Bootstrap's JavaScript plugins) -->
+		<script src="http://cdn.bootcss.com/jquery/2.2.3/jquery.js" type="text/javascript"></script>
+	    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+	  </body>
+	</html>
+
+
+
+snippet bt4_html5_Bootstrap
+	<!DOCTYPE html>
+	<html lang="en">
+	  ${1:...}
+	</html>
+
+
+
+
+snippet bt4_viewport_Bootstrap
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+snippet bt4_viewportnozoom_Bootstrap
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+
+snippet bt4_container_Bootstrap
+	<div class="container">
+	  ${1:...}
+	</div>
+
+snippet bt4_containerfluid_Bootstrap
+	<div class="container-fluid">
+	  ${1:...}
+	</div>
+
+
+snippet bt4_row_Bootstrap
+	<div class="row">
+	  ${1:...}
+	</div>
+
+snippet bt4_colxs_Bootstrap
+	<div class="col-xs-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_colsm_Bootstrap
+	<div class="col-sm-${1:1}">
+	  ${2:...}
+	</div>
+snippet bt4_sm_md_xs
+	<div class="col-sm-1 col-md-1 col-xs-1 ">
+	</div>
+	<div class="col-sm-2 col-md-2 col-xs-2 ">
+	</div>
+
+snippet bt4_offset_col_sm_md_xs_Bootstrap
+	<div class="col-xs-offset-6">
+	</div>
+
+
+
+snippet bt4_colmd_Bootstrap
+	<div class="col-md-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_collg_Bootstrap
+	<div class="col-lg-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_colxsoffset_Bootstrap
+	<div class="col-xs-offset-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_colsmoffset_Bootstrap
+	<div class="col-sm-offset-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_colmdoffset_Bootstrap
+	<div class="col-md-offset-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_collgoffset_Bootstrap
+	<div class="col-lg-offset-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_colxspush_Bootstrap
+	<div class="col-xs-push-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_colsmpush_Bootstrap
+	<div class="col-sm-push-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_colmdpush_Bootstrap
+	<div class="col-md-push-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_collgpush_Bootstrap
+	<div class="col-lg-push-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_colxspull_Bootstrap
+	<div class="col-xs-pull-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_colsmpull_Bootstrap
+	<div class="col-sm-pull-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_colmdpull_Bootstrap
+	<div class="col-md-pull-${1:1}">
+	  ${2:...}
+	</div>
+
+snippet bt4_collgpull_Bootstrap
+	<div class="col-lg-pull-${1:1}">
+	  ${2:...}
+	</div>
+
+
+snippet bt4_h1_Bootstrap
+	<h1>${1:Bootstrap heading}</h1>
+
+snippet bt4_h2_Bootstrap
+	<h2>${1:Bootstrap heading}</h2>
+
+snippet bt4_h3_Bootstrap
+	<h3>${1:Bootstrap heading}</h3>
+
+snippet bt4_h4_Bootstrap
+	<h4>${1:Bootstrap heading}</h4>
+
+snippet bt4_h5_Bootstrap
+	<h5>${1:Bootstrap heading}</h5>
+
+snippet bt4_h6_Bootstrap
+	<h6>${1:Bootstrap heading}</h6>
+
+
+snippet bt4_h1_small_Bootstrap
+	<h1>${1:Bootstrap heading} <small>${2:Secondary text}</small></h1>
+
+snippet bt4_h2small_Bootstrap
+	<h2>${1:Bootstrap heading} <small>${2:Secondary text}</small></h2>
+
+snippet bt4_h3small_Bootstrap
+	<h3>${1:Bootstrap heading} <small>${2:Secondary text}</small></h3>
+
+snippet bt4_h4small_Bootstrap
+	<h4>${1:Bootstrap heading} <small>${2:Secondary text}</small></h4>
+
+snippet bt4_h5small_Bootstrap
+	<h5>${1:Bootstrap heading} <small>${2:Secondary text}</small></h5>
+
+snippet bt4_h6small_Bootstrap
+	<h6>${1:Bootstrap heading} <small>${2:Secondary text}</small></h6>
+
+snippet bt4_p_Bootstrap
+	<p>${1:...}</p>
+
+snippet bt4_lead_Bootstrap
+	<p class="lead">${1:...}</p>
+
+snippet bt4_mark_Bootstrap
+	<mark>${1:hightlight}</mark>
+
+snippet bt4_del_Bootstrap
+	<del>${1:This line of text is meant to be treated as deleted text.}</del>
+
+snippet bt4_s_Bootstrap
+	<s>${1:This line of text is meant to be treated as no longer accurate.}</s>
+
+snippet bt4_ins_Bootstrap
+	<ins>${1:This line of text is meant to be treated as an addition to the document.}</ins>
+
+snippet bt4_u_Bootstrap
+	<u>${1:This line of text will render as underlined}</u>
+
+snippet bt4_small_Bootstrap
+	<small>${1:This line of text is meant to be treated as fine print.}</small>
+
+snippet bt4_strong_Bootstrap
+	<strong>word</strong>
+
+snippet bt4_em_Bootstrap
+	<em>${1:italicized text}</em>
+
+snippet bt4_text_left_Bootstrap
+	<p class="text-left">${1:Left aligned text.}</p>
+
+snippet bt4_text_center_Bootstrap
+	<p class="text-center">${1:Center aligned text.}</p>
+
+snippet bt4_textright_Bootstrap
+	<p class="text-right">${1:Right aligned text.}</p>
+
+snippet bt4_textjustify_Bootstrap
+	<p class="text-justify">${1:Justified text.}</p>
+
+snippet bt4_textnowrap_Bootstrap
+	<p class="text-nowrap">${1:No wrap text.}</p>
+
+
+snippet bt4_textlowercase_Bootstrap
+	<p class="text-lowercase">${1:Lowercased text.}</p>
+
+snippet bt4_textuppercase_Bootstrap
+	<p class="text-uppercase">${1:Uppercased text.}</p>
+
+snippet bt4_textcapitalize_Bootstrap
+	<p class="text-capitalize">${1:Capitalized text.}</p>
+
+snippet bt4_abbr_Bootstrap
+	<abbr title="${1:attribute}">${2:attr}</abbr>
+
+
+snippet bt4_initialism_Bootstrap
+	<abbr title="${1:HyperText Markup Language}" class="initialism">${2:HTML}</abbr>
+
+snippet bt4_address_Bootstrap
+	<address>
+	  <strong>${1:Twitter, Inc.}</strong><br>
+	  ${2:795 Folsom Ave, Suite 600}<br>
+	  ${3:San Francisco, CA 94107}<br>
+	  <abbr title="Phone">P:</abbr> ${4:(123) 456-7890}
+	</address>
+	
+	<address>
+	  <strong>${5:Full Name}</strong><br>
+	  <a href="mailto:#">${6:first.last@example.com}</a>
+	</address>
+
+snippet bt4_blockquote_Bootstrap
+	<blockquote>
+	  <p>${1:Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.}</p>
+	</blockquote>
+
+snippet bt4_blockquotesource_Bootstrap
+	<blockquote>
+	  <p>${1:Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.}</p>
+	  <footer>${2:Someone famous in} <cite title="${3:Source Title}">$3</cite></footer>
+	</blockquote>
+
+snippet bt4_blockquotereverse_Bootstrap
+	<blockquote class="blockquote-reverse">
+	  ${1:...}
+	</blockquote>
+
+snippet bt4_ul_Bootstrap
+	<ul>
+	  <li>${1:...}</li>
+	</ul>
+
+snippet bt4_ol_Bootstrap
+	<ol>
+	  <li>${1:...}</li>
+	</ol>
+
+snippet bt4_listunstyled_Bootstrap
+	<ul class="list-unstyled">
+	  <li>${1:...}</li>
+	</ul>
+
+snippet bt4_listinline_Bootstrap
+	<ul class="list-inline">
+	  <li>${1:...}</li>
+	</ul>
+
+snippet bt4_dl_Bootstrap
+	<dl>
+	  <dt>${1:...}</dt>
+	  <dd>${2:...}</dd>
+	</dl>
+
+snippet bt4_dlhorizontal_Bootstrap
+	<dl class="dl-horizontal">
+	  <dt>${1:...}</dt>
+	  <dd>${2:...}</dd>
+	</dl>
+
+
+
+snippet bt4_code_Bootstrap
+	<code>${1:&lt;section&gt;}</code>
+
+snippet bt4_kbd_Bootstrap
+	<kbd>${1:cd}</kbd>
+
+snippet bt4_pre_Bootstrap
+	<pre>${1:&lt;p&gt;Sample text here...&lt;/p&gt;}</pre>
+
+snippet bt4_var_Bootstrap
+	<var>${1:x}</var>
+
+
+snippet bt4_samp_Bootstrap
+	<samp>${1:This text is meant to be treated as sample output from a computer program.}</samp>
+
+
+
+snippet bt4_table_Bootstrap
+	<table class="table">
+	  ${1:...}
+	</table>
+
+snippet bt4_table_striped_Bootstrap
+	<table class="table table-striped">
+	  ${1:...}
+	</table>
+
+snippet bt4_table_bordered_Bootstrap
+	<table class="table table-bordered">
+	  ${1:...}
+	</table>
+
+snippet bt4_table_hover_Bootstrap
+	<table class="table table-hover">
+	  ${1:...}
+	</table>
+
+snippet bt4_table_condensed_Bootstrap
+	<table class="table table-condensed">
+	  ${1:...}
+	</table>
+
+snippet bt4_tractive_Bootstrap
+	<tr class="active">${1:...}</tr>
+
+snippet bt4_trsuccess_Bootstrap
+	<tr class="success">${1:...}</tr>
+
+snippet bt4_trwarning_Bootstrap
+	<tr class="warning">${1:...}</tr>
+
+snippet bt4_trdanger_Bootstrap
+	<tr class="danger">${1:...}</tr>
+
+snippet bt4_tr_info_Bootstrap
+	<tr class="info">${1:...}</tr>
+
+
+snippet bt4_td_active_Bootstrap
+	<td class="active">${1:...}</td>
+
+snippet bt4_td_success_Bootstrap
+	<td class="success">${1:...}</td>
+
+snippet bt4_td_warning_Bootstrap
+	<td class="warning">${1:...}</td>
+
+snippet bt4_td_danger_Bootstrap
+	<td class="danger">${1:...}</td>
+
+snippet bt4_td_info_Bootstrap
+	<td class="info">${1:...}</td>
+
+
+snippet bt4_th_active_Bootstrap
+	<th class="active">${1:...}</th>
+
+snippet bt4_th_success_Bootstrap
+	<th class="success">${1:...}</th>
+
+snippet bt4_th_warning_Bootstrap
+	<th class="warning">${1:...}</th>
+
+snippet bt4_th_danger_Bootstrap
+	<th class="danger">${1:...}</th>
+
+snippet bt4_th_info_Bootstrap
+	<th class="info">${1:...}</th>
+
+snippet bt4_tableresponsive_Bootstrap
+	<div class="table-responsive">
+	  <table class="table">
+	    ${1:...}
+	  </table>
+	</div>
+
+
+
+snippet bt4_form_Bootstrap
+	<form>
+	  <div class="form-group">
+	    <label for="exampleInputEmail1">Email address</label>
+	    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+	  </div>
+	  <div class="form-group">
+	    <label for="exampleInputPassword1">Password</label>
+	    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+	  </div>
+	  <div class="form-group">
+	    <label for="exampleInputFile">File input</label>
+	    <input type="file" id="exampleInputFile">
+	    <p class="help-block">Example block-level help text here.</p>
+	  </div>
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox"> Check me out
+	    </label>
+	  </div>
+	  <button type="submit" class="btn btn-default">Submit</button>
+	</form>
+
+snippet bt4_form_inline_Bootstrap
+	<form class="form-inline">
+	  <div class="form-group">
+	    <label class="sr-only" for="exampleInputEmail3">Email address</label>
+	    <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Enter email">
+	  </div>
+	  <div class="form-group">
+	    <label class="sr-only" for="exampleInputPassword3">Password</label>
+	    <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+	  </div>
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox"> Remember me
+	    </label>
+	  </div>
+	  <button type="submit" class="btn btn-default">Sign in</button>
+	</form>
+
+snippet bt4_formhorizontal_Bootstrap
+	<form class="form-horizontal">
+	  <div class="form-group">
+	    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+	    <div class="col-sm-10">
+	      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+	    <div class="col-sm-10">
+	      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <div class="col-sm-offset-2 col-sm-10">
+	      <div class="checkbox">
+	        <label>
+	          <input type="checkbox"> Remember me
+	        </label>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <div class="col-sm-offset-2 col-sm-10">
+	      <button type="submit" class="btn btn-default">Sign in</button>
+	    </div>
+	  </div>
+	</form>
+
+snippet bt4_input_Bootstrap
+	<input type="text" class="form-control" placeholder="${1:Text input}">
+
+snippet bt4_textarea_Bootstrap
+	<textarea class="form-control" rows="3"></textarea>
+
+snippet bt4_checkbox_Bootstrap
+	<div class="checkbox">
+	  <label>
+	    <input type="checkbox" value="${1:}">
+	    ${2:Option one is this and that&mdash;be sure to include why it's great}
+	  </label>
+	</div>
+
+snippet bt4_radio_Bootstrap
+	<div class="radio">
+	  <label>
+	    <input type="radio" name="${1:optionsRadios}" id="${2:optionsRadios1}" value="${3:option1}" checked>
+	    ${4:Option one is this and that&mdash;be sure to include why it's great}
+	  </label>
+	</div>
+	<div class="radio">
+	  <label>
+	    <input type="radio" name="${5:optionsRadios}" id="${6:optionsRadios2}" value="${7:option2}">
+	    ${8:Option two can be something else and selecting it will deselect option one}
+	  </label>
+	</div>
+
+snippet bt4_checkboxinline_Bootstrap
+	<label class="checkbox-inline">
+	  <input type="checkbox" id="${1:inlineCheckbox1}" value="${2:option1}"> ${3:1}
+	</label>
+
+snippet bt4_radioinline_Bootstrap
+	<label class="radio-inline">
+	  <input type="radio" name="${1:inlineRadioOptions}" id="${2:inlineRadio1}" value="${3:option1}"> ${4:1}
+	</label>
+	<label class="radio-inline">
+	  <input type="radio" name="${5:inlineRadioOptions}" id="${6:inlineRadio2}" value="${7:option2}"> ${8:2}
+	</label>
+
+snippet bt4_select_Bootstrap
+	<select class="form-control">
+	  <option>${1:1}</option>
+	  <option>${2:2}</option>
+	</select>
+
+snippet bt4_selectmultiple_Bootstrap
+	<select multiple class="form-control">
+	  <option>${1:1}</option>
+	  <option>${2:2}</option>
+	</select>
+
+snippet bt4_form_controlstatic_Bootstrap
+	<div class="form-group">
+	  <label class="col-sm-2 control-label">${1:Email}</label>
+	  <div class="col-sm-10">
+	    <p class="form-control-static">${2:email@example.com}</p>
+	  </div>
+	</div>
+
+snippet bt4_input_disabled_Bootstrap
+	<input class="form-control" id="${1:disabledInput}" type="text" placeholder="${2:Disabled input here...}" disabled>
+
+snippet bt4_field_set_disabled_Bootstrap
+	<fieldset disabled>
+	  <div class="form-group">
+	    <label for="disabledTextInput">Disabled input</label>
+	    <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input">
+	  </div>
+	  <div class="form-group">
+	    <label for="disabledSelect">Disabled select menu</label>
+	    <select id="disabledSelect" class="form-control">
+	      <option>Disabled select</option>
+	    </select>
+	  </div>
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox"> Can't check this
+	    </label>
+	  </div>
+	  <button type="submit" class="btn btn-primary">Submit</button>
+	</fieldset>
+
+snippet bt4_inputreadonly_Bootstrap
+	<input class="form-control" type="text" placeholder="${1:Readonly input here...}" readonly>
+
+snippet bt4_formgrouphassuccess_Bootstrap
+	<div class="form-group has-success">
+	  <label class="control-label" for="$2">${1:Input with success}</label>
+	  <input type="text" class="form-control" id="${2:inputSuccess1}">
+	</div>
+
+snippet bt4_formgrouphaswarning_Bootstrap
+	<div class="form-group has-warning">
+	  <label class="control-label" for="$2">${1:Input with warning}</label>
+	  <input type="text" class="form-control" id="${2:inputWarning1}">
+	</div>
+
+snippet bt4_formgrouphaserror_Bootstrap
+	<div class="form-group has-error">
+	  <label class="control-label" for="$2">${1:Input with error}</label>
+	  <input type="text" class="form-control" id="${2:inputError1}">
+	</div>
+
+snippet bt4_checkboxhassuccess_Bootstrap
+	<div class="has-success">
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox" id="${1:checkboxSuccess}" value="${2:option1}">
+	      ${3:Checkbox with success}
+	    </label>
+	  </div>
+	</div>
+
+snippet bt4_checkboxhaswarning_Bootstrap
+	<div class="has-warning">
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox" id="${1:checkboxWarning}" value="${2:option1}">
+	      ${3:Checkbox with warning}
+	    </label>
+	  </div>
+	</div>
+
+snippet bt4_checkboxhaserror_Bootstrap
+	<div class="has-error">
+	  <div class="checkbox">
+	    <label>
+	      <input type="checkbox" id="${1:checkboxError}" value="${2:option1}">
+	      ${3:Checkbox with error}
+	    </label>
+	  </div>
+	</div>
+
+
+snippet bt4_formgrouphasfeedback_Bootstrap
+	<div class="form-group has-success has-feedback">
+	  <label class="control-label" for="$3">${1:Input group with success}</label>
+	  <div class="input-group">
+	    <span class="input-group-addon">${2:@}</span>
+	    <input type="text" class="form-control" id="${3:inputGroupSuccess1}" aria-describedby="$3Status">
+	  </div>
+	  <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+	  <span id="$3Status" class="sr-only">(success)</span>
+	</div>
+
+snippet bt4_inputlg_Bootstrap
+	<input class="form-control input-lg" type="text" placeholder="${1:.input-lg}">
+
+snippet bt4_inputsm_Bootstrap
+	<input class="form-control input-sm" type="text" placeholder="${1:.input-sm}">
+
+snippet bt4_selectlg_Bootstrap
+	<select class="form-control input-lg">${1:...}</select>
+
+snippet bt4_selectsm_Bootstrap
+	<select class="form-control input-sm">${1:...}</select>
+
+snippet bt4_formgrouplg_Bootstrap
+	<div class="form-group form-group-lg">
+	  <label class="col-sm-2 control-label" for="$2">${1:Large label}</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" type="text" id="${2:formGroupInputLarge}" placeholder="${3:Large input}">
+	  </div>
+	</div>
+
+snippet bt4_formgroupsm_Bootstrap
+	<div class="form-group form-group-sm">
+	  <label class="col-sm-2 control-label" for="$2">${1:Small label}</label>
+	  <div class="col-sm-10">
+	    <input class="form-control" type="text" id="${2:formGroupInputSmall}" placeholder="${3:Small input}">
+	  </div>
+	</div>
+
+snippet bt4_inputhelpblock_Bootstrap
+	<label class="sr-only" for="$2">${1:Input with help text}</label>
+	<input type="text" id="${2:inputHelpBlock}" class="form-control" aria-describedby="$3">
+	<span id="${3:helpBlock}" class="help-block">${4:A block of help text that breaks onto a new line and may extend beyond one line.}</span>
+
+
+
+
+snippet bt4_btn_Bootstrap
+	<button class="btn btn-default" type="submit">${1:Button}</button>
+
+snippet bt4_button_Bootstrap
+	<button class="btn btn-default" type="submit">${1:Button}</button>
+
+
+snippet bt4_abtn_Bootstrap
+	<a class="btn btn-default" href="${1:#}" role="button">${2:Link}</a>
+
+snippet bt4_inputbtn_Bootstrap
+	<input class="btn btn-default" type="button" value="${1:Input}">
+
+snippet bt4_submitbtn_Bootstrap
+	<input class="btn btn-default" type="submit" value="${1:Submit}">
+
+
+snippet bt4_btndefault_Bootstrap
+	<button type="button" class="btn btn-default">${1:Default}</button>
+
+snippet bt4_abtndefault_Bootstrap
+	<a href="${1:#}" class="btn btn-default" role="button">${2:Default}</a>
+
+snippet bt4_btnprimary_Bootstrap
+	<button type="button" class="btn btn-primary">Primary</button>
+
+snippet bt4_abtnprimary_Bootstrap
+	<a href="${1:#}" class="btn btn-primary" role="button">${2:Primary}</a>
+
+snippet bt4_btnsuccess_Bootstrap
+	<button type="button" class="btn btn-success">${1:Success}</button>
+
+snippet bt4_abtnsuccess Description
+	<a href="${1:#}" class="btn btn-success" role="button">${2:Success}</a>
+
+snippet bt4_btninfo_Bootstrap
+	<button type="button" class="btn btn-info">${1:Info}</button>
+
+snippet bt4_abtninfo_Bootstrap
+	<a href="${1:#}" class="btn btn-info" role="button">${2:Info}</a>
+
+snippet bt4_btnwarning_Bootstrap
+	<button type="button" class="btn btn-warning">${1:Warning}</button>
+
+snippet bt4_abtnwarning_Bootstrap
+	<a href="${1:#}" class="btn btn-warning" role="button">${2:Warning}</a>
+
+snippet bt4_btndanger_Bootstrap
+	<button type="button" class="btn btn-danger">${1:Danger}</button>
+
+snippet bt4_abtndanger_Bootstrap
+	<a href="${1:#}" class="btn btn-danger" role="button">${2:Danger}</a>
+
+snippet bt4_btnlink_Bootstrap
+	<button type="button" class="btn btn-link">${1:Link}</button>
+
+snippet bt4_abtnlink_Bootstrap
+	<a href="${1:#}" class="btn btn-link" role="button">${2:Link}</a>
+
+
+snippet bt4_btnlg_Bootstrap
+	<button type="button" class="btn btn-default btn-lg">${1:Large button}</button>
+
+snippet bt4_abtnlg_Bootstrap
+	<a href="${1:#}" class="btn btn-default btn-lg" role="button">${2:Large button}</a>
+
+snippet bt4_btnsm_Bootstrap
+	<button type="button" class="btn btn-default btn-sm">${1:Small button}</button>
+
+snippet bt4_abtnsm_Bootstrap
+	<a href="${1:#}" class="btn btn-default btn-sm" role="button">${2:Small button}</a>
+
+snippet bt4_btnxs_Bootstrap
+	<button type="button" class="btn btn-default btn-xs">${1:Extra small button}</button>
+
+snippet bt4_abtnxs_Bootstrap
+	<a href="${1:#}" class="btn btn-default btn-xs" role="button">${2:Extra small button}</a>
+
+snippet bt4_btnblock_Bootstrap
+	<button type="button" class="btn btn-default btn-block">${1:Block level button}</button>
+
+snippet bt4_abtnblock_Bootstrap
+	<a href="${1:#}" class="btn btn-default btn-block" role="button">${2:Block level button}</a>
+
+snippet bt4_btnactive_Bootstrap
+	<button type="button" class="btn btn-default active">${1:Button}</button>
+
+snippet bt4_abtnactive_Bootstrap
+	<a href="${1:#}" class="btn btn-default active" role="button">${2:Link}</a>
+
+snippet bt4_btndisabled_Bootstrap
+	<button type="button" class="btn btn-default" disabled="disabled">${1:Button}</button>
+
+snippet bt4_abtndisabled_Bootstrap
+	<a href="${1:#}" class="btn btn-default disabled" role="button">${2:Link}</a>
+
+
+
+snippet bt4_imgresponsive_Bootstrap
+	<img src="${1:...}" class="img-responsive" alt="${2:Responsive image}">
+
+snippet bt4_imgrounded_Bootstrap
+	<img src="${1:...}" alt="${2:...}" class="img-rounded">
+
+snippet bt4_imgcircle_Bootstrap
+	<img src="${1:...}" alt="${2:...}" class="img-circle">
+
+snippet bt4_imgthumbnail_Bootstrap
+	<img src="${1:...}" alt="${2:...}" class="img-thumbnail">
+
+
+
+snippet bt4_textmuted_Bootstrap
+	<p class="text-muted">${1:...}</p>
+
+snippet bt4_textprimary_Bootstrap
+	<p class="text-primary">${1:...}</p>
+
+snippet bt4_textsuccess_Bootstrap
+	<p class="text-success">${1:...}</p>
+
+snippet bt4_textinfo_Bootstrap
+	<p class="text-info">${1:...}</p>
+
+snippet bt4_textwarning_Bootstrap
+	<p class="text-warning">${1:...}</p>
+
+snippet bt4_textdanger_Bootstrap
+	<p class="text-danger">${1:...}</p>
+
+
+snippet bt4_bgprimary_Bootstrap
+	<p class="bg-primary">${1:...}</p>
+
+snippet bt4_bgsuccess_Bootstrap
+	<p class="bg-success">${1:...}</p>
+
+snippet bt4_bginfo_Bootstrap
+	<p class="bg-info">${1:...}</p>
+
+snippet bt4_bgwarning_Bootstrap
+	<p class="bg-warning">${1:...}</p>
+
+snippet bt4_bgdanger_Bootstrap
+	<p class="bg-danger">${1:...}</p>
+
+snippet bt4_close_Bootstrap
+	<button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+snippet bt4_caret_Bootstrap
+	<span class="caret"></span>
+
+
+snippet bt4_pullleft_Bootstrap
+	<div class="pull-left">${1:...}</div>
+
+snippet bt4_pullright_Bootstrap
+	<div class="pull-right">${1:...}</div>
+
+snippet bt4_centerblock_Bootstrap
+	<div class="center-block">${1:...}</div>
+
+snippet bt4_clearfix_Bootstrap
+	<div class="clearfix">${1:...}</div>
+
+
+snippet bt4_show_Bootstrap
+	<div class="show">${1:...}</div>
+
+snippet bt4_hidden_Bootstrap
+	<div class="hidden">${1:...}</div>
+
+snippet bt4_invisible_Bootstrap
+	<div class="invisible">${1:...}</div>
+
+snippet bt4_sronlyfocusable_Bootstrap
+	<a class="sr-only sr-only-focusable" href="${1:#content}">${2:Skip to main content}</a>
+
+snippet bt4_texthide_Bootstrap
+	<h1 class="text-hide">${1:Custom heading}</h1>
+
+
+snippet bt4_hiddenxs_Bootstrap
+	<div class="hidden-xs">${1:...}</div>
+
+snippet bt4_hiddensm_Bootstrap
+	<div class="hidden-sm">${1:...}</div>
+
+snippet bt4_hiddenmd_Bootstrap
+	<div class="hidden-md">${1:...}</div>
+
+snippet bt4_hiddenlg_Bootstrap
+	<div class="hidden-lg">${1:...}</div>
+
+snippet bt4_visiblexsblock_Bootstrap
+	<div class="visible-xs-block">${1:...}</div>
+
+snippet bt4_visiblexsinline_Bootstrap
+	<div class="visible-xs-inline">${1:...}</div>
+
+snippet bt4_visiblexsinlineblock_Bootstrap
+	<div class="visible-xs-inline-block">${1:...}</div>
+
+snippet bt4_visiblesmblock_Bootstrap
+	<div class="visible-sm-block">${1:...}</div>
+
+snippet bt4_visiblesminline_Bootstrap
+	<div class="visible-sm-inline">${1:...}</div>
+
+snippet bt4_visiblesminlineblock_Bootstrap
+	<div class="visible-sm-inline-block">${1:...}</div>
+
+snippet bt4_visiblemdblock_Bootstrap
+	<div class="visible-md-block">${1:...}</div>
+
+snippet bt4_visiblemdinline_Bootstrap
+	<div class="visible-md-inline">${1:...}</div>
+
+snippet bt4_visiblemdinlineblock_Bootstrap
+	<div class="visible-md-inline-block">${1:...}</div>
+
+snippet bt4_visiblelgblock_Bootstrap
+	<div class="visible-lg-block">${1:...}</div>
+
+snippet bt4_visiblelginline_Bootstrap
+	<div class="visible-lg-inline">${1:...}</div>
+
+snippet bt4_visiblelginlineblock_Bootstrap
+	<div class="visible-lg-inline-block">${1:...}</div>
+
+snippet bt4_visibleprintblock_Bootstrap
+	<div class="visible-print-block">${1:...}</div>
+
+snippet bt4_visibleprintinline_Bootstrap
+	<div class="visible-print-inline">${1:...}</div>
+
+snippet bt4_visibleprintinlineblock_Bootstrap
+	<div class="visible-print-inline-block">${1:...}</div>
+
+snippet bt4_hiddenprint_Bootstrap
+	<div class="hidden-print">${1:...}</div>
+
+
+
+
+snippet bt4_glyphicon_Bootstrap
+	<span class="glyphicon glyphicon-${1:heart}" aria-hidden="true"></span>
+
+snippet bt4_glyphicon_demo
+	/root/bin/bootstrap_v3/glyphicon_list.html 
+
+
+snippet bt4_dropdown_Bootstrap
+	<div class="dropdown">
+	  <button class="btn btn-default dropdown-toggle" type="button" id="${1:dropdownMenu1}" data-toggle="dropdown" aria-expanded="true">
+	    ${2:Dropdown}
+	    <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu" aria-labelledby="$1">
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="${3:#}">${4:Action}</a></li>
+	    <li role="presentation"><a role="menuitem" tabindex="-1" href="${5:#}">${6:Another action}</a></li>
+	  </ul>
+	</div>
+
+snippet bt4_dropdownmenuright_Bootstrap
+	<ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="${1:dLabel}">
+	  ${2:...}
+	</ul>
+
+snippet bt4_dropdownheader_Bootstrap
+	<li role="presentation" class="dropdown-header">${1:...}</li>
+
+snippet bt4_divider_Bootstrap
+	<li role="presentation" class="divider"></li>
+
+snippet bt4_lidisabled_Bootstrap
+	<li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="${1:#}">${2:...}</a></li>
+
+
+snippet bt4_btngroup_Bootstrap
+	<div class="btn-group" role="group" aria-label="${1:...}">
+	  <button type="button" class="btn btn-default">${2:Left}</button>
+	  <button type="button" class="btn btn-default">${3:Middle}</button>
+	  <button type="button" class="btn btn-default">${4:Right}</button>
+	</div>
+
+snippet bt4_abtngroup_Bootstrap
+	<div class="btn-group" role="group" aria-label="${1:...}">
+	  <a class="btn btn-default" href="${2:#}" role="button">${3:Left}</a>
+	  <a class="btn btn-default" href="${4:#}" role="button">${5:Middle}</a>
+	  <a class="btn btn-default" href="${6:#}" role="button">${7:Right}</a>
+	</div>
+
+snippet bt4_btntoolbar_Bootstrap
+	<div class="btn-toolbar" role="toolbar" aria-label="${1:...}">
+	  <div class="btn-group" role="group" aria-label="${2:...}">${3:...}</div>
+	  <div class="btn-group" role="group" aria-label="${4:...}">${5:...}</div>
+	  <div class="btn-group" role="group" aria-label="${6:...}">${7:...}</div>
+	</div>
+
+snippet bt4_btngrouplg_Bootstrap
+	<div class="btn-group btn-group-lg" role="group" aria-label="${1:...}">${2:...}</div>
+
+snippet bt4_btngroupsm_Bootstrap
+	<div class="btn-group btn-group-sm" role="group" aria-label="${1:...}">${2:...}</div>
+
+snippet bt4_btngroupxs_Bootstrap
+	<div class="btn-group btn-group-xs" role="group" aria-label="${1:...}">${2:...}</div>
+
+snippet bt4_btngroupvertical_Bootstrap
+	<div class="btn-group-vertical" role="group" aria-label="${1:...}">
+	  ${2:...}
+	</div>
+
+snippet bt4_btngroupjustified_Bootstrap
+	<div class="btn-group btn-group-justified" role="group" aria-label="${1:...}">
+	  <div class="btn-group" role="group">
+	    <button type="button" class="btn btn-default">${2:Left}</button>
+	  </div>
+	  <div class="btn-group" role="group">
+	    <button type="button" class="btn btn-default">${3:Middle}</button>
+	  </div>
+	  <div class="btn-group" role="group">
+	    <button type="button" class="btn btn-default">${4:Right}</button>
+	  </div>
+	</div>
+
+snippet bt4_abtngroupjustified_Bootstrap
+	<div class="btn-group btn-group-justified" role="group" aria-label="${1:...}">
+	  <a class="btn btn-default" href="#" role="button">${2:Left}</a>
+	  <a class="btn btn-default" href="#" role="button">${3:Middle}</a>
+	  <a class="btn btn-default" href="#" role="button">${4:Right}</a>
+	</div>
+
+
+snippet bt4_btndropdown_Bootstrap
+	<div class="btn-group">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+	    ${1:Action} <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="${1:#}">${2:Action}</a></li>
+	    <li><a href="${3:#}">${4:Another action}</a></li>
+	    <li><a href="${5:#}">${6:Something else here}</a></li>
+	    <li class="divider"></li>
+	    <li><a href="${7:#}">${8:Separated link}</a></li>
+	  </ul>
+	</div>
+
+snippet bt4_btndropdownsplit_Bootstrap
+	<div class="btn-group">
+	  <button type="button" class="btn btn-danger">${1:Action}</button>
+	  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+	    <span class="caret"></span>
+	    <span class="sr-only">Toggle Dropdown</span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <li><a href="${1:#}">${2:Action}</a></li>
+	    <li><a href="${3:#}">${4:Another} action</a></li>
+	    <li><a href="${5:#}">${6:Something} else here</a></li>
+	    <li class="divider"></li>
+	    <li><a href="${7:#}">${8:Separated} link</a></li>
+	  </ul>
+	</div>
+
+snippet bt4_btndropup_Bootstrap
+	<div class="btn-group dropup">
+	  <button type="button" class="btn btn-default">${1:Dropup}</button>
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+	    <span class="caret"></span>
+	    <span class="sr-only">Toggle Dropdown</span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    ${2:<!-- Dropdown menu links -->}
+	  </ul>
+	</div>
+
+
+snippet bt4_inputgroup_Bootstrap
+	<div class="input-group">
+	  <span class="input-group-addon">${1:$}</span>
+	  <input type="text" class="form-control" aria-label="${2:Amount (to the nearest dollar)}">
+	  <span class="input-group-addon">${3:.00}</span>
+	</div>
+
+snippet bt4_inputgrouplg_Bootstrap
+	<div class="input-group input-group-lg">
+	  <span class="input-group-addon" id="${1:sizing-addon1}">${2:@}</span>
+	  <input type="text" class="form-control" placeholder="${3:Username}" aria-describedby="$1">
+	</div>
+
+snippet bt4_inputgroupsm_Bootstrap
+	<div class="input-group input-group-sm">
+	  <span class="input-group-addon" id="${1:sizing-addon3}">${2:@}</span>
+	  <input type="text" class="form-control" placeholder="${3:Username}" aria-describedby="$1">
+	</div>
+
+snippet bt4_inputgroupcheckbox_Bootstrap
+	<div class="input-group">
+	  <span class="input-group-addon">
+	    <input type="checkbox" aria-label="${1:...}">
+	  </span>
+	  <input type="text" class="form-control" aria-label="${2:...}">
+	</div>
+
+snippet bt4_inputgroupradio_Bootstrap
+	<div class="input-group">
+	  <span class="input-group-addon">
+	    <input type="radio" aria-label="${1:...}">
+	  </span>
+	  <input type="text" class="form-control" aria-label="${2:...}">
+	</div>
+
+snippet bt4_inputgroupbtn_Bootstrap
+	<div class="input-group">
+	  <input type="text" class="form-control" placeholder="${1:Search for...}">
+	  <span class="input-group-btn">
+	    <button class="btn btn-default" type="button">${2:Go!}</button>
+	  </span>
+	</div>
+
+snippet bt4_inputgroupbtndropdown_Bootstrap
+	<div class="input-group">
+	  <input type="text" class="form-control" aria-label="${1:...}">
+	  <div class="input-group-btn">
+	    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">${2:Action} <span class="caret"></span></button>
+	    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+	      <li><a href="${3:#}">${4:Action}</a></li>
+	      <li><a href="${5:#}">${6:Another action}</a></li>
+	      <li><a href="${6:#}">${8:Something else here}</a></li>
+	      <li class="divider"></li>
+	      <li><a href="${9:#}">${10:Separated link}</a></li>
+	    </ul>
+	  </div><!-- /btn-group -->
+	</div>
+
+
+
+snippet bt4_navtabs_Bootstrap
+	<ul class="nav nav-tabs">
+	  <li role="presentation" class="active"><a href="${1:#}">${2:Home}</a></li>
+	  <li role="presentation"><a href="${3:#}">${4:Profile}</a></li>
+	  <li role="presentation"><a href="${5:#}">${6:Messages}</a></li>
+	</ul>
+
+snippet bt4_navpills_Bootstrap
+	<ul class="nav nav-pills">
+	  <li role="presentation" class="active"><a href="${1:#}">${2:Home}</a></li>
+	  <li role="presentation"><a href="${3:#}">${4:Profile}</a></li>
+	  <li role="presentation"><a href="${5:#}">${6:Messages}</a></li>
+	</ul>
+
+snippet bt4_navpillsstacked_Bootstrap
+	<ul class="nav nav-pills nav-stacked">
+	  ${1:...}
+	</ul>
+
+snippet bt4_navtabsjustified_Bootstrap
+	<ul class="nav nav-tabs nav-justified">
+	  ${1:...}
+	</ul>
+
+snippet bt4_navpillsjustified_Bootstrap
+	<ul class="nav nav-pills nav-justified">
+	  ${1:...}
+	</ul>
+
+snippet bt4_navtabsdropdown_Bootstrap
+	<ul class="nav nav-tabs">
+	  <li role="presentation" class="dropdown">
+	    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+	      ${1:Dropdown} <span class="caret"></span>
+	    </a>
+	    <ul class="dropdown-menu" role="menu">
+	      ${2:...}
+	    </ul>
+	  </li>
+	</ul>
+
+snippet bt4_navpillsdropdown_Bootstrap
+	<ul class="nav nav-pills">
+	  <li role="presentation" class="dropdown">
+	    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+	      ${1:Dropdown} <span class="caret"></span>
+	    </a>
+	    <ul class="dropdown-menu" role="menu">
+	      ${2:...}
+	    </ul>
+	  </li>
+	</ul>
+
+
+
+
+snippet bt4_navbar_headernav_Bootstrap
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">Brand</a>
+	    </div>
+	
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+	        <li><a href="#">Link</a></li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+	          <ul class="dropdown-menu" role="menu">
+	            <li><a href="#">Action</a></li>
+	            <li><a href="#">Another action</a></li>
+	            <li><a href="#">Something else here</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">Separated link</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">One more separated link</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	      <form class="navbar-form navbar-left" role="search">
+	        <div class="form-group">
+	          <input type="text" class="form-control" placeholder="Search">
+	        </div>
+	        <button type="submit" class="btn btn-default">Submit</button>
+	      </form>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="#">Link</a></li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+	          <ul class="dropdown-menu" role="menu">
+	            <li><a href="#">Action</a></li>
+	            <li><a href="#">Another action</a></li>
+	            <li><a href="#">Something else here</a></li>
+	            <li class="divider"></li>
+	            <li><a href="#">Separated link</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+snippet bt4_navbarform_Bootstrap
+	<form class="navbar-form navbar-left" role="search">
+	  <div class="form-group">
+	    <input type="text" class="form-control" placeholder="${1:Search}">
+	  </div>
+	  <button type="submit" class="btn btn-default">${2:Submit}</button>
+	</form>
+
+snippet bt4_navbarbtn_Bootstrap
+	<button type="button" class="btn btn-default navbar-btn">${1:Sign in}</button>
+
+snippet bt4_navbartext_Bootstrap
+	<p class="navbar-text">${1:Signed in as Mark Otto}</p>
+
+snippet bt4_navbarlink_Bootstrap
+	<a href="${1:#}" class="navbar-link">${2:Mark Otto}</a>
+
+snippet bt4_navbarfixedtop_Bootstrap
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container">
+	    ${1:...}
+	  </div>
+	</nav>
+
+snippet bt4_navbarfixedbottom_Bootstrap
+	<nav class="navbar navbar-default navbar-fixed-bottom">
+	  <div class="container">
+	    ${1:...}
+	  </div>
+	</nav>
+
+snippet bt4_navbarstatictop_Bootstrap
+	<nav class="navbar navbar-default navbar-static-top">
+	  <div class="container">
+	    ${1:...}
+	  </div>
+	</nav>
+
+snippet bt4_navbarinverse_Bootstrap
+	<nav class="navbar navbar-inverse">
+	  ${1:...}
+	</nav>
+
+
+
+
+snippet bt4_breadcrumb_Bootstrap
+	<ol class="breadcrumb">
+	  <li><a href="${1:#}">${2:Home}</a></li>
+	  <li><a href="${3:#}">${4:Library}</a></li>
+	  <li class="active">${5:Data}</li>
+	</ol>
+
+
+
+snippet bt4_pagination_Bootstrap
+	<nav>
+	  <ul class="pagination">
+	    <li class="disabled">
+	      <a href="#" aria-label="Previous">
+	        <span aria-hidden="true">&laquo;</span>
+	      </a>
+	    </li>
+	    <li class="active"><a href="#">1</a></li>
+	    <li><a href="#">2</a></li>
+	    <li><a href="#">3</a></li>
+	    <li><a href="#">4</a></li>
+	    <li><a href="#">5</a></li>
+	    <li>
+	      <a href="#" aria-label="Next">
+	        <span aria-hidden="true">&raquo;</span>
+	      </a>
+	    </li>
+	  </ul>
+	</nav>
+
+snippet bt4_paginationlg_Bootstrap
+	<nav><ul class="pagination pagination-lg">${1:...}</ul></nav>
+
+snippet bt4_paginationsm_Bootstrap
+	<nav><ul class="pagination pagination-sm">${1:...}</ul></nav>
+
+snippet bt4_pager_Bootstrap
+	<nav>
+	  <ul class="pager">
+	    <li><a href="${1:#}">${2:Previous}</a></li>
+	    <li><a href="${3:#}">${4:Next}</a></li>
+	  </ul>
+	</nav>
+
+snippet bt4_pageraligned_Bootstrap
+	<nav>
+	  <ul class="pager">
+	    <li class="previous"><a href="${1:#}"><span aria-hidden="true">&larr;</span> ${2:Older}</a></li>
+	    <li class="next"><a href="${3:#}">${4:Newer} <span aria-hidden="true">&rarr;</span></a></li>
+	  </ul>
+	</nav>
+
+
+
+snippet bt4_label_Bootstrap
+	<span class="label label-default">${1:Default}</span>
+
+snippet bt4_labeldefault_Bootstrap
+	<span class="label label-default">${1:Default}</span>
+
+snippet bt4_labelprimary_Bootstrap
+	<span class="label label-primary">${1:Primary}</span>
+
+snippet bt4_labelsuccess_Bootstrap
+	<span class="label label-success">${1:Success}</span>
+
+snippet bt4_labelinfo_Bootstrap
+	<span class="label label-info">${1:Info}</span>
+
+snippet bt4_labelwarning_Bootstrap
+	<span class="label label-warning">${1:Warning}</span>
+
+snippet bt4_labeldanger_Bootstrap
+	<span class="label label-danger">${1:Danger}</span>
+
+
+
+snippet bt4_badge_Bootstrap
+	<a href="${1:#}">${2:Inbox} <span class="badge">${3:42}</span></a>
+
+snippet bt4_badgebtn_Bootstrap
+	<button class="btn btn-primary" type="button">
+	  ${1:Messages} <span class="badge">${2:4}</span>
+	</button>
+
+snippet bt4_badgenav_Bootstrap
+	<ul class="nav nav-pills" role="tablist">
+	  <li role="presentation" class="active"><a href="${1:#}">${2:Home} <span class="badge">${3:42}</span></a></li>
+	  <li role="presentation"><a href="${4:#}">${5:Profile}</a></li>
+	  <li role="presentation"><a href="${6:#}">${7:Messages} <span class="badge">${8:3}</span></a></li>
+	</ul>
+
+
+snippet bt4_jumbotron_Bootstrap
+	<div class="jumbotron">
+	  <h1>${1:Hello, world!}</h1>
+	  <p>${2:...}</p>
+	  <p><a class="btn btn-primary btn-lg" href="${3:#}" role="button">${4:Learn more}</a></p>
+	</div>
+
+snippet bt4_jumbotroncontainer_Bootstrap
+	<div class="jumbotron">
+	  <div class="container">
+	    ${1:...}
+	  </div>
+	</div>
+
+
+
+snippet bt4_pageheader_Bootstrap
+	<div class="page-header">
+	  <h1>${1:Example page header} <small>${2:Subtext for header}</small></h1>
+	</div>
+
+
+
+snippet bt4_thumbnail_Bootstrap
+	<a href="${1:#}" class="thumbnail">
+	  <img src="${2:...}" alt="${3:...}">
+	</a>
+
+snippet bt4_thumbnailcontent_Bootstrap
+	<div class="thumbnail">
+	  <img src="${1:...}" alt="${2:...}">
+	  <div class="caption">
+	    <h3>${3:Thumbnail label}</h3>
+	    <p>${4:...}</p>
+	    <p><a href="${5:#}" class="btn btn-primary" role="button">${6:Button}</a> <a href="${7:#}" class="btn btn-default" role="button">${8:Button}</a></p>
+	  </div>
+	</div>
+
+
+
+snippet bt4_alert_Bootstrap
+	<div class="alert alert-success" role="alert">${1:...}</div>
+
+snippet bt4_alertsuccess_Bootstrap
+	<div class="alert alert-success" role="alert">${1:...}</div>
+
+snippet bt4_alertinfo_Bootstrap
+	<div class="alert alert-info" role="alert">${1:...}</div>
+
+snippet bt4_alertwarning_Bootstrap
+	<div class="alert alert-warning" role="alert">${1:...}</div>
+
+snippet bt4_alertdanger_Bootstrap
+	<div class="alert alert-danger" role="alert">${1:...}</div>
+
+snippet bt4_alertdismissible_Bootstrap
+	<div class="alert alert-${1:warning} alert-dismissible" role="alert">
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	  <strong>${2:Warning!}</strong> ${3:Better check yourself, you're not looking too good.}
+	</div>
+
+snippet bt4_alertlink_Bootstrap
+	<div class="alert alert-success" role="alert">
+	  <a href="${1:#}" class="alert-link">${2:...}</a>
+	</div>
+
+
+
+snippet bt4_progress_Bootstrap
+	<div class="progress">
+	  <div class="progress-bar" role="progressbar" aria-valuenow="${1:60}" aria-valuemin="${2:0}" aria-valuemax="${3:100}" style="width: $1%;">
+	    <span class="sr-only">$1% Complete</span>
+	  </div>
+	</div>
+
+snippet bt4_progresssuccess_Bootstrap
+	<div class="progress">
+	  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${1:40}" aria-valuemin="${2:0}" aria-valuemax="${3:100}" style="width: $1%">
+	    <span class="sr-only">$1% Complete</span>
+	  </div>
+	</div>
+
+snippet bt4_progressinfo_Bootstrap
+	<div class="progress">
+	  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="${1:20}" aria-valuemin="${2:0}" aria-valuemax="${3:100}" style="width: $1%">
+	    <span class="sr-only">$1% Complete</span>
+	  </div>
+	</div>
+
+snippet bt4_progresswarning_Bootstrap
+	<div class="progress">
+	  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="${1:60}" aria-valuemin="${2:0}" aria-valuemax="${3:100}" style="width: $1%">
+	    <span class="sr-only">$1% Complete</span>
+	  </div>
+	</div>
+
+snippet bt4_progressdanger_Bootstrap
+	<div class="progress">
+	  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="${1:80}" aria-valuemin="${2:0}" aria-valuemax="${3:100}" style="width: $1%">
+	    <span class="sr-only">$1% Complete</span>
+	  </div>
+	</div>
+
+snippet bt4_progressstriped_Bootstrap
+	<div class="progress">
+	  <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="${1:40}" aria-valuemin="${2:0}" aria-valuemax="${3:100}" style="width: $1%">
+	    <span class="sr-only">$1% Complete</span>
+	  </div>
+	</div>
+
+snippet bt4_progressstripedactive_Bootstrap
+	<div class="progress">
+	  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="${1:45}" aria-valuemin="${2:0}" aria-valuemax="${3:100}" style="width: $1%">
+	    <span class="sr-only">$1% Complete</span>
+	  </div>
+	</div>
+
+snippet bt4_progressstacked_Bootstrap
+	<div class="progress">
+	  <div class="progress-bar progress-bar-success" style="width: ${1:35}%">
+	    <span class="sr-only">$1% Complete (success)</span>
+	  </div>
+	  <div class="progress-bar progress-bar-warning progress-bar-striped" style="width: ${2:20}%">
+	    <span class="sr-only">$2% Complete (warning)</span>
+	  </div>
+	  <div class="progress-bar progress-bar-danger" style="width: ${3:10}%">
+	    <span class="sr-only">$3% Complete (danger)</span>
+	  </div>
+	</div>
+
+
+
+snippet bt4_media_Bootstrap
+	<div class="media">
+	  <div class="media-left">
+	    <a href="${1:#}">
+	      <img class="media-object" src="${2:...}" alt="${3:...}">
+	    </a>
+	  </div>
+	  <div class="media-body">
+	    <h4 class="media-heading">${4:Media heading}</h4>
+	    ${5:...}
+	  </div>
+	</div>
+
+snippet bt4_medialeft_Bootstrap
+	<div class="media-left">
+	  <a href="${1:#}">
+	    <img class="media-object" src="${2:...}" alt="${3:...}">
+	  </a>
+	</div>
+
+snippet bt4_mediabody_Bootstrap
+	<div class="media-body">
+	  <h4 class="media-heading">${1:Media heading}</h4>
+	  ${2:...}
+	</div>
+
+snippet bt4_mediaright_Bootstrap
+	<div class="media-right">
+	  <a href="${1:#}">
+	    <img class="media-object" src="${2:...}" alt="${3:...}">
+	  </a>
+	</div>
+
+snippet bt4_mediamiddle_Bootstrap
+	<div class="media-left media-middle">
+	  <a href="${1:#}">
+	    <img class="media-object" src="${2:...}" alt="${3:...}">
+	  </a>
+	</div>
+
+snippet bt4_mediabottom_Bootstrap
+	<div class="media-left media-bottom">
+	  <a href="${1:#}">
+	    <img class="media-object" src="${2:...}" alt="${3:...}">
+	  </a>
+	</div>
+
+snippet bt4_medialist_Bootstrap
+	<ul class="media-list">
+	  <li class="media">
+	    <div class="media-left">
+	      <a href="${1:#}">
+	        <img class="media-object" src="${2:...}" alt="${3:...}">
+	      </a>
+	    </div>
+	    <div class="media-body">
+	      <h4 class="media-heading">${4:Media heading}</h4>
+	      ${5:...}
+	    </div>
+	  </li>
+	</ul>
+
+
+snippet bt4_listgroup_Bootstrap
+	<ul class="list-group">
+	  <li class="list-group-item">${1:Cras justo odio}</li>
+	  <li class="list-group-item">${2:Dapibus ac facilisis in}</li>
+	  <li class="list-group-item">${3:Morbi leo risus}</li>
+	  <li class="list-group-item">${4:Porta ac consectetur ac}</li>
+	  <li class="list-group-item">${5:Vestibulum at eros}</li>
+	</ul>
+
+snippet bt4_listgroupitem_Bootstrap
+	<li class="list-group-item">${1:Cras justo odio}</li>
+
+snippet bt4_listgroupitembadge_Bootstrap
+	<li class="list-group-item">
+	  <span class="badge">${1:14}</span>
+	  ${2:Cras justo odio}
+	</li>
+
+snippet bt4_alistgroupitem_Bootstrap
+	<a href="${1:#}" class="list-group-item active">${2:Cras justo odio}</a>
+
+snippet bt4_listgroupitemdisabled_Bootstrap
+	<a href="${1:#}" class="list-group-item disabled">${2:Cras justo odio}</a>
+
+snippet bt4_listgroupitemsuccess_Bootstrap
+	<li class="list-group-item list-group-item-success">${1:Dapibus ac facilisis in}</li>
+
+snippet bt4_listgroupiteminfo_Bootstrap
+	<li class="list-group-item list-group-item-info">${1:Cras sit amet nibh libero}</li>
+
+snippet bt4_listgroupitemwarning_Bootstrap
+	<li class="list-group-item list-group-item-warning">${1:Porta ac consectetur ac}</li>
+
+snippet bt4_listgroupitemdanger_Bootstrap
+	<li class="list-group-item list-group-item-danger">${1:Vestibulum at eros}</li>
+
+snippet bt4_alistgroupitemsuccess_Bootstrap
+	<a href="${1:#}" class="list-group-item list-group-item-success">${2:Dapibus ac facilisis in}</a>
+
+snippet bt4_alistgroupiteminfo_Bootstrap
+	<a href="${1:#}" class="list-group-item list-group-item-info">${2:Cras sit amet nibh libero}</a>
+
+snippet bt4_alistgroupitemwarning_Bootstrap
+	<a href="${1:#}" class="list-group-item list-group-item-warning">${2:Porta ac consectetur ac}</a>
+
+snippet bt4_alistgroupitemdanger_Bootstrap
+	<a href="${1:#}" class="list-group-item list-group-item-danger">${2:Vestibulum at eros}</a>
+
+snippet bt4_listgroupitemcontent_Bootstrap
+	<li class="list-group-item">
+	  <h4 class="list-group-item-heading">${1:List group item heading}</h4>
+	  <p class="list-group-item-text">${2:...}</p>
+	</li>
+
+snippet bt4_alistgroupitemcontent_Bootstrap
+	<a href="${1:#}" class="list-group-item active">
+	  <h4 class="list-group-item-heading">${2:List group item heading}</h4>
+	  <p class="list-group-item-text">${3:...}</p>
+	</a>
+
+
+
+
+snippet bt4_panel_Bootstrap
+	<div class="panel panel-default">
+	  <div class="panel-body">
+	    ${1:Basic panel example}
+	  </div>
+	</div>
+
+snippet bt4_panelheading_Bootstrap
+	<div class="panel-heading">${1:Panel heading without title}</div>
+
+snippet bt4_panelheadingtitle_Bootstrap
+	<div class="panel-heading">
+	  <h3 class="panel-title">${1:Panel title}</h3>
+	</div>
+
+snippet bt4_panelbody_Bootstrap
+	<div class="panel-body">
+	  ${1:Panel content}
+	</div>
+
+snippet bt4_panelfooter_Bootstrap
+	<div class="panel-footer">${1:Panel footer}</div>
+
+snippet bt4_paneldefault_Bootstrap
+	<div class="panel panel-default">
+	  <div class="panel-body">
+	    ${1:Basic panel example}
+	  </div>
+	</div>
+
+snippet bt4_panelprimary_Bootstrap
+	<div class="panel panel-primary">${1:...}</div>
+
+snippet bt4_panelsuccess_Bootstrap
+	<div class="panel panel-success">${1:...}</div>
+
+snippet bt4_panelinfo_Bootstrap
+	<div class="panel panel-info">${1:...}</div>
+
+snippet bt4_panelwarning_Bootstrap
+	<div class="panel panel-warning">${1:...}</div>
+
+snippet bt4_paneldanger_Bootstrap
+	<div class="panel panel-danger">${1:...}</div>
+
+snippet bt4_paneltable_Bootstrap
+	<div class="panel panel-default">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">${1:Panel heading}</div>
+	  <div class="panel-body">
+	    <p>${2:...}</p>
+	  </div>
+	
+	  <!-- Table -->
+	  <table class="table">
+	    ${3:...}
+	  </table>
+	</div>
+
+snippet bt4_panellistgroup_Bootstrap
+	<div class="panel panel-default">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">${1:Panel heading}</div>
+	  <div class="panel-body">
+	    <p>${2:...}</p>
+	  </div>
+	
+	  <!-- List group -->
+	  <ul class="list-group">
+	    <li class="list-group-item">${3:Cras justo odio}</li>
+	    <li class="list-group-item">${4:Dapibus ac facilisis in}</li>
+	    <li class="list-group-item">${5:Morbi leo risus}</li>
+	    <li class="list-group-item">${6:Porta ac consectetur ac}</li>
+	    <li class="list-group-item">${7:Vestibulum at eros}</li>
+	  </ul>
+	</div>
+
+
+
+snippet bt4_embedresponsive_Bootstrap
+	<!-- 16:9 aspect ratio -->
+	<div class="embed-responsive embed-responsive-16by9">
+	  <iframe class="embed-responsive-item" src="${1:...}"></iframe>
+	</div>
+	
+	<!-- 4:3 aspect ratio -->
+	<div class="embed-responsive embed-responsive-4by3">
+	  <iframe class="embed-responsive-item" src="${2:...}"></iframe>
+	</div>
+
+
+
+snippet bt4_well_Bootstrap
+	<div class="well">${1:...}</div>
+
+snippet bt4_welllg_Bootstrap
+	<div class="well well-lg">${1:...}</div>
+
+snippet bt4_wellsm_Bootstrap
+	<div class="well well-sm">${1:...}</div>
+
+
+
+
+snippet bt4_modal_Bootstrap
+	<div class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">${1:Modal title}</h4>
+	      </div>
+	      <div class="modal-body">
+	        <p>${2:One fine body&hellip;}</p>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">${3:Close}</button>
+	        <button type="button" class="btn btn-primary">${4:Save changes}</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+snippet bt4_modallg_Bootstrap
+	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="${1:myLargeModalLabel}" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	      ${2:...}
+	    </div>
+	  </div>
+	</div>
+
+snippet bt4_modalsm_Bootstrap
+	<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="${1:mySmallModalLabel}" aria-hidden="true">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      ${2:...}
+	    </div>
+	  </div>
+	</div>
+
+
+
+snippet bt4_scrollspy_Bootstrap
+	<body data-spy="scroll" data-target=".$1">
+	  <div class="${1:navbar-example}">
+	    <ul class="nav nav-tabs" role="tablist">
+	      ${2:...}
+	    </ul>
+	  </div>
+	</body>
+
+
+snippet bt4_tabpanel_Bootstrap
+	<div role="tabpanel">
+	
+	  <!-- Nav tabs -->
+	  <ul class="nav nav-tabs" role="tablist">
+	    <li role="presentation" class="active"><a href="#${1:home}" aria-controls="$1" role="tab" data-toggle="tab">${2:Home}</a></li>
+	    <li role="presentation"><a href="#${3:profile}" aria-controls="$3" role="tab" data-toggle="tab">${4:Profile}</a></li>
+	    <li role="presentation"><a href="#${5:messages}" aria-controls="$5" role="tab" data-toggle="tab">${6:Messages}</a></li>
+	    <li role="presentation"><a href="#${7:settings}" aria-controls="$7" role="tab" data-toggle="tab">${8:Settings}</a></li>
+	  </ul>
+	
+	  <!-- Tab panes -->
+	  <div class="tab-content">
+	    <div role="tabpanel" class="tab-pane active" id="$1">${9:...}</div>
+	    <div role="tabpanel" class="tab-pane" id="$3">${10:...}</div>
+	    <div role="tabpanel" class="tab-pane" id="$5">${11:...}</div>
+	    <div role="tabpanel" class="tab-pane" id="$7">${12:...}</div>
+	  </div>
+	
+	</div>
+
+
+snippet bt4_tooltip_Bootstrap
+	<button type="button" class="btn btn-default" data-toggle="tooltip" title="$1">${1:Tooltip on left}</button>
+
+snippet bt4_atooltip_Bootstrap
+	<a href="${1:#}" class="btn btn-default" data-toggle="tooltip" title="$2">${2:Tooltip on left}</a>
+
+snippet bt4_tooltiptop_Bootstrap
+	<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="$1">${1:Tooltip on top}</button>
+
+snippet bt4_atooltiptop_Bootstrap
+	<a href="${1:#}" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="$2">${2:Tooltip on top}</a>
+
+snippet bt4_tooltipleft_Bootstrap
+	<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="$1">${1:Tooltip on left}</button>
+
+snippet bt4_atooltipleft_Bootstrap
+	<a href="${1:#}" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="$2">${2:Tooltip on left}</a>
+
+snippet bt4_tooltipbottom_Bootstrap
+	<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="$1">${1:Tooltip on bottom}</button>
+
+snippet bt4_atooltipbottom_Bootstrap
+	<a href="${1:#}" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="$2">${2:Tooltip on bottom}</a>
+
+snippet bt4_tooltipright_Bootstrap
+	<button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="$1">${1:Tooltip on right}</button>
+
+snippet bt4_atooltipright_Bootstrap
+	<a href="${1:#}" class="btn btn-default" data-toggle="tooltip" data-placement="right" title="$2">${2:Tooltip on right}</a>
+
+
+
+snippet bt4_popover_Bootstrap
+	<button type="button" class="btn btn-default" data-toggle="popover" title="${1:Popover title}" data-content="${2:And here's some amazing content. It's very engaging. Right?}">${3:Click to toggle popover}</button>
+
+snippet bt4_apopover_Bootstrap
+	<a class="btn btn-default" role="button" data-toggle="popover" title="${1:Dismissible popover}" data-content="${2:And here's some amazing content. It's very engaging. Right?}">${3:Dismissible popover}</a>
+
+snippet bt4_popovertop_Bootstrap
+	<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="top" data-content="${1:Vivamus sagittis lacus vel augue laoreet rutrum faucibus.}">
+	  ${2:Popover on top}
+	</button>
+
+snippet bt4_apopovertop_Bootstrap
+	<a class="btn btn-default" role="button" data-toggle="popover" data-placement="top" title="${1:Popover on top}" data-content="${2:And here's some amazing content. It's very engaging. Right?}">${3:Popover on top}</a>
+
+snippet bt4_popoverleft_Bootstrap
+	<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="left" data-content="${1:Vivamus sagittis lacus vel augue laoreet rutrum faucibus.}">
+	  ${2:Popover on left}
+	</button>
+
+snippet bt4_apopoverleft_Bootstrap
+	<a class="btn btn-default" role="button" data-toggle="popover" data-placement="left" title="${1:Popover on left}" data-content="${2:And here's some amazing content. It's very engaging. Right?}">${3:Popover on left}</a>
+
+snippet bt4_popoverbottom_Bootstrap
+	<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="${1:Vivamus sagittis lacus vel augue laoreet rutrum faucibus.}">
+	  ${2:Popover on bottom}
+	</button>
+
+snippet bt4_apopoverbottom_Bootstrap
+	<a class="btn btn-default" role="button" data-toggle="popover" data-placement="bottom" title="${1:Popover on bottom}" data-content="${2:And here's some amazing content. It's very engaging. Right?}">${3:Popover on bottom}</a>
+
+snippet bt4_popoverright_Bootstrap
+	<button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="right" data-content="${1:Vivamus sagittis lacus vel augue laoreet rutrum faucibus.}">
+	  ${2:Popover on right}
+	</button>
+
+snippet bt4_apopoverright_Bootstrap
+	<a class="btn btn-default" role="button" data-toggle="popover" data-placement="right" title="${1:Popover on right}" data-content="${2:Vivamus sagittis lacus vel augue laoreet rutrum faucibus.}">${3:Popover on right}</a>
+
+snippet bt4_apopoverdismissible_Bootstrap
+	<a tabindex="0" class="btn btn-default" role="button" data-toggle="popover" data-trigger="focus" title="${1:Dismissible popover}" data-content="${2:And here's some amazing content. It's very engaging. Right?}">${3:Dismissible popover}</a>
+
+
+
+snippet bt4_btnstatetext_Bootstrap
+	<button type="button" id="${1:myButton}" data-${2:loading}-text="${3:Loading...}" class="btn btn-default" autocomplete="off">
+	  ${4:Loading state}
+	</button>
+
+snippet bt4_btnsingletoggle_Bootstrap
+	<button type="button" class="btn btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+	  ${1:Single toggle}
+	</button>
+
+snippet bt4_btngroupcheckbox_Bootstrap
+	<div class="btn-group" data-toggle="buttons">
+	  <label class="btn btn-primary active">
+	    <input type="checkbox" autocomplete="off" checked> ${1:Checkbox 1 (pre-checked)}
+	  </label>
+	  <label class="btn btn-primary">
+	    <input type="checkbox" autocomplete="off"> ${2:Checkbox 2}
+	  </label>
+	  <label class="btn btn-primary">
+	    <input type="checkbox" autocomplete="off"> ${3:Checkbox 3}
+	  </label>
+	</div>
+
+snippet bt4_btngroupradio_Bootstrap
+	<div class="btn-group" data-toggle="buttons">
+	  <label class="btn btn-primary active">
+	    <input type="radio" name="${1:options}" id="${2:option1}" autocomplete="off" checked> ${3:Radio 1 (preselected)}
+	  </label>
+	  <label class="btn btn-primary">
+	    <input type="radio" name="$1" id="${4:option2}" autocomplete="off"> ${5:Radio 2}
+	  </label>
+	  <label class="btn btn-primary">
+	    <input type="radio" name="$1" id="${6:option3}" autocomplete="off"> ${7:Radio 3}
+	  </label>
+	</div>
+
+
+
+snippet bt4_btncollapse_Bootstrap
+	<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#$2" aria-expanded="false" aria-controls="$2">
+	  ${1:Button with data-target}
+	</button>
+	<div class="collapse" id="${2:collapseExample}">
+	  <div class="well">
+	    ${3:...}
+	  </div>
+	</div>
+
+snippet bt4_abtncollapse_Bootstrap
+	<a class="btn btn-primary" data-toggle="collapse" href="#$2" aria-expanded="false" aria-controls="$2">
+	  ${1:Link with href}
+	</a>
+	<div class="collapse" id="${2:collapseExample}">
+	  <div class="well">
+	    ${3:...}
+	  </div>
+	</div>
+
+snippet bt4_accordian_Bootstrap
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingOne">
+	      <h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+	          Collapsible Group Item #1
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+	      <div class="panel-body">
+	        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+	      </div>
+	    </div>
+	  </div>
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingTwo">
+	      <h4 class="panel-title">
+	        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+	          Collapsible Group Item #2
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+	      <div class="panel-body">
+	        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+	      </div>
+	    </div>
+	  </div>
+	  <div class="panel panel-default">
+	    <div class="panel-heading" role="tab" id="headingThree">
+	      <h4 class="panel-title">
+	        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+	          Collapsible Group Item #3
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	      <div class="panel-body">
+	        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+
+snippet bt4_carousel_Bootstrap
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+	  <!-- Indicators -->
+	  <ol class="carousel-indicators">
+	    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+	    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+	    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+	  </ol>
+	
+	  <!-- Wrapper for slides -->
+	  <div class="carousel-inner" role="listbox">
+	    <div class="item active">
+	      <img src="..." alt="...">
+	      <div class="carousel-caption">
+	        ...
+	      </div>
+	    </div>
+	    <div class="item">
+	      <img src="..." alt="...">
+	      <div class="carousel-caption">
+	        ...
+	      </div>
+	    </div>
+	    ...
+	  </div>
+	
+	  <!-- Controls -->
+	  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+	    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	    <span class="sr-only">Previous</span>
+	  </a>
+	  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+	    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	    <span class="sr-only">Next</span>
+	  </a>
+	</div>
+
+
+
+snippet bt4_affix_Bootstrap
+	<div data-spy="affix" data-offset-top="${1:60}" data-offset-bottom="${2:200}">
+	  ${3:...}
+	</div>
+
+snippet bt4_navbarheader_bt2_Bootstrap
+
+	<div class="navbar  navbar-fixed-top">
+	  <div class="navbar-inner">
+	    <div class="container-fluid">
+	      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </a>
+	      <a class="brand" href="welcome.php">qa管理系统</a>
+	      <div class="nav-collapse collapse">
+	<!--            <p class="navbar-text pull-right">
+	          欢迎您， <a href="#" class="navbar-link">管理员</a>
+	        </p>-->
+	         <ul class="nav">
+	          <li class="active"><a href="#">用户管理</a></li>
+	          <li><a href="#about">权限管理</a></li>
+	          <li><a href="#">question管理</a></li>
+	          <li><a href="#">answer管理</a></li>
+	        </ul>
+	         <div class="pull-right">
+	            <ul class="nav pull-right">
+	                <li class="dropdown"><a href="#"  data-target="#"  class="dropdown-toggle" data-toggle="dropdown">欢迎您，$user<b class="caret"></b></a>
+	                    <ul class="dropdown-menu">
+	                        <li><a href="/user/preferences"><i class="icon-cog"></i> 个人设置</a></li>
+	                        <li><a href="/help/support"><i class="icon-envelope"></i> 意见反馈</a></li>
+	                        <li class="divider"></li>
+	                        <li><a href="#"><i class="icon-off"></i> 退出</a></li>
+	                    </ul>
+	                </li>
+	            </ul>
+	         </div>
+	      </div><!--/.nav-collapse -->
+	    </div>
+	  </div>
+	</div> <!--  头部 navbar 结束 -->  
+
+
+snippet bt4_navbarheader_bt4_Bootstrap
+	<div class="navbar navbar-inverse navbar-fixed-top">
+	  <div class="container">
+		<div class="navbar-header">
+		  <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+		  <a class="navbar-brand hidden-sm" href="http://www.bootcss.com">Bootstrap中文网</a> </div>
+		<div class="navbar-collapse collapse" role="navigation">
+		  <ul class="nav navbar-nav">
+			<li class="dropdown"> <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Bootstrap2中文文档<b class="caret"></b></a>
+			  <ul class="dropdown-menu">
+				<li> <a href="http://v2.bootcss.com/getting-started.html" target="_blank">起步</a> </li>
+				<li> <a href="http://v2.bootcss.com/scaffolding.html" target="_blank">脚手架</a> </li>
+				<li> <a href="http://v2.bootcss.com/base-css.html" target="_blank">基本CSS样式</a> </li>
+				<li> <a href="http://v2.bootcss.com/components.html" target="_blank">组件</a> </li>
+				<li> <a href="http://v2.bootcss.com/javascript.html" target="_blank">JavaScript插件</a> </li>
+				<li> <a href="http://v2.bootcss.com/customize.html" target="_blank">定制</a> </li>
+			  </ul>
+			</li>
+			<li class="dropdown"> <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">Bootstrap3中文文档<b class="caret"></b></a>
+			  <ul class="dropdown-menu">
+				<li> <a href="http://v3.bootcss.com/getting-started/" target="_blank">起步</a> </li>
+				<li> <a href="http://v3.bootcss.com/css/" target="_blank">CSS</a> </li>
+				<li> <a href="http://v3.bootcss.com/components/" target="_blank">组件</a> </li>
+				<li> <a href="http://v3.bootcss.com/javascript/" target="_blank">JavaScript插件</a> </li>
+				<li> <a href="http://v3.bootcss.com/customize/" target="_blank">定制</a> </li>
+			  </ul>
+			</li>
+			<li><a href="/p/lesscss/" target="_blank">Less 教程</a></li>
+			<li><a href="http://jquery.bootcss.com/" target="_blank">jQuery API</a></li>
+			<li><a href="http://expo.bootcss.com" target="_blank">网站实例</a></li>
+		  </ul>
+		  <ul class="nav navbar-nav navbar-right">
+			<li><a href="/about/">关于</a></li>
+		  </ul>
+		</div>
+	  </div>
+	</div>
+
+
+
+snippet bt4_htmlgb2312_Bootstrap
+	<!DOCTYPE html>
+	<html lang="gb2312">
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	  ${1:...}
+	</html>
+snippet bt4_gb2312_Bootstrap
+	<!DOCTYPE html>
+	<html lang="gb2312">
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	  ${1:...}
+	</html>
+
+
+snippet bt4_utf8_Bootstrap
+	<!DOCTYPE html>
+	<html >
+	  <head>
+		<title>system</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta charset="UTF-8">
+	 </head>
+	<body>
+	</body>
+	</html>
+
+
+snippet bt4_htmlutf8_Bootstrap
+	<!DOCTYPE html>
+	<html >
+	  <head>
+		<title>system</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta charset="UTF-8">
+	 </head>
+	<body>
+	</body>
+	</html>
+
+snippet bt4_fluid_panel
+
+	<div class="container-fluid">
+	  <div class="row-fluid">
+	    <div class="span2">
+	      <div class="well sidebar-nav">
+	        <ul class="nav nav-list">
+	          <li class="nav-header">用户管理</li>
+	          <li><a href="createuser.php">新建用户</a></li>
+	          <li class="active"><a href="userlist.php">用户列表</a></li>
+	        </ul>
+	      </div><!--/.well -->
+	    </div><!--/span2-->
+	    <div class="span10">
+	    <div class="btn-toolbar">
+	        <a class="btn btn-primary" href="createuser.php" >新 建</a>
+	        <button class="btn">导 入</button>
+	        <button class="btn">导出</button>
+	    </div>
+
+	    <div class="well">
+	        <table class="table">
+	          <thead> <tr> <th>用户名</th> <th>备注</th> <th>邮件</th> <th>状态</th> <th style="width: 36px;"></th> </tr> </thead>
+	          <tbody>
+	            <tr> <td>$row[0]</td> <td>$row[1]</td> <td>$row[2]</td> <td>$row[3]</td> <td> <a href="edituser.php?account=$row[0]"><i class="icon-pencil"></i></a> <a href="deleteuser.php?account=$row[0]"><i class="icon-remove"></i></a> <!--<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>--> </td> 
+	            </tr>
+	          </tbody>
+	        </table>
+	    </div>
+
+	    <div class="pagination">
+	        <ul>
+	            <li><a href="#">Prev</a></li>
+	            <li><a href="#">1</a></li>
+	            <li><a href="#">2</a></li>
+	            <li><a href="#">3</a></li>
+	            <li><a href="#">4</a></li>
+	            <li><a href="#">Next</a></li>
+	        </ul>
+	    </div>
+
+	    </div><!--/span10-->
+	  </div><!--/row-fluid -->
+
+	  <hr/>
+
+	  <footer>
+	    <p> Copyright &copy; 2015 Emotibot All Rights Reserved.</p>
+	  </footer>
+
+	</div><!--/.fluid-container-->
+
+
+snippet bt4_layout_demo_1
+	<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-2 column">
+		</div>
+		<div class="col-md-6 column">
+		</div>
+		<div class="col-md-4 column">
+		</div>
+	</div>
+	</div>
+
+snippet bt4_span_bootstrap
+	<h3>Example heading <span class="label label-default">New</span></h3>
+	<span class="label label-default">Default</span>
+	<span class="label label-primary">Primary</span>
+	<span class="label label-success">Success</span>
+	<span class="label label-info">Info</span>
+	<span class="label label-warning">Warning</span>
+	<span class="label label-danger">Danger</span>
+
+snippet bt4_html_style
+	<div class="row" style="height: 50px"></div>
+
+snippet bt4_style_html
+	<div class="row" style="height: 50px"></div>
+snippet bt4_form_html_action 
+	<form  method="POST" action="/api/wzcloud/cinder/create" >
+		  <div class="form-group">
+			<label for="exampleInputName1">Volume Name </label>
+			<input type="text" class="form-control" id="VolumeName1" name="name" placeholder="Enter name">
+		  </div>
+
+		  <div class="form-group">
+			<label for="exampleInputsize1">size</label>
+			<input type="text" class="form-control" id="Inputsize1" placeholder="size" name="size">
+		  </div>
+
+
+		  <div class="checkbox">
+			<label>
+			  <input type="checkbox" name="is_bootable"> ¿¿¿</input>
+			</label>
+		  </div>
+
+		  <button type="submit" class="btn btn-default">Submit</button>
+	</form>
+
+
+snippet bt4_layout_3_rows
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-4 column">
+					</div>
+					<div class="col-md-4 column">
+					</div>
+					<div class="col-md-4 column">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+			</div>
+		</div>
+	</div>
+
+
+
+
+snippet ulli_depth3
+	<h1>tree</h1>
+	<ul>
+	<li>depth11 - webpack config files</li>
+	<li>depth12 - webpack config files</li>
+	<li>depth13 - build</li>
+	<li>depth14 -your app
+		<ul>
+		<li>depth21</li>
+		<li>depth22</li>
+		<li>depth23
+			<ul>
+			<li>depth31</li>
+			<li>depth32</li>
+			<li>depth33</li>
+			<li>depth34</li>
+			<li>depth35</li>
+			</ul>
+		</li>
+		<li>depth24</li>
+		<li>depth25</li>
+		</ul>
+	</li>
+	<li>depth15 - static assets</li>
+	</ul>

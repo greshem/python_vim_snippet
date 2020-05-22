@@ -1,0 +1,882 @@
+## Access Modifiers
+snippet protected
+	protected ${0}
+snippet public
+	public ${0}
+snippet private
+	private ${0}
+##
+## Annotations
+snippet before
+	@Before
+	static void ${1:intercept}(${2:args}) { ${0} }
+snippet mm
+	@ManyToMany
+	${0}
+snippet mo
+	@ManyToOne
+	${0}
+snippet om
+	@OneToMany${1:(cascade=CascadeType.ALL)}
+	${0}
+snippet oo
+	@OneToOne
+	${1}
+##
+## Basic Java packages and import
+snippet import
+	import ${0}
+snippet beans
+	java.beans.
+snippet io
+	java.io.
+snippet math
+	java.math.
+snippet net
+	java.net.
+snippet util
+	java.util.
+##
+## Class
+snippet class
+	class ${1:`vim_snippets#Filename("$1", "untitled")`} ${0}
+snippet public_class
+	public class ${1:`vim_snippets#Filename("$1", "untitled")`} ${0}
+snippet interface
+	interface ${1:`vim_snippets#Filename("$1", "untitled")`} ${2:extends Parent}
+snippet tc
+	public class ${1:`vim_snippets#Filename("$1")`} extends ${0:TestCase}
+##
+## Class Enhancements
+snippet extends
+	extends ${0}
+snippet implements
+	implements ${0}
+##
+## Comments
+snippet /*
+	/*
+	 * ${0}
+	 */
+##
+## Constants
+snippet co
+	static public final ${1:String} ${2:var} = ${3};
+snippet cos
+	static public final String ${1:var} = "${2}";
+##
+## Control Statements
+snippet case
+	case ${1}:
+		${0}
+snippet default
+	default:
+		${0}
+snippet else
+	else
+snippet else_if
+	else if (${1}) ${0}
+snippet if
+	if (${1}) ${0}
+snippet switch
+	switch (${1}) {
+		${0}
+	}
+##
+## Create a Method
+snippet m
+	${1:void} ${2:method}(${3}) ${4:throws }
+##
+## Create a Variable
+snippet var
+	${1:String} ${2:var}${3: = null}${4};
+##
+## Declaration for ArrayList
+snippet array_list
+	List<${1:Object}> ${2:list} = new ArrayList<$1>();${0}
+## Declaration for HashMap
+snippet hashmap
+	Map<${1:Object}, ${2:Object}> ${3:map} = new HashMap<$1, $2>();${0}
+## Declaration for HashSet
+snippet hastset
+	Set<${1:Object}> ${2:set} = new HashSet<$1>();${0}
+## Declaration for Stack
+snippet stack
+	Stack<${1:Object}> ${2:stack} = new Stack<$1>();${0}
+##
+## Singleton Pattern
+snippet singleton
+	private static class Holder {
+		private static final ${1:`vim_snippets#Filename("$1")`} INSTANCE = new $1();
+	}
+
+	private $1() { }
+
+	public static $1 getInstance() {
+		return Holder.INSTANCE;
+	}
+##
+## Enhancements to Methods, variables, classes, etc.
+snippet abstract
+	abstract ${0}
+snippet final
+	final ${0}
+snippet static
+	static ${0}
+snippet synchronized
+	synchronized ${0}
+##
+## Error Methods
+snippet err
+	System.err.print("${0:Message}");
+snippet errf
+	System.err.printf("${1:Message}", ${0:exception});
+snippet errln
+	System.err.println("${0:Message}");
+##
+## Exception Handling
+snippet assert
+	assert ${1:test} : "${2:Failure message}";
+snippet assert_equal
+	assertEquals("${1:Failure message}", ${2:expected}, ${3:actual});
+snippet aae
+	assertArrayEquals("${1:Failure message}", ${2:expecteds}, ${3:actuals});
+snippet af
+	assertFalse("${1:Failure message}", ${2:condition});
+snippet at
+	assertTrue("${1:Failure message}", ${2:condition});
+snippet an
+	assertNull("${1:Failure message}", ${2:object});
+snippet ann
+	assertNotNull("${1:Failure message}", ${2:object});
+snippet ass
+	assertSame("${1:Failure message}", ${2:expected}, ${3:actual});
+snippet asns
+	assertNotSame("${1:Failure message}", ${2:expected}, ${3:actual});
+snippet fa
+	fail("${1:Failure message}");
+snippet ca
+	catch(${1:Exception} ${2:e}) ${0}
+snippet thr
+	throw ${0}
+snippet ths
+	throws ${0}
+snippet try
+	try {
+		${0}
+	} catch(${1:Exception} ${2:e}) {
+	}
+snippet tryf
+	try {
+		${0}
+	} catch(${1:Exception} ${2:e}) {
+	} finally {
+	}
+##
+## Find Methods
+snippet findall
+	List<${1:listName}> ${2:items} = ${1}.findAll();
+snippet findbyid
+	${1:var} ${2:item} = ${1}.findById(${3});
+##
+## Javadocs
+snippet /**
+	/**
+	 * ${0}
+	 */
+snippet @au
+	@author `system("grep \`id -un\` /etc/passwd | cut -d \":\" -f5 | cut -d \",\" -f1")`
+snippet @br
+	@brief ${0:Description}
+snippet @fi
+	@file ${0:`vim_snippets#Filename("$1")`}.java
+snippet @pa
+	@param ${0:param}
+snippet @re
+	@return ${0:param}
+##
+## Logger Methods
+snippet debug
+	Logger.debug(${1:param});
+snippet error
+	Logger.error(${1:param});
+snippet info
+	Logger.info(${1:param});
+snippet warn
+	Logger.warn(${1:param});
+##
+## Loops
+snippet for
+	for (${1} : ${2}) ${0}
+
+snippet enfor
+	for (${1} : ${2}) ${0}
+snippet for
+	for (${1}; ${2}; ${3}) ${0}
+snippet while
+	while (${1}) ${0}
+##
+## Main method
+snippet psvm
+	public static void main (String[] args) {
+		${0}
+	}
+snippet main
+	public static void main (String[] args) {
+		${0}
+	}
+##
+## Print Methods
+snippet println
+	System.out.println(${0});
+
+snippet stdout
+	System.out.println(${0});
+
+snippet error
+	System.err.println(${0});
+
+snippet stderr
+	System.err.println(${0});
+
+snippet print
+	System.out.print("${0:Message}");
+snippet printf
+	System.out.printf("${1:Message}", ${0:args});
+snippet println
+	System.out.println(${0});
+snippet printlna
+	System.out.println(Arrays.toString(${0}));
+##
+## Render Methods
+snippet render
+	render(${1:param});
+snippet rena
+	renderArgs.put("${1}", ${2});
+snippet renb
+	renderBinary(${1:param});
+snippet renj
+	renderJSON(${1:param});
+snippet renx
+	renderXml(${1:param});
+##
+## Setter and Getter Methods
+snippet set
+	${1:public} void set${3:}(${2:String} ${0:}){
+		this.$4 = $4;
+	}
+snippet get
+	${1:public} ${2:String} get${3:}(){
+		return this.${0:};
+	}
+##
+## Terminate Methods or Loops
+snippet return
+	return ${0}
+snippet break
+	break;
+##
+## Test Methods
+snippet t
+	public void test${1:Name}() throws Exception {
+		${0}
+	}
+snippet test
+	@Test
+	public void test${1:Name}() throws Exception {
+		${0}
+	}
+##
+## Utils
+snippet Sc
+	Scanner
+##
+## Miscellaneous
+snippet action
+	public static void ${1:index}(${2:args}) { ${0} }
+snippet rnf
+	notFound(${1:param});
+snippet rnfin
+	notFoundIfNull(${1:param});
+snippet rr
+	redirect(${1:param});
+snippet ru
+	unauthorized(${1:param});
+snippet unless
+	(unless=${1:param});
+
+snippet mkdirs
+	import java.io.*;
+
+	File   tempDir   =   new   File( "temp0/temp1/temp2/");
+	tempDir.mkdirs();   
+	System.out.println(tempDir);      
+
+
+snippet exec
+	import java.util.*;
+	import java.io.*;
+	try {  
+		Process process = Runtime.getRuntime().exec("ls");  
+		InputStreamReader ir = new InputStreamReader(process.getInputStream());  
+		LineNumberReader input = new LineNumberReader(ir);  
+		String line;  
+		while ((line = input.readLine()) != null)  
+		{
+			System.out.println(line);  
+		}
+	} 
+	catch (java.io.IOException e) 
+	{  
+		System.err.println("IOException " + e.getMessage());  
+	}  
+
+snippet system
+	import java.util.*;
+	import java.io.*;
+
+	try {  
+		Process process = Runtime.getRuntime().exec("ls");  
+		InputStreamReader ir = new InputStreamReader(process.getInputStream());  
+		LineNumberReader input = new LineNumberReader(ir);  
+		String line;  
+		while ((line = input.readLine()) != null)  
+		{
+			System.out.println(line);  
+		}
+	} 
+	catch (java.io.IOException e) 
+	{  
+		System.err.println("IOException " + e.getMessage());  
+	}  
+snippet glob
+	import java.io.File;
+	import java.util.ArrayList;
+
+	public static ArrayList<File> glob_one_dir(String path) 
+	{
+	ArrayList<File> files = new ArrayList<File>();
+
+	File file = new File(path);
+	if (file.isDirectory()) {
+		files.addAll(Arrays.asList(file.listFiles()));
+	} else if (file.isFile()) {
+		files.add(file);
+	}
+
+	return files;
+	}
+
+snippet strftime
+
+	long now = System.currentTimeMillis();
+	String s = String.format("%tR", now);   // "15:12" 
+
+	// Current month/day/year
+	Date d = new Date(now);
+	s = String.format("%tD", d);                // "07/13/04" 
+	s = String.format("%,d", Integer.MAX_VALUE); // "2,147,483,647" 
+
+	//填充
+	s = String.format("%05d", 123);              // "00123"是不是很方便
+
+snippet system_info
+	String osName = System.getProperty(“os.name”);
+	String user = System.getProperty(“user.name”);
+	System.out.println(“当前操作系统是：” + osName);
+	System.out.println(“当前用户是：” + user);
+
+
+snippet sleep
+
+	import java.util.*; 
+	try {
+			Thread.sleep(1000);                 //1000 毫秒，也就是1秒.
+			date = new Date();  
+			str = String.format("mkdir %1$tY_%1$tm_%1$td/%1$tH_%1$tM_%1$tS/", date);  
+			System.out.println(str);  
+
+		} catch(InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
+
+snippet cut_time
+	import java.util.*; 
+
+	date = new Date();  
+	str = String.format("mkdir %1$tY_%1$tm_%1$td/%1$tH_%1$tM_%1$tS/", date);  
+	System.out.println(str);  
+
+snippet import_common
+	import java.io.*;
+	import java.io.File;
+	import java.util.*; 
+	import java.util.ArrayList;
+
+snippet split
+	//String[] aa = "aaa|bbb|ccc".split("\\|");
+	String[] aa = "aaa|bbb|ccc".split("\\|"); 这样才能得到正确的结果
+	for (int i = 0 ; i <aa.length ; i++ ) {
+		System.out.println("--"+aa[i]); 
+	} 
+	
+snippet strptime
+	long now = System.currentTimeMillis();
+	String date = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(now * 1000))
+	long epoch =  new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse("01/01/1970 01:00:00");
+
+	long epoch2 =  new java.text.SimpleDateFormat("yyyyMMddHHmmss").parse("20170306062309");
+	String date=  new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new java.util.Date(epoch2 * 1000))
+
+snippet argv_args
+	if (args.length != 1) 
+	{
+		System.err.println("Usage: prog_main  seq_file_name ");
+		System.exit(1);
+	}
+	String sequenceFilePath = new String(args[0]);  
+
+
+snippet stringbuilder_reverse
+	public static String reverseString(String s) 
+	{
+		return new StringBuilder(s).reverse().toString();
+	}
+
+snippet reverse_string
+	public static String reverseString(String s) 
+	{
+		return new StringBuilder(s).reverse().toString();
+	}
+
+snippet readlines
+	import java.util.List;
+	public static List<String> readLines(String filename) throws IOException 
+	{
+		return Files.readAllLines(new File(filename).toPath());
+	}
+
+snippet import_common
+	import javax.imageio.ImageIO;
+	import java.awt.*;
+	import java.awt.image.BufferedImage;
+	import java.io.*;
+	import java.net.HttpURLConnection;
+	import java.net.URL;
+	import java.net.URLConnection;
+	import java.nio.file.Files;
+	import java.text.ParseException;
+	import java.text.SimpleDateFormat;
+	import java.util.*;
+	import java.util.List;
+	import java.util.zip.ZipEntry;
+	import java.util.zip.ZipOutputStream;
+
+snippet ls
+	public static File[] listDirectories(String path) 
+	{
+	return new File(path).listFiles(File::isDirectory);
+	}
+
+snippet dir
+	public static File[] listDirectories(String path) 
+	{
+	return new File(path).listFiles(File::isDirectory);
+	}
+
+snippet zip_file
+	public static void zipFile(String srcFilename, String zipFilename) throws IOException 
+	{
+			File srcFile = new File(srcFilename);
+			try (
+				FileOutputStream fileOut = new FileOutputStream(zipFilename);
+				ZipOutputStream zipOut = new ZipOutputStream(fileOut);
+				FileInputStream fileIn = new FileInputStream(srcFile);
+			) {
+				ZipEntry zipEntry = new ZipEntry(srcFile.getName());
+				zipOut.putNextEntry(zipEntry);
+				final byte[] bytes = new byte[1024];
+				int length;
+				while ((length = fileIn.read(bytes)) >= 0) {
+					zipOut.write(bytes, 0, length);
+				}
+			}
+		}
+
+
+snippet system_exec
+	import java.util.*;
+	import java.io.*;
+
+	public class  SystemExec
+	{
+	public static void print_exec()
+	{
+		System.out.println("example exec !");
+		try {  
+			Process process = Runtime.getRuntime().exec("ifconfig");  
+			InputStreamReader ir = new InputStreamReader(process.getInputStream());  
+			LineNumberReader input = new LineNumberReader(ir);  
+			String line;  
+			while ((line = input.readLine()) != null)  
+			{
+				System.out.println(line);  
+			}
+		} 
+		catch (java.io.IOException e) 
+		{  
+			System.err.println("IOException " + e.getMessage());  
+		}  
+	}
+	public static void main(String args[])
+	{
+		 print_exec();
+	}
+
+	}
+
+
+snippet file_copy_class
+	import java.io.*;
+	import java.io.BufferedOutputStream;
+	import java.io.BufferedReader;
+	import java.io.ByteArrayOutputStream;
+	import java.io.DataInputStream;
+	import java.io.DataOutputStream;
+	import java.io.File;
+	import java.io.FileFilter;
+	import java.io.FileInputStream;
+	import java.io.FileNotFoundException;
+	import java.io.FileOutputStream;
+	import java.io.FileReader;
+	import java.io.FileWriter;
+	import java.io.FilenameFilter;
+	import java.io.IOException;
+	import java.io.InputStream;
+	import java.io.OutputStream;
+	import java.io.PrintStream;
+	import java.io.Reader;
+	import java.io.StringReader;
+	import java.io.Writer;
+
+	public class fileCopy
+	 {
+		public static void main(String args[])
+		{
+		   try {
+				File input = new File("/etc/passwd");
+				File output =  new File("/tmp/passwd");
+				copyValidFiles(input,  output);
+			} 
+			catch(Exception e){
+			}
+		}
+		public static void copyValidFiles(File fromFile, File toFile)   throws IOException  
+		{
+			FileInputStream in = null;
+			FileOutputStream out = null;
+			try {
+				in = new FileInputStream(fromFile);
+				out = new FileOutputStream(toFile);
+				copyStream(in, out);
+			} finally {
+				if (out != null) {
+						out.close();
+				}
+				if (in != null) {
+						in.close();
+				}
+			}
+		}
+		public static void copyStream(InputStream in, OutputStream out) throws IOException 
+		{
+			final int MAX = 4096;
+			byte[] buf = new byte[MAX];
+			for (int bytesRead = in.read(buf, 0, MAX); bytesRead != -1; bytesRead = in.read(buf, 0, MAX)) {
+					out.write(buf, 0, bytesRead);
+			}
+		}
+	 }
+
+snippet split_2
+	String[] aa = "320|183.166.127.206|222.189.238.248|1|53801|80|jxjsdn224.86666608.com|aHR0cDovL2p4anNkbjIyNC44NjY2NjYwOC5jb20vNTFhZHMvNDY3Lzk4MC05MC5wbmc=| |1488752156".split("\\|"); //
+	for (int i = 0 ; i <aa.length ; i++ ) 
+	{
+	    System.out.print("|"+aa[i]); 
+	} 
+
+snippet for_demo_simplest
+	String[] aa = "320|183.166.127.206|222.189.238.248|1|53801|80|jxjsdn224.86666608.com|aHR0cDovL2p4anNkbjIyNC44NjY2NjYwOC5jb20vNTFhZHMvNDY3Lzk4MC05MC5wbmc=| |1488752156".split("\\|"); //
+	for (int i = 0 ; i <aa.length ; i++ ) 
+	{
+	    System.out.print("|"+aa[i]); 
+	} 
+
+
+snippet for_demo_2
+	class ForDemo
+	{
+		public static void main(String args[])
+		{
+			String[]  days={"Monday", "Tueday", "Wennesday", "星期四", "星期五" , "星期六", "星期天"  };
+			for ( String  day:days)
+			{
+				System.out.println(day);
+			}
+		}
+	}
+snippet FileIo_copyfile
+	import java.io.IOException;
+
+	public class FileIoDemo {
+		public static void main(String[] av) {
+			try {
+				FileIO.copyFile("FileIO.java", "FileIO.bak");
+				FileIO.copyFile("FileIO.class", "FileIO-class.bak");
+			} catch (IOException e) {
+				System.err.println(e);
+			}
+		}
+	}
+
+snippet try_catch_exception_3
+	import java.io.IOException;
+
+	public class FileIoDemo {
+		public static void main(String[] av) {
+			try {
+				FileIO.copyFile("FileIO.java", "FileIO.bak");
+				FileIO.copyFile("FileIO.class", "FileIO-class.bak");
+			} catch (IOException e) {
+				System.err.println(e);
+			}
+		}
+	}
+
+snippet windows_frame
+	import java.awt.Frame;
+	import java.awt.Label;
+	import com.darwinsys.swingui.WindowCloser;
+
+	public class WindowCloserDemo {
+		public static void main(String[] argv) {
+			Frame f = new Frame("Close Me");
+			f.add(new Label("Try Titlebar Close", Label.CENTER));
+			f.setSize(100, 100);
+			f.setVisible(true);
+			f.addWindowListener(new WindowCloser(f, true));
+		}
+	}
+
+
+snippet argv_argc_demo
+	class ArgvArgcDemo 
+	{
+		public static void main (String[] args) {
+		if (args.length == 1) {
+			System.err.println("一个参数");
+		}
+		else if (args.length  == 2 ){
+			System.err.println("2个参数");
+		}
+		else if (args.length  == 3 ){
+			System.err.println("3个参数");
+		}
+		else{
+			System.err.println("其他参数");
+		}
+		}
+	}
+
+
+snippet find_demo_usage
+	import java.io.File;
+	import java.util.*;
+	class FindDemo{
+	public static List<File> listAllFiles(String path) 
+	{
+		List<File> all = new ArrayList<>();
+		File[] list = new File(path).listFiles();
+		if (list != null) 
+		{  // In case of access error, list is null
+			for (File f : list) 
+			{
+				if (f.isDirectory()) 
+				{
+				all.addAll(listAllFiles(f.getAbsolutePath()));
+				} else {
+				all.add(f.getAbsoluteFile());
+				}
+			}
+		}
+		return all;
+	}
+
+		public static void main (String[] args) 
+		{
+		   List<File> files=listAllFiles("/etc/") ;
+		   for( File file: files )
+		   {
+			   System.out.println( file);
+		   }
+		}
+	}
+
+
+snippet readlines_demo
+	import java.io.*;
+	import java.nio.file.Files;
+	import java.util.*;
+	import java.util.List;
+	class readlines  {
+		public static List<String> readLines(String filename) throws IOException 
+		{
+			return Files.readAllLines(new File(filename).toPath());
+		}
+		public static void main (String[] args) {
+			try {
+				List<String>  lines=readLines("/etc/passwd");
+				for (String line:lines)
+				{
+					System.out.println(line);
+				}
+			} catch (IOException e) {
+				System.err.println(e);
+			}
+		}
+	}
+
+snippet file_to_string
+	REF: readlines_demo
+
+
+snippet file_string_load
+	REF: readlines_demo
+
+snippet keyboard_demo
+	import java.io.*;
+	class keyboard
+	{
+		public static void main(String args[]) throws IOException  {
+			System.out.println("请输入任何字符串");
+			BufferedReader in =  new BufferedReader( new InputStreamReader(System.in));
+			String s;
+			while ( ( s= in.readLine()).length() != 0) {
+				System.out.println(s);
+			}
+
+		}
+	}
+
+snippet stdin_demo
+	REF: keyboard_demo
+
+snippet input_demo
+	REF: keyboard_demo
+
+snippet IOException_demo
+	REF: keyboard_demo
+
+snippet BufferedReader_demo
+	REF: keyboard_demo
+
+snippet InputStreamReader_demo
+	REF: keyboard_demo
+snippet throws_demo
+	REF: keyboard_demo
+
+snippet FileWriter_demo
+	import java.io.* ;
+	class FileWriterDemo
+	{
+		public static void main(String args[]) throws IOException  {
+			String  output="output.txt";
+			FileWriter writer = new FileWriter(output);
+			writer.write("hellp\n");
+			writer.close();
+			System.out.println("文件 output.txt 已经生成");
+		}
+	}
+
+snippet file_append_demo
+	REF: FileWriter_demo
+
+snippet file_create_demo
+	REF: FileWriter_demo
+
+
+snippet mysql_demo
+	/root/bin/develop_java/mysql/ src/main/java/com/greshem/mysql.java
+
+
+snippet file_exists
+
+	import java.io.*;
+
+	class FileExists
+	{
+		public static String file_exists(String ok_file_path) 
+		{
+			File  ok_file= new File(ok_file_path);
+			if( ok_file.isFile())
+			{
+				System.out.println("文件存在");
+				System.out.println(ok_file );
+			}
+			else
+			{
+				System.out.println("文件不存在");
+			}
+			return ok_file_path;
+		}
+
+		public static void main(String args[])
+		{
+			file_exists("/etc/passwd")
+		}
+	}
+
+snippet TEMPLATE_demo
+	class TEMPLATE
+	{
+
+
+		public static String reverseString(String s) 
+		{
+			return new StringBuilder(s).reverse().toString();
+		}
+
+		public static void main(String args[])
+		{
+			String s="TEMPLATE";
+			System.out.println(reverseString(s));
+		}
+	}
+
+
+snippet regex_linux_match
+	import java.util.regex.*;
+	class Regex 
+	{
+		public static void main(String[] args) {
+			String pattStr = ".*linux.*"; //
+			String[] input = {
+					"windows", 
+					"linux", 
+					"edenlinux", 
+					"linuxeden", 
+					"hadoop", 
+			};
+			Pattern pattern = Pattern.compile(pattStr, Pattern.CANON_EQ);
+			for (int i = 0; i < input.length; i++) {
+				if (pattern.matcher(input[i]).matches()) {
+					System.out.println(
+						pattStr + " matches input " + input[i]);
+				} else {
+					System.out.println(
+						pattStr + " does not match input " + input[i]);
+				}
+			}
+		}
+	}
+

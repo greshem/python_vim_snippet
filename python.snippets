@@ -1687,6 +1687,7 @@ snippet file_read_bin.py_
 		print "not ok"
 	file.close();
 
+
 snippet code_comment_annotate.py_
 	#coding:gbk 
 	#!/usr/bin/python
@@ -1704,6 +1705,12 @@ snippet json_dumps_indent_sort_keys:_
 	import json
 	d4 = json.dumps(data2, indent=1, sort_keys=True)
 	print d4
+snippet json_dumps_chinese_utf8
+	import json
+	#d4 = json.dumps(data2, indent=1, sort_keys=True)
+	d4 = json.dumps(question, indent=1, sort_keys=True,ensure_ascii=False)
+	print d4
+
 
 
 snippet dict_2_json.py_
@@ -3768,7 +3775,14 @@ snippet argv_len_name
 	name=sys.argv[1];
 	print(name);
 
+snippet input_stdin
+	a=input()     #python3 
+	a=raw_input() #python2
 
+
+snippet stdin_input
+	a=input()     #python3 
+	a=raw_input() #python2
 
 snippet system_with_no_ret.py_
 	#!/usr/bin/python
@@ -5784,6 +5798,17 @@ snippet get_ip_address
 
 	print get_ip_addres()
 
+snippet hostname_I_ip_address
+	def get_ip_addres():
+		import commands
+		output = commands.getoutput ("hostname -I |awk '{print $1}' ")
+		if output[-1]=="\n":
+			output[-1]=""
+		return output
+
+	print get_ip_addres()
+
+
 
 snippet cur_dir_name_to_array
 	REF  get_cur_dir_name_to_array
@@ -6005,3 +6030,61 @@ snippet chomp_readlines_lambda
 			line = line[:-1]
 		return line;
 	array=map ( lambda  line:chomp(line),   open("/etc/passwd").readlines())
+
+
+snippet  chunked_split
+	from boltons.iterutils import  chunked;
+	a=range(0,100)
+	all_data=chunked(a, 10) # split with 10 items 
+	print(all_data[0]);
+
+snippet filter_subdir_lambda
+	def get_dir_subdir(dir):
+		return filter(lambda each: os.path.isdir(each),  glob.glob(dir))
+	def get_dir_subfile(dir):
+		return filter( lambda each: os.path.isfile(each),  glob.glob(dir))
+
+snippet filter_lambda_subdir
+	filter_subdir_lambda
+
+snippet lambda_subdir_filter
+	filter_subdir_lambda
+
+snippet lambda_filter_subdir
+	filter_subdir_lambda
+
+snippet strftime_datetime
+	stamp =  datetime.now().strftime('%Y_%m_%d-%H_%M')
+
+snippet datetime_strftime
+	stamp =  datetime.now().strftime('%Y_%m_%d-%H_%M')
+
+snippet replace_regex_hostname
+	# /usr/lib/python2.7/site-packages/cinder/utils.py
+	def sanitize_hostname(hostname):
+		if six.PY3:
+			hostname = hostname.encode('latin-1', 'ignore')
+			hostname = hostname.decode('latin-1')
+		else:
+			if isinstance(hostname, six.text_type):
+				hostname = hostname.encode('latin-1', 'ignore')
+		hostname = re.sub(r'[ _]', '-', hostname)
+		hostname = re.sub(r'[^\w.-]+', '', hostname)
+		hostname = hostname.lower()
+		hostname = hostname.strip('.-')
+
+
+
+
+snippet file_age_day
+	def get_hostfile_age():
+		global hostfilepath
+		timestamp = datetime.datetime.fromtimestamp(os.path.getmtime(hostfilepath))
+		return (datetime.datetime.now() - timestamp).days
+
+snippet file_mtime
+	REF: file_age_day
+
+
+snippet file_time_
+	REF: file_age_day

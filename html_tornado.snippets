@@ -1,0 +1,57 @@
+# Generic tags
+extends html
+extends html
+
+snippet tornado_{
+	{{ ${0} }}
+
+# Template tags
+
+snippet tornado_extends
+	{% extends "${0:base.html}" %}
+snippet tornado_autoescape
+	{% autoescape ${0:xhtml_escape | None} %}
+snippet tornado_apply
+	{% apply ${1:function} %}
+	  ${0}
+	{% end %}
+snippet tornado_block
+	{% block ${1} %}
+	  ${0}
+	{% end %}
+snippet tornado_for
+	{% for ${1:item} in ${2} %}
+	  ${0}
+	{% end %}
+snippet tornado_from
+	{% from ${1:x} import ${0:y} %}
+snippet tornado_if
+	{% if ${1:condition} %}
+	  ${0}
+	{% end %}
+snippet tornado_eif
+	{% elif ${0:condition} %}
+snippet tornado_el
+	{% else %}
+snippet tornado_import
+	{% import ${0:module} %}
+snippet tornado_include
+	{% include "${0:filename}" %}
+snippet tornado_module
+	{% module ${0:expression} %}
+snippet tornado_raw
+	{% raw ${0:expression} %}
+snippet tornado_set
+	{% set ${1:x} = ${0:y} %}
+snippet tornado_try
+	{% try %}
+	  ${1}
+	{% except %}
+	  ${2}
+	{% finallly %}
+	  ${0}
+	{% end %}
+snippet tornado_wh
+	{% while ${1:condition} %}
+	  ${0}
+	{% end %}

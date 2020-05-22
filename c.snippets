@@ -1,0 +1,411 @@
+## Main
+# main_argv
+snippet main
+	int main(int argc, const char *argv[])
+	{
+		${0}
+		return 0;
+	}
+# main(void)
+snippet mainn
+	int main(void)
+	{
+		${0}
+		return 0;
+	}
+
+snippet argv_main
+	int main(int argc, const char *argv[])
+	{
+		char name[256]={0};
+		if (argc != 2)
+		{
+			printf("Usage: %s:  input_name\n", argv[0] );
+		}
+		strncpy(name,  argv[1], strlen(name));
+		printf("name: %s", name);
+		return 0;
+	}
+
+snippet argc_argv_main
+	int main(int argc, const char *argv[])
+	{
+		char name[256]={0};
+		if (argc != 2)
+		{
+			printf("Usage: %s:  input_name\n", argv[0] );
+		}
+		strncpy(name,  argv[1], strlen(name));
+		printf("name: %s", name);
+		return 0;
+	}
+
+snippet print_array
+	void output_arr(int *arr, size_t arr_sz)
+	{
+
+		int i = 0;
+		printf("[");
+		for (i = 0; i < arr_sz; i++) {
+			if (i == arr_sz - 1)
+				printf("%d", *(arr + i));
+			else
+				printf("%d ", *(arr + i));
+		}
+		printf("]\n");
+	}
+
+
+##
+## Preprocessor
+# #include <...>
+snippet inc_
+	#include <${1:stdio}.h>
+snippet include_
+	#include <${1:stdio}.h>
+
+
+# #include "..."
+snippet Inc
+	#include "${1:`vim_snippets#Filename("$1.h")`}"
+
+# ifndef...define...endif
+snippet ndef
+	#ifndef $1
+	#define ${1:SYMBOL} ${2:value}
+	#endif /* ifndef $1 */
+# define
+snippet def
+	#define
+# ifdef...endif
+snippet ifdef
+	#ifdef ${1:FOO}
+		${2:#define }
+	#endif
+# if
+snippet #if
+	#if ${1:FOO}
+		${0}
+	#endif
+# header include guard
+snippet once
+	#ifndef ${1:`toupper(vim_snippets#Filename('$1_H', 'UNTITLED_H'))`}
+
+	#define $1
+
+	${0}
+
+	#endif /* end of include guard: $1 */
+##
+## Control Statements
+# if
+snippet if
+	if (${1:true}) {
+		${0}
+	}
+snippet ife
+	if (${1:true}) {
+		${2}
+	} else {
+		${0}
+	}
+# else
+snippet el
+	else {
+		${0}
+	}
+# else if
+snippet elif
+	else if (${1:true}) {
+		${0}
+	}
+# ifi
+snippet ifi
+	if (${1:true}) ${0};
+# ternary
+snippet t
+	${1:/* condition */} ? ${2:a} : ${3:b}
+# switch
+snippet switch
+	switch (${1:/* variable */}) {
+		case ${2:/* variable case */}:
+			${3}
+			${4:break;}${5}
+		default:
+			${6}
+	}
+# switch without default
+snippet switchndef
+	switch (${1:/* variable */}) {
+		case ${2:/* variable case */}:
+			${3}
+			${4:break;}${5}
+	}
+# case
+snippet case
+	case ${1:/* variable case */}:
+		${2}
+		${3:break;}
+snippet ret
+	return ${0};
+##
+## Loops
+# for
+snippet for
+	for (int ${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+		${4}
+	}
+# for (custom)
+snippet forr
+	for (int ${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}) {
+		${5}
+	}
+# while
+snippet wh
+	while (${1:/* condition */}) {
+		${2}
+	}
+# do... while
+snippet do
+	do {
+		${2}
+	} while (${1:/* condition */});
+##
+## Functions
+# function definition
+snippet fun
+	${1:void} ${2:function_name}(${3})
+	{
+		${4}
+	}
+# function declaration
+snippet fund
+	${1:void} ${2:function_name}(${3});
+##
+## Types
+# typedef
+snippet td
+	typedef ${1:int} ${2:MyCustomType};
+# struct
+snippet st
+	struct ${1:`vim_snippets#Filename('$1_t', 'name')`} {
+		${2:/* data */}
+	}${3: /* optional variable list */};
+# typedef struct
+snippet tds
+	typedef struct ${2:_$1 }{
+		${3:/* data */}
+	} ${1:`vim_snippets#Filename('$1_t', 'name')`};
+
+snippet enum
+	enum ${1:name} { ${0} };
+
+snippet enum_demo
+	enum code {
+		OK  = 0x00,
+		FAIL = 0x03,
+		ERROR = 0x04,
+		WARN = 0x04,
+		}
+
+# typedef enum
+snippet tde
+	typedef enum {
+		${1:/* data */}
+	} ${2:foo};
+##
+## Input/Output
+# printf
+snippet pr
+	printf("${1:%s}\n"${2});
+# fprintf (again, this isn't as nice as TextMate's version, but it works)
+snippet fpr
+	fprintf(${1:stderr}, "${2:%s}\n"${3});
+snippet fprintf
+	fprintf(${1:stderr}, "${2:%s}\n"${3});
+
+snippet prd
+	printf("${1:} = %d\n", $1);
+snippet printf_d
+	printf("name = %d\n", 33);
+
+snippet prf
+	printf("${1:} = %f\n", $1);
+snippet prx
+	printf("${1:} = %${2}\n", $1);
+# getopt
+snippet getopt
+	int choice;
+	while (1)
+	{
+		static struct option long_options[] =
+		{
+			/* Use flags like so:
+			{"verbose",	no_argument,	&verbose_flag, 'V'}*/
+			/* Argument styles: no_argument, required_argument, optional_argument */
+			{"version", no_argument,	0,	'v'},
+			{"help",	no_argument,	0,	'h'},
+			${1}
+			{0,0,0,0}
+		};
+
+		int option_index = 0;
+
+		/* Argument parameters:
+			no_argument: " "
+			required_argument: ":"
+			optional_argument: "::" */
+
+		choice = getopt_long( argc, argv, "vh",
+					long_options, &option_index);
+
+		if (choice == -1)
+			break;
+
+		switch( choice )
+		{
+			case 'v':
+				${2}
+				break;
+
+			case 'h':
+				${3}
+				break;
+
+			case '?':
+				/* getopt_long will have already printed an error */
+				break;
+
+			default:
+				/* Not sure how to get here... */
+				return EXIT_FAILURE;
+		}
+	}
+
+	/* Deal with non-option arguments here */
+	if ( optind < argc )
+	{
+		while ( optind < argc )
+		{
+			${0}
+		}
+	}
+##
+## Miscellaneous
+# This is kind of convenient
+snippet .
+	[${1}]
+
+snippet include_c_header
+	#include <stringprep.h>
+	#include <assert.h>
+	#include <time.h>
+	#include <fcntl.h>
+	#include <errno.h>
+	#include <sys/ioctl.h>
+	#include <sys/stat.h>
+	#include <locale.h>
+	#include <unistd.h>
+	#include <dirent.h>
+	#include <sys/types.h>
+	#include <string.h>
+	#include <stdio.h>
+	#include <stdlib.h>
+
+snippet include_cpp_header
+	//#include <QzjUnit.hpp>
+	//#include <MLmyUnit.hpp>
+	#include <Baselib.hpp>
+	#include <gtest/gtest.h>
+	#include <fstream>
+	#include <string> 
+	#include <sstream>
+	#include <iostream>
+	#include <map>
+	#include <iostream> 
+	#include <algorithm>
+	#include <vector> 
+	#include <iterator>  
+	#include <stdlib.h>
+	#include <string.h>
+	#include <stdio.h>
+	#include <dirent.h>
+
+
+snippet sort_bubble
+	void BubbleSort(HeapType &H)
+	{
+		int i,j;
+		RedType temp;
+		for(j=0;j<H.length-1;j++)
+			for(i=1;i<H.length-j;i++)
+				if(H.r[i].key>H.r[i+1].key)
+				{
+				temp=H.r[i];
+				H.r[i]=H.r[i+1];
+				H.r[i+1]=temp;
+				} 
+	}
+
+
+snippet fopen_mode
+	#字符串说明
+	r       以只读方式打开文件，该文件必须存在。
+	r+      以读/写方式打开文件，该文件必须存在。
+	rb+     以读/写方式打开一个二进制文件，只允许读/写数据。
+	rt+     以读 /写方式打开一个文本文件，允许读和写。
+	w       打开只写文件，若文件存在则长度清为 0，即该文件内容消失，若不存在则创建该文件。
+	w+      打开可读/写文件，若文件存在   则文件长度清为零，即该文件内容会消失。若文件不存在则建立该文件。
+	a       以附加的方式打开只写文件。若文件不存在，则会建立该文件，如果文件存在，写入的数据会被加到文件尾，即文件原先的内容会被保留（EOF 符保留）。
+	a+      以附加方  式打开可读/写的文件。若文件不存在，则会建立该文件，如果文件存在，则写入的数据会被加到文件尾后，即文件原先的内容会被保留（原来的 EOF 符不保留）。
+	wb      以    只写方式打开或新建一个二进制文件，只允许写数据。
+	wb+     以读/写方式打开或建立一个二进制文件，允许读  和写。
+	wt+     以读/写方式打开或建立一个文本文件，允è¸读写。
+	at+     以读/写方式打开一个文本文件，允许读或å¨文本末追加数据。
+	ab+     以读/写方式打开一个二进制文  件，允许读或在文件末追加数据。
+
+snippet fopen_demo
+	#include <stdio.h>
+	int main(void)
+	{
+		FILE *fp = NULL;
+		char tmp[100];
+		fp = fopen("/etc/passwd", "r");
+		if (NULL == fp)
+		{
+			printf("File open fail!\n");
+			return -1;
+		}
+		fread(tmp, 1, 100, fp);
+		printf("%s\n", tmp);
+		fclose(fp);
+		return 0;
+	}
+
+snippet swap_int
+	void swap(int *a, int *b) 
+	{
+		if (a == b)
+		return;
+
+		int tmp = *a;
+		*a = *b;
+		*b = tmp;
+	}
+
+
+snippet change_void_to_int
+	int defaultDataToInt(void *data) 
+	{
+		return *(int *)data;
+	}
+
+
+snippet sizeof_common
+	printf("sizeof(int)=%s\n", sizeof(int));
+	printf("sizeof(char)=%s\n", sizeof(char));
+	printf("sizeof(long)=%s\n", sizeof(long));
+	printf("sizeof(long long)=%s\n", sizeof(long long));
+	printf("sizeof(float)=%s\n", sizeof(float));
+	printf("sizeof(double)=%s\n", sizeof(double));
+

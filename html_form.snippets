@@ -1,0 +1,251 @@
+snippet form_input_list
+	autocomplete_input
+	checkbox
+	checkbox_choice
+	checked_input
+	checked_password
+	dateinput
+	dateparts
+	datetimeinput
+	file_upload
+	form
+	hidden
+	mapping
+	mapping_item
+	password
+	radio_choice
+	richtext
+	richtextarea
+	select
+	sequence
+	sequence_item
+	textarea
+	textinput
+
+snippet form_input_type_list
+	ref form_input_list
+
+
+snippet form_check_box
+
+	<form role="form">
+		<div class="form-group">
+		<label for="name">名称</label>
+		<input type="text" class="form-control" id="name" placeholder="请输入名称">
+		</div>
+
+		<div class="form-group">
+		<label for="inputfile">文件输入</label>
+		<input type="file" id="inputfile">
+		<p class="help-block">这里是块级帮助文本的实例。</p>
+		</div>
+
+		<div class="checkbox">
+		<label>
+		<input type="checkbox">请打勾
+		</label>
+		</div>
+
+		<button type="submit" class="btn btn-default">提交</button>
+	</form>
+
+snippet form_input_file
+	<form role="form">
+		<div class="form-group">
+		<label for="inputfile">文件输入</label>
+		<input type="file" id="inputfile">
+		<p class="help-block">这里是块级帮助文本的实例。</p>
+		</div>
+		<button type="submit" class="btn btn-default">提交</button>
+	</form>
+
+snippet form_inline_three_elements
+	<form class="form-inline" role="form">
+		<div class="form-group">
+		<label class="sr-only" for="name">名称</label>
+		<input type="text" class="form-control" id="name" placeholder="请输入名称">
+		</div>
+
+		<div class="form-group">
+		<label class="sr-only" for="inputfile">文件输入</label>
+		<input type="file" id="inputfile">
+		</div>
+
+		<div class="checkbox">
+		<label>
+		<input type="checkbox">请打勾
+		</label>
+		</div>
+
+		<button type="submit" class="btn btn-default">提交</button>
+	</form>
+
+
+snippet form_input
+	<form role="form">
+	<div class="form-group">
+	<label for="name">标签</label>
+	<input type="text" class="form-control" placeholder="文本输入">
+	</div>
+	</form>
+
+snippet form_textarea
+	<form role="form">
+	<div class="form-group">
+	<label for="name">文本框</label>
+	<textarea class="form-control" rows="3"></textarea>
+	</div>
+	</form>
+
+snippet form_select
+
+	<form role="form">
+		<div class="form-group">
+		<label for="name">选择列表</label>
+			<select class="form-control">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			</select>
+		<label for="name">可多选的选择列表</label>
+			<select multiple class="form-control">
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+			<option>4</option>
+			<option>5</option>
+			</select>
+		</div>
+	</form>
+
+
+snippet form_password
+	<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Email</label>
+			<div class="col-sm-10">
+			<p class="form-control-static">email@example.com</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputPassword" class="col-sm-2 control-label">密码</label>
+			<div class="col-sm-10">
+			<input type="password" class="form-control" id="inputPassword" placeholder="请输入密码">
+			</div>
+		</div>
+	</form>
+
+
+snippet form_size_layout
+	ref: form_multi_element
+
+snippet form_multi_element
+
+	<form role="form" action="/api/rest/data"  method="POST">
+		<div class="form-group">
+		<input class="form-control input-lg" type="text" placeholder=".input-lg">
+		</div>
+
+		<div class="form-group">
+		<input class="form-control" type="text" placeholder="默认输入">
+		</div>
+
+		<div class="form-group">
+		<input class="form-control input-sm" type="text" placeholder=".input-sm">
+		</div>
+
+		<div class="form-group"></div>
+
+		<div class="form-group">
+		<select class="form-control input-lg">
+		<option value="">.input-lg</option>
+		</select>
+		</div>
+
+		<div class="form-group">
+		<select class="form-control">
+		<option value="">默认选择</option>
+		</select>
+		</div>
+
+		<div class="form-group">
+		<select class="form-control input-sm">
+		<option value="">.input-sm</option>
+		</select>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-2">
+			<input type="text" class="form-control" placeholder=".col-lg-2">
+			</div>
+
+			<div class="col-lg-3">
+			<input type="text" class="form-control" placeholder=".col-lg-3">
+			</div>
+
+			<div class="col-lg-4">
+			<input type="text" class="form-control" placeholder=".col-lg-4">
+			</div>
+		</div>
+	</form>
+
+snippet form_radio
+
+	<div class="radio">
+		<label>
+		<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked> 选项 1
+		</label>
+	</div>
+
+	<div class="radio">
+		<label>
+		<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">选项 2 - 选择它将会取消选择选项 1
+		</label>
+	</div>
+
+
+
+
+snippet dialog_modal_generator
+	ref: modal_dialog_generator
+
+snippet modal_dialog_generator
+	COMPLETE:   bootstrap3_Bootstrap_cdn
+	COMPLETE:   bt4_utf8_Bootstrap 
+	COMPLETE:   bt4_layout_3_rows 
+	COMPLETE:   modal_Bootstrap
+
+	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 "  >
+	<a href="#addHost" type="button" class="btn btn-success pull-right" data-toggle="modal">
+	<span class="glyphicon glyphicon-plus" aria-hidden="true">添加连接</span>
+	</a>    
+	</div>
+
+	<div class="modal fade" id="addHost">
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title">Modal title</h4>
+		  </div>
+		  <div class="modal-body">
+			<p>One fine body&hellip;</p>
+			COMPLETE:  form_multi_element
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button>
+
+			<button type="button" class="btn btn-default" data-dismiss="modal">
+			Close
+			</button>
+			<button type="submit" class="btn btn-primary" name="host_tcp_add">
+			Add
+			</button>
+		  </div>
+			<pre>注意 把  之后的form 标签放到 这里</pre>
+		</div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->

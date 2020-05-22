@@ -1,0 +1,1385 @@
+snippet HelloWorld.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/HelloWorld.go
+	package main
+	
+	func main() {
+		// print string
+		print("Hello World\n")
+	}
+
+snippet HelloWorld2.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/HelloWorld2.go
+	package main
+	
+	// import required modules
+	import (
+		"fmt"
+	)
+	
+	// in go you can write comments after "//"
+	
+	/*
+	to write multiline comments you can write
+	inside of "/ *" and "* /" (without the spaces
+	*/
+	
+	func main() {
+		// declare a variable
+		var str = "Hello World"
+	
+		// print variable
+		fmt.Println(str)
+	}
+
+snippet HelloWorldShebang.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/HelloWorldShebang.go
+	//usr/bin/env go run $0 $@ ; exit
+	
+	package main
+	
+	func main() {
+		// print string
+		print("Hello World\n")
+	}
+
+snippet RoundRobinSchedulingAlgorithm.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/RoundRobinSchedulingAlgorithm.go
+	package main
+	
+	import "fmt"
+	
+	/**
+	 * Thanks https://en.wikipedia.org/wiki/Round-robin_tournament#Scheduling_algorithm
+	 *
+	 * @param int weeks
+	 * @param array teams
+	 * @return array
+	 */
+	// added return type to the end
+	func schedule(weeks int, teams []int) [][][]int {
+	
+		//Check if team count is odd, if so we add a 'bye'
+		if len(teams)%2 != 0 {
+			teams = append(teams, len(teams)+1)
+		}
+	
+		halfTeams := len(teams) / 2
+	
+		mTeams := teams[1:]
+		count := len(mTeams)
+	
+		sched := make([][][]int, weeks)
+	
+		for i := 0; i < weeks; i++ {
+			teamIndex := i % count
+	
+			sched[i] = make([][]int, halfTeams)
+	
+			sched[i][0] = make([]int, 2)
+	
+			sched[i][0][0] = teams[0]
+			sched[i][0][1] = mTeams[teamIndex]
+	
+			for j := 1; j < halfTeams; j++ {
+				teamA := (i + j) % count
+				teamB := (i + count - j) % count
+	
+				sched[i][j] = make([]int, 2)
+	
+				sched[i][j][0] = mTeams[teamA]
+				sched[i][j][1] = mTeams[teamB]
+			}
+		}
+	
+		return sched
+	}
+	
+	func main() {
+		weeks := 13
+		teams := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13}
+	
+		fmt.Println(schedule(weeks, teams))
+	}
+
+snippet ackermann.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/ackermann.go
+	package main
+	
+	import (
+		"fmt"
+		"os"
+		"strconv"
+	)
+	
+	func ack(n, m int64) int64 {
+		for n != 0 {
+			if m == 0 {
+				m = 1
+			} else {
+				m = ack(n, m-1)
+			}
+			n = n - 1
+		}
+		return m + 1
+	}
+	
+	func main() {
+		if len(os.Args) > 2 {
+			ia1, _ := strconv.ParseInt(os.Args[1], 10, 0)
+			ia2, _ := strconv.ParseInt(os.Args[2], 10, 0)
+			fmt.Println(ack(ia1, ia2))
+		}
+	}
+
+snippet args.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/args.go
+	package main
+	
+	// import required modules
+	import (
+		"fmt"
+		"os"
+	)
+	
+	// main function
+	func main() {
+	
+		// print each argument
+		for i := 1; i < len(os.Args); i++ {
+			fmt.Println(os.Args[i])
+		}
+	}
+
+snippet array.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/array.go
+	package main
+	
+	// import required modules
+	import (
+		"fmt"
+	)
+	
+	// declare variables and define array content
+	var strarray = []string{"lorem", "ipsum", "dolor", "sit", "amet"}
+	var intarray = []int{1, 2, 4, 8, 16}
+	var mapone = map[int]string{}
+	var maptwo = map[string]interface{}{}
+	
+	func main() {
+	
+		// do this five times
+		for i := 0; i != 5; i++ {
+	
+			// print the $th value of the intarray and the strarray
+			fmt.Println(intarray[i], "\t", strarray[i])
+	
+			mapone[intarray[i]] = strarray[i]
+			maptwo[strarray[i]] = mapone
+		}
+		fmt.Println(mapone)
+		fmt.Println(maptwo)
+	}
+
+snippet cat.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/cat.go
+	package main
+	
+	import (
+		"bytes"
+		"fmt"
+		"strconv"
+	)
+	
+	func main() {
+		var buffer bytes.Buffer
+		for i := 0; i < 32; i++ {
+			buffer.WriteString("a")
+		}
+		s := buffer.String()
+		for i := 0; i < 8192; i++ {
+			s += strconv.Itoa(i)
+		}
+		s += buffer.String()
+		for i := 0; i < 512; i++ {
+			s = "pre" + s
+		}
+		fmt.Println(s)
+	}
+
+snippet deleteFromSlice.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/deleteFromSlice.go
+	package main
+	
+	import "fmt"
+	
+	func main() {
+		mySlice := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	
+		// Deleting from a slice is basically appending the entire slice to itself, but excluding the deleted item
+		mySlice = append(mySlice[:4], mySlice[5:]...)
+		fmt.Println(mySlice)
+	}
+
+snippet dir.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/dir.go
+	package main
+	
+	import (
+		"fmt"
+		"os"
+		"strings"
+	)
+	
+	func main() {
+		dir, _ := os.Getwd()
+		fmt.Println(strings.Replace(dir, " ", "\\ ", -1))
+	}
+
+snippet environment_var.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/environment_var.go
+	package main
+	
+	import (
+		"fmt"
+		"os"
+		"strings"
+	)
+	
+	func main() {
+		os.Setenv("FOO", "1")
+		fmt.Println("FOO:", os.Getenv("FOO"))
+		fmt.Println("BAR:", os.Getenv("BAR"))
+	
+		fmt.Println()
+		for _, e := range os.Environ() {
+			pair := strings.Split(e, "=")
+			fmt.Println(pair[0])
+		}
+	}
+
+snippet euklid.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/euklid.go
+	package main
+	
+	import (
+		"fmt"
+		"os"
+		"strconv"
+	)
+	
+	func euklid(a, b int64) int64 {
+		for b != 0 {
+			a, b = b, a%b
+		}
+		return a
+	}
+	
+	func main() {
+		if len(os.Args) > 2 {
+			ia1, _ := strconv.ParseInt(os.Args[1], 10, 0)
+			ia2, _ := strconv.ParseInt(os.Args[2], 10, 0)
+			fmt.Println(euklid(ia1, ia2))
+		}
+	}
+
+snippet fizzbuzz.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/fizzbuzz.go
+	// Fizzbuzz is a common programming test.
+	// The objective is to print the integers 1 to 100, but:
+	// 		-for multiples of 3, print fizz instead of the number
+	// 		-for multiples of 5, print buzz instead of the number
+	// 		-for multiples of 3 and 5, print fizzbuzz instead of the number
+	
+	package main
+	
+	import (
+		"fmt"
+	)
+	
+	func main() {
+		for index := 1; index < 100; index++ {
+			switch {
+			case index%15 == 0:
+				fmt.Println("fizzbuzz")
+			case index%3 == 0:
+				fmt.Println("fizz")
+			case index%5 == 0:
+				fmt.Println("buzz")
+			default:
+				fmt.Println(index)
+			}
+		}
+	}
+
+snippet flag.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/flag.go
+	package main
+	
+	import (
+		"flag"
+		"fmt"
+	)
+	
+	func main() {
+		var arg1 int
+		var arg2 string
+		var arg3 float64
+		flag.IntVar(&arg1, "a", 0, "first argument (int)")
+		flag.StringVar(&arg2, "b", "lorem", "second argument (string)")
+		flag.Float64Var(&arg3, "c", 13.37, "third argument (float)")
+		flag.Parse()
+		fmt.Printf("flag input was: \n\targ1: %v\n\targ2: %v\n\targ3: %v\n\n", arg1, arg2, arg3)
+	}
+
+snippet foreach.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/foreach.go
+	package main
+	
+	import (
+		"fmt"
+	)
+	
+	// declare variables and define array content
+	var strarray = []string{"lorem", "ipsum", "dolor", "sit", "amet"}
+	
+	func main() {
+		for index, data := range strarray {
+			fmt.Println(index, data)
+		}
+	}
+
+snippet function.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/function.go
+	package main
+	
+	// import required modules
+	import (
+		"fmt"
+	)
+	
+	// a function which add up two integers and returns it as int
+	func plus(a int, b int) int {
+		return a + b
+	}
+	
+	// a function which subtract an integer from an integer and returns it as int
+	func minus(a int, b int) int {
+		return a - b
+	}
+	
+	// main function
+	func main() {
+		fmt.Println(plus(3, minus(10, 5)))
+	}
+
+snippet functionvariadic.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/functionvariadic.go
+	package main
+	
+	import "fmt"
+	
+	func main() {
+		variadic(1, 2, 3, 4, 5)
+	}
+	
+	// Variadic functions can have zero or n parameters passed
+	// The arguments passed to a variadic function are appended to a slice of the same type
+	func variadic(numbers ...int) {
+		fmt.Printf("Type: %T\t Content: %d\n", numbers, numbers)
+	}
+
+snippet hashing.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/hashing.go
+	package main
+	
+	import (
+		"crypto/hmac"
+		"crypto/md5"
+		"crypto/sha256"
+		"crypto/sha512"
+		"encoding/base64"
+		"fmt"
+		"io"
+	)
+	
+	func main() {
+		input := "Lorem Ipsum dolor sit Amet"
+		md5 := md5.New()
+		sha_256 := sha256.New()
+		sha_512 := sha512.New()
+		io.WriteString(md5, input)
+		sha_256.Write([]byte(input))
+		sha_512.Write([]byte(input))
+		sha_512_256 := sha512.Sum512_256([]byte(input))
+		hmac512 := hmac.New(sha512.New, []byte("secret"))
+		hmac512.Write([]byte(input))
+	
+		//4db45e622c0ae3157bdcb53e436c96c5
+		fmt.Printf("md5:\t\t%x\n", md5.Sum(nil))
+	
+		//eb7a03c377c28da97ae97884582e6bd07fa44724af99798b42593355e39f82cb
+		fmt.Printf("sha256:\t\t%x\n", sha_256.Sum(nil))
+	
+		//5cdaf0d2f162f55ccc04a8639ee490c94f2faeab3ba57d3c50d41930a67b5fa6915a73d6c78048729772390136efed25b11858e7fc0eed1aa7a464163bd44b1c
+		fmt.Printf("sha512:\t\t%x\n", sha_512.Sum(nil))
+	
+		//34c614af69a2550a4d39138c3756e2cc50b4e5495af3657e5b726c2ac12d5e60
+		fmt.Printf("sha512_256:\t%x\n", sha_512_256)
+	
+		//GBZ7aqtVzXGdRfdXLHkb0ySp/f+vV9Zo099N+aSv+tTagUWuHrPeECDfUyd5WCoHBe7xkw2EdpyLWx+Ge4JQKg==
+		fmt.Printf("hmac512:\t%s\n", base64.StdEncoding.EncodeToString(hmac512.Sum(nil)))
+	}
+
+snippet http.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/http.go
+	package main
+	
+	import (
+		"fmt"
+		"net/http"
+		"io/ioutil"
+		"os"
+	)
+	
+	func main() {
+		response, err := http.Get("http://golang.org/") // Send a HTTP GET request to the URL
+		if err != nil {
+			fmt.Printf("%s", err) // If there is an error, print it and exit
+			os.Exit(1)
+		} else {
+			defer response.Body.Close()                    // Close the connection to prevent a resource leak
+			contents, err := ioutil.ReadAll(response.Body) // Read the contents of the HTTP GET
+			if err != nil {                                // If there is an error
+				fmt.Printf("%s", err)
+				os.Exit(1)
+			}
+			fmt.Printf("%s\n", string(contents)) // Print the contents of the request
+		}
+	}
+
+snippet if.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/if.go
+	package main
+	
+	import (
+		"fmt"
+		"os"
+	)
+	
+	func main() {
+		if os.Args[1] == "Hello" {
+			fmt.Println("Hello World")
+		} else {
+			fmt.Println("Hack the Planet")
+		}
+	}
+
+snippet if2.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/if2.go
+	package main
+	
+	import (
+		"fmt"
+	)
+	
+	func f1(b bool) bool {
+		fmt.Printf("f1: %v\n", b)
+		return b
+	}
+	
+	func f2(b bool) bool {
+		fmt.Printf("f2: %v\n", b)
+		return b
+	}
+	
+	func f3(b bool) bool {
+		fmt.Printf("f3: %v\n", b)
+		return b
+	}
+	
+	func main() {
+		if f1(true) == true {
+			fmt.Println("✔")
+		}
+	
+		if f1(true) {
+			fmt.Println("✔")
+		}
+	
+		fmt.Println("\nAND")
+		if f1(true) && f2(true) {
+			fmt.Println("✔")
+		}
+	
+		fmt.Println("\nAND")
+		if f1(false) && f2(true) {
+			fmt.Println("✔")
+		}
+	
+		fmt.Println("\nAND")
+		if f1(true) && f2(false) && f3(true) {
+			fmt.Println("✔")
+		}
+	
+		fmt.Println("\nOR")
+		if f1(true) || f2(true) {
+			fmt.Println("✔")
+		}
+	
+		fmt.Println("\nOR")
+		if f1(true) || f2(true) {
+			fmt.Println("✔")
+		}
+	
+		fmt.Println("\nAND+OR")
+		if f1(true) && f2(false) || f3(true) {
+			fmt.Println("✔")
+		}
+	
+		fmt.Println("\n(AND)+OR")
+		if (f1(true) && f2(false)) || f3(true) {
+			fmt.Println("✔")
+		}
+	
+		fmt.Println("\n(AND)+OR")
+		if (f1(true) && f2(true)) || f3(false) {
+			fmt.Println("✔")
+		}
+	
+		fmt.Println("\nAND+(OR)")
+		if f1(true) && (f2(false) || f3(true)) {
+			fmt.Println("✔")
+		}
+	
+		fmt.Println("\nAND+(OR)")
+		if f1(true) && (f2(true) || f3(false)) {
+			fmt.Println("✔")
+		}
+	}
+
+snippet input.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/input.go
+	package main
+	
+	import (
+		"bufio"
+		"fmt"
+		"os"
+	)
+	
+	func main() {
+		//arguments
+		if 1 < len(os.Args) {
+			fmt.Print(len(os.Args) - 1)
+			fmt.Println(" arguments provided")
+		}
+		/*
+			//Scanf to wait for an input
+			fmt.Println("Enter a number")
+			var i int
+			_, err := fmt.Scanf("%d", &i)
+			if err != nil {
+				fmt.Println("not a number")
+			} else {
+				fmt.Print(i)
+				fmt.Println(" is a number")
+			}
+		*/
+		//Stdin read buffer
+		fmt.Println("Enter a string")
+		bio := bufio.NewReader(os.Stdin)
+		line, _, err := bio.ReadLine()
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			//fmt.Println("you entered \"" + string(line) + "\"")
+			for _, char := range string(line) {
+				fmt.Println(char)
+			}
+		}
+	}
+
+snippet interfaces.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/interfaces.go
+	package main
+	
+	import "fmt"
+	
+	func FuncWithInterface(emptyinterface interface{}) {
+		switch t := emptyinterface.(type) {
+		case string:
+			fmt.Print("type: string\t")
+		case int:
+			fmt.Print("type: int\t")
+		case bool:
+			fmt.Print("type: bool\t")
+		default:
+			fmt.Printf("type: %v\t", t)
+		}
+	
+		fmt.Printf("data: %#v\n", emptyinterface)
+	}
+	
+	func main() {
+		var emptyinterface = [3]interface{}{}
+	
+		emptyinterface[0] = 23
+		emptyinterface[1] = "foobar"
+		emptyinterface[2] = false
+	
+		fmt.Printf("data: %v\n", emptyinterface)
+	
+		for _, v := range emptyinterface {
+			FuncWithInterface(v)
+		}
+	
+	}
+
+snippet modulo.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/modulo.go
+	package main
+	
+	import "fmt"
+	
+	func main() {
+		for i := 0; i < 10; i++ {
+			if i%2 == 0 {
+				fmt.Println(i)
+			}
+		}
+	}
+
+snippet printf.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/printf.go
+	package main
+	
+	import "fmt"
+	
+	type exampledata struct {
+		a, b int
+		c, d string
+		e, f bool
+		g, h float64
+	}
+	
+	func printx(str string, data exampledata) {
+		fmt.Printf("%"+str+":\t "+str+"\n", data)
+	}
+	
+	func main() {
+		x := exampledata{0, 1, "a", "b", true, false, 3.1415926535, 2.357111317192329}
+	
+		printx("%v", x)
+	
+		printx("%+v", x)
+	
+		printx("%#v", x)
+	
+		printx("%t", x)
+	
+		printx("%T", x)
+	
+		printx("%d", x)
+	
+		printx("%b", x)
+	
+		printx("%c", x)
+	
+		printx("%x", x)
+	
+		printx("%f", x)
+	
+		printx("%e", x)
+	
+		printx("%E", x)
+	
+		printx("%s", x)
+	
+		printx("%q", x)
+	
+		printx("%p", x)
+	
+		fmt.Println("\n\n", fmt.Sprintf("%+v", x))
+	}
+
+snippet random.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/random.go
+	package main
+	
+	// import required modules
+	import (
+		crand "crypto/rand"
+		"fmt"
+		"math/rand"
+		"time"
+	)
+	
+	func main() {
+		rand.Seed(time.Now().UnixNano())
+		fmt.Println("math/rand:")
+		for i := 0; i < 10; i++ {
+			fmt.Println(i, rand.Intn(127))
+		}
+	
+		fmt.Println("crypto/rand:")
+		b := make([]byte, 3)
+		for i := 0; i < 10; i++ {
+			crand.Read(b)
+			number := uint32(b[0]) | (uint32(b[1]) << 8) | (uint32(b[2]) << 16)
+			fmt.Println(i, number)
+		}
+	}
+
+snippet return.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/return.go
+	package main
+	
+	// import required modules
+	import (
+		"fmt"
+	)
+	
+	func named() (str string) {
+		str = "lorem"
+		return
+	}
+	
+	func typed() string {
+		var str = "ipsum"
+		return str
+	}
+	
+	// main function
+	func main() {
+		fmt.Println(named())
+		fmt.Println(typed())
+	}
+
+snippet scan.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/scan.go
+	package main
+	
+	import "fmt"
+	
+	func main() {
+		var s string
+		fmt.Print("please insert a string an press enter ")
+		fmt.Scan(&s)
+		fmt.Printf("read string \"%v\" from stdin\n", s)
+	}
+
+snippet shell.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/shell.go
+	package main
+	
+	import (
+		"fmt"
+		"os"
+		"os/exec"
+	)
+	
+	func main() {
+		out, err := exec.Command("echo", "Hello", "world").Output()
+		if err != nil {
+			fmt.Printf("%s", err)
+			os.Exit(1)
+		} else {
+			fmt.Printf("%s\n", out)
+		}
+	}
+
+snippet slice.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/slice.go
+	package main
+	
+	// import required modules
+	import (
+		"fmt"
+	)
+	
+	// main function
+	func main() {
+		var str string = "Lorem ipsum dolor sit amet"
+		fmt.Println(str[6:11])
+	}
+
+snippet sortingInGo.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/sortingInGo.go
+	package main
+	
+	import "fmt"
+	import "sort"
+	
+	func main() {
+		strs := []string{"c", "a", "b"}
+		sort.Strings(strs)
+		fmt.Println("Strings:", strs)
+	
+		ints := []int{7, 2, 4}
+		sort.Ints(ints)
+		fmt.Println("Ints:   ", ints)
+	
+		s := sort.IntsAreSorted(ints)
+		fmt.Println("Sorted: ", s)
+	}
+
+snippet split.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/split.go
+	package main
+	
+	// import required modules
+	import (
+		"fmt"
+		"strings"
+	)
+	
+	// declare variables
+	var variable string
+	var strarray []string
+	
+	// main function
+	func main() {
+	
+		// define content of variable
+		variable = "Lorem Ipsum Dolor Sit Amet"
+	
+		// print variable
+		fmt.Println(variable)
+	
+		// split variable by space
+		strarray = strings.Split(variable, " ")
+	
+		// do something as often as the array contains elements
+		for i := 0; i < len(strarray); i++ {
+	
+			// print the array element defined by i
+			fmt.Println(strarray[i])
+		}
+	}
+
+snippet sum_of_digits.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/sum_of_digits.go
+	package main
+	
+	import (
+		"bufio"
+		"fmt"
+		"os"
+		"strconv"
+		"strings"
+	)
+	
+	func main() {
+		fmt.Print("Enter digits to sum sperated by a space:")
+		str, err := getline()
+		if err == nil {
+			fmt.Println("Here is the result:", sumNumbers(str))
+		}
+	}
+	
+	func getline() (string, error) {
+		return bufio.NewReader(os.Stdin).ReadString('\n')
+	}
+	
+	func sumNumbers(str string) float64 {
+		var sum float64
+		for _, v := range strings.Fields(str) {
+			i, err := strconv.ParseFloat(v, 64)
+			if err != nil {
+				fmt.Println(err)
+			} else {
+				sum += i
+			}
+		}
+		return sum
+	}
+
+snippet time.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/time.go
+	package main
+	
+	import (
+		"fmt"
+		"strconv"
+		"time"
+	)
+	
+	func main() {
+		fmt.Println(strconv.FormatInt(time.Now().Unix(), 10))
+		//1401403874
+		fmt.Println(time.Now().Format(time.RFC850))
+		//Friday, 30-May-14 00:51:14 CEST
+		fmt.Println(time.Now().Format(time.RFC1123Z))
+		//Fri, 30 May 2014 00:51:14 +0200
+		fmt.Println(time.Now().Format("20060102150405"))
+		//20140530005114
+		fmt.Println(time.Unix(1401403874, 0).Format("02.01.2006 15:04:05"))
+		//30.05.2014 00:51:14
+		fmt.Println(time.Unix(123456789, 0).Format(time.RFC3339))
+		//1973-11-29T22:33:09+01:00
+		fmt.Println(time.Unix(1234567890, 0).Format(time.RFC822))
+		//14 Feb 09 00:31 CET
+	}
+
+snippet var.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/var.go
+	package main
+	
+	// import required modules
+	import (
+		"fmt"
+	)
+	
+	// declare variables
+	var variable string
+	
+	func main() {
+	
+		// define content of variable
+		variable = "Lorem Ipsum Dolor Sit Amet"
+	
+		// print variable
+		fmt.Println(variable)
+	}
+
+snippet fibonacci.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/fibonacci.go
+	package main
+	
+	import "fmt"
+	
+	func fibonacci() func() int {
+		a, b := 0, 1
+		return func() int {
+			ret := a
+			a, b = b, a+b
+			return ret
+		}
+	}
+	
+	func main() {
+		f := fibonacci()
+		for i := 0; i < 30; i++ {
+			fmt.Println(f())
+		}
+	}
+
+snippet fileserver.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/fileserver.go
+	package main
+	
+	import (
+		"net/http"
+	)
+	
+	func main() {
+		http.Handle("/", http.FileServer(http.Dir("./")))
+		http.ListenAndServe(":18080", nil)
+	}
+
+snippet for.go
+
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/for.go
+	package main
+	
+	import "fmt"
+	
+	func main() {
+		for i := 0; i < 100; i++ {
+			fmt.Println(i)
+		}
+	}
+
+
+snippet declaration_demo
+
+	var foo int // declaration without initialization
+	var foo int = 42 // declaration with initialization
+	var foo, bar int = 42, 1302 // declare and init multiple vars at once
+	var foo = 42 // type omitted, will be inferred
+	foo := 42 // shorthand, only in func bodies, omit var keyword, type is always implicit
+	const constant = "This is a constant"
+
+
+snippet function_demo
+	// a simple function
+	func functionName() {}
+
+	// function with parameters (again, types go after identifiers)
+	func functionName(param1 string, param2 int) {}
+
+	// multiple parameters of the same type
+	func functionName(param1, param2 int) {}
+
+	// return type declaration
+	func functionName() int {
+		return 42
+	}
+
+	// Can return multiple values at once
+	func returnMulti() (int, string) {
+		return 42, "foobar"
+	}
+	var x, str = returnMulti()
+
+	// Return multiple named results simply by return
+	func returnMulti2() (n int, s string) {
+		n = 42
+		s = "foobar"
+		// n and s will be returned
+		return
+	}
+	var x, str = returnMulti2()
+
+snippet function_in_function
+	func main() {
+		// assign a function to a name
+		add := func(a, b int) int {
+			return a + b
+		}
+		// use the name to call the function
+		fmt.Println(add(3, 4))
+	}
+
+
+snippet function_closures
+	// Closures, lexically scoped: Functions can access values that were
+	// in scope when defining the function
+	func scope() func() int{
+		outer_var := 2
+		foo := func() int { return outer_var}
+		return foo
+	}
+
+snippet function_scope
+	func another_scope() func() int{
+		// won't compile because outer_var and foo not defined in this scope
+		outer_var = 444
+		return foo
+	}
+
+
+snippet closures_demo
+	// Closures
+	func outer() (func() int, int) {
+		outer_var := 2
+		inner := func() int {
+			outer_var += 99 // outer_var from outer scope is mutated.
+			return outer_var
+		}
+		inner()
+		return inner, outer_var // return inner func and mutated outer_var 101
+	}
+
+snippet function_vargs_
+	func adder(args ...int) int {
+		total := 0
+		for _, v := range args { // Iterates over the arguments whatever the number.
+			total += v
+		}
+		return total
+	}
+
+
+snippet type_basic
+	bool
+	string
+	int  int8  int16  int32  int64
+	uint uint8 uint16 uint32 uint64 uintptr
+	byte // alias for uint8
+	rune // alias for int32 ~= a character (Unicode code point) - very Viking
+	float32 float64
+	complex64 complex128
+
+snippet type_conv
+	var i int = 42
+	var f float64 = float64(i)
+	var u uint = uint(f)
+
+	// alternative syntax
+	i := 42
+	f := float64(i)
+	u := uint(f)
+
+snippet if_demo
+	func main() {
+		// Basic one
+		if x > 10 {
+			return x
+		} else if x == 10 {
+			return 10
+		} else {
+			return -x
+		}
+
+		// You can put one statement before the condition
+		if a := b + c; a < 42 {
+			return a
+		} else {
+			return a - 42
+		}
+
+		// Type assertion inside if
+		var val interface{}
+		val = "foo"
+		if str, ok := val.(string); ok {
+			fmt.Println(str)
+		}
+	}
+
+snippet for_demo
+	// There's only `for`, no `while`, no `until`
+	for i := 1; i < 10; i++ {
+	}
+	for ; i < 10;  { // while - loop
+	}
+	for i < 10  { // you can omit semicolons if there is only a condition
+	}
+	for { // you can omit the condition ~ while (true)
+	}
+
+
+snippet for_break_
+	for i := 0; i < 2; i++ {
+		for j := i + 1; j < 3; j++ {
+			if i == 0 {
+				continue here
+			}
+			fmt.Println(j)
+			if j == 2 {
+				break
+			}
+		}
+	}
+snippet switch_case_string
+	// switch statement
+	switch operatingSystem {
+	case "darwin":
+		fmt.Println("Mac OS Hipster")
+		// cases break automatically, no fallthrough by default
+	case "linux":
+		fmt.Println("Linux Geek")
+	default:
+		// Windows, BSD, ...
+		fmt.Println("Other")
+	}
+
+
+snippet switch_case_number
+	// you can also make comparisons in switch cases
+	number := 42
+	switch {
+		case number < 42:
+			fmt.Println("Smaller")
+		case number == 42:
+			fmt.Println("Equal")
+		case number > 42:
+			fmt.Println("Greater")
+	}
+
+
+snippet array_demo
+	var a [10]int // declare an int array with length 10. Array length is part of the type!
+	a[3] = 42     // set elements
+	i := a[3]     // read elements
+
+	// declare and initialize
+	var a = [2]int{1, 2}
+	a := [2]int{1, 2} //shorthand
+	a := [...]int{1, 2} // elipsis -> Compiler figures out array length
+
+snippet make_slice
+	// create a slice with make
+	a = make([]byte, 5, 5)	// first arg length, second capacity
+	a = make([]byte, 5)	// capacity is optional
+
+snippet split_slice
+	var b = a[lo:hi]	// creates a slice (view of the array) from index lo to hi-1
+	var b = a[1:4]		// slice from index 1 to 3
+	var b = a[:3]		// missing low index implies 0
+	var b = a[3:]		// missing high index implies len(a)
+	a =  append(a,17,3)	// append items to slice a
+	c := append(a,b...)	// concatenate slices a and b
+
+snippet slice_define
+	var a []int                              // declare a slice - similar to an array, but length is unspecified
+	var a = []int {1, 2, 3, 4}               // declare and initialize a slice (backed by the array given implicitly)
+	a := []int{1, 2, 3, 4}                   // shorthand
+	chars := []string{0:"a", 2:"c", 1: "b"}  // ["a", "b", "c"]
+
+snippet map_demo
+	var m map[string]int
+	m = make(map[string]int)
+	m["key"] = 42
+	fmt.Println(m["key"])
+
+	delete(m, "key")
+
+	elem, ok := m["key"] // test if key "key" is present and retrieve it, if so
+
+	// map literal
+	var m = map[string]Vertex{
+		"Bell Labs": {40.68433, -74.39967},
+		"Google":    {37.42202, -122.08408},
+	}
+
+	// iterate over map content
+	for key, value := range m {
+	}
+
+
+snippet struct_interface
+	// A struct is a type. It's also a collection of fields
+
+	// Declaration
+	type Vertex struct {
+		X, Y int
+	}
+
+	// Creating
+	var v = Vertex{1, 2}
+	var v = Vertex{X: 1, Y: 2} // Creates a struct by defining values with keys
+	var v = []Vertex{{1,2},{5,2},{5,5}} // Initialize a slice of structs
+
+	// Accessing members
+	v.X = 4
+
+	// You can declare methods on structs. The struct you want to declare the
+	// method on (the receiving type) comes between the the func keyword and
+	// the method name. The struct is copied on each method call(!)
+	func (v Vertex) Abs() float64 {
+		return math.Sqrt(v.X*v.X + v.Y*v.Y)
+	}
+
+	// Call method
+	v.Abs()
+
+	// For mutating methods, you need to use a pointer (see below) to the Struct
+	// as the type. With this, the struct value is not copied for the method call.
+	func (v *Vertex) add(n float64) {
+		v.X += n
+		v.Y += n
+	}
+
+
+snippet interface
+	// interface declaration
+	type Awesomizer interface {
+		Awesomize() string
+	}
+
+	// types do *not* declare to implement interfaces
+	type Foo struct {}
+
+	// instead, types implicitly satisfy an interface if they implement all required methods
+	func (foo Foo) Awesomize() string {
+		return "Awesome!"
+	}
+
+
+snippet go_routines
+	// just a function (which can be later started as a goroutine)
+	func doStuff(s string) {
+	}
+
+	func main() {
+		// using a named function in a goroutine
+		go doStuff("foobar")
+
+		// using an anonymous inner function in a goroutine
+		go func (x int) {
+			// function body goes here
+		}(42)
+	}
+
+
+snippet channels
+	ch := make(chan int) // create a channel of type int
+	ch <- 42             // Send a value to the channel ch.
+	v := <-ch            // Receive a value from ch
+
+	// Non-buffered channels block. Read blocks when no value is available, write blocks until there is a read.
+
+	// Create a buffered channel. Writing to a buffered channels does not block if less than <buffer size> unread values have been written.
+	ch := make(chan int, 100)
+
+	close(ch) // closes the channel (only sender should close)
+
+	// read from channel and test if it has been closed
+	v, ok := <-ch
+
+	// if ok is false, channel has been closed
+
+	// Read from channel until it is closed
+	for i := range ch {
+		fmt.Println(i)
+	}
+
+	// select blocks on multiple channel operations, if one unblocks, the corresponding case is executed
+	func doStuff(channelOut, channelIn chan int) {
+		select {
+		case channelOut <- 42:
+			fmt.Println("We could write to channelOut!")
+		case x := <- channelIn:
+			fmt.Println("We could read from channelIn")
+		case <-time.After(time.Second * 1):
+			fmt.Println("timeout")
+		}
+	}
+
+
+snippet main_print
+	//#deal with  /root/bin/develop_golang/golang-examples/beginner/shell.go
+	package main
+	import (
+		"fmt"
+		"os"
+		"os/exec"
+	)
+	func main() {
+		out, err := exec.Command("echo", "Hello", "world").Output()
+		if err != nil {
+			fmt.Printf("%s", err)
+			os.Exit(1)
+		} else {
+			fmt.Printf("%s\n", out)
+		}
+	}
+

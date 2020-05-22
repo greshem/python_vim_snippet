@@ -1,5 +1,5 @@
 # python_vim_snippet
-    It contains more than  374  useful  python snippets.
+    It contains more than  48051  useful  language  snippets,  contains  with all kinds of  keywords, and it's cross  reference
     
 
 # depend on vim  bundle , you should  install vim plugins as follow 

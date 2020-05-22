@@ -1,0 +1,9 @@
+snippet from
+	#FROM centos:7
+	FROM  qianzhongjie/swcloud_scm_base_common
+
+	MAINTAINER swcloud
+
+	RUN yum clean all
+	RUN yum update -y && yum clean all
+

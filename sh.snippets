@@ -1,0 +1,843 @@
+# Shebang. Executing bash via /usr/bin/env makes scripts more portable.
+snippet #!
+	#!/usr/bin/env sh
+	
+snippet bash
+	#!/usr/bin/env bash
+
+snippet sbash
+	#!/usr/bin/env bash
+	set -euo pipefail
+	IFS=$'\n\t'
+
+snippet if
+	if [[ ${1:condition} ]]; then
+		${0:#statements}
+	fi
+snippet elif
+	elif [[ ${1:condition} ]]; then
+		${0:#statements}
+snippet for
+	for (( ${2:i} = 0; $2 < ${1:count}; $2++ )); do
+		${0:#statements}
+	done
+snippet fori
+	for ${1:needle} in ${2:haystack} ; do
+		${0:#statements}
+	done
+snippet wh
+	while [[ ${1:condition} ]]; do
+		${0:#statements}
+	done
+snippet until
+	until [[ ${1:condition} ]]; do
+		${0:#statements}
+	done
+snippet case
+	case ${1:word} in
+		${2:pattern})
+			${0};;
+	esac
+snippet go
+	while getopts '${1:o}' ${2:opts}
+	do
+		case $$2 in
+		${3:o0})
+			${0:#staments};;
+		esac
+	done
+# Set SCRIPT_DIR variable to directory script is located.
+snippet sdir
+	SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# getopt
+snippet getopt
+	__ScriptVersion="${1:version}"
+
+	#===  FUNCTION  ================================================================
+	#         NAME:  usage
+	#  DESCRIPTION:  Display usage information.
+	#===============================================================================
+	function usage ()
+	{
+		echo "Usage :  $${0:0} [options] [--]
+
+	    Options:
+	    -h|help       Display this message
+	    -v|version    Display script version"
+
+	}    # ----------  end of function usage  ----------
+
+	#-----------------------------------------------------------------------
+	#  Handle command line arguments
+	#-----------------------------------------------------------------------
+
+	while getopts ":hv" opt
+	do
+	  case $opt in
+
+		h|help     )  usage; exit 0   ;;
+
+		v|version  )  echo "$${0:0} -- Version $__ScriptVersion"; exit 0   ;;
+
+		* )  echo -e "\n  Option does not exist : $OPTARG\n"
+			  usage; exit 1   ;;
+
+	  esac    # --- end of case ---
+	done
+	shift $(($OPTIND-1))
+snippet root
+	if [ \$(id -u) -ne 0 ]; then exec sudo \$0; fi
+
+snippet fun-sh
+	${1:function_name}() {
+		${0:#function_body}
+	}
+
+snippet fun
+	function ${1:function_name}() {
+		${0:#function_body}
+	}
+
+
+snippet dir_exists
+	if [ ! -d  node_modules/ ];
+	then
+		npm install
+	fi
+
+snippet isdir
+	if [ ! -d  node_modules/ ];
+	then
+		npm install
+	fi
+
+
+snippet isfile
+	if [ ! -f  /etc/passwd ];
+	then
+		npm install
+	fi
+
+
+snippet file_exists
+	if [ ! -f  /etc/passwd ];
+	then
+		npm install
+	fi
+
+snippet math_tools
+
+	#1. 用$() 的方式进行套嵌。 
+	after_date_epochal=$(date -d $after_date +%s)
+	today=$(date +%Y%m%d)
+	today_epochal=$(date -d $today +%s)
+	date_dif=$(( (($after_date_epochal - $today_epochal) / 60 / 60 / 24) - 1))
+	#2	
+	index=$((65*65))
+	#3.   let
+	let index=65*65
+	#4 expr
+	4.  index=`expr  65 \* 65` 
+	#5. 对 index进行递增
+	    ((index++))
+		let index++
+	6. echo $[8 + 3]
+
+snippet EOF_cat
+	cat >> /tmp/tst.sh OEF
+	aa
+	bb
+	cc
+	dd
+	ee
+	ff
+	gg
+	EOF
+
+snippet or_demo
+	if [ -z "$routeIP" -o -z "$netMask"  -o -z "$netRange"  -o -z "$broadCast" ];then
+	fi
+
+snippet argv_args_check
+	if [ $# != 1 ];then
+		echo "Usage: \$0 list_file";
+		exit -1
+	fi
+	name=\$1
+	echo $name 
+
+snippet argv_arg1
+	if [ $# != 1 ];then
+		echo "Usage: \$0 list_file";
+		exit -1 
+	fi
+	name=\$1
+	echo $name 
+
+
+snippet file_operations
+	#1．        文件测试操作符
+	-d file                file存在并且是一个目录
+	-e file                file存在
+	-f file                file存在并且是一个普通文件
+	-g file                file存在并且是SGID(设置组ID)文件
+	-r file                对file有读权限
+	-s file                file存在并且不为空
+	-u file                file存在并且是SUID(设置用户ID)文件
+	-w file                对file有写权限
+	-x file                对file有执行权限，如果是目录则有查找权限
+	-O file                拥有file
+	-G file                测试是否是file所属组的一个成员
+	-L file                file为符号链接
+	file1 –nt file2        file1比file2新
+	file1 –ot file2        file1比file2旧
+
+
+snippet string_operations
+	#1．        字符串操作符（替换操作符）
+	${var:-word}                如果var存在且不为空，返回它的值，否则返回word
+	${var:=word}                如果var存在且不为空，返回它的值，否则将word赋给var，                                                返回它的值
+	${var:+word}                如果var存在且不为空，返回word，否则返回空
+	${varmessage}        如果var存在且不为空，返回它的值， 否则显示“bash2varmessage”，然后退出当前命令或脚本
+	${varffset[]}        从offset位置开始返回var的一个长为length的子串，若没有length，则默认到var串末尾
+
+snippet string_match
+	2．        模式匹配操作符
+	${var#pattern}        从var头部开始，删除和pattern匹配的最短模式串，然后返回                                                剩余串
+	${var##pattern}        从var头部开始，删除和pattern匹配的最长模式串，然后返回                                                剩余串，basename path＝${path##*/}
+	${var%pattern}        从var尾部开始，删除和pattern匹配的最短模式串，然后返回                                                剩余串，dirname path＝${path%/*}
+	${var%%pattern}        从var尾部开始，删除和pattern匹配的最长模式串，然后返回                                                剩余串
+	${var/pattern/string}        用string替换var中和pattern匹配的最长模式串
+
+
+snippet match_pattern
+	#2．        模式匹配操作符
+	${var#pattern}        从var头部开始，删除和pattern匹配的最短模式串，然后返回                                                剩余串
+	${var##pattern}        从var头部开始，删除和pattern匹配的最长模式串，然后返回                                                剩余串，basename path＝${path##*/}
+	${var%pattern}        从var尾部开始，删除和pattern匹配的最短模式串，然后返回                                                剩余串，dirname path＝${path%/*}
+	${var%%pattern}        从var尾部开始，删除和pattern匹配的最长模式串，然后返回                                                剩余串
+	${var/pattern/string}        用string替换var中和pattern匹配的最长模式串
+
+
+snippet strstr
+	strstr() {
+	  [ "${1#*$2*}" = "$1" ] && return 1
+	  return 0
+	}
+
+
+
+snippet process_check_not_exists
+	process_nonexistent_check()
+	{
+		process_id=\`ps -ef | grep -e "\$1" | grep -v grep | awk '{print \$2}'\`
+		if [ -z "$process_id" ]; then
+			echo "ERROR: \$1 is non-existent!"
+		else
+			echo "OK:  \$1 is OK! "
+
+		fi
+	}
+
+snippet process_exist_check
+	process_existent_check()
+	{
+	   process_id=\`ps -ef | grep -e "\$1" | grep -v grep | awk '{print \$2}'\`
+	   if [ -n "$process_id" ]; then
+		  echo  "OK: \$1 exists!"
+	   else
+		  echo "ERROR: \$1 is non-existent!"
+	   fi
+	}
+
+snippet wc_line_empty_check
+	wc_line_empty_check()
+	{
+	   process_id=\`grep \$1 /etc/passwd \`
+	   if [ -n "$process_id" ]; then
+		  echo  "OK: \$1 exists!"
+	   else
+		  echo "ERROR: \$1 is non-existent!"
+	   fi
+	}
+	wc_line_empty_check "root"
+
+snippet wc_line_empty_check
+	wc_line_empty_check()
+	{
+	   process_id=\`grep root /etc/passwd \`
+	   if [ -n "$process_id" ]; then
+		  echo  "OK: \$1 exists!"
+	   else
+		  echo "ERROR: \$1 is non-existent!"
+	   fi
+	}
+
+snippet grep_assert
+	must_be_exist()
+	{
+	   process_id=\`grep \$1 /etc/passwd \`
+	   if [ -n "$process_id" ]; then
+		  echo  "OK: \$1 exists!"
+		  exit -1 
+	   else
+		  echo "ERROR: \$1 is non-existent!"
+	   fi
+	}
+	must_be_exist "root"
+
+snippet assert_grep
+	wc_line_empty_check()
+	{
+	   process_id=\`grep \$1 /etc/passwd \`
+	   if [ -n "$process_id" ]; then
+		  echo  "OK: \$1 exists!"
+	   else
+		  echo "ERROR: \$1 is non-existent!"
+	   fi
+	}
+	wc_line_empty_check "root"
+
+
+snippet empty_string_check
+	empty_string_check()
+	{
+		process_id=\`grep \$1 /etc/passwd \`
+		if [ -n "$process_id" ]; then
+		  echo  "OK: \$1 exists!"
+		else
+		  echo "ERROR: \$1 is non-existent!"
+		fi
+	}
+	empty_string_check("root")
+
+snippet exists_dir
+	reference: dir_exists 
+
+snippet operations_file
+	reference: file_operations 
+
+snippet operations_string
+	reference: string_operations 
+
+snippet process_check_exist
+	reference: process_exist_check 
+
+snippet exist_process_check
+	reference: process_exist_check 
+
+snippet exist_check_process
+	reference: process_exist_check 
+
+snippet check_process_exist
+	reference: process_exist_check 
+
+snippet check_exist_process
+	reference: process_exist_check 
+
+snippet cat_EOF
+	reference: EOF_cat 
+
+snippet string_empty_check
+	reference: empty_string_check 
+
+snippet string_check_empty
+	reference: empty_string_check 
+
+snippet empty_check_string
+	reference: empty_string_check 
+
+snippet check_string_empty
+	reference: empty_string_check 
+
+snippet check_empty_string
+	reference: empty_string_check 
+
+snippet pattern_match
+	reference: match_pattern 
+
+snippet args_check_argv
+	reference: argv_args_check 
+
+snippet args_argv_check
+	reference: argv_args_check 
+
+snippet check_args_argv
+	reference: argv_args_check 
+
+snippet check_argv_args
+	reference: argv_args_check 
+
+snippet argv_check_args
+	reference: argv_args_check 
+
+snippet tools_math
+	reference: math_tools 
+
+snippet demo_or
+	reference: or_demo 
+
+snippet fun_sh
+	reference: fun-sh 
+
+snippet sh_fun
+	reference: fun-sh 
+
+snippet match_string
+	reference: string_match 
+
+snippet ceph_auth_demo
+	#7、为ceph创建一个admin用户并为admin用户创建一个密钥，把密钥保存到/etc/ceph目录下：
+	ceph auth get-or-create client.admin mds 'allow' osd 'allow *' mon 'allow *' > /etc/ceph/ceph.client.admin.keyring
+	#或
+	ceph auth get-or-create client.admin mds 'allow' osd 'allow *' mon 'allow *' -o /etc/ceph/ceph.client.admin.keyring
+
+	#8、为osd.0创建一个用户并创建一个key
+	ceph auth get-or-create osd.0 mon 'allow rwx' osd 'allow *' -o /var/lib/ceph/osd/ceph-0/keyring
+
+	#9、为mds.node1创建一个用户并创建一个key
+	ceph auth get-or-create mds.node1 mon 'allow rwx' osd 'allow *' mds 'allow *' -o /var/lib/ceph/mds/ceph-node1/keyring
+
+	#10、查看ceph集群中的认证用户及相关的key
+	ceph auth list
+
+	#11、删除集群中的一个认证用户
+	ceph auth del osd.0
+
+snippet return_value
+	ssh  localhost "do  things"
+	RETVAL=$?
+	echo " return value \n";
+	[ $RETVAL -eq 0 ] && touch $lockfile
+
+snippet cmd_return_check
+	ssh  localhost "echobbb"
+	RETVAL=$?
+	if [[ $RETVAL -eq 0 ]]; then
+			echo "success"
+	else
+			echo "no success"
+	fi
+
+snippet check_cmd_return_value
+	ssh  localhost "echobbb"
+	RETVAL=$?
+	if [[ $RETVAL -eq 0 ]]; then
+			echo "success"
+	else
+			echo "no success"
+	fi
+
+snippet else_demo
+	if  false ; then
+		echo true
+	else
+	   echo false
+	fi
+
+snippet while_if_break_continue.sh
+	while [ 1 ]; do
+		echo " install server :"
+		echo "	1:install master "
+		echo "	2:install slave"
+		read ch
+		if [ "${ch}" != 1 ] && [ "${ch}" != 2 ]; then
+			clear
+			echo "not  corrent, please  input  again"
+			echo
+			continue
+		fi
+		break
+	done
+
+
+
+
+snippet while_grep_vm_status
+	while [ 1 ]; do
+		#虚机的anaconda 现在 到了 shutdown了吗?
+		openstack server show  swcloud_iso_install |grep  vm_state |grep  active 
+		RETVAL=$?
+		if [ $RETVAL -eq 0   ]; then
+			echo " wait for  vm shutdown "
+			echo
+			continue
+		fi
+		echo "vm  is  not active, now quit "
+		break
+	done
+		#anaconda  shutdown了, 	然后开机.
+		openstack server start   swcloud_iso_install 
+
+snippet which_cmd_exists
+	cmd_exist()
+	{
+	   elf_path=\`which  \$1  \`
+	   if [ -n "$elf_path" ]; then
+		  echo  "OK: \$1 exists!"
+	   else
+		  echo "ERROR: \$1 is non-existent! please install it "
+		  exit -1 
+	   fi
+	}
+	cmd_exist "sshpass"
+
+
+snippet cmd_exists
+	cmd_exist()
+	{
+	   elf_path=`which  $1  `
+	   if [ -n "$elf_path" ]; then
+		  echo  "OK: $1 exists!"
+	   else
+		  echo "ERROR: $1 is non-existent! please install it "
+		  exit -1 
+	   fi
+	}
+	cmd_exist "sshpass"
+
+snippet rand
+	rand=$RANDOM 
+	echo $rand
+
+snippet openstack_server_list
+	source /root/admin-openrc
+	openstack server list -c ID -c Name  -f value | while read ID Name;
+	do
+		echo openstack show  $ID  $Name
+	done 
+
+snippet readline_for_each
+	source /root/admin-openrc
+	openstack server list -c ID -c Name  -f value | while read ID Name;
+	do
+		echo openstack show  $ID  $Name
+	done 
+
+
+snippet for_each_readline
+	source /root/admin-openrc
+	openstack server list -c ID -c Name  -f value | while read ID Name;
+	do
+		echo openstack show  $ID  $Name
+	done 
+
+
+snippet count_let
+	count=0
+	for each in  $(seq  1  100  100000)
+	do
+		let count+=1
+		echo $count 
+	done
+
+
+snippet count_let
+	count=0
+	for each in  $(seq  1  100  100000)
+	do
+		let count+=1
+		echo $count 
+	done
+
+snippet incr
+	count=0
+	for each in  $(seq  1  100  100000)
+	do
+		let count+=1
+		echo $count 
+	done
+
+snippet number_compare
+	在shell中字符串与数值的比较方法是不同的，要注意区分
+	整数比较：
+	-eq       等于,如:if [ "$a" -eq "$b" ]
+	-ne       不等于,如:if [ "$a" -ne "$b" ]
+	-gt       大于,如:if [ "$a" -gt "$b" ]
+	-ge       大于等于,如:if [ "$a" -ge "$b" ]
+	-lt       小于,如:if [ "$a" -lt "$b" ]
+	-le       小于等于,如:if [ "$a" -le "$b" ]
+	<       小于(需要双括号),如:(("$a" < "$b"))
+	<=       小于等于(需要双括号),如:(("$a" <= "$b"))
+	>       大于(需要双括号),如:(("$a" > "$b"))
+	>=       大于等于(需要双括号),如:(("$a" >= "$b"))
+
+
+
+snippet string_compare
+	#字符串比较：
+	=       等于,如:if [ "$a" = "$b" ]
+	==     等于,如:if [ "$a" == "$b" ], 与=等价
+			   注意:==的功能在[[]]和[]中的行为是不同的,如下:
+			   1 [[ $a == z* ]]    # 如果$a以"z"开头(模式匹配)那么将为true
+			   2 [[ $a == "z*" ]] # 如果$a等于z*(字符匹配),那么结果为true
+			   3
+			   4 [ $a == z* ]      # File globbing 和word splitting将会发生
+			   5 [ "$a" == "z*" ] # 如果$a等于z*(字符匹配),那么结果为true
+
+	!=      不等于,如:if [ "$a" != "$b" ]， 这个操作符将在[[]]结构中使用模式匹配.
+	<       小于,在ASCII字母顺序下.如:
+			   if [[ "$a" < "$b" ]]
+			   if [ "$a" \< "$b" ]     在[]结构中"<"需要被转义.
+	>       大于,在ASCII字母顺序下.如:
+		   if [[ "$a" > "$b" ]]
+		   if [ "$a" \> "$b" ]  在[]结构中">"需要被转义.
+	-z       字符串为"null".就是长度为0.
+	-n       字符串不为"null"
+
+snippet entrypoint_docker
+	ENTRYPOINT [  "/usr/bin/python",  "-m", "SimpleHTTPServer",  "33336",  "/data " ]
+	ENTRYPOINT [  "/usr/sbin/sshd"   ]
+	ENTRYPOINT [  "cd","/data", "&&","/usr/bin/python",  "-m", "SimpleHTTPServer",  "33336",  "/data " ]
+	ENTRYPOINT [  "/usr/bin/python",  "-m", "SimpleHTTPServer",  "33336",  "/data " ]
+	ENTRYPOINT ["/entrypoint.sh"]
+	ENTRYPOINT ["/usr/sbin/init"]
+
+
+snippet dockerfile
+	#FROM  127.0.0.1:5000/dnsmasq:latest
+	#FROM centos
+	FROM  docker.io/centos
+	RUN   yum -y  install centos-release-openstack-mitaka.noarch
+	RUN   yum -y  install openstack-keystone*  python-keystone*
+	RUN   yum -y  install vim
+	RUN   yum -y  install lsof
+
+	EXPOSE 5000
+	EXPOSE 35357
+
+	#ENTRYPOINT [  "cd","/data", "&&","/usr/bin/python",  "-m", "SimpleHTTPServer",  "33336",  "/data " ]
+	#ENTRYPOINT [  "/usr/bin/python",  "-m", "SimpleHTTPServer",  "33336",  "/data " ]
+
+snippet dockerfile_nodejs_npm
+	# /root/bin_ext/taylorchen709_vue-admin/
+	FROM centos:7
+	MAINTAINER swcloud
+
+	RUN yum install epel-release -y && yum clean all
+	RUN yum update -y && yum clean all
+	RUN yum install -y yum-utils yum-plugin-ovl tar git curl bind-utils unzip wget npm  && yum clean all
+
+	COPY        ./  /tmp/vue-admin 
+
+	WORKDIR     /tmp/vue-admin
+	RUN         npm install 
+
+	EXPOSE      8080
+	ENTRYPOINT [  "/tmp/vue-admin/entrypoint.sh" ]
+
+
+
+
+snippet dockerfile_python_django
+	# /root/bin_ext/__TEMPLATE___/
+	FROM centos:7
+	MAINTAINER swcloud
+
+	RUN yum install epel-release -y && yum clean all
+	RUN yum update -y && yum clean all
+	RUN yum install -y yum-utils yum-plugin-ovl tar git curl bind-utils unzip wget npm python-pip  && yum clean all
+
+	COPY        ./  /tmp/__TEMPLATE___ 
+
+
+	WORKDIR     /tmp/__TEMPLATE___
+	RUN         pip install  Django==1.8.14
+
+	EXPOSE      8080
+	ENTRYPOINT [  "/tmp/__TEMPLATE___/entrypoint.sh" ]
+
+
+
+
+snippet dockerfile_npm_nodejs_v2
+	# https://github.com/eduardoboucas/staticman/blob/master/Dockerfile
+	FROM node:6.7.0
+
+	# Create app directory
+	RUN mkdir -p /app
+	WORKDIR /app
+
+	# Install app dependencies
+	COPY package.json /app/
+	RUN npm install
+
+	# Bundle app source
+	COPY . /app
+
+	EXPOSE 3000
+	CMD [ "npm", "start" ]
+
+
+
+snippet return_value_if_else
+	echo do_some_thing 
+	RETVAL=$?
+	if [ $RETVAL -eq 0 ];then
+		echo "success" 
+	else
+		echo "not success "
+	fi
+
+snippet hostname_I
+	ip=$(hostname -I  |awk  '{print \$1}' )
+
+snippet ip_hostname_I
+	ip=$(hostname -I  |awk  '{print \$1}' )
+
+
+snippet ip_check
+	ip=$(hostname -I  |awk  '{print \$1}' )
+	if echo \$ip |grep   192.168.1.1;then
+	     echo "in  company"
+	fi
+
+snippet check_ip
+	ip=$(hostname -I  |awk  '{print \$1}' )
+	if echo \$ip |grep   192.168.1.1;then
+	     echo "in  company"
+	fi
+
+snippet curl_check
+	curl 10.99.2.135:999/ > /dev/null
+	RETVAL=$?
+	if [ $RETVAL -eq 0 ];then
+		echo "in saimo " 
+	else
+		echo "in home  "
+	fi
+snippet hostname_hosts
+	echo  $(hostname -I )  $(hostname -s )  >> /etc/hosts 
+	echo  $(hostname -I )  $(hostname -f )  >> /etc/hosts 
+
+snippet get_cur_time
+	echo $(/bin/date +%Y%m%d_%T)
+
+snippet now_time
+	echo $(/bin/date +%Y%m%d_%T)
+
+snippet today_time
+	echo $(/bin/date +%Y_%m_%d)
+
+snippet today_datetime
+	echo $(/bin/date +%Y_%m_%d)
+
+
+
+snippet number_compare_grep_assert
+	number=$(curl  http://www.saimoyun.com/pub/basic/subject/getBaseSubject |jq . |grep id -c  ) 
+	echo $number
+	ten="10"
+	if [ $number -lt $ten ];then
+		echo 菜单 太少了 
+	else 
+		echo 菜单数量正常 为 $number
+	fi
+
+snippet env_shell_empty_check
+	export COMPUTER_NODE=10.99.3.101,10.99.3.102,10.99.3.103
+	export ZABBIX_SRV=172.16.8.218
+
+	if [  -z   $ZABBIX_SRV ];then
+		echo "请设置ZABBIX_SRV "
+	else
+		echo $ZABBIX_SRV
+	fi
+
+snippet echo_color
+	function show_menu() {
+		local normal=$(tput sgr0)
+		local cyan=$(tput setaf 6)
+		local red=$(tput setaf 1)
+		local yellow=$(tput setaf 3)
+		
+		echo -e "\n${red} Generate: ${normal}"
+		echo -e "${cyan} ${yellow}  1)${cyan} Contribution stats (by author) ${normal}"
+		echo -e "${cyan} ${yellow}  2)${cyan} Git changelogs (last $_limit days)${normal}"
+		echo -e "${cyan} ${yellow}  3)${cyan} Git changelogs by author ${normal}"
+		echo -e "${cyan} ${yellow}  4)${cyan} My daily status ${normal}"
+		echo -e "${red} List: ${normal}"
+		echo -e "${cyan} ${yellow}  5)${cyan} Branch tree view (last $_limit)${normal}"
+		echo -e "${cyan} ${yellow}  6)${cyan} All branches (sorted by most recent commit) ${normal}"
+		echo -e "${cyan} ${yellow}  7)${cyan} All contributors (sorted by name) ${normal}"
+		echo -e "${cyan} ${yellow}  8)${cyan} Git commits per author ${normal}"
+		echo -e "${cyan} ${yellow}  9)${cyan} Git commits per date ${normal}"
+		echo -e "${cyan} ${yellow} 10)${cyan} Git commits per month ${normal}"
+		echo -e "${cyan} ${yellow} 11)${cyan} Git commits per weekday ${normal}"
+		echo -e "${cyan} ${yellow} 12)${cyan} Git commits per hour ${normal}"
+		echo -e "${cyan} ${yellow} 13)${cyan} Git commits by author per hour ${normal}"
+		echo -e "${red} Suggest: ${normal}"
+		echo -e "${cyan} ${yellow} 14)${cyan} Code reviewers (based on git history) ${normal}"
+		echo -e "\n${yellow}Please enter a menu option or ${red}press enter to exit. ${normal}"
+		read -r opt
+	}
+	show_menu
+
+
+
+snippet wc_check
+	number=$(wc -l /szfs/all_port.log  |awk '{print $1}' ) 
+	echo $number
+	ten="0"
+	if [ $number -lt $ten ];then
+		echo line big then zero
+	else 
+		echo line less then zero
+	fi
+
+snippet color_print
+	function show_menu() {
+		local normal=$(tput sgr0)
+		local cyan=$(tput setaf 6)
+		local red=$(tput setaf 1)
+		local yellow=$(tput setaf 3)
+		
+		echo -e "\n${red} Generate: ${normal}"
+		echo -e "${cyan} ${yellow}  1)${cyan} Contribution stats (by author) ${normal}"
+		echo -e "${red} List: ${normal}"
+		echo -e "${cyan} ${yellow}  5)${cyan} Branch tree view (last $_limit)${normal}"
+		echo -e "${red} Suggest: ${normal}"
+		echo -e "${cyan} ${yellow} 14)${cyan} Code reviewers (based on git history) ${normal}"
+	}
+	
+snippet mysql_docker_cmd
+	# 启动本地的 MySQL 实例
+	$ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
+
+	# 将 MySQL 端口映射出来
+	$ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -p 3306:3306 -d mysql:tag
+
+	# 允许启动的其他容器中使用 MySQL
+	$ docker run --name some-app --link some-mysql:mysql -d application-that-uses-mysql
+
+	# 启动本地 MySQL 客户端并且连接到目标
+	$ docker run -it --link some-mysql:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'
+
+	# 将 MySQL 镜像作为客户端使用，连接到远端的数据库
+	$ docker run -it --rm mysql mysql -hsome.mysql.host -usome-mysql-user -p
+
+
+snippet from_docker
+	#FROM centos:7
+	FROM  qianzhongjie/swcloud_scm_base_common
+
+	MAINTAINER swcloud
+
+	RUN yum clean all
+	RUN yum update -y && yum clean all
+	USER 1001
+
+
+snippet FROM
+	REF:  from_docker
+
+
+snippet FROM_docker
+	REF:  from_docker
+
+snippet STDIN
+	read -p "you are sure you wang to xxxxxx?[y/n]" input
+	echo $input
+	if [ $input = "y" ];then
+		echo "ok "
+		fi

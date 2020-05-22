@@ -1,0 +1,493 @@
+snippet tbl
+	create table ${1:table} (
+		${0:columns}
+	);
+snippet col
+	${1:name}	${2:type}	${3:default ''}	${0:not null}
+snippet ccol
+	${1:name}	varchar2(${2:size})	${3:default ''}	${0:not null}
+snippet ncol
+	${1:name}	number	${3:default 0}	${0:not null}
+snippet dcol
+	${1:name}	date	${3:default sysdate}	${0:not null}
+snippet index
+	create index ${0:$1_$2} on ${1:table}(${2:column});
+snippet uind
+	create unique index ${1:name} on ${2:table}(${0:column});
+snippet tblcom
+	comment on table ${1:table} is '${0:comment}';
+snippet colcom
+	comment on column ${1:table}.${2:column} is '${0:comment}';
+snippet alter_table
+	alter table ${1:table} add (${2:column} ${0:type});
+snippet sequence
+	create sequence ${1:name} start with ${2:1} increment by ${3:1} minvalue ${0:1};
+snippet select_
+	select * from ${0:table}
+
+snippet create_customers
+	CREATE TABLE Customers
+	(
+	  cust_id      char(10)  NOT NULL ,
+	  cust_name    char(50)  NOT NULL ,
+	  cust_address char(50)  NULL ,
+	  cust_city    char(50)  NULL ,
+	  cust_state   char(5)   NULL ,
+	  cust_zip     char(10)  NULL ,
+	  cust_country char(50)  NULL ,
+	  cust_contact char(50)  NULL ,
+	  cust_email   char(255) NULL 
+	);
+
+
+
+snippet create_OrderItems
+	-- -----------------------
+	-- Create OrderItems table
+	-- -----------------------
+	CREATE TABLE OrderItems
+	(
+	  order_num  int          NOT NULL ,
+	  order_item int          NOT NULL ,
+	  prod_id    char(10)     NOT NULL ,
+	  quantity   int          NOT NULL ,
+	  item_price decimal(8,2) NOT NULL 
+	);
+
+
+snippet create_Orders
+	-- -------------------
+	-- Create Orders table
+	-- -------------------
+	CREATE TABLE Orders
+	(
+	  order_num  int      NOT NULL ,
+	  order_date datetime NOT NULL ,
+	  cust_id    char(10) NOT NULL 
+	);
+
+snippet create_Products
+	CREATE TABLE Products
+	(
+	  prod_id    char(10)      NOT NULL ,
+	  vend_id    char(10)      NOT NULL ,
+	  prod_name  char(255)     NOT NULL ,
+	  prod_price decimal(8,2)  NOT NULL ,
+	  prod_desc  text          NULL 
+	);
+
+
+snippet create_Vendors
+	CREATE TABLE Vendors
+	(
+	  vend_id      char(10) NOT NULL ,
+	  vend_name    char(50) NOT NULL ,
+	  vend_address char(50) NULL ,
+	  vend_city    char(50) NULL ,
+	  vend_state   char(5)  NULL ,
+	  vend_zip     char(10) NULL ,
+	  vend_country char(50) NULL 
+	);
+
+
+snippet alter_add_primary
+	ALTER TABLE Customers ADD PRIMARY KEY (cust_id);
+	ALTER TABLE OrderItems ADD PRIMARY KEY (order_num, order_item);
+	ALTER TABLE Orders ADD PRIMARY KEY (order_num);
+	ALTER TABLE Products ADD PRIMARY KEY (prod_id);
+	ALTER TABLE Vendors ADD PRIMARY KEY (vend_id);
+snippet alert
+	REF: alter 
+
+snippet create_ primary_keys
+	ALTER TABLE Customers ADD PRIMARY KEY (cust_id);
+	ALTER TABLE OrderItems ADD PRIMARY KEY (order_num, order_item);
+	ALTER TABLE Orders ADD PRIMARY KEY (order_num);
+	ALTER TABLE Products ADD PRIMARY KEY (prod_id);
+	ALTER TABLE Vendors ADD PRIMARY KEY (vend_id);
+
+
+snippet alter_add_foreign_keys
+	-- -------------------
+	-- Define foreign keys
+	-- -------------------
+	ALTER TABLE OrderItems ADD CONSTRAINT FK_OrderItems_Orders FOREIGN KEY (order_num) REFERENCES Orders (order_num);
+	ALTER TABLE OrderItems ADD CONSTRAINT FK_OrderItems_Products FOREIGN KEY (prod_id) REFERENCES Products (prod_id);
+	ALTER TABLE Orders ADD CONSTRAINT FK_Orders_Customers FOREIGN KEY (cust_id) REFERENCES Customers (cust_id);
+	ALTER TABLE Products ADD CONSTRAINT FK_Products_Vendors FOREIGN KEY (vend_id) REFERENCES Vendors (vend_id);
+
+snippet insert_Customers
+	-- ------------------------
+	-- Populate Customers table
+	-- ------------------------
+	INSERT INTO Customers(cust_id, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country, cust_contact, cust_email)
+	VALUES('1000000001', 'Village Toys', '200 Maple Lane', 'Detroit', 'MI', '44444', 'USA', 'John Smith', 'sales@villagetoys.com');
+	INSERT INTO Customers(cust_id, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country, cust_contact)
+	VALUES('1000000002', 'Kids Place', '333 South Lake Drive', 'Columbus', 'OH', '43333', 'USA', 'Michelle Green');
+	INSERT INTO Customers(cust_id, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country, cust_contact, cust_email)
+	VALUES('1000000003', 'Fun4All', '1 Sunny Place', 'Muncie', 'IN', '42222', 'USA', 'Jim Jones', 'jjones@fun4all.com');
+	INSERT INTO Customers(cust_id, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country, cust_contact, cust_email)
+	VALUES('1000000004', 'Fun4All', '829 Riverside Drive', 'Phoenix', 'AZ', '88888', 'USA', 'Denise L. Stephens', 'dstephens@fun4all.com');
+	INSERT INTO Customers(cust_id, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country, cust_contact)
+	VALUES('1000000005', 'The Toy Store', '4545 53rd Street', 'Chicago', 'IL', '54545', 'USA', 'Kim Howard');
+
+
+snippet insert_Vendors
+
+	-- ----------------------
+	-- Populate Vendors table
+	-- ----------------------
+	INSERT INTO Vendors(vend_id, vend_name, vend_address, vend_city, vend_state, vend_zip, vend_country)
+	VALUES('BRS01','Bears R Us','123 Main Street','Bear Town','MI','44444', 'USA');
+	INSERT INTO Vendors(vend_id, vend_name, vend_address, vend_city, vend_state, vend_zip, vend_country)
+	VALUES('BRE02','Bear Emporium','500 Park Street','Anytown','OH','44333', 'USA');
+	INSERT INTO Vendors(vend_id, vend_name, vend_address, vend_city, vend_state, vend_zip, vend_country)
+	VALUES('DLL01','Doll House Inc.','555 High Street','Dollsville','CA','99999', 'USA');
+	INSERT INTO Vendors(vend_id, vend_name, vend_address, vend_city, vend_state, vend_zip, vend_country)
+	VALUES('FRB01','Furball Inc.','1000 5th Avenue','New York','NY','11111', 'USA');
+	INSERT INTO Vendors(vend_id, vend_name, vend_address, vend_city, vend_state, vend_zip, vend_country)
+	VALUES('FNG01','Fun and Games','42 Galaxy Road','London', NULL,'N16 6PS', 'England');
+	INSERT INTO Vendors(vend_id, vend_name, vend_address, vend_city, vend_state, vend_zip, vend_country)
+	VALUES('JTS01','Jouets et ours','1 Rue Amusement','Paris', NULL,'45678', 'France');
+
+snippet insert_Products
+	-- -----------------------
+	-- Populate Products table
+	-- -----------------------
+	INSERT INTO Products(prod_id, vend_id, prod_name, prod_price, prod_desc)
+	VALUES('BR01', 'BRS01', '8 inch teddy bear', 5.99, '8 inch teddy bear, comes with cap and jacket');
+	INSERT INTO Products(prod_id, vend_id, prod_name, prod_price, prod_desc)
+	VALUES('BR02', 'BRS01', '12 inch teddy bear', 8.99, '12 inch teddy bear, comes with cap and jacket');
+	INSERT INTO Products(prod_id, vend_id, prod_name, prod_price, prod_desc)
+	VALUES('BR03', 'BRS01', '18 inch teddy bear', 11.99, '18 inch teddy bear, comes with cap and jacket');
+	INSERT INTO Products(prod_id, vend_id, prod_name, prod_price, prod_desc)
+	VALUES('BNBG01', 'DLL01', 'Fish bean bag toy', 3.49, 'Fish bean bag toy, complete with bean bag worms with which to feed it');
+	INSERT INTO Products(prod_id, vend_id, prod_name, prod_price, prod_desc)
+	VALUES('BNBG02', 'DLL01', 'Bird bean bag toy', 3.49, 'Bird bean bag toy, eggs are not included');
+	INSERT INTO Products(prod_id, vend_id, prod_name, prod_price, prod_desc)
+	VALUES('BNBG03', 'DLL01', 'Rabbit bean bag toy', 3.49, 'Rabbit bean bag toy, comes with bean bag carrots');
+	INSERT INTO Products(prod_id, vend_id, prod_name, prod_price, prod_desc)
+	VALUES('RGAN01', 'DLL01', 'Raggedy Ann', 4.99, '18 inch Raggedy Ann doll');
+	INSERT INTO Products(prod_id, vend_id, prod_name, prod_price, prod_desc)
+	VALUES('RYL01', 'FNG01', 'King doll', 9.49, '12 inch king doll with royal garments and crown');
+	INSERT INTO Products(prod_id, vend_id, prod_name, prod_price, prod_desc)
+	VALUES('RYL02', 'FNG01', 'Queen doll', 9.49, '12 inch queen doll with royal garments and crown');
+
+
+snippet insert_Orders
+	INSERT INTO Orders(order_num, order_date, cust_id)
+	VALUES(20005, '2012-05-01', '1000000001');
+	INSERT INTO Orders(order_num, order_date, cust_id)
+	VALUES(20006, '2012-01-12', '1000000003');
+	INSERT INTO Orders(order_num, order_date, cust_id)
+	VALUES(20007, '2012-01-30', '1000000004');
+	INSERT INTO Orders(order_num, order_date, cust_id)
+	VALUES(20008, '2012-02-03', '1000000005');
+	INSERT INTO Orders(order_num, order_date, cust_id)
+	VALUES(20009, '2012-02-08', '1000000001');
+
+
+snippet insert_OrderItems
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20005, 1, 'BR01', 100, 5.49);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20005, 2, 'BR03', 100, 10.99);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20006, 1, 'BR01', 20, 5.99);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20006, 2, 'BR02', 10, 8.99);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20006, 3, 'BR03', 10, 11.99);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20007, 1, 'BR03', 50, 11.49);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20007, 2, 'BNBG01', 100, 2.99);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20007, 3, 'BNBG02', 100, 2.99);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20007, 4, 'BNBG03', 100, 2.99);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20007, 5, 'RGAN01', 50, 4.49);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20008, 1, 'RGAN01', 5, 4.99);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20008, 2, 'BR03', 5, 11.99);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20008, 3, 'BNBG01', 10, 3.49);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20008, 4, 'BNBG02', 10, 3.49);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20008, 5, 'BNBG03', 10, 3.49);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20009, 1, 'BNBG01', 250, 2.49);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20009, 2, 'BNBG02', 250, 2.49);
+	INSERT INTO OrderItems(order_num, order_item, prod_id, quantity, item_price) VALUES(20009, 3, 'BNBG03', 250, 2.49);
+
+snippet create_database_demo
+	create_customers
+	create_OrderItems
+	create_Orders
+	create_Products
+	create_Vendors
+	alter_add_primary
+	alter_add_foreign_keys
+	insert_Customers
+	insert_Vendors
+	insert_Products
+	insert_Orders
+	insert_OrderItems
+
+snippet 10_minutes_demo
+	create_database_demo
+
+snippet groupby_metabase
+	groupby_metabase
+
+
+snippet distinct
+	SELECT DISTINCT column_name;
+snippet where_
+	SELECT column1, column2 FROM table_name WHERE condition;
+	SELECT * FROM table_name WHERE condition1 AND condition2;
+	SELECT * FROM table_name WHERE condition1 OR condition2;
+	SELECT * FROM table_name WHERE NOT condition;
+	SELECT * FROM table_name WHERE condition1 AND (condition2 OR condition3);
+	SELECT * FROM table_name WHERE EXISTS (SELECT column_name FROM table_name WHERE condition);
+
+snippet order_by
+	SELECT * FROM table_name ORDER BY column;
+	SELECT * FROM table_name ORDER BY column DESC;
+	SELECT * FROM table_name ORDER BY column1 ASC, column2 DESC;
+
+snippet top_select
+	SELECT TOP number columns_names FROM table_name WHERE condition;
+	SELECT TOP percent columns_names FROM table_name WHERE condition;
+	SELECT column_names FROM table_name LIMIT offset, count;
+
+
+snippet like
+	### **LIKE**: 用于搜索列中的特定模式，WHERE 子句中使用的运算符
+	% (percent sign) 是一个表示零个，一个或多个字符的通配符
+	_ (underscore) 是一个表示单个字符通配符
+	SELECT column_names FROM table_name WHERE column_name LIKE pattern;
+	LIKE ‘a%’    （查找任何以“a”开头的值）
+	LIKE ‘%a’    （查找任何以“a”结尾的值）
+	LIKE ‘%or%’  （查找任何包含“or”的值）
+	LIKE ‘_r%’   （查找任何第二位是“r”的值）
+	LIKE ‘a_%_%’ （查找任何以“a”开头且长度至少为3的值）
+	LIKE ‘[a-c]%’（查找任何以“a”或“b”或“c”开头的值）
+
+
+snippet in_value
+	### **IN**: 用于在 WHERE 子句中指定多个值的运算符
+	本质上，IN运算符是多个OR条件的简写
+	SELECT column_names FROM table_name WHERE column_name IN (value1, value2, …);
+	SELECT column_names FROM table_name WHERE column_name IN (SELECT STATEMENT);
+	
+snippet between
+	### **BETWEEN**: 用于过滤给定范围的值的运算符
+	SELECT column_names FROM table_name WHERE column_name BETWEEN value1 AND value2;
+	SELECT * FROM Products WHERE (column_name BETWEEN value1 AND value2) AND NOT column_name2 IN (value3, value4);
+	SELECT * FROM Products WHERE column_name BETWEEN #01/07/1999# AND #03/12/1999#;
+	
+snippet null
+	### **NULL**: 代表一个字段没有值
+	SELECT * FROM table_name WHERE column_name IS NULL;
+	SELECT * FROM table_name WHERE column_name IS NOT NULL;
+	
+snippet as
+	### **AS**: 用于给表或者列分配别名
+	SELECT column_name AS alias_name FROM table_name;
+	SELECT column_name FROM table_name AS alias_name;
+	SELECT column_name AS alias_name1, column_name2 AS alias_name2;
+	SELECT column_name1, column_name2 + ‘, ‘ + column_name3 AS alias_name;
+	
+snippet union
+	### **UNION**: 用于组合两个或者多个 SELECT 语句的结果集的运算符
+	每个 SELECT 语句必须拥有相同的列数
+	列必须拥有相似的数据类型
+	每个 SELECT 语句中的列也必须具有相同的顺序
+	SELECT columns_names FROM table1 UNION SELECT column_name FROM table2;
+	UNION 仅允许选择不同的值, UNION ALL 允许重复
+	
+snippet all
+	### **ANY|ALL**: 用于检查 WHERE 或 HAVING 子句中使用的子查询条件的运算符
+	ANY 如果任何子查询值满足条件，则返回 true。
+	ALL 如果任何子查询值满足条件，则返回 true。
+	SELECT columns_names FROM table1 WHERE column_name operator (ANY|ALL) (SELECT column_name FROM table_name WHERE condition);
+	
+snippet group_by
+	### **GROUP BY**: 通常与聚合函数（COUNT，MAX，MIN，SUM，AVG）一起使用，用于将结果集分组为一列或多列
+	SELECT column_name1, COUNT(column_name2) FROM table_name WHERE condition GROUP BY column_name1 ORDER BY COUNT(column_name2) DESC;
+	
+snippet having
+	### **HAVING**: HAVING 子句指定 SELECT 语句应仅返回聚合值满足指定条件的行。它被添加到 SQL 语言中，因为WHERE关键字不能与聚合函数一起使用。
+	SELECT COUNT(column_name1), column_name2 FROM table GROUP BY column_name2 HAVING COUNT(column_name1) > 5;
+	
+	
+	
+snippet insert_into
+	### **INSERT INTO**: 用于在表中插入新记录/行
+	INSERT INTO table_name (column1, column2) VALUES (value1, value2);
+	INSERT INTO table_name VALUES (value1, value2 …);
+	
+snippet update
+	### **UPDATE**: 用于修改表中的现有记录/行
+	UPDATE table_name SET column1 = value1, column2 = value2 WHERE condition;
+	UPDATE table_name SET column_name = value;
+	
+snippet delete
+	### **DELETE**: 用于删除表中的现有记录/行
+	DELETE FROM table_name WHERE condition;
+	DELETE * FROM table_name;
+	
+snippet count
+	# 3. 聚合查询
+	### **COUNT**: 返回出现次数
+	SELECT COUNT (DISTINCT column_name);
+	
+snippet min_max
+	### **MIN() and MAX()**: 返回所选列的最小/最大值
+	SELECT MIN (column_names) FROM table_name WHERE condition;
+	SELECT MAX (column_names) FROM table_name WHERE condition;
+	
+snippet avg_avrage
+	### **AVG()**: 返回数字列的平均值
+	SELECT AVG (column_name) FROM table_name WHERE condition;
+	
+snippet sum
+	### **SUM()**: 返回数值列的总和
+	SELECT SUM (column_name) FROM table_name WHERE condition;
+	
+snippet join
+	# 4. 连接查询
+	
+	###  **INNER JOIN**: 内连接，返回在两张表中具有匹配值的记录
+	SELECT column_names FROM table1 INNER JOIN table2 ON table1.column_name=table2.column_name;
+	SELECT table1.column_name1, table2.column_name2, table3.column_name3 FROM ((table1 INNER JOIN table2 ON relationship) INNER JOIN table3 ON relationship);
+	
+snippet left_join
+	### **LEFT (OUTER) JOIN**: 左外连接，返回左表（table1）中的所有记录，以及右表中的匹配记录（table2）
+	SELECT column_names FROM table1 LEFT JOIN table2 ON table1.column_name=table2.column_name;
+	
+snippet right_join
+	### **RIGHT (OUTER) JOIN**: 右外连接，返回右表（table2）中的所有记录，以及左表（table1）中匹配的记录
+	SELECT column_names FROM table1 RIGHT JOIN table2 ON table1.column_name=table2.column_name;
+	
+snippet full_join
+	### **FULL (OUTER) JOIN**: 全外连接，全连接是左右外连接的并集. 连接表包含被连接的表的所有记录, 如果缺少匹配的记录, 以 NULL 填充。
+	SELECT column_names FROM table1 FULL OUTER JOIN table2 ON table1.column_name=table2.column_name;
+	
+snippet self_join
+	### **Self JOIN**: 自连接，表自身连接
+	SELECT column_names FROM table1 T1, table1 T2 WHERE condition;
+	
+	
+snippet create_view
+	### **CREATE**: 创建视图
+	CREATE VIEW view_name AS SELECT column1, column2 FROM table_name WHERE condition;
+	
+snippet view_select
+	### **SELECT**: 检索视图
+	SELECT * FROM view_name;
+	
+snippet view_drop
+	### **DROP**: 删除视图
+	DROP VIEW view_name;
+	
+	
+snippet alter_table
+	### **ADD**: 添加字段
+	ALTER TABLE table_name ADD column_name column_definition;
+	
+	### **MODIFY**: 修改字段数据类型
+	ALTER TABLE table_name MODIFY column_name column_type;
+	
+snippet drop_table
+	### **DROP**: 删除字段
+	ALTER TABLE table_name DROP COLUMN column_name;
+
+
+snippet datediff
+	--- FRAC_SECOND、SECOND、 MINUTE、 HOUR、 DAY、 WEEK、 MONTH、 QUARTER或 YEAR
+	SELECT TIMESTAMPDIFF(DAY,'2012-10-01','2013-01-13');
+	--- 传入两个日期函数，比较的DAY天数
+	SELECT DATEDIFF('2013-01-13','2012-10-01');
+
+snippet now_current
+	select now(), curdate(), sysdate(), curtime() \G;
+
+snippet explain
+	explain select * from (select * from ( select * from t1 where id=2602) a) b;
+
+
+
+snippet grant_
+	# To grant specific permissions to a particular user
+	GRANT permission_type ON database_name.table_name TO 'username'@'hostname';
+
+	# To add a user and give rights on the given database
+	GRANT ALL PRIVILEGES ON database.* TO 'user'@'localhost'IDENTIFIED BY 'password' WITH GRANT OPTION;
+
+	--- 老版本中更新 Root 用户信息
+	GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
+	FLUSH PRIVILEGES;
+
+snippet password
+
+	SET PASSWORD FOR root@localhost=PASSWORD('new_password');
+	--- 5.7 之后版本
+	update user set authentication_string=password('YOURSUPERSECRETPASSWORD') where user='root';
+
+
+
+snippet docker_demo
+	# 启动本地的 MySQL 实例
+	$ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
+
+	# 将 MySQL 端口映射出来
+	$ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -p 3306:3306 -d mysql:tag
+
+	# 允许启动的其他容器中使用 MySQL
+	$ docker run --name some-app --link some-mysql:mysql -d application-that-uses-mysql
+
+	# 启动本地 MySQL 客户端并且连接到目标
+	$ docker run -it --link some-mysql:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'
+
+	# 将 MySQL 镜像作为客户端使用，连接到远端的数据库
+	$ docker run -it --rm mysql mysql -hsome.mysql.host -usome-mysql-user -p
+
+snippet load_data_infile
+	load data infile "/data/mysql/e.sql" into table e fields terminated by ',';
+	load data infile '/tmp/t0.txt' ignore into table t0 character set gbk fields terminated by ',' enclosed by '"' lines terminated by '\n' (`name`,`age`,`description`);
+
+snippet last_hour
+	#当前小时
+	select DATE_FORMAT(DATE_ADD(CURRENT_TIMESTAMP,INTERVAL -0 HOUR),'%Y-%m-%d %H:%i');
+
+	#上一个小时
+	select DATE_FORMAT(DATE_ADD(CURRENT_TIMESTAMP,INTERVAL -1 HOUR),'%Y-%m-%d %H:%i');
+
+snippet last_day
+	#昨天 
+	select DATE_FORMAT(DATE_ADD(CURRENT_TIMESTAMP,INTERVAL -1 DAY),'%Y-%m-%d %H:%i');
+
+snippet last_month
+	#上一个月
+	select DATE_FORMAT(DATE_ADD(CURRENT_TIMESTAMP,INTERVAL -1 MONTH),'%Y-%m-%d %H:%i');
+
+snippet type_define
+	tinyint[(length)] [unsigned] [zerofill]
+	smallint[(length)] [unsigned] [zerofill]
+	mediumint[(length)] [unsigned] [zerofill]
+	int[(length)] [unsigned] [zerofill]
+	integer[(length)] [unsigned] [zerofill]
+	bigint[(length)] [unsigned] [zerofill]
+	real[(length,decimals)] [unsigned] [zerofill]
+	double[(length,decimals)] [unsigned] [zerofill]
+	float[(length,decimals)] [unsigned] [zerofill]
+	decimal(length,decimals) [unsigned] [zerofill]
+	numeric(length,decimals) [unsigned] [zerofill]
+	char(length) [binary]
+	varchar(length) [binary]
+	date
+	time
+	timestamp
+	datetime
+	tinyblob
+	blob
+	mediumblob
+	longblob
+	tinytext
+	text
+	mediumtext
+	longtext
+	enum(value1,value2,value3,...)
+	set(value1,value2,value3,...)
+
+snippet if_exists 
+	DROP TABLE IF EXISTS `sql_demo`;

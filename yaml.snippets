@@ -1,0 +1,3272 @@
+snippet PersistentVolumeClaim
+	apiVersion: v1
+	kind: PersistentVolumeClaim
+	metadata:
+	  name: postgres-pv-claim
+	spec:
+	  accessModes:
+		- ReadWriteOnce
+	  resources:
+		requests:
+		  storage: 1Gi
+
+snippet PersistentVolume_local_dir
+	apiVersion: v1
+	kind: PersistentVolume
+	metadata:
+	  name: local-pv-1
+	  labels:
+		type: local
+	spec:
+	  capacity:
+		storage: 20Gi
+	  accessModes:
+		- ReadWriteOnce
+	  hostPath:
+		path: /tmp/data/pv-1
+	---
+	apiVersion: v1
+	kind: PersistentVolume
+	metadata:
+	  name: local-pv-2
+	  labels:
+		type: local
+	spec:
+	  capacity:
+		storage: 20Gi
+	  accessModes:
+		- ReadWriteOnce
+	  hostPath:
+		path: /tmp/data/pv-2
+
+
+snippet PersistentVolume
+	apiVersion: v1
+	kind: PersistentVolume
+	metadata:
+	  name: my-release-jenkins
+	spec:
+	  accessModes:
+		- ReadWriteOnce
+	  capacity:
+		storage: 1Gi
+	  hostPath:
+		path: /var/data/my-release-jenkins
+
+snippet Deployment
+	apiVersion: apps/v1beta1
+	kind: Deployment
+	metadata:
+	  name: redis
+	  labels:
+		app: redis
+	spec:
+	  selector:
+		matchLabels:
+		  app: redis
+	  replicas: 1
+	  template:
+		metadata:
+		  labels:
+			app: redis
+		spec:
+		  containers:
+		  - name: redis
+			image: redis:alpine
+			ports:
+			- containerPort: 6379
+			  name: redis
+
+
+snippet Service
+	apiVersion: v1
+	kind: Service
+	metadata: 
+	  labels: 
+		app: db
+	  name: db
+	spec: 
+	  clusterIP: None
+	  ports: 
+		- 
+		  name: db
+		  port: 5432
+		  targetPort: 5432
+	  selector: 
+		app: db
+
+
+snippet Pod
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: random-generator
+	  labels:
+		app: random-generator
+	spec:
+	  containers:
+	  - image: k8spatterns/random-generator:1.0
+		name: main
+		env:
+		- name: LOG_FILE
+		  value: /logs/random.log
+		ports:
+		- containerPort: 8080
+		  protocol: TCP
+		volumeMounts:
+		- mountPath: /logs
+		  name: log-volume
+	  - image: k8spatterns/random-generator-exporter
+		name: adapter
+		env:
+		- name: LOG_FILE
+		  value: /logs/random.log
+		ports:
+		- containerPort: 9889
+		  protocol: TCP
+		volumeMounts:
+		- mountPath: /logs
+		  name: log-volume
+	  volumes:
+	  - name: log-volume
+		emptyDir: {}
+
+
+snippet ginx-fast-storage.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/ginx-fast-storage.yaml
+	apiVersion: extensions/v1beta1
+	kind: "DaemonSet"
+	metadata:
+	  labels:
+	    app: nginx
+	    ssd: "true"
+	  name: nginx-fast-storage
+	spec:
+	  template:
+	    metadata:
+	      labels:
+	        app: nginx
+	        ssd: "true"
+	    spec:
+	      nodeSelector:
+	        ssd: "true"
+	      containers:
+	        - name: nginx
+	          image: nginx:1.10.0
+
+snippet Job
+	REF: job-oneshot.yaml
+snippet job-oneshot.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/job-oneshot.yaml
+	apiVersion: batch/v1
+	kind: Job
+	metadata:
+	  name: oneshot
+	  labels:
+	    chapter: jobs
+	spec:
+	  template:
+	    metadata:
+	      labels:
+	        chapter: jobs
+	    spec:
+	      containers:
+	      - name: kuard
+	        image: gcr.io/kuar-demo/kuard-amd64:1
+	        imagePullPolicy: Always
+	        args:
+	        - "--keygen-enable"
+	        - "--keygen-exit-on-complete"
+	        - "--keygen-num-to-gen=10"
+	      restartPolicy: OnFailure
+
+snippet job-oneshot-failure1.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/job-oneshot-failure1.yaml
+	apiVersion: batch/v1
+	kind: Job
+	metadata:
+	  name: oneshot
+	  labels:
+	    chapter: jobs
+	spec:
+	  template:
+	    metadata:
+	      labels:
+	        chapter: jobs
+	    spec:
+	      containers:
+	      - name: kuard
+	        image: gcr.io/kuar-demo/kuard-amd64:1
+	        imagePullPolicy: Always
+	        args:
+	        - "--keygen-enable"
+	        - "--keygen-exit-on-complete"
+	        - "--keygen-exit-code=1"
+	        - "--keygen-num-to-gen=3"
+	      restartPolicy: OnFailure
+
+snippet job-parallel.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/job-parallel.yaml
+	apiVersion: batch/v1
+	kind: Job
+	metadata:
+	  name: parallel
+	  labels:
+	    chapter: jobs
+	spec:
+	  parallelism: 5
+	  completions: 10
+	  template:
+	    metadata:
+	      labels:
+	        chapter: jobs
+	    spec:
+	      containers:
+	      - name: kuard
+	        image: gcr.io/kuar-demo/kuard-amd64:1
+	        imagePullPolicy: Always
+	        args:
+	        - "--keygen-enable"
+	        - "--keygen-exit-on-complete"
+	        - "--keygen-num-to-gen=10"
+	      restartPolicy: OnFailure
+
+
+snippet ReplicaSet
+	REF: rs-queue.yaml
+
+snippet rs-queue.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/rs-queue.yaml
+	apiVersion: extensions/v1beta1
+	kind: ReplicaSet
+	metadata:
+	  labels:
+	    app: work-queue
+	    component: queue
+	    chapter: jobs
+	  name: queue
+	spec:
+	  replicas: 1
+	  template:
+	    metadata:
+	      labels:
+	        app: work-queue
+	        component: queue
+	        chapter: jobs
+	    spec:
+	      containers:
+	      - name: queue
+	        image: "gcr.io/kuar-demo/kuard-amd64:1"
+	        imagePullPolicy: Always
+
+snippet service-queue.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/service-queue.yaml
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  labels:
+	    app: work-queue
+	    component: queue
+	    chapter: jobs
+	  name: queue
+	spec:
+	  ports:
+	  - port: 8080
+	    protocol: TCP
+	    targetPort: 8080
+	  selector:
+	    app: work-queue
+	    component: queue
+
+snippet job-consumers.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/job-consumers.yaml
+	apiVersion: batch/v1
+	kind: Job
+	metadata:
+	  labels:
+	    app: message-queue
+	    component: consumer
+	    chapter: jobs
+	  name: consumers
+	spec:
+	  parallelism: 5
+	  template:
+	    metadata:
+	      labels:
+	        app: message-queue
+	        component: consumer
+	        chapter: jobs
+	    spec:
+	      containers:
+	      - name: worker
+	        image: "gcr.io/kuar-demo/kuard-amd64:1"
+	        imagePullPolicy: Always
+	        args:
+	        - "--keygen-enable"
+	        - "--keygen-exit-on-complete"
+	        - "--keygen-memq-server=http://queue:8080/memq/server"
+	        - "--keygen-memq-queue=keygen"
+	      restartPolicy: OnFailure
+
+snippet kuard-config.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/kuard-config.yaml
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: kuard-config
+	spec:
+	  containers:
+	    - name: test-container
+	      image: gcr.io/kuar-demo/kuard-amd64:1
+	      imagePullPolicy: Always
+	      command:
+	        - "/kuard"
+	        - "$(EXTRA_PARAM)"
+	      env:
+	        - name: ANOTHER_PARAM
+	          valueFrom:
+	            configMapKeyRef:
+	              name: my-config
+	              key: another-param
+	        - name: EXTRA_PARAM
+	          valueFrom:
+	            configMapKeyRef:
+	              name: my-config
+	              key: extra-param
+	      volumeMounts:
+	        - name: config-volume
+	          mountPath: /config
+	  volumes:
+	    - name: config-volume
+	      configMap:
+	        name: my-config
+	  restartPolicy: Never
+
+snippet kuard-secret.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/kuard-secret.yaml
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: kuard-tls
+	spec:
+	  containers:
+	    - name: kuard-tls
+	      image: gcr.io/kuar-demo/kuard-amd64:1
+	      imagePullPolicy: Always
+	      volumeMounts:
+	      - name: tls-certs
+	        mountPath: "/tls"
+	        readOnly: true
+	  volumes:
+	    - name: tls-certs
+	      secret:
+	        secretName: kuard-tls
+
+snippet kuard-secret-ips.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/kuard-secret-ips.yaml
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: kuard-tls
+	spec:
+	  containers:
+	    - name: kuard-tls
+	      image: gcr.io/kuar-demo/kuard-amd64:1
+	      imagePullPolicy: Always
+	      volumeMounts:
+	      - name: tls-certs
+	        mountPath: "/tls"
+	        readOnly: true
+	  imagePullSecrets:
+	  - name:  my-image-pull-secret
+	  volumes:
+	    - name: tls-certs
+	      secret:
+	        secretName: kuard-tls
+
+snippet mongo-simple.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/mongo-simple.yaml
+	apiVersion: apps/v1beta1
+	kind: StatefulSet
+	metadata:
+	  name: mongo
+	spec:
+	  serviceName: "mongo"
+	  replicas: 3
+	  template:
+	    metadata:
+	      labels:
+	        app: mongo
+	    spec:
+	      containers:
+	      - name: mongodb
+	        image: mongo:3.4.1
+	        command:
+	        - mongod
+	        - --replSet
+	        - rs0
+	        ports:
+	        - containerPort: 27017
+	          name: peer
+
+snippet service_mongo.yaml
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/mongo-service.yaml
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  name: mongo
+	spec:
+	  ports:
+	  - port: 27017
+	    name: peer
+	  clusterIP: None
+	  selector:
+	    app: mongo
+
+snippet shell_in_yaml
+	REF: configmap_mongo.yaml
+
+
+snippet configmap_mongo.yaml
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/mongo-configmap.yaml
+	apiVersion: v1
+	kind: ConfigMap
+	metadata:
+	  name: mongo-init
+	data:
+	  init.sh: |
+	    #!/bin/bash
+	
+	    # Need to wait for the readiness health check to pass so that the
+	    # mongo names resolve. This is kind of wonky.
+	    until ping -c 1 ${HOSTNAME}.mongo; do
+	      echo "waiting for DNS (${HOSTNAME}.mongo)..."
+	      sleep 2
+	    done
+	
+	    until /usr/bin/mongo --eval 'printjson(db.serverStatus())'; do
+	      echo "connecting to local mongo..."
+	      sleep 2
+	    done
+	    echo "connected to local."
+	
+	    HOST=mongo-0.mongo:27017
+	
+	    until /usr/bin/mongo --host=${HOST} --eval 'printjson(db.serverStatus())'; do
+	      echo "connecting to remote mongo..."
+	      sleep 2
+	    done
+	    echo "connected to remote."
+	
+	    if [[ "${HOSTNAME}" != 'mongo-0' ]]; then
+	      until /usr/bin/mongo --host=${HOST} --eval="printjson(rs.status())" \
+	            | grep -v "no replset config has been received"; do
+	        echo "waiting for replication set initialization"
+	        sleep 2
+	      done
+	      echo "adding self to mongo-0"
+	      /usr/bin/mongo --host=${HOST} \
+	         --eval="printjson(rs.add('${HOSTNAME}.mongo'))"
+	    fi
+	
+	    if [[ "${HOSTNAME}" == 'mongo-0' ]]; then
+	      echo "initializing replica set"
+	      /usr/bin/mongo --eval="printjson(rs.initiate(\
+	          {'_id': 'rs0', 'members': [{'_id': 0, \
+	           'host': 'mongo-0.mongo:27017'}]}))"
+	    fi
+	    echo "initialized"
+	
+	    while true; do
+	      sleep 3600
+	    done
+snippet mongo.yaml
+	REF:  StatefulSet
+
+snippet StatefulSet
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/mongo.yaml
+	apiVersion: apps/v1beta1
+	kind: StatefulSet
+	metadata:
+	  name: mongo
+	spec:
+	  serviceName: "mongo"
+	  replicas: 3
+	  template:
+	    metadata:
+	      labels:
+	        app: mongo
+	    spec:
+	      containers:
+	      - name: mongodb
+	        image: mongo:3.4.1
+	        command:
+	        - mongod
+	        - --replSet
+	        - rs0
+	        ports:
+	        - containerPort: 27017
+	          name: web
+	      # This container initializes the mongodb, then sleeps.
+	      - name: init-mongo
+	        image: mongo:3.4.1
+	        command:
+	        - bash
+	        - /config/init.sh
+	        volumeMounts:
+	        - name: config
+	          mountPath: /config
+	      volumes:
+	      - name: config
+	        configMap:
+	          name: "mongo-init"
+snippet ExternalName
+	REF: dns-service.yaml
+
+snippet dns-service.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/dns-service.yaml
+	kind: Service
+	apiVersion: v1
+	metadata:
+	  name: external-database
+	spec:
+	  type: ExternalName
+	  externalName: "database.company.com
+
+snippet external-ip-service.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/external-ip-service.yaml
+	kind: Service
+	apiVersion: v1
+	metadata:
+	  name: external-ip-database
+
+snippet external-ip-endpoints.yaml
+	REF: Endpoints
+
+snippet Endpoints
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/external-ip-endpoints.yaml
+	kind: Endpoints
+	apiVersion: v1
+	metadata:
+	  name: external-ip-database
+	subsets:
+	  - addresses:
+	    - ip: 192.168.0.1
+	    ports:
+	    - port: 3306
+
+snippet nfs-volume.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/nfs-volume.yaml
+	apiVersion: v1
+	kind: PersistentVolume
+	metadata:
+	  name: database
+	  labels:
+	    volume: my-volume
+	spec:
+	  capacity:
+	    storage: 1Gi
+	  nfs:
+	    server: 192.168.0.1
+	    path: "/exports"
+
+snippet nfs-volume-claim.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/nfs-volume-claim.yaml
+	kind: PersistentVolumeClaim
+	apiVersion: v1
+	metadata:
+	  name: database
+	spec:
+	  resources:
+	    requests:
+	      storage: 1Gi
+	  selector:
+	    matchLabels:
+	      volume: my-volume
+
+snippet mysql-replicaset.yaml
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/mysql-replicaset.yaml
+	apiVersion: extensions/v1beta1
+	kind: ReplicaSet
+	metadata:
+	  name: mysql
+	  labels:
+	    app: mysql
+	spec:
+	  replicas: 1
+	  selector:
+	    matchLabels:
+	      app: mysql
+	  template:
+	    metadata:
+	      labels:
+	        app: mysql
+	    spec:
+	      containers:
+	      - name: database
+	        image: mysql
+	        resources:
+	          requests:
+	            cpu: 1
+	            memory: 2Gi
+	        env:
+	        - name: MYSQL_ROOT_PASSWORD
+	          value: some-password-here
+	        livenessProbe:
+	          tcpSocket:
+	            port: 3306
+	        ports:
+	        - containerPort: 3306
+	        volumeMounts:
+	          - name: database
+	            mountPath: "/var/lib/mysql"
+	      volumes:
+	      - name: database
+	        persistentVolumeClaim:
+	          claimName: database
+
+snippet mysql-service.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/mysql-service.yaml
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  name: mysql
+	spec:
+	  ports:
+	  - port: 3306
+	    protocol: TCP
+	  selector:
+	    app: mysql
+
+snippet storageclass.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/storageclass.yaml
+	apiVersion: storage.k8s.io/v1beta1
+	kind: StorageClass
+	metadata:
+	  name: default
+	  annotations:
+	    storageclass.beta.kubernetes.io/is-default-class: "true"
+	  labels:
+	    kubernetes.io/cluster-service: "true"
+	provisioner: kubernetes.io/azure-disk
+
+snippet dynamic-volume-claim.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/dynamic-volume-claim.yaml
+	kind: PersistentVolumeClaim
+	apiVersion: v1
+	metadata:
+	  name: my-claim
+	  annotations:
+	    volume.beta.kubernetes.io/storage-class: default
+	spec:
+	  accessModes:
+	  - ReadWriteOnce
+	  resources:
+	    requests:
+	      storage: 10Gi
+
+snippet redis_StatefulSet.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/redis.yaml
+	apiVersion: apps/v1beta1
+	kind: StatefulSet
+	metadata:
+	  name: redis
+	spec:
+	  replicas: 3
+	  serviceName: redis
+	  template:
+	    metadata:
+	      labels:
+	        app: redis
+	    spec:
+	      containers:
+	      - command: [sh, -c, source /redis-config/init.sh ]
+	        image: redis:3.2.7-alpine
+	        name: redis
+	        ports:
+	        - containerPort: 6379
+	          name: redis
+	        volumeMounts:
+	        - mountPath: /redis-config
+	          name: config
+	        - mountPath: /redis-data
+	          name: data
+	      - command: [sh, -c, source /redis-config/sentinel.sh]
+	        image: redis:3.2.7-alpine
+	        name: sentinel
+	        volumeMounts:
+	        - mountPath: /redis-config
+	          name: config
+	      volumes:
+	      - configMap:
+	          defaultMode: 420
+	          name: redis-config
+	        name: config
+	      - emptyDir:
+	        name: data
+
+snippet parse.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/parse.yaml
+	apiVersion: extensions/v1beta1
+	kind: Deployment
+	metadata:
+	  name: parse-server
+	  namespace: default
+	spec:
+	  replicas: 1
+	  template:
+	    metadata:
+	      labels:
+	        run: parse-server
+	    spec:
+	      containers:
+	      - name: parse-server
+	        image: ${DOCKER_USER}/parse-server
+	        env:
+	        - name: PARSE_SERVER_DATABASE_URI
+	          value: "mongodb://mongo-0.mongo:27017,\
+	            mongo-1.mongo:27017,mongo-2.mongo\
+	            :27017/dev?replicaSet=rs0"
+	        - name: PARSE_SERVER_APP_ID
+	          value: my-app-id
+	        - name: PARSE_SERVER_MASTER_KEY
+	          value: my-master-key
+
+snippet parse-service.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/parse-service.yaml
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  name: parse-server
+	  namespace: default
+	spec:
+	  ports:
+	  - port: 1337
+	    protocol: TCP
+	    targetPort: 1337
+	  selector:
+	    run: parse-server
+
+snippet ghost.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/ghost.yaml
+	apiVersion: extensions/v1beta1
+	kind: Deployment
+	metadata:
+	  name: ghost
+	spec:
+	  replicas: 1
+	  selector:
+	    matchLabels:
+	      run: ghost
+	  template:
+	    metadata:
+	      labels:
+	        run: ghost
+	    spec:
+	      containers:
+	      - image: ghost
+	        name: ghost
+	        command:
+	        - sh
+	        - -c
+	        - cp /ghost-config/ghost-config.js /var/lib/ghost/config.js
+	          && docker-entrypoint.sh node current/index.js
+	        volumeMounts:
+	        - mountPath: /ghost-config
+	          name: config
+	      volumes:
+	      - name: config
+	        configMap:
+	          defaultMode: 420
+	          name: ghost-config
+
+snippet service_redis.yaml
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/redis-service.yaml
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  name: redis
+	spec:
+	  ports:
+	  - port: 6379
+	    name: peer
+	  clusterIP: None
+	  selector:
+	    app: redis
+
+snippet nodeSelector_demo
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/redis-service.yaml
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  name: redis
+	spec:
+	  ports:
+	  - port: 6379
+	    name: peer
+	  clusterIP: None
+	  selector:
+	    app: redis
+
+snippet uard-pod.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/uard-pod.yaml
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: kuard
+	spec:
+	  containers:
+	  - image: gcr.io/kuar-demo/kuard-amd64:1
+	    name: kuard
+	    ports:
+	    - containerPort: 8080
+	      name: http
+	      protocol: TCP
+
+snippet uard-pod-health.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/uard-pod-health.yaml
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: kuard
+	spec:
+	  containers:
+	    - image: gcr.io/kuar-demo/kuard-amd64:1
+	      name: kuard
+	      livenessProbe:
+	        httpGet:
+	          path: /healthy
+	          port: 8080
+	        initialDelaySeconds: 5
+	        timeoutSeconds: 1
+	        periodSeconds: 10
+	        failureThreshold: 3
+	      ports:
+	        - containerPort: 8080
+	          name: http
+	          protocol: TCP
+
+snippet aurd-pod-resreq.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/aurd-pod-resreq.yaml
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: kuard
+	spec:
+	  containers:
+	    - image: gcr.io/kuar-demo/kuard-amd64:1
+	      name: kuard
+	      resources:
+	        requests:
+	          cpu: "500m"
+	          memory: "128Mi"
+	      ports:
+	        - containerPort: 8080
+	          name: http
+	          protocol: TCP
+
+snippet aurd-pod-reslim.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/aurd-pod-reslim.yaml
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: kuard
+	spec:
+	  containers:
+	    - image: gcr.io/kuar-demo/kuard-amd64:1
+	      name: kuard
+	      resources:
+	        requests:
+	          cpu: "500m"
+	          memory: "128Mi"
+	        limits:
+	          cpu: "1000m"
+	          memory: "256Mi"
+	      ports:
+	        - containerPort: 8080
+	          name: http
+	          protocol: TCP
+
+snippet uard-pod-vol.yaml
+
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/uard-pod-vol.yaml
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: kuard
+	spec:
+	  volumes:
+	    - name: "kuard-data"
+	      hostPath:
+	        path: "/var/lib/kuard"
+	  containers:
+	    - image: gcr.io/kuar-demo/kuard-amd64:1
+	      name: kuard
+	      volumeMounts:
+	        - mountPath: "/data"
+	          name: "kuard-data"
+	      ports:
+	        - containerPort: 8080
+	          name: http
+	          protocol: TCP
+
+snippet kuard
+	REF: POD_uard-pod-full.yaml
+
+
+snippet limits
+	REF: POD_uard-pod-full.yaml
+
+snippet volumeMounts
+	REF: POD_uard-pod-full.yaml
+
+
+snippet livenessProbe
+	REF: POD_uard-pod-full.yaml
+
+snippet readinessProbe
+	REF: POD_uard-pod-full.yaml
+
+snippet POD_uard-pod-full.yaml
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/uard-pod-full.yaml
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: kuard
+	spec:
+	  volumes:
+	    - name: "kuard-data"
+	      nfs:
+	        server: my.nfs.server.local
+	        path: "/exports"
+	  containers:
+	    - image: gcr.io/kuar-demo/kuard-amd64:1
+	      name: kuard
+	      ports:
+	        - containerPort: 8080
+	          name: http
+	          protocol: TCP
+	      resources:
+	        requests:
+	          cpu: "500m"
+	          memory: "128Mi"
+	        limits:
+	          cpu: "1000m"
+	          memory: "256Mi"
+	      volumeMounts:
+	        - mountPath: "/data"
+	          name: "kuard-data"
+	      livenessProbe:
+	        httpGet:
+	          path: /healthy
+	          port: 8080
+	        initialDelaySeconds: 5
+	        timeoutSeconds: 1
+	        periodSeconds: 10
+	        failureThreshold: 3
+	      readinessProbe:
+	        httpGet:
+	          path: /ready
+	          port: 8080
+	        initialDelaySeconds: 30
+	        timeoutSeconds: 1
+	        periodSeconds: 10
+	        failureThreshold: 3
+
+snippet uard-rs.yaml
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/uard-rs.yaml
+	apiVersion: extensions/v1beta1
+	kind: ReplicaSet
+	metadata:
+	  name: kuard
+	spec:
+	  replicas: 1
+	  template:
+	    metadata:
+	      labels:
+	        app: kuard
+	        version: "2"
+	    spec:
+	      containers:
+	        - name: kuard
+	          image: "gcr.io/kuar-demo/kuard-amd64:2"
+
+snippet DaemonSet
+	REF: fluentd.yaml
+
+snippet fluentd.yaml
+	#deal with  /root/bin_ext/kubernetes/kubernetes-up-and-running_examples/fluentd.yaml
+	apiVersion: extensions/v1beta1
+	kind: DaemonSet
+	metadata:
+	  name: fluentd
+	  namespace: kube-system
+	  labels:
+	    app: fluentd
+	spec:
+	  template:
+	    metadata:
+	      labels:
+	        app: fluentd
+	    spec:
+	      containers:
+	      - name: fluentd
+	        image: fluent/fluentd:v0.14.10
+	        resources:
+	          limits:
+	            memory: 200Mi
+	          requests:
+	            cpu: 100m
+	            memory: 200Mi
+	        volumeMounts:
+	        - name: varlog
+	          mountPath: /var/log
+	        - name: varlibdockercontainers
+	          mountPath: /var/lib/docker/containers
+	          readOnly: true
+	      terminationGracePeriodSeconds: 30
+	      volumes:
+	      - name: varlog
+	        hostPath:
+	          path: /var/log
+	      - name: varlibdockercontainers
+	        hostPath:
+	          path: /var/lib/docker/containers
+
+
+snippet kind_all_type_top_50
+	2 kind: BuildRequest
+	2 kind: ClusterServiceClass
+	2 kind: DockerImage
+	2 kind: MasterConfig
+	2 kind: PodDisruptionBudget
+	2 kind: Policy
+	2 kind: SystemGroup
+	2 kind: SystemUser
+	3 kind: ClusterResourceOverrideConfig
+	3 kind: ClusterServiceBroker
+	3 kind: CustomResourceDefinition
+	3 kind: Flunder
+	3 kind: KubeProxyConfiguration
+	3 kind: NodeConfig
+	3 kind: Noxu
+	3 kind: Policy`
+	3 kind: ProjectRequestLimitConfig
+	3 kind: Route
+	4 kind: Foo
+	4 kind: ServiceBinding
+	4 kind: Widget
+	5 kind: ResourceQuota
+	5 kind: Role
+	7 kind: HorizontalPodAutoscaler
+	7 kind: ImageStreamTag
+	7 kind: ReplicaSet
+	8 kind: Endpoints
+	8 kind: ServiceInstance
+	9 kind: Ingress
+	9 kind: Job
+	9 kind: PodSecurityPolicy
+
+snippet kind_all_type_top_30
+	10 kind: LimitRange
+	10 kind: RoleBinding
+	14 kind: ImageStream
+	15 kind: APIService
+	15 kind: ClusterRole
+	16 kind: LDAPSyncConfig
+	19 kind: Namespace
+	25 kind: ServiceAccount
+	27 kind: ClusterRoleBinding
+	27 kind: ConfigMap
+	27 kind: DaemonSet
+	29 kind: StatefulSet
+	31 kind: EncryptionConfig
+	38 kind: PersistentVolume
+	39 kind: BuildConfig
+	41 kind: DeploymentConfig
+	44 kind: PersistentVolumeClaim
+	48 kind: Secret
+	57 kind: Config
+	60 kind: Template
+	70 kind: Group
+	72 kind: StorageClass
+	93 kind: Deployment
+	170 kind: ReplicationController
+	211 kind: Pod
+	287 kind: Service
+
+snippet Namespace
+	apiVersion: v1
+	kind: Namespace
+	metadata:
+	  name: development
+
+
+snippet BuildConfig
+	# from /root/bin_ext/openshift-examples/origin_raw/jenkins/pipeline/openshift-client-plugin-pipeline.yaml
+	apiVersion: v1
+	kind: BuildConfig
+	metadata:
+	  labels:
+		name: sample-pipeline-openshift-client-plugin
+	  name: sample-pipeline-openshift-client-plugin
+	spec:
+	  source:
+		type: Git
+		git:
+		  uri: https://github.com/openshift/jenkins-client-plugin.git
+	  strategy:
+		type: JenkinsPipeline
+		jenkinsPipelineStrategy:
+		  jenkinsfilePath: examples/jenkins-image-sample.groovy
+
+
+
+snippet mysql-daemonset.yaml
+
+	#deal with  /root/bin_ext/docker-compose_github_all/1704_vulhub/mysql/CVE-2012-2122/mysql-daemonset.yaml
+	apiVersion: extensions/v1beta1
+	kind: DaemonSet
+	metadata:
+	  annotations:
+	    kompose.cmd: kompose convert -f docker-compose.yml --daemon-set
+	    kompose.version: 1.7.0 (HEAD)
+	  creationTimestamp: null
+	  labels:
+	    io.kompose.service: mysql
+	  name: mysql
+	spec:
+	  template:
+	    metadata:
+	      creationTimestamp: null
+	      labels:
+	        io.kompose.service: mysql
+	    spec:
+	      containers:
+	      - image: vulhub/mysql:5.5.23
+	        name: mysql
+	        ports:
+	        - containerPort: 3306
+	        resources: {}
+	      restartPolicy: Always
+	status:
+	  currentNumberScheduled: 0
+	  desiredNumberScheduled: 0
+	  numberMisscheduled: 0
+
+snippet mysql-service.yaml
+
+	#deal with  /root/bin_ext/docker-compose_github_all/1704_vulhub/mysql/CVE-2012-2122/mysql-service.yaml
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  annotations:
+	    kompose.cmd: kompose convert
+	    kompose.version: 1.7.0 (HEAD)
+	  creationTimestamp: null
+	  labels:
+	    io.kompose.service: mysql
+	  name: mysql
+	spec:
+	  ports:
+	  - name: "3306"
+	    port: 3306
+	    targetPort: 3306
+	  selector:
+	    io.kompose.service: mysql
+	status:
+	  loadBalancer: {}
+
+snippet ReplicationController
+	REF: mysql-replicationcontroller.yaml
+
+snippet mysql-replicationcontroller.yaml
+
+	#deal with  /root/bin_ext/docker-compose_github_all/1704_vulhub/mysql/CVE-2012-2122/mysql-replicationcontroller.yaml
+	apiVersion: v1
+	kind: ReplicationController
+	metadata:
+	  annotations:
+	    kompose.cmd: kompose convert -f docker-compose.yml --replication-controller
+	    kompose.version: 1.7.0 (HEAD)
+	  creationTimestamp: null
+	  labels:
+	    io.kompose.service: mysql
+	  name: mysql
+	spec:
+	  replicas: 1
+	  template:
+	    metadata:
+	      creationTimestamp: null
+	      labels:
+	        io.kompose.service: mysql
+	    spec:
+	      containers:
+	      - image: vulhub/mysql:5.5.23
+	        name: mysql
+	        ports:
+	        - containerPort: 3306
+	        resources: {}
+	      restartPolicy: Always
+	status:
+	  replicas: 0
+
+snippet mysql-deployment.yaml
+
+	#deal with  /root/bin_ext/docker-compose_github_all/1704_vulhub/mysql/CVE-2012-2122/mysql-deployment.yaml
+	apiVersion: extensions/v1beta1
+	kind: Deployment
+	metadata:
+	  annotations:
+	    kompose.cmd: kompose convert
+	    kompose.version: 1.7.0 (HEAD)
+	  creationTimestamp: null
+	  labels:
+	    io.kompose.service: mysql
+	  name: mysql
+	spec:
+	  replicas: 1
+	  strategy: {}
+	  template:
+	    metadata:
+	      creationTimestamp: null
+	      labels:
+	        io.kompose.service: mysql
+	    spec:
+	      containers:
+	      - image: vulhub/mysql:5.5.23
+	        name: mysql
+	        ports:
+	        - containerPort: 3306
+	        resources: {}
+	      restartPolicy: Always
+	status: {}
+
+snippet DeploymentConfig
+	REF: mysql-deploymentconfig.yaml
+
+snippet mysql-deploymentconfig.yaml
+
+	#deal with  /root/bin_ext/docker-compose_github_all/1704_vulhub/mysql/CVE-2012-2122/mysql-deploymentconfig.yaml
+	apiVersion: v1
+	kind: DeploymentConfig
+	metadata:
+	  annotations:
+	    kompose.cmd: kompose convert -f docker-compose.yml --build build-config --provider
+	      openshift
+	    kompose.version: 1.7.0 (HEAD)
+	  creationTimestamp: null
+	  labels:
+	    io.kompose.service: mysql
+	  name: mysql
+	spec:
+	  replicas: 1
+	  selector:
+	    io.kompose.service: mysql
+	  strategy:
+	    resources: {}
+	  template:
+	    metadata:
+	      creationTimestamp: null
+	      labels:
+	        io.kompose.service: mysql
+	    spec:
+	      containers:
+	      - image: ' '
+	        name: mysql
+	        ports:
+	        - containerPort: 3306
+	        resources: {}
+	      restartPolicy: Always
+	  test: false
+	  triggers:
+	  - type: ConfigChange
+	  - imageChangeParams:
+	      automatic: true
+	      containerNames:
+	      - mysql
+	      from:
+	        kind: ImageStreamTag
+	        name: mysql:5.5.23
+	    type: ImageChange
+	status: {}
+
+
+snippet docker_compose_file 
+	REF:  mysql-docker_compose_file 
+
+snippet mysql-docker_compose_file 
+	# /root/bin_ext/docker-compose_github_all/1704_vulhub/mysql/CVE-2012-2122/docker-compose.yml
+	version: '2'
+	services:
+	 mysql:
+	   image: vulhub/mysql:5.5.23
+	   ports:
+		- "3306:3306"
+
+snippet ImageStream
+	REF: mysql-imagestream.yaml
+
+snippet mysql-imagestream.yaml
+
+	#deal with  /root/bin_ext/docker-compose_github_all/1704_vulhub/mysql/CVE-2012-2122/mysql-imagestream.yaml
+	apiVersion: v1
+	kind: ImageStream
+	metadata:
+	  creationTimestamp: null
+	  labels:
+	    io.kompose.service: mysql
+	  name: mysql
+	spec: {}
+	status:
+	  dockerImageRepository: ""
+
+
+snippet Ingress
+	# /root/CI/d_kubernetes/k8s_1.14.0/yaml/traefik.yaml
+	apiVersion: extensions/v1beta1
+	kind: Ingress
+	metadata:
+	  name: traefik-web-ui
+	  namespace: kube-system
+	  annotations:
+		kubernetes.io/ingress.class: traefik
+	spec:
+	  rules:
+	  - host: ingress.multi.io
+		http:
+		  paths:
+		  - backend:
+			  serviceName: traefik-web-ui
+			  servicePort: 80
+
+
+snippet ServiceAccount
+	# /root/CI/d_kubernetes/k8s_1.14.0/yaml/traefik.yaml
+	apiVersion: v1
+	kind: ServiceAccount
+	metadata:
+	  name: traefik-ingress-controller
+	  namespace: kube-system
+
+
+snippet ClusterRoleBinding
+	# /root/CI/d_kubernetes/k8s_1.14.0/yaml/traefik.yaml
+	kind: ClusterRoleBinding
+	apiVersion: rbac.authorization.k8s.io/v1beta1
+	metadata:
+	  name: traefik-ingress-controller
+	roleRef:
+	  apiGroup: rbac.authorization.k8s.io
+	  kind: ClusterRole
+	  name: traefik-ingress-controller
+	subjects:
+	- kind: ServiceAccount
+	  name: traefik-ingress-controller
+	  namespace: kube-system
+
+
+snippet ClusterRole
+	# /root/CI/d_kubernetes/k8s_1.14.0/yaml/traefik.yaml
+	kind: ClusterRole
+	apiVersion: rbac.authorization.k8s.io/v1beta1
+	metadata:
+	  name: traefik-ingress-controller
+	rules:
+	  - apiGroups:
+		  - ""
+		resources:
+		  - services
+		  - endpoints
+		  - secrets
+		verbs:
+		  - get
+		  - list
+		  - watch
+	  - apiGroups:
+		  - extensions
+		resources:
+		  - ingresses
+		verbs:
+		  - get
+		  - list
+		  - watch
+
+snippet Ingress_grafana
+	apiVersion: extensions/v1beta1
+	kind: Ingress
+	metadata:
+	  name: grafana-web
+	  namespace: monitoring
+	  annotations:
+		kubernetes.io/ingress.class: traefik
+	spec:
+	  rules:
+	  - host: grafana.multi.io
+		http:
+		  paths:
+		  - backend:
+			  serviceName: prometheus-operator-grafana
+			  servicePort: 80
+			path: /
+
+
+snippet NodePort
+	# /root/CI/d_kubernetes/k8s_1.14.0/yaml/traefik.yaml
+	kind: Service
+	apiVersion: v1
+	metadata:
+	  name: traefik-ingress-service
+	spec:
+	  selector:
+		k8s-app: traefik-ingress-lb
+	  ports:
+		- protocol: TCP
+		  port: 80
+		  name: web
+		- protocol: TCP
+		  port: 8080
+		  name: admin
+		- protocol: TCP
+		  port: 443
+		  name: https
+	  type: NodePort
+
+
+
+snippet NodePort_single
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  labels:
+		kubernetes.io/cluster-service: 'true'
+		kubernetes.io/name: monitoring-grafana
+	  name: monitoring-grafana
+	  namespace: kube-system
+	spec:
+	  type: NodePort
+	  ports:
+	  - port: 80
+		targetPort: 3000
+	  selector:
+		k8s-app: grafana
+
+snippet NodePort_simplest
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  name: TEMPLATE-ingress-service
+	spec:
+	  type: NodePort
+	  ports:
+	  - port: 80
+		targetPort: 3000
+	  selector:
+		k8s-app: TEMPLATE
+
+
+snippet configmap-plaintext.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/configmap-plaintext.yaml
+	apiVersion: v1
+	kind: ConfigMap
+	metadata:
+	  name: test-staging-sidekiq
+	  labels:
+	    name: test-staging-sidekiq
+	  namespace: test
+	data:
+	  config: |-
+	    ---
+	    :verbose: true
+	    :environment: staging
+	    :pidfile: tmp/pids/sidekiq.pid
+	    :logfile: log/sidekiq.log
+	    :concurrency: 20
+	    :queues:
+	      - [default, 1]
+	    :dynamic: true
+	    :timeout: 300
+
+snippet config-pod-configmap.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/config-pod-configmap.yaml
+	# Create configmap from local file
+	# https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#create-configmaps-from-files
+	# kubectl create configmap game-config-2 --from-file=configure-pod-container/configmap/game.properties --from-file=configure-pod-container/configmap/ui.properties
+	# Populate a Volume with data stored in a ConfigMap
+	# https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/#populate-a-volume-with-data-stored-in-a-configmap
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: dapi-test-pod
+	spec:
+	  containers:
+	    - name: test-container
+	      image: k8s.gcr.io/busybox
+	      command: [ "/bin/sh", "-c", "ls /etc/config/" ]
+	      volumeMounts:
+	      - name: config-volume
+	        mountPath: /etc/config
+	  volumes:
+	    - name: config-volume
+	      configMap:
+	        # Provide the name of the ConfigMap containing the files you want
+	        # to add to the container
+	        name: special-config
+	  restartPolicy: Never
+
+snippet config-pod-environment-var.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/config-pod-environment-var.yaml
+	# https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/
+	# https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: command-demo
+	  labels:
+	    purpose: demonstrate-command
+	spec:
+	  containers:
+	  - name: command-demo-container
+	    image: debian
+	    command: ["printenv"]
+	    args: ["HOSTNAME", "KUBERNETES_PORT", "DEMO_GREETING", "DEMO_FAREWELL"]
+	    env:
+	      - name: DEMO_GREETING
+	        value: "Hello from the environment"
+	      - name: DEMO_FAREWELL
+	        value: "Such a sweet sorrow"
+	  restartPolicy: OnFailure
+
+snippet config-pod-env-metada.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/config-pod-env-metada.yaml
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: extensions/v1beta1
+	kind: Deployment
+	metadata:
+	  name: dummy-controller
+	  namespace: myns
+	spec:
+	  replicas: 1
+	  template:
+	    metadata:
+	      labels:
+	        app: dummy-controller
+	    spec:
+	      containers:
+	      - name: dummy-controller
+	        image: my/dummy-controller
+	        imagePullPolicy: Always
+	        env:
+	        - name: NAMESPACE
+	          valueFrom:
+	            fieldRef:
+	              fieldPath: metadata.namespace
+
+snippet deployment-mysql.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/deployment-mysql.yaml
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	kind: PersistentVolume
+	apiVersion: v1
+	metadata:
+	  name: mysql-pv-volume
+	  labels:
+	    type: local
+	spec:
+	  storageClassName: manual
+	  capacity:
+	    storage: 20Gi
+	  accessModes:
+	    - ReadWriteOnce
+	  hostPath:
+	    path: "/mnt/data"
+	---
+	apiVersion: v1
+	kind: PersistentVolumeClaim
+	metadata:
+	  name: mysql-pv-claim
+	spec:
+	  storageClassName: manual
+	  accessModes:
+	    - ReadWriteOnce
+	  resources:
+	    requests:
+	      storage: 20Gi
+	---
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  name: mysql
+	spec:
+	  ports:
+	  - port: 3306
+	  selector:
+	    app: mysql
+	  clusterIP: None
+	---
+	apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+	kind: Deployment
+	metadata:
+	  name: mysql
+	spec:
+	  selector:
+	    matchLabels:
+	      app: mysql
+	  strategy:
+	    type: Recreate
+	  template:
+	    metadata:
+	      labels:
+	        app: mysql
+	    spec:
+	      containers:
+	      - image: mysql:5.6
+	        name: mysql
+	        env:
+	          # Use secret in real usage
+	        - name: MYSQL_ROOT_PASSWORD
+	          value: password
+	        ports:
+	        - containerPort: 3306
+	          name: mysql
+	        volumeMounts:
+	        - name: mysql-persistent-storage
+	          mountPath: /var/lib/mysql
+	      volumes:
+	      - name: mysql-persistent-storage
+	        persistentVolumeClaim:
+	          claimName: mysql-pv-claim
+
+snippet deployment-nginx.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/deployment-nginx.yaml
+	# https://kubernetes.io/docs/tutorials/k8s201/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: apps/v1
+	kind: Deployment
+	metadata:
+	  name: nginx-deployment
+	spec:
+	  selector:
+	    matchLabels:
+	      app: nginx
+	  replicas: 2
+	  template:
+	    metadata:
+	      labels:
+	        app: nginx
+	    spec:
+	      containers:
+	      - name: nginx
+	        image: nginx:1.8
+	        resources:
+	          limits:
+	            memory: "128Mi"
+	            cpu: "250m"
+	        ports:
+	        - containerPort: 80
+
+snippet job-affinity.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/job-affinity.yaml
+	# https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: batch/v1
+	kind: Job
+	metadata:
+	  name: pi
+	spec:
+	  template:
+	    spec:
+	      containers:
+	      - name: pi
+	        image: perl
+	        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+	      restartPolicy: Never
+	      nodeSelector:
+	        kubernetes.io/hostname: gke-cluster-1-default-pool-559d6680-43r5
+	  backoffLimit: 4
+
+snippet ns-dummy.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/ns-dummy.yaml
+	# https://github.com/kubernetes/kubernetes/blob/v1.14.0-alpha.0/cluster/addons/addon-manager/namespace.yaml
+	apiVersion: v1
+	kind: Namespace
+	metadata:
+	  name: my-dummy
+
+snippet networksecurity-allowall-ingress.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/networksecurity-allowall-ingress.yaml
+	# https://kubernetes.io/docs/concepts/services-networking/network-policies/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: networking.k8s.io/v1
+	kind: NetworkPolicy
+	metadata:
+	  name: default-deny
+	spec:
+	  podSelector: {}
+	  policyTypes:
+	  - Ingress
+
+snippet networksecurity-complicated.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/networksecurity-complicated.yaml
+	# https://kubernetes.io/docs/concepts/services-networking/network-policies/
+	# For db pods, the ingress traffic of port 6379
+	#     Only allow ingress traffic from source ip of 172.17.0.0/16, excluding 172.17.1.0/24
+	#     Or the pods from myproject namespace, or pods in current namespace with label of "role=frontend"
+	#
+	#     The egress traffic
+	#         It can only goes to port 5978 of 10.0.0.0/24
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: networking.k8s.io/v1
+	kind: NetworkPolicy
+	metadata:
+	  name: test-network-policy
+	  namespace: default
+	spec:
+	  podSelector:
+	    matchLabels:
+	      role: db
+	  policyTypes:
+	  - Ingress
+	  - Egress
+	  ingress:
+	  - from:
+	    - ipBlock:
+	        cidr: 172.17.0.0/16
+	        except:
+	        - 172.17.1.0/24
+	    - namespaceSelector:
+	        matchLabels:
+	          project: myproject
+	    - podSelector:
+	        matchLabels:
+	          role: frontend
+	    ports:
+	    - protocol: TCP
+	      port: 6379
+	  egress:
+	  - to:
+	    - ipBlock:
+	        cidr: 10.0.0.0/24
+	    ports:
+	    - protocol: TCP
+	      port: 5978
+
+snippet networksecurity-deny-othernamespaces.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/networksecurity-deny-othernamespaces.yaml
+	# https://github.com/ahmetb/kubernetes-network-policy-recipes/blob/master/04-deny-traffic-from-other-namespaces.md
+	# Deny all traffic from other namespaces
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	kind: NetworkPolicy
+	apiVersion: networking.k8s.io/v1
+	metadata:
+	  namespace: secondary
+	  name: deny-from-other-namespaces
+	spec:
+	  podSelector:
+	    matchLabels:
+	  ingress:
+	  - from:
+	    - podSelector: {}
+
+snippet networksecurity-denyall-ingress.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/networksecurity-denyall-ingress.yaml
+	# https://kubernetes.io/docs/concepts/services-networking/network-policies/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: networking.k8s.io/v1
+	kind: NetworkPolicy
+	metadata:
+	  name: default-deny
+	spec:
+	  podSelector: {}
+	  policyTypes:
+	  - Ingress
+
+snippet networksecurity-denyall.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/networksecurity-denyall.yaml
+	# https://kubernetes.io/docs/concepts/services-networking/network-policies/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: networking.k8s.io/v1
+	kind: NetworkPolicy
+	metadata:
+	  name: default-deny
+	spec:
+	  podSelector: {}
+	  policyTypes:
+	  - Ingress
+	  - Egress
+
+snippet networksecurity-denyegress-exceptdns.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/networksecurity-denyegress-exceptdns.yaml
+	# https://kubernetes.io/blog/2017/10/enforcing-network-policies-in-kubernetes/
+	# nginx pods only allow ingress traffic from foo pods
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	kind: NetworkPolicy
+	apiVersion: networking.k8s.io/v1
+	metadata:
+	  name: access-nginx
+	spec:
+	  podSelector:
+	    matchLabels:
+	      app: nginx
+	  ingress:
+	  - from:
+	    - podSelector:
+	        matchLabels:
+	          app: foo
+
+snippet networksecurity-pod.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/networksecurity-pod.yaml
+	# https://kubernetes.io/blog/2017/10/enforcing-network-policies-in-kubernetes/
+	# nginx pods only allow ingress traffic from foo pods
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	kind: NetworkPolicy
+	apiVersion: networking.k8s.io/v1
+	metadata:
+	  name: access-nginx
+	spec:
+	  podSelector:
+	    matchLabels:
+	      app: nginx
+	  ingress:
+	  - from:
+	    - podSelector:
+	        matchLabels:
+	          app: foo
+
+snippet networksecurity-port.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/networksecurity-port.yaml
+	# https://github.com/kubernetes/community/blob/2780e1b37cac622b0d622208b246c60bfefd171c/contributors/design-proposals/network/network-policy.md#behavior
+	# Allow TCP 443 from any source in Bob's namespaces.
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: networking.k8s.io/v1
+	kind: NetworkPolicy
+	metadata:
+	  name: allow-tcp-443
+	spec:
+	  podSelector:            
+	    matchLabels:
+	      role: frontend 
+	  ingress:
+	    - ports:
+	        - protocol: TCP
+	          port: 443 
+	      from:
+	        - namespaceSelector:
+	            matchLabels:
+	              user: bob 
+
+snippet pod-dummy.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/pod-dummy.yaml
+	# https://github.com/dennyzhang/cheatsheet-kubernetes-A4
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: dummy
+	  namespace: default
+	  labels:
+	    env: test
+	spec:
+	  containers:
+	  - name: dummy
+	    image: ubuntu
+	    # image: busybox
+	    args: [/bin/sh, -c,
+	            'i=0; while true; do echo "$i: $(date)"; i=$((i+1)); sleep 1; done']
+
+snippet pod-gitclone.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/pod-gitclone.yaml
+	# https://kubernetes.io/docs/tutorials/k8s101/
+	# https://gist.github.com/tallclair/849601a16cebeee581ef2be50c351841
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: www
+	spec:
+	  initContainers:
+	  - name: git-clone
+	    image: alpine/git
+	    args:
+	        - clone
+	        - --single-branch
+	        - --
+	        - https://github.com/dennyzhang/challenges-kubernetes.git
+	        - /data/challenges-kubernetes
+	    securityContext:
+	        runAsUser: 1 # Any non-root user will do. Match to the workload.
+	        allowPrivilegeEscalation: false
+	        readOnlyRootFilesystem: true
+	    volumeMounts:
+	    - mountPath: /data
+	      name: www-data
+	  containers:
+	  - name: nginx
+	    image: nginx
+	    volumeMounts:
+	    - mountPath: /srv/www
+	      name: www-data
+	      readOnly: true
+	  volumes:
+	  - name: www-data
+	    emptyDir: {}
+
+snippet pod-handlers.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/pod-handlers.yaml
+	# https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: lifecycle-demo
+	spec:
+	  containers:
+	  - name: lifecycle-demo-container
+	    image: nginx
+	    lifecycle:
+	      postStart:
+	        exec:
+	          command: ["/bin/sh", "-c", "echo Hello from the postStart handler > /usr/share/message"]
+	      preStop:
+	        exec:
+	          command: ["/usr/sbin/nginx","-s","quit"]
+
+snippet pod-healthcheck-nginx.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/pod-healthcheck-nginx.yaml
+	# https://kubernetes.io/docs/tutorials/k8s201/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: pod-with-http-healthcheck
+	spec:
+	  containers:
+	  - name: nginx
+	    image: nginx
+	    # defines the health checking
+	    livenessProbe:
+	      # an http probe
+	      httpGet:
+	        path: /_status/healthz
+	        port: 80
+	      # length of time to wait for a pod to initialize
+	      # after pod startup, before applying health checking
+	      initialDelaySeconds: 30
+	      timeoutSeconds: 1
+	    ports:
+	    - containerPort: 80
+	      
+	---
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: pod-with-tcp-socket-healthcheck
+	spec:
+	  containers:
+	  - name: redis
+	    image: redis
+	    # defines the health checking
+	    livenessProbe:
+	      # a TCP socket probe
+	      tcpSocket:
+	        port: 6379
+	      # length of time to wait for a pod to initialize
+	      # after pod startup, before applying health checking
+	      initialDelaySeconds: 30
+	      timeoutSeconds: 1
+	    ports:
+	    - containerPort: 6379
+
+snippet pod-hostaliases.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/pod-hostaliases.yaml
+	# https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: hostaliases-pod
+	spec:
+	  restartPolicy: Never
+	  hostAliases:
+	  - ip: "127.0.0.1"
+	    hostnames:
+	    - "foo.local"
+	    - "bar.local"
+	  - ip: "10.1.2.3"
+	    hostnames:
+	    - "foo.remote"
+	    - "bar.remote"
+	  containers:
+	  - name: dummy-hosts
+	    image: busybox
+	    args: [/bin/sh, -c,
+	            'i=0; while true; do echo "$i: $(date)"; i=$((i+1)); sleep 1; done']
+
+snippet pod-initcontainer-sysctl.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/pod-initcontainer-sysctl.yaml
+	# https://github.com/kubernetes/examples/blob/master/staging/elasticsearch/es-rc.yaml
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: dummy
+	  namespace: default
+	  labels:
+	    env: test
+	spec:
+	  initContainers:
+	  - name: init-sysctl
+	    image: busybox
+	    imagePullPolicy: IfNotPresent
+	    command: ["sysctl", "-w", "vm.max_map_count=262144"]
+	    securityContext:
+	      privileged: true
+	  containers:
+	  - name: es
+	    securityContext:
+	      capabilities:
+	        add:
+	          - IPC_LOCK
+	    image: quay.io/pires/docker-elasticsearch-kubernetes:5.6.2
+	    env:
+	    - name: KUBERNETES_CA_CERTIFICATE_FILE
+	      value: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+	    - name: NAMESPACE
+	      valueFrom:
+	        fieldRef:
+	          fieldPath: metadata.namespace
+	    - name: "CLUSTER_NAME"
+	      value: "myesdb"
+	    - name: "DISCOVERY_SERVICE"
+	      value: "elasticsearch"
+	    - name: NODE_MASTER
+	      value: "true"
+	    - name: NODE_DATA
+	      value: "true"
+	    - name: HTTP_ENABLE
+	      value: "true"
+	    ports:
+	    - containerPort: 9200
+	      name: http
+	      protocol: TCP
+	    - containerPort: 9300
+	      name: transport
+	      protocol: TCP
+	    volumeMounts:
+	    - mountPath: /data
+	      name: storage
+	  volumes:
+	  - name: storage
+	    emptyDir: {}
+
+snippet pod-nginx.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/pod-nginx.yaml
+	# https://kubernetes.io/docs/tutorials/k8s101/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: nginx
+	spec:
+	  containers:
+	  - name: nginx
+	    image: nginx:1.7.9
+	    ports:
+	    - containerPort: 80
+
+snippet pod-secrets.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/pod-secrets.yaml
+	# https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/
+	# kubectl apply -f pod-secrets.yaml
+	# kubectl get pods
+	## check status, when pod is running
+	# kubectl exec secret-test-pod cat /etc/secret-volume/username
+	# kubectl exec secret-test-pod cat /etc/secret-volume/password
+	# kubectl exec secret-test-pod printenv SECRET_USERNAME
+	# kubectl exec secret-test-pod printenv SECRET_PASSWORD
+	## cleanup
+	# kubectl delete -f pod-secrets.yaml
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Secret
+	metadata:
+	  name: test-secret
+	data:
+	  username: bXktYXBw
+	  password: Mzk1MjgkdmRnN0pi
+	---
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: secret-test-pod
+	spec:
+	  containers:
+	    - name: test-container
+	      image: nginx
+	      volumeMounts:
+	          # name must match the volume name below
+	          - name: secret-volume
+	            mountPath: /etc/secret-volume
+	      env:
+	      - name: SECRET_USERNAME
+	        valueFrom:
+	          secretKeyRef:
+	            name: test-secret
+	            key: username
+	      - name: SECRET_PASSWORD
+	        valueFrom:
+	          secretKeyRef:
+	            name: test-secret
+	            key: password
+	  # The secret data is exposed to Containers in the Pod through a Volume.
+	  volumes:
+	    - name: secret-volume
+	      secret:
+	        secretName: test-secret
+
+snippet pod-serviceaccount.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/pod-serviceaccount.yaml
+	# https://github.com/dennyzhang/cheatsheet-kubernetes-A4
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: dummy
+	  namespace: default
+	  labels:
+	    env: test
+	spec:
+	  serviceAccountName: my-serviceaccount
+	  containers:
+	  - name: dummy
+	    image: ubuntu
+	    # image: busybox
+	    args: [/bin/sh, -c,
+	            'i=0; while true; do echo "$i: $(date)"; i=$((i+1)); sleep 1; done']
+
+snippet podsecurity-advanced.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/podsecurity-advanced.yaml
+	# https://kubernetes.io/docs/concepts/policy/pod-security-policy/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: policy/v1beta1
+	kind: PodSecurityPolicy
+	metadata:
+	  name: restricted-advanced
+	  annotations:
+	    seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'docker/default'
+	    apparmor.security.beta.kubernetes.io/allowedProfileNames: 'runtime/default'
+	    seccomp.security.alpha.kubernetes.io/defaultProfileName:  'docker/default'
+	    apparmor.security.beta.kubernetes.io/defaultProfileName:  'runtime/default'
+	spec:
+	  privileged: false
+	  # Required to prevent escalations to root.
+	  allowPrivilegeEscalation: false
+	  # This is redundant with non-root + disallow privilege escalation,
+	  # but we can provide it for defense in depth.
+	  requiredDropCapabilities:
+	    - ALL
+	  # Allow core volume types.
+	  volumes:
+	    - 'configMap'
+	    - 'emptyDir'
+	    - 'projected'
+	    - 'secret'
+	    - 'downwardAPI'
+	    # Assume that persistentVolumes set up by the cluster admin are safe to use.
+	    - 'persistentVolumeClaim'
+	  hostNetwork: false
+	  hostIPC: false
+	  hostPID: false
+	  runAsUser:
+	    # Require the container to run without root privileges.
+	    rule: 'MustRunAsNonRoot'
+	  seLinux:
+	    # This policy assumes the nodes are using AppArmor rather than SELinux.
+	    rule: 'RunAsAny'
+	  supplementalGroups:
+	    rule: 'MustRunAs'
+	    ranges:
+	      # Forbid adding the root group.
+	      - min: 1
+	        max: 65535
+	  fsGroup:
+	    rule: 'MustRunAs'
+	    ranges:
+	      # Forbid adding the root group.
+	      - min: 1
+	        max: 65535
+	  readOnlyRootFilesystem: false
+
+snippet podsecurity-enforce.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/podsecurity-enforce.yaml
+	# https://github.com/kubernetes/examples/blob/master/staging/podsecuritypolicy/rbac/bindings.yaml
+	# restricted-psp-user grants access to use the restricted PSP.
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: rbac.authorization.k8s.io/v1
+	kind: ClusterRole
+	metadata:
+	  name: restricted-psp-user
+	rules:
+	- apiGroups:
+	  - policy
+	  resources:
+	  - podsecuritypolicies
+	  resourceNames:
+	  - restricted
+	  verbs:
+	  - use
+	---
+	# https://github.com/kubernetes/examples/blob/master/staging/podsecuritypolicy/rbac/policies.yaml
+	# https://kubernetes.io/docs/concepts/policy/pod-security-policy/
+	apiVersion: policy/v1beta1
+	kind: PodSecurityPolicy
+	metadata:
+	  name: restricted
+	spec:
+	  privileged: false
+	  fsGroup:
+	    rule: RunAsAny
+	  runAsUser:
+	    rule: MustRunAsNonRoot
+	  seLinux:
+	    rule: RunAsAny
+	  supplementalGroups:
+	    rule: RunAsAny
+	  volumes:
+	  - 'emptyDir'
+	  - 'secret'
+	  - 'downwardAPI'
+	  - 'configMap'
+	  - 'persistentVolumeClaim'
+	  - 'projected'
+	  hostPID: false
+	  hostIPC: false
+	  hostNetwork: false
+	---
+	apiVersion: rbac.authorization.k8s.io/v1
+	kind: ClusterRoleBinding
+	metadata:
+	    name: restricted-psp-users
+	subjects:
+	- kind: Group
+	  apiGroup: rbac.authorization.k8s.io
+	  name: restricted-psp-users
+	roleRef:
+	   apiGroup: rbac.authorization.k8s.io
+	   kind: ClusterRole
+	   name: restricted-psp-user
+	---
+	# edit grants edit role to the groups
+	apiVersion: rbac.authorization.k8s.io/v1
+	kind: ClusterRoleBinding
+	metadata:
+	    name: edit
+	subjects:
+	- kind: Group
+	  apiGroup: rbac.authorization.k8s.io
+	  name: restricted-psp-users
+	roleRef:
+	   apiGroup: rbac.authorization.k8s.io
+	   kind: ClusterRole
+	   name: edit
+
+snippet podsecurity-example.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/podsecurity-example.yaml
+	---
+	apiVersion: policy/v1beta1
+	kind: PodSecurityPolicy
+	metadata:
+	  name: kube-system-psp
+	  annotations:
+	    seccomp.security.alpha.kubernetes.io/allowedProfileNames: 'docker/default'
+	    apparmor.security.beta.kubernetes.io/allowedProfileNames: 'runtime/default'
+	    seccomp.security.alpha.kubernetes.io/defaultProfileName:  'docker/default'
+	    apparmor.security.beta.kubernetes.io/defaultProfileName:  'runtime/default'
+	spec:
+	  privileged: false
+	  # Required to prevent escalations to root.
+	  allowPrivilegeEscalation: false
+	  allowedCapabilities:
+	  - '*'
+	  # Allow core volume types.
+	  hostNetwork: true
+	  hostPorts:
+	  - min: 0
+	    max: 65535
+	  hostIPC: true
+	  hostPID: true
+	  volumes:
+	    - 'configMap'
+	    - 'emptyDir'
+	    - 'projected'
+	    - 'secret'
+	    - 'downwardAPI'
+	  runAsUser:
+	    # Require the container to run without root privileges.
+	    rule: 'RunAsAny'
+	  seLinux:
+	    # This policy assumes the nodes are using AppArmor rather than SELinux.
+	    rule: 'RunAsAny'
+	  supplementalGroups:
+	    rule: 'RunAsAny'
+	  fsGroup:
+	    rule: 'RunAsAny'
+	    # rule: 'MustRunAs'
+	    # ranges:
+	    #   # Forbid adding the root group.
+	    #   - min: 1
+	    #     max: 65535
+	---
+	apiVersion: rbac.authorization.k8s.io/v1
+	kind: Role
+	metadata:
+	  name: psp:kube-system-psp
+	  namespace: kube-system
+	rules:
+	- apiGroups:
+	  - extensions
+	  resourceNames:
+	  - kube-system-psp
+	  resources:
+	  - podsecuritypolicies
+	  verbs:
+	  - use
+	---
+	apiVersion: rbac.authorization.k8s.io/v1
+	kind: RoleBinding
+	metadata:
+	  name: psp:kube-system-psp
+	  namespace: kube-system
+	roleRef:
+	  apiGroup: rbac.authorization.k8s.io
+	  kind: Role
+	  name: psp:kube-system-psp
+	subjects:
+	- kind: ServiceAccount
+	  name: coredns
+	- kind: ServiceAccount
+	  name: heapster
+	- kind: ServiceAccount
+	  name: metrics-server
+	- kind: ServiceAccount
+	  name: influxdb
+	- kind: ServiceAccount
+	  name: kube-dns
+	- kind: ServiceAccount
+	  name: kubernetes-dashboard
+
+snippet podsecurity-privileged.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/podsecurity-privileged.yaml
+	# https://github.com/kubernetes/examples/blob/master/staging/podsecuritypolicy/rbac/policies.yaml
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: policy/v1beta1
+	kind: PodSecurityPolicy
+	metadata:
+	  name: privileged
+	spec:
+	  fsGroup:
+	    rule: RunAsAny
+	  privileged: true
+	  runAsUser:
+	    rule: RunAsAny
+	  seLinux:
+	    rule: RunAsAny
+	  supplementalGroups:
+	    rule: RunAsAny
+	  volumes:
+	  - '*'
+	  allowedCapabilities:
+	  - '*'
+	  hostPID: true
+	  hostIPC: true
+	  hostNetwork: true
+	  hostPorts:
+	  - min: 1
+	    max: 65536
+
+snippet podsecurity-restricted.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/podsecurity-restricted.yaml
+	# https://github.com/kubernetes/examples/blob/master/staging/podsecuritypolicy/rbac/policies.yaml
+	# https://kubernetes.io/docs/concepts/policy/pod-security-policy/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: policy/v1beta1
+	kind: PodSecurityPolicy
+	metadata:
+	  name: restricted
+	spec:
+	  privileged: false
+	  fsGroup:
+	    rule: RunAsAny
+	  runAsUser:
+	    rule: MustRunAsNonRoot
+	  seLinux:
+	    rule: RunAsAny
+	  supplementalGroups:
+	    rule: RunAsAny
+	  volumes:
+	  - 'emptyDir'
+	  - 'secret'
+	  - 'downwardAPI'
+	  - 'configMap'
+	  - 'persistentVolumeClaim'
+	  - 'projected'
+	  hostPID: false
+	  hostIPC: false
+	  hostNetwork: false
+
+snippet securitycontext-user.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/securitycontext-user.yaml
+	# https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+	# kubectl exec -it security-context-demo -c demo1 touch /data/demo/test.log
+	# kubectl exec -it security-context-demo -c demo1 -- ls -l /data/demo/test.log
+	# ,-----------
+	# |   kubectl exec -it security-context-demo -- ls -l /data/demo/test.log
+	# | -rw-r--r-- 1 1000 2000 0 Sep 19 16:18 /data/demo/test.log
+	# `-----------
+	# kubectl exec -it security-context-demo -c demo2 touch /tmp/test.log
+	# kubectl exec -it security-context-demo -c demo2 -- ls -l /tmp/test.log
+	# ,-----------
+	# |    kubectl exec -it security-context-demo -c demo2 -- ls -l /tmp/test.log
+	# | -rw-r--r--    1 2000     root             0 Sep 19 16:38 /tmp/test.log
+	# `-----------
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: security-context-demo
+	spec:
+	  securityContext:
+	    runAsUser: 1000
+	    fsGroup: 2000
+	  volumes:
+	  - name: sec-ctx-vol
+	    emptyDir: {}
+	  containers:
+	  - name: demo1
+	    image: gcr.io/google-samples/node-hello:1.0
+	    volumeMounts:
+	    - name: sec-ctx-vol
+	      mountPath: /data/demo
+	    securityContext:
+	      allowPrivilegeEscalation: false
+	  - name: demo2
+	    image: busybox
+	    args: [/bin/sh, -c,
+	            'i=0; while true; do echo "$i: $(date)"; i=$((i+1)); sleep 1; done']
+	    securityContext:
+	      # configure security context at container level, instead of pod level
+	      runAsUser: 2000
+	      allowPrivilegeEscalation: false
+
+snippet limitrange-mem-size.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/limitrange-mem-size.yaml
+	# https://hackernoon.com/top-10-kubernetes-tips-and-tricks-27528c2d0222
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1  
+	 kind: LimitRange  
+	 metadata:  
+	   name: mem-limit-range  
+	 spec:  
+	   limits:  
+	   - default:  
+	       memory: 512Mi  
+	     defaultRequest:  
+	       memory: 256Mi  
+	     type: Container
+
+snippet limitrange-pvc-cumulative-size.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/limitrange-pvc-cumulative-size.yaml
+	# https://kubernetes.io/docs/tasks/administer-cluster/limit-storage-consumption/
+	# In this example, a 6th PVC in the namespace would be rejected because it exceeds the maximum count of 5. 
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: ResourceQuota
+	metadata:
+	  name: storagequota
+	spec:
+	  hard:
+	    persistentvolumeclaims: "5"
+	    requests.storage: "5Gi"
+
+snippet limitrange-pvc-size.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/limitrange-pvc-size.yaml
+	# https://kubernetes.io/docs/tasks/administer-cluster/limit-storage-consumption/
+	# In this example, a PVC requesting 10Gi of storage would be rejected because it exceeds the 2Gi max.
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: LimitRange
+	metadata:
+	  name: storagelimits
+	spec:
+	  limits:
+	  - type: PersistentVolumeClaim
+	    max:
+	      storage: 2Gi
+	    min:
+	      storage: 1Gi
+
+snippet rbac-default.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/rbac-default.yaml
+	apiVersion: v1
+	kind: ServiceAccount
+	metadata:
+	  name: serviceaccount-jenkins
+	  namespace: ci-testbed
+	---
+	apiVersion: rbac.authorization.k8s.io/v1
+	kind: ClusterRole
+	apiVersion: rbac.authorization.k8s.io/v1
+	metadata:
+	  name: clusterrole-jenkins
+	rules:
+	- apiGroups: [""] # "" indicates the core API group
+	  resources: ["configmaps"]
+	  verbs: ["get", "list", "watch", "patch"]
+	- apiGroups: [""] # "" indicates the core API group
+	  resources: ["pods"]
+	  verbs: ["get", "list", "watch", "create", "delete"]
+	- apiGroups: [""]
+	  resources: ["pods/exec"]
+	  verbs: ["get", "create"]
+	---
+	kind: ClusterRoleBinding
+	apiVersion: rbac.authorization.k8s.io/v1
+	metadata:
+	  name: service-account-jenkins
+	subjects:
+	- kind: ServiceAccount
+	  name: serviceaccount-jenkins
+	  namespace: ci-testbed
+	roleRef:
+	  kind: ClusterRole
+	  name: clusterrole-jenkins
+	  apiGroup: rbac.authorization.k8s.io
+
+snippet rbac-serviceaccount-default.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/rbac-serviceaccount-default.yaml
+	# https://github.com/dennyzhang/cheatsheet-kubernetes-A4
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	kind: ClusterRole
+	apiVersion: rbac.authorization.k8s.io/v1
+	metadata:
+	  name: clusterrole-default
+	rules:
+	- apiGroups: [""] # "" indicates the core API group
+	  resources: ["configmaps"]
+	  verbs: ["get", "list", "watch", "patch"]
+	- apiGroups: [""] # "" indicates the core API group
+	  resources: ["pods"]
+	  verbs: ["deletecollection"]
+	  # The sink-controller needs to be able to watch sinks
+	- apiGroups: ["apps.mydomain.io"]
+	  resources: ["sinks"]
+	  verbs: ["get", "list", "watch"]
+	# This rule is for kubernetes-metadata-filter
+	- apiGroups:
+	  - ""
+	  - "apps"
+	  - "batch"
+	  resources: ["*"]
+	  verbs: ["get", "list", "watch"]
+	---
+	kind: ClusterRoleBinding
+	apiVersion: rbac.authorization.k8s.io/v1
+	metadata:
+	  name: service-account-default
+	subjects:
+	- kind: ServiceAccount
+	  name: default
+	  namespace: default
+	roleRef:
+	  kind: ClusterRole
+	  name: clusterrole-default
+	  apiGroup: rbac.authorization.k8s.io
+
+snippet service-cassandra.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/service-cassandra.yaml
+	# https://kubernetes.io/docs/tutorials/stateful-application/cassandra/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  labels:
+	    app: cassandra
+	  name: cassandra
+	spec:
+	  clusterIP: None
+	  ports:
+	  - port: 9042
+	  selector:
+	    app: cassandra
+
+snippet service-clusterip-nginx.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/service-clusterip-nginx.yaml
+	# https://kubernetes.io/docs/tutorials/k8s201/
+	# Default service type: ClusterIP
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  name: nginx-service
+	spec:
+	  ports:
+	  - port: 8000 # the port that this service should serve on
+	    # the container on each pod to connect to, can be a name
+	    # (e.g. 'www') or a number (e.g. 80)
+	    targetPort: 80
+	    protocol: TCP
+	  # just like the selector in the deployment,
+	  # but this time it identifies the set of pods to load balance
+	  # traffic to.
+	  selector:
+	    app: nginx
+
+snippet service-ingress.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/service-ingress.yaml
+	# https://kubernetes.io/docs/concepts/services-networking/ingress/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: extensions/v1beta1
+	kind: Ingress
+	metadata:
+	  name: test-ingress
+	  namespace: wordpress
+	spec:
+	  backend:
+	    serviceName: wordpress-1-wordpress-svc
+	    servicePort: 80
+
+snippet service-loadbalancer.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/service-loadbalancer.yaml
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  name: jenkins-monitoring
+	  namespace: ns-ci
+	spec:
+	  type: LoadBalancer
+	  selector:
+	    app: jenkins
+	  ports:
+	  - name: http
+	    port: 8080
+	    targetPort: 8080
+	    protocol: TCP
+
+snippet service-nodeport.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/service-nodeport.yaml
+	# https://kubernetes.io/docs/concepts/services-networking/ingress/
+	# https://medium.com/google-cloud/kubernetes-nodeport-vs-loadbalancer-vs-ingress-when-should-i-use-what-922f010849e0
+	apiVersion: v1
+	kind: Service
+	metadata:  
+	  name: my-nodeport-wordpress
+	  namespace: wordpress
+	spec:
+	  selector:    
+	    app.kubernetes.io/component: wordpress-webserver
+	  type: NodePort
+	  ports:  
+	  - name: http
+	    port: 80
+	    targetPort: 80
+	    nodePort: 30036
+	    protocol: TCP
+
+snippet statefulset-nginx.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/statefulset-nginx.yaml
+	# https://kubernetes.io/docs/tutorials/stateful-application/basic-stateful-set/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  name: nginx
+	  labels:
+	    app: nginx
+	spec:
+	  ports:
+	  - port: 80
+	    name: web
+	  clusterIP: None
+	  selector:
+	    app: nginx
+	---
+	apiVersion: apps/v1
+	kind: StatefulSet
+	metadata:
+	  name: web
+	spec:
+	  serviceName: "nginx"
+	  replicas: 2
+	  selector:
+	    matchLabels:
+	      app: nginx
+	  template:
+	    metadata:
+	      labels:
+	        app: nginx
+	    spec:
+	      containers:
+	      - name: nginx
+	        image: k8s.gcr.io/nginx-slim:0.8
+	        ports:
+	        - containerPort: 80
+	          name: web
+	        volumeMounts:
+	        - name: www
+	          mountPath: /usr/share/nginx/html
+	  volumeClaimTemplates:
+	  - metadata:
+	      name: www
+	    spec:
+	      accessModes: [ "ReadWriteOnce" ]
+	      resources:
+	        requests:
+	          storage: 1Gi
+
+snippet statefulset-replicated-cassandra.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/statefulset-replicated-cassandra.yaml
+	# https://kubernetes.io/docs/tutorials/stateful-application/cassandra/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: apps/v1
+	kind: StatefulSet
+	metadata:
+	  name: cassandra
+	  labels:
+	    app: cassandra
+	spec:
+	  serviceName: cassandra
+	  replicas: 3
+	  selector:
+	    matchLabels:
+	      app: cassandra
+	  template:
+	    metadata:
+	      labels:
+	        app: cassandra
+	    spec:
+	      terminationGracePeriodSeconds: 1800
+	      containers:
+	      - name: cassandra
+	        image: gcr.io/google-samples/cassandra:v13
+	        imagePullPolicy: Always
+	        ports:
+	        - containerPort: 7000
+	          name: intra-node
+	        - containerPort: 7001
+	          name: tls-intra-node
+	        - containerPort: 7199
+	          name: jmx
+	        - containerPort: 9042
+	          name: cql
+	        resources:
+	          limits:
+	            cpu: "500m"
+	            memory: 1Gi
+	          requests:
+	           cpu: "500m"
+	           memory: 1Gi
+	        securityContext:
+	          capabilities:
+	            add:
+	              - IPC_LOCK
+	        lifecycle:
+	          preStop:
+	            exec:
+	              command: 
+	              - /bin/sh
+	              - -c
+	              - nodetool drain
+	        env:
+	          - name: MAX_HEAP_SIZE
+	            value: 512M
+	          - name: HEAP_NEWSIZE
+	            value: 100M
+	          - name: CASSANDRA_SEEDS
+	            value: "cassandra-0.cassandra.default.svc.cluster.local"
+	          - name: CASSANDRA_CLUSTER_NAME
+	            value: "K8Demo"
+	          - name: CASSANDRA_DC
+	            value: "DC1-K8Demo"
+	          - name: CASSANDRA_RACK
+	            value: "Rack1-K8Demo"
+	          - name: POD_IP
+	            valueFrom:
+	              fieldRef:
+	                fieldPath: status.podIP
+	        readinessProbe:
+	          exec:
+	            command:
+	            - /bin/bash
+	            - -c
+	            - /ready-probe.sh
+	          initialDelaySeconds: 15
+	          timeoutSeconds: 5
+	        # These volume mounts are persistent. They are like inline claims,
+	        # but not exactly because the names need to match exactly one of
+	        # the stateful pod volumes.
+	        volumeMounts:
+	        - name: cassandra-data
+	          mountPath: /cassandra_data
+	  # These are converted to volume claims by the controller
+	  # and mounted at the paths mentioned above.
+	  # do not use these in production until ssd GCEPersistentDisk or other ssd pd
+	  volumeClaimTemplates:
+	  - metadata:
+	      name: cassandra-data
+	    spec:
+	      accessModes: [ "ReadWriteOnce" ]
+	      storageClassName: fast
+	      resources:
+	        requests:
+	          storage: 1Gi
+	---
+	kind: StorageClass
+	apiVersion: storage.k8s.io/v1
+	metadata:
+	  name: fast
+	provisioner: k8s.io/minikube-hostpath
+	parameters:
+	  type: pd-ssd
+
+snippet volume-digitalocean.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/volume-digitalocean.yaml
+	# https://github.com/digitalocean/csi-digitalocean
+	apiVersion: v1
+	kind: PersistentVolumeClaim
+	metadata:
+	  name: csi-pvc
+	spec:
+	  accessModes:
+	  - ReadWriteOnce
+	  resources:
+	    requests:
+	      storage: 5Gi
+	  storageClassName: do-block-storage
+
+snippet volume-ebs.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/volume-ebs.yaml
+	# https://kubernetes.io/docs/concepts/storage/volumes/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: test-ebs
+	spec:
+	  containers:
+	  - image: k8s.gcr.io/test-webserver
+	    name: test-container
+	    volumeMounts:
+	    - mountPath: /test-ebs
+	      name: test-volume
+	  volumes:
+	  - name: test-volume
+	    # This AWS EBS volume must already exist.
+	    awsElasticBlockStore:
+	      volumeID: <volume-id>
+	      fsType: ext4
+
+snippet volume-emptydir.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/volume-emptydir.yaml
+	# https://kubernetes.io/docs/tutorials/k8s101/
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: redis
+	spec:
+	  containers:
+	  - name: redis
+	    image: redis
+	    volumeMounts:
+	    - name: redis-storage
+	      mountPath: /data/redis
+	      readOnly: false
+	  volumes:
+	  - name: redis-storage
+	    emptyDir: {}
+
+snippet volume-gcePersistentDisk.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/volume-gcePersistentDisk.yaml
+	# https://kubernetes.io/docs/concepts/storage/volumes/#creating-a-pd
+	# Creating a PD
+	# Before you can use a GCE PD with a Pod, you need to create it.
+	# gcloud compute disks create --size=500GB --zone=us-central1-a my-data-disk
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: test-pd
+	spec:
+	  containers:
+	  - image: k8s.gcr.io/test-webserver
+	    name: test-container
+	    volumeMounts:
+	    - mountPath: /test-pd
+	      name: test-volume
+	  volumes:
+	  - name: test-volume
+	    # This GCE PD must already exist.
+	    gcePersistentDisk:
+	      pdName: my-data-disk
+	      fsType: ext4
+
+snippet volume-manual-pv.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/volume-manual-pv.yaml
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	kind: PersistentVolume
+	apiVersion: v1
+	metadata:
+	  name: mysql-pv-volume
+	  labels:
+	    type: local
+	spec:
+	  storageClassName: manual
+	  capacity:
+	    storage: 15Gi
+	  accessModes:
+	    - ReadWriteOnce
+	  hostPath:
+	    path: "/mnt/data"
+	---
+	apiVersion: v1
+	kind: PersistentVolumeClaim
+	metadata:
+	  name: mysql-pv-claim
+	spec:
+	  storageClassName: manual
+	  accessModes:
+	    - ReadWriteOnce
+	  resources:
+	    requests:
+	      storage: 20Gi
+
+snippet volume-mount-localpath.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/volume-mount-localpath.yaml
+	# https://github.com/dennyzhang/dennytest/tree/master/kubernetes/k8s_security
+	# https://github.com/kubernetes/minikube/blob/master/docs/persistent_volumes.md
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: dummy
+	  namespace: default
+	  labels:
+	    env: test
+	spec:
+	  containers:
+	  - name: dummy
+	    image: getintodevops/jenkins-withdocker:lts
+	    # image: busybox
+	    args: [/bin/sh, -c, 'i=0; while true; do echo "$i: $(date)"; i=$((i+1)); sleep 1; done']
+	    volumeMounts:
+	      - name: hostvolrun
+	        mountPath: /myrun
+	  volumes:
+	  - name: hostvolrun
+	    hostPath:
+	      path: /var/run
+
+snippet volume-nfs.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/volume-nfs.yaml
+	---
+	apiVersion: v1
+	kind: PersistentVolume
+	metadata:
+	  name: nfs-backup-volume
+	  labels:
+	    volume: nfs-backup-volume
+	spec:
+	  capacity:
+	    storage: 1Gi
+	  accessModes:
+	    - ReadWriteMany
+	  nfs:
+	    server: "my-nfs-server"
+	    path: "/my/nfs/jenkins-test"
+	---
+	kind: PersistentVolumeClaim
+	apiVersion: v1
+	metadata:
+	  name: nfs-backup-volume-claim
+	  namespace: pks-testbed
+	spec:
+	  resources:
+	    requests:
+	      storage: 1Gi
+	  accessModes:
+	    - ReadWriteMany
+	  selector:
+	    matchLabels:
+	      volume: nfs-backup-volume
+
+snippet volume-preset.yaml
+
+	#deal with  /root/linux_src/kubernetes-yaml-templates/volume-preset.yaml
+	# https://kubernetes.io/docs/tasks/inject-data-application/podpreset/
+	# You can use a PodPreset object to inject information like secrets,
+	#    volume mounts, and environment variables etc into pods at creation time.
+	# Create a podpreset with volume type of emptydir 
+	# The new PodPreset will act upon any pod that has label role: frontend
+	# https://cheatsheet.dennyzhang.com/kubernetes-yaml-templates
+	apiVersion: settings.k8s.io/v1alpha1
+	kind: PodPreset
+	metadata:
+	  name: allow-database
+	spec:
+	  selector:
+	    matchLabels:
+	      role: frontend
+	  env:
+	    - name: DB_PORT
+	      value: "6379"
+	  volumeMounts:
+	    - mountPath: /cache
+	      name: cache-volume
+	  volumes:
+	    - name: cache-volume
+	      emptyDir: {}
+	---
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  name: website
+	  labels:
+	    app: website
+	    role: frontend
+	spec:
+	  containers:
+	    - name: website
+	      image: nginx
+	      ports:
+	        - containerPort: 80
+
+
+snippet nodeport_dashboard
+	kind: Service
+	apiVersion: v1
+	metadata:
+	  labels:
+		app: kubernetes-dashboard
+	  name: kubernetes-dashboard
+	  namespace: kube-system
+	spec:
+	  type: NodePort
+	  ports:
+	  - port: 80
+		targetPort: 9090
+	  selector:
+		app: kubernetes-dashboard
+
+
+snippet Secret
+	#  ~/CI/d_kubernetes/kubeadm-ha_1.14/plugin/kubernetes-dashboard.yaml 
+	apiVersion: v1
+	kind: Secret
+	metadata:
+	  labels:
+		k8s-app: kubernetes-dashboard
+		# Allows editing resource and makes sure it is created first.
+		addonmanager.kubernetes.io/mode: EnsureExists
+	  name: kubernetes-dashboard-key-holder
+	  namespace: kube-system
+	type: Opaque
+
+
+snippet busybox
+	apiVersion: v1
+	kind: Pod
+	metadata:
+	  labels:
+		name: busybox
+		role: master
+	  name: busybox
+	spec:
+	  containers:
+	  - name: busybox
+		image: docker.io/busybox:latest
+		command:
+		- sleep
+		- "3600"
+
+
+snippet nginx_demo
+	#deal with  /root/linux_src/kubernetes-yaml-templates/deployment-nginx.yaml
+	apiVersion: apps/v1
+	kind: Deployment
+	metadata:
+	  name: nginx-deployment
+	spec:
+	  selector:
+	    matchLabels:
+	      app: nginx
+	  replicas: 2
+	  template:
+	    metadata:
+	      labels:
+	        app: nginx
+	    spec:
+	      containers:
+	      - name: nginx
+	        image: nginx:1.8
+	        resources:
+	          limits:
+	            memory: "128Mi"
+	            cpu: "250m"
+	        ports:
+	        - containerPort: 80
+
+
+
+snippet CronJob_demo
+	#kubectl create -f ./cronjob.yaml
+	#kubectl get cronjob hello
+	#kubectl get jobs --watch
+	#kubectl delete cronjob hello
+
+	apiVersion: batch/v1beta1
+	kind: CronJob
+	metadata:
+	  name: hello
+	spec:
+	  schedule: "*/1 * * * *"
+	  jobTemplate:
+		spec:
+		  template:
+			spec:
+			  containers:
+			  - name: hello
+				image: busybox
+				args:
+				- /bin/sh
+				- -c
+				- date; echo Hello from the Kubernetes cluster
+			  restartPolicy: OnFailure
+
+
+snippet ingress_multi_host
+	#https://www.centos.bz/2018/07/k8s%E4%B9%8Btraefik/
+	apiVersion: extensions/v1beta1
+	kind: Ingress
+	metadata:
+	  name: dashboard-ela-k8s-traefik
+	  namespace: kube-system
+	  annotations:
+		kubernetes.io/ingress.class: traefik
+	spec:
+	  rules:
+	  - host: dashboard.k8s.traefik
+		http:
+		  paths:
+		  - path: /  
+			backend:
+			  serviceName: kubernetes-dashboard
+			  servicePort: 80
+	  - host: ela.k8s.traefik
+		http:
+		  paths:
+		  - path: /  
+			backend:
+			  serviceName: elasticsearch-logging
+			  servicePort: 9200
+
+
+
+snippet ingress_multi_path
+	#https://www.centos.bz/2018/07/k8s%E4%B9%8Btraefik/
+	apiVersion: extensions/v1beta1
+	kind: Ingress
+	metadata:
+	  name: my-k8s-traefik
+	  namespace: kube-system
+	  annotations:
+		kubernetes.io/ingress.class: traefik
+		traefik.frontend.rule.type: PathPrefixStrip
+	spec:
+	  rules:
+	  - host: my.k8s.traefik
+		http:
+		  paths:
+		  - path: /dashboard
+			backend:
+			  serviceName: kubernetes-dashboard
+			  servicePort: 80
+		  - path: /kibana
+			backend:
+			  serviceName: kibana-logging
+			  servicePort: 5601

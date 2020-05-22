@@ -1,0 +1,150 @@
+
+# Generic tags
+extends html
+extends html
+
+snippet tpl_%
+	{% ${1} %}
+snippet tpl_%%
+	{% ${1:tag_name} %}
+	${0}
+	{% end$1 %}
+snippet tpl_{
+	{{ ${1} }}
+# Template Tags
+
+snippet tpl_autoescape
+	{% autoescape ${1:off} %}
+		${0}
+	{% endautoescape %}
+
+snippet tpl_block
+	{% block ${1} %}
+		${0}
+	{% endblock %}
+
+snippet block
+	{% block ${1} %}
+		${0}
+	{% endblock %}
+
+snippet tpl_#
+	{# ${0:comment} #}
+snippet tpl_comment
+	{% comment %}
+		${0}
+	{% endcomment %}
+snippet tpl_cycle
+	{% cycle ${1:val1} ${2:val2} ${3:as ${4}} %}
+snippet tpl_debug
+	{% debug %}
+snippet tpl_extends
+	{% extends "${0:base.html}" %}
+snippet tpl_filter
+	{% filter ${1} %}
+		${0}
+	{% endfilter %}
+snippet tpl_firstof
+	{% firstof ${1} %}
+snippet tpl_for
+	{% for ${1} in ${2} %}
+		${0}
+	{% endfor %}
+snippet tpl_empty
+	{% empty %}
+	${0}
+snippet tpl_if
+	{% if ${1} %}
+		${0}
+	{% endif %}
+snippet tpl_el
+	{% else %}
+		${1}
+snippet tpl_eif
+	{% elif ${1} %}
+		${0}
+snippet tpl_ifchanged
+	{% ifchanged %}${1}{% endifchanged %}
+snippet tpl_ifequal
+	{% ifequal ${1} ${2} %}
+		${0}
+	{% endifequal %}
+snippet tpl_ifnotequal
+	{% ifnotequal ${1} ${2} %}
+		${0}
+	{% endifnotequal %}
+snippet tpl_include
+	{% include "${0}" %}
+snippet tpl_load
+	{% load ${0} %}
+snippet tpl_now
+	{% now "${0:jS F Y H:i}" %}
+snippet tpl_regroup
+	{% regroup ${1} by ${2} as ${0} %}
+snippet tpl_spaceless
+	{% spaceless %}${0}{% endspaceless %}
+snippet tpl_ssi
+	{% ssi ${0} %}
+snippet tpl_trans
+	{% trans "${0:string}" %}
+snippet tpl_url
+	{% url ${1} as ${0} %}
+snippet tpl_widthratio
+	{% widthratio ${1:this_value} ${2:max_value} ${0:100} %}
+snippet tpl_with
+	{% with ${1} as ${2} %}
+		${0}
+	{% endwith %}
+
+# Template Filters
+
+# Note: Since SnipMate can't determine which template filter you are
+# expanding without the "|" character, these do not add the "|"
+# character.  These save a few keystrokes still.
+
+# Note: Template tags that take no arguments are not implemented.
+
+snippet tpl_add
+	add:"${0}"
+snippet tpl_center
+	center:"${0}"
+snippet tpl_cut
+	cut:"${0}"
+snippet tpl_date
+	date:"${0}"
+snippet tpl_default
+	default:"${0}"
+snippet tpl_defaultifnone
+	default_if_none:"${0}"
+snippet tpl_dictsort
+	dictsort:"${0}"
+snippet tpl_dictsortrev
+	dictsortreversed:"${0}"
+snippet tpl_divisibleby
+	divisibleby:"${0}"
+snippet tpl_floatformat
+	floatformat:"${0}"
+snippet tpl_getdigit
+	get_digit:"${0}"
+snippet tpl_join
+	join:"${0}"
+snippet tpl_lengthis
+	length_is:"${0}"
+snippet tpl_pluralize
+	pluralize:"${0}"
+snippet tpl_removetags
+	removetags:"${0}"
+snippet tpl_slice
+	slice:"${0}"
+snippet tpl_stringformat
+	stringformat:"${0}"
+snippet tpl_time
+	time:"${0}"
+snippet tpl_truncatewords
+	truncatewords:${0}
+snippet tpl_truncatewordshtml
+	truncatewords_html:${0}
+snippet tpl_urlizetrunc
+	urlizetrunc:${0}
+snippet tpl_wordwrap
+	wordwrap:${0}
